@@ -22,7 +22,7 @@ CREATE SEQUENCE item_seq;
 --상품리뷰
 CREATE TABLE item_review(
 	review_num number primary key,--리뷰번호
-	mem_num number foreign key member (mem_num),--리뷰작성회원번호
+	mem_num number foreign key omember (mem_num),--리뷰작성회원번호
 	item_num number foreign key item (item_num),--리뷰한 상품번호
 	item_score number(1) not null,--상품점수
 	review_content clob not null,--상품리뷰내용
@@ -33,7 +33,7 @@ CREATE SEQUENCE item_review_seq;
 
 CREATE TABLE item_fav(
 	fav_num number primary key,--상품찜번호
-	mem_num number foreign key member (mem_num),--좋아요한 회원번호
+	mem_num number foreign key omember (mem_num),--좋아요한 회원번호
 	item_num number foreign key item (item_num)--상품번호
 );
 CREATE SEQUENCE item_fav_seq;
