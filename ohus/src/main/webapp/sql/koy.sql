@@ -6,6 +6,7 @@ create table inquiry(
 	inq_content clob not null,
 	inq_regdate date default sysdate not null,
 	inq_ip varchar2(40) not null,
+	inq_status number(1) default 1 not null,
 	mem_num number not null,
 	constraint inquiry_pk primary key (inq_num),
 	constraint inquiry_fk foreign key (mem_num) references omember (mem_num)
@@ -46,6 +47,7 @@ create table qna(
 	qna_content clob not null,
 	qna_regdate date default sysdate not null,
 	qna_ip varhcar2(40) not null,
+	qna_status number(1) default 1 not null,
 	mem_num number not null,
 	detail_num not null,
 	constraint qna_pk primary key (qna_num),
