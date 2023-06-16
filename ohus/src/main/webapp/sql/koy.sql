@@ -1,4 +1,4 @@
--- 문의사항
+-- 문의사항   
 create table inquiry(
 	inq_num number,
 	inq_title varchar2(30) not null,
