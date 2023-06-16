@@ -1,4 +1,4 @@
---상품관리
+--상품관리  
 CREATE TABLE item(
 	item_num number primary key,--상품번호
 	item_name varchar2(600) unique not null,--상품명
