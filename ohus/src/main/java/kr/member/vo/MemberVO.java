@@ -9,7 +9,7 @@ public class MemberVO {
 
 	private String name;
 	private int reports;
-	private String pw; // 영문 숫자 포함 8자 이상
+	private String password; // 영문 숫자 포함 8자 이상
 	private String phone;
 	private String email;
 	private String zipcode;
@@ -21,15 +21,15 @@ public class MemberVO {
 	private Date modify_date; // 회원 정보 수정일
 
 	//비밀번호 일치 여부 체크
-	public boolean isCheckedPassword(String userPasswd) {
+	public boolean isCheckedPassword(String userPassword) {
 		//회원등급(auth):0탈퇴회원,1정지회원,2일반회원,9관리자
-		if( auth > 1 && 
-				 pw.equals(userPasswd)) {
+		if( auth > 1 && password.equals(userPassword)) {
 			return true;
 		}
 		return false;
 	}
-
+	
+	
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -70,12 +70,12 @@ public class MemberVO {
 		this.reports = reports;
 	}
 
-	public String getPw() {
-		return pw;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getPhone() {
