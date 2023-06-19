@@ -36,7 +36,46 @@
 			</ul>
 		</form>
 		<%-- 검색창 끝 --%>
-		
+		<div>
+			<input type="button" value = "목록" onclick = "location.href = 'list.do'">
+			<input type="button" value = "홈으로" onclick = "location.href = '${pageContext.request.contextPath}/main/main.do'">
+		</div>
+		<p>
+		<%-- 상품 목록 --%>
+			<c:if test="${count == 0}">
+				<div class = "result-display">
+					표시할 상품 없음
+				</div>
+			</c:if>
+			<c:if test="${count > 0}">
+				<table>
+					<tr>
+						<th>번호</th>
+						<th>상품명</th>
+						<th>가격</th>
+						<th>재고</th>
+						<th>등록일</th>
+						<th>상태</th>
+					</tr>
+					<c:forEach var = "item" items = "${list}">
+						<tr>
+							<td>${item.item_num}</td>
+							<td><a href = "modifyForm.do?item_num=${item.item_num}">${item.item_name}</a></td>
+							<td><fmt:formatNumber value="${item.item_price}"/>원</td>
+							<td><fmt:formatNumber value="${item.item_stock}"/></td>
+							<td>${item.item_regdate}</td>
+							<td>
+								<c:if test="${item.item_status == 1}">미표시</c:if>
+								<c:if test="${item.item_status == 2}">표시</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<p>
+				<div class = "align-center">${page}</div>
+			</c:if>
+			<%-- 상품 목록 --%>
+		</div>
 		<%-- 내용 끝 --%>
 	</div>
 </body>
