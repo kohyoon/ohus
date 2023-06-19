@@ -14,6 +14,14 @@ public class MarketVO {
 	private String market_photo2;   // 상추 게시글 첨부파일2
 	private int mem_num;            // 작성자 번호
 	
+	private String id; 			    // 작성자 아이디
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getMarket_num() {
 		return market_num;
 	}

@@ -52,9 +52,9 @@ public class ItemDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//관리자 상품 수정
+	//상품 수정(관리자 전용)
 	
-	//관리자 상품 삭제
+	//상품 삭제(관리자 전용)
 	
 	//상품 사진 삭제
 	
