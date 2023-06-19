@@ -25,6 +25,8 @@ public class getChatroomListAction implements Action{
 		}
 		
 		int market_num = Integer.parseInt(request.getParameter("market_num"));
+		int count = 0;
+		
 		// 로그인한 회원과 거래글 작성자가 같은지 확인
 		MarketDAO marketDao = MarketDAO.getInstance();
 		MarketVO db_market = marketDao.getDetailMarket(market_num);
@@ -34,9 +36,9 @@ public class getChatroomListAction implements Action{
 		
 		ChatDAO dao = ChatDAO.getInstance();
 		List<ChatroomVO> list = dao.getChatroomList(user_num, market_num);
-		
+		count = dao.getChatroomCount(user_num, market_num);
 		request.setAttribute("list", list);
-		
+		request.setAttribute("count", count);
 		return "/WEB-INF/views/chatting/chatroom.jsp";
 	}
 

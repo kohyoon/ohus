@@ -26,7 +26,7 @@ public class MarketUpdateAction implements Action{
 		MultipartRequest multi = FileUtil.createFile(request);
 		String photo1 = multi.getFilesystemName("market_photo1");
 		String photo2 = multi.getFilesystemName("market_photo2");
-		int market_num = Integer.parseInt(request.getParameter("market_num"));
+		int market_num = Integer.parseInt(multi.getParameter("market_num"));
 		MarketDAO dao = MarketDAO.getInstance();
 		MarketVO db_market = dao.getDetailMarket(market_num);
 		
@@ -38,6 +38,7 @@ public class MarketUpdateAction implements Action{
 		
 		MarketVO market = new MarketVO();
 		
+		market.setMarket_num(market_num);
 		market.setMarket_title(multi.getParameter("market_title"));
 		market.setMarket_content(multi.getParameter("market_content"));
 		market.setMarket_status(Integer.parseInt(multi.getParameter("market_status")));
@@ -48,11 +49,11 @@ public class MarketUpdateAction implements Action{
 		dao.updateMarket(market);
 		
 		if(photo1 != null) {
-			FileUtil.removeFile(request, photo1);
+			FileUtil.removeFile(request, db_market.getMarket_photo1());
 		}
 		
 		if(photo2 != null) {
-			FileUtil.removeFile(request, photo2);
+			FileUtil.removeFile(request, db_market.getMarket_photo2());
 		}
 		
 		return "redirect:/market/detail.do?market_num=" + market_num;

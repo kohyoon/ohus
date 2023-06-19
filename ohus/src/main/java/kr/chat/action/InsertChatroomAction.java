@@ -20,22 +20,26 @@ public class InsertChatroomAction implements Action{
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
-		
+
 		int market_num = Integer.parseInt(request.getParameter("market_num"));
 		int buyer_num = Integer.parseInt(request.getParameter("buyer_num"));
 		int seller_num = Integer.parseInt(request.getParameter("seller_num"));
-		
+
 		ChatDAO dao = ChatDAO.getInstance();
 		ChatroomVO chatroom = new ChatroomVO();
-		chatroom.setMarket_num(market_num);
-		chatroom.setBuyer_num(buyer_num);
-		chatroom.setSeller_num(seller_num);
+		ChatroomVO db_chatroom = dao.getChatroomByBuyer(market_num, seller_num);
+		// 생성된 채팅방이 존재한지 체크
 		
-		dao.insertChatroom(chatroom);
-		
-		request.setAttribute("buyer_num", buyer_num);
-		request.setAttribute("seller_num", seller_num);
-		return "/WEB-INF/views/chatting/chatting.jsp";
+		if(db_chatroom == null) {
+			chatroom.setMarket_num(market_num);
+			chatroom.setBuyer_num(buyer_num);
+			chatroom.setSeller_num(seller_num);
+			dao.insertChatroom(chatroom);
+			db_chatroom = dao.getChatroomByBuyer(market_num, seller_num);
+		}
+		request.setAttribute("chatroom", db_chatroom);
+
+		return "/WEB-INF/views/chatting/chatroomSuccess.jsp";
 	}
 
 }

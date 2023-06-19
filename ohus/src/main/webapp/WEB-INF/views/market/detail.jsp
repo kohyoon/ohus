@@ -21,10 +21,10 @@
 		</c:if>
 			<h6>작성일 : ${market.market_regdate} 조회수 : ${market.market_hit}</h6> 
 		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="40" height="40" class="my-photo">
+			<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="300" height="300" class="my-photo">
 		</div>
 		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${market.market_photo2}" width="40" height="40" class="my-photo">
+			<img src="${pageContext.request.contextPath}/upload/${market.market_photo2}" width="300" height="300" class="my-photo">
 		</div>		
 		<hr size="1" noshade="noshade" width="100%">
 		<p>
