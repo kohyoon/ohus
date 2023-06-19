@@ -42,6 +42,7 @@
 				작성일 : ${inquiry.inq_regdate}
 				<c:if test="${user_num == inquiry.mem_num}">
 				<input type="button" value="수정" onclick="location.href='modifyInquiryForm.do?inq_num=${inquiry.inq_num}'">
+				<input type="button" value="삭제" onclick="location.href='deleteInquiry.do?inq_num=${inquiry.inq_num}'">
 				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
 				</c:if>
 			</li>
