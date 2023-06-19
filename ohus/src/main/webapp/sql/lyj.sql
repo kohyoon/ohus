@@ -36,7 +36,7 @@ create table oevent(
  event_start Date not null,  
  event_end Date not null,
  event_hit number default 0 not null, --조회수
- mem_num number not null,
+ mem_num number not null, 
  winner_count number not null, --이벤트 당첨자 수
  constraint oevent_pk primary key(event_num),
  constraint oevent_fk foreign key(mem_num) references omember(mem_num)
