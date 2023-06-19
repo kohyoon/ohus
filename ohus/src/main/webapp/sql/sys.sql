@@ -47,6 +47,6 @@ CREATE TABLE cart(
 	mem_num number not null, -- 회원번호
 	constraint cart_pk primary key (cart_num),
 	constraint cart_fk1 foreign key (item_num) references item (item_num),
-	constraint cart_fk2 foreign key (mem_num) references member (mem_num),
+	constraint cart_fk2 foreign key (mem_num) references member (mem_num)
 );
 CREATE sequence cart_seq;
