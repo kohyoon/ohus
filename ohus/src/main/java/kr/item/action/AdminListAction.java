@@ -1,10 +1,15 @@
 package kr.item.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemVO;
+import kr.util.PageUtil;
 
 public class AdminListAction implements Action{
 
@@ -28,7 +33,24 @@ public class AdminListAction implements Action{
 				
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		
+		//목록 페이지 구현
+		ItemDAO dao = ItemDAO.getInstance();
+		//Status 0이면 미표시(1), 표시(2) 모든 개수 체크
+		int count = dao.getItemCount(keyfield, keyword, 0);
 				
+		//페이지 처리
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "list.do");
+				
+		//목록 데이터 호출
+		List<ItemVO> list = null;
+		if(count > 0) {
+			list = dao.getListItem(page.getStartRow(), page.getEndRow(), keyfield, keyword, 0);//0 : status
+		}
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
+		request.setAttribute("page", page.getPage());
+		//목록 페이지 구현
 				
 		return "/WEB-INF/views/item/admin_list.jsp";
 	}

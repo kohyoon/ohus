@@ -59,7 +59,7 @@ public class ItemDAO {
 	//상품 사진 삭제
 	
 	//전체 상품 개수/검색 상품 개수(관리자, 사용자)
-	public int getItemCount(String keyfield, String keyword, int status) throws Exception{
+	public int getItemCount(String keyfield, String keyword, int item_status) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -70,15 +70,15 @@ public class ItemDAO {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
 			if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "AND name LIKE ?";
-				if(keyfield.equals("2")) sub_sql += "AND detail LIKE ?";
+				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE ?";
+				if(keyfield.equals("2")) sub_sql += "AND item_content LIKE ?";
 			}
 			//SQL문 작성
 			sql = "SELECT COUNT(*) FROM item WHERE item_status > ? " + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, status);
+			pstmt.setInt(1, item_status);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(2, "%" + keyword + "%");
 			}
@@ -107,8 +107,8 @@ public class ItemDAO {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
 				if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "AND name LIKE ?";
-				if(keyfield.equals("2")) sub_sql += "AND detail LIKE ?";
+				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE ?";
+				if(keyfield.equals("2")) sub_sql += "AND item_content LIKE ?";
 			}
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item WHERE item_status > ? " 
