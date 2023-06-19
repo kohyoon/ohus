@@ -28,7 +28,7 @@
 										</a></h3>
 									</li>	 
 										<li class="header-upper__item"><h3><a
-											href="${pageContext.request.contextPath}/item/list.do">쇼핑</a></h3></li>
+											href="${pageContext.request.contextPath}/item/userList.do">쇼핑</a></h3></li>
 										<li class="header-upper__item"><h3><a
 											href="${pageContext.request.contextPath}/market/list.do">상추마켓</a></h3>
 										</li>
