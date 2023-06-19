@@ -83,4 +83,5 @@ public class CommunityReplyVO {
 		this.id = id;
 	}
 
+	
 }
