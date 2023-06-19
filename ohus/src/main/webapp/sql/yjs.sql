@@ -2,7 +2,7 @@
 CREATE TABLE item(
 	item_num number primary key,--상품번호
 	item_name varchar2(600) unique not null,--상품명
-	item_category number(1) not null,--상품카테고리(0:침대,1:소파,2:옷장,3:서랍/수납장,4:테이블,5:의자)
+	item_category number(1) not null,--상품카테고리(0:침대,1:소파,2:서랍/수납장,3:테이블,4:의자)
 	item_price number(9) not null,--상품 가격
 	item_content clob not null,--상품 상세내용
 	item_stock number(3) not null,--상품 재고
