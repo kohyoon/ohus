@@ -1,16 +1,17 @@
 package kr.chat.vo;
 
 public class ChatroomVO {
-	private int chatroom;   // 채팅방 번호
+	private int chatroom_num;   // 채팅방 번호
 	private int market_num; // 게시글 번호
 	private int seller_num; // 판매자 회원번호
 	private int buyer_num;  // 구매자 회원번호
 	
-	public int getChatroom() {
-		return chatroom;
+	
+	public int getChatroom_num() {
+		return chatroom_num;
 	}
-	public void setChatroom(int chatroom) {
-		this.chatroom = chatroom;
+	public void setChatroom_num(int chatroom_num) {
+		this.chatroom_num = chatroom_num;
 	}
 	public int getMarket_num() {
 		return market_num;
