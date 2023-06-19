@@ -12,24 +12,22 @@
 <body>
 	<div class = "page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<jsp:include page="/WEB-INF/views/item/item_header.jsp"/>
 		<%-- 내용시작 --%>
 		<div class = "content-main">
 			<%-- 상품 목록 --%>
-			<h4>최신 상품</h4>
+			<h4>상품</h4>
 			<div class="image-space">
 				<c:forEach var="item" items="${itemList}">
-					<div class="horizontal-area">
+					<div>
 						<a href="${pageContext.request.contextPath}/item/detail.do?item_num=${item.item_num}">
-							<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}">
-							<span>${item.item_name}</span>
+							<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}"><br>
+							${item.item_name}
 							<br>
 							<b><fmt:formatNumber value="${item.item_price}"/>원</b>
 						</a>
 					</div>
 				</c:forEach>
-				<div class="float-clear">
-					<hr width="100%" size="1" noshade="noshade">
-				</div>
 			</div>
 			<%-- 상품 목록 --%>
 		</div>
