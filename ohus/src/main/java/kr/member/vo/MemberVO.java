@@ -6,7 +6,7 @@ public class MemberVO {
 	private int  mem_num; // 회원 식별번호
 	private String id; // 회원 아이디 영문 숫자 포함 최소 6자 최대 12자
 	private int auth; // 회원 등급 0:탈퇴, 1:정지, 2:일반, 9:관리자
-
+   
 	private String name;
 	private int reports;
 	private String password; // 영문 숫자 포함 8자 이상

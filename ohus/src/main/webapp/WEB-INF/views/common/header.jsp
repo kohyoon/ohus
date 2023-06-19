@@ -64,7 +64,7 @@
 										</a>
 									</li>
 								</c:if>
-	
+	 
 								<!-- 로그인 o, 사진 x -->
 								<c:if test="${!empty user_num && empty user_photo}">
 									<li class="menu-profile">

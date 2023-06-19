@@ -43,8 +43,6 @@
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="로그인">
-				<input type="button" value="홈으로"
-				  onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div> 
 			<!-- 로그인 하단 -->
 			 <div>

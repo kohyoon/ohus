@@ -18,7 +18,7 @@ public class MemberDAO {
 	private MemberDAO() {}
 	//==========================================================
 	//[회원]
-	//회원가입
+	//회원가입 
 
 	public void insertMember(MemberVO member) throws Exception{
 		Connection conn = null;
