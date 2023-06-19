@@ -52,7 +52,7 @@
 				<input type="button" value="목록보기" onclick="location.href='list.do'">
 				<c:if test="${market.market_status == 0}">
 					<c:if test="${user_num == market.mem_num}">
-						<input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatroom.do?market_num=${market.market_num}&mem_num=${user_num}'">
+						<input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatroom.do?market_num=${market.market_num}'">
 					</c:if>
 					<c:if test="${user_num != market.mem_num}">
 						<input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chat/chat.do?market_num=${market.market_num}&buyer_num=${user_num}&seller_num=${market.mem_num}'">
