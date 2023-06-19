@@ -29,9 +29,7 @@ public class MemberDAO {
 		String sql = null;
 		int num = 0; //시퀀스 번호 저장
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
-			//오토 커밋 해제
 			conn.setAutoCommit(false);
 			
 			//회원번호(mem_num) 구하기
@@ -65,14 +63,11 @@ public class MemberDAO {
 			pstmt3.setString(8, member.getAddress2());
 			pstmt3.executeUpdate();
 			
-			//SQL문을 실행해서 모두 성공하면 commit
 			conn.commit();
 		}catch(Exception e) {
-			//SQL문이 하나라도 실패하면 rollback
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			//자원정리
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
@@ -89,16 +84,12 @@ public class MemberDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM omember m LEFT OUTER JOIN "
 				+ "omember_detail d ON m.mem_num = d.mem_num "
 				+ "WHERE m.id=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, id);
-			//SQL문 실행
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -114,7 +105,6 @@ public class MemberDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//자원정리
 			DBUtil.executeClose(rs, pstmt, conn);
 		}	
 		return member;
@@ -173,16 +163,12 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		String sql = null;
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
-			//SQL문 작성
 			sql = "UPDATE omember_detail SET name=?,"
 				+ "phone=?,email=?,zipcode=?,address1=?,"
 				+ "address2=?,modify_date=SYSDATE "
 				+ "WHERE mem_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, member.getName());
 			pstmt.setString(2, member.getPhone());
 			pstmt.setString(3, member.getEmail());
@@ -190,12 +176,11 @@ public class MemberDAO {
 			pstmt.setString(5, member.getAddress1());
 			pstmt.setString(6, member.getAddress2());
 			pstmt.setInt(7, member.getMem_num());
-			//SQL문 실행
+
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//자원정리
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
@@ -229,17 +214,12 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		String sql = null;
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
-			//SQL문 작성
 			sql = "UPDATE omember_detail SET photo=? "
 				+ "WHERE mem_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터를 바인딩
 			pstmt.setString(1, photo);
 			pstmt.setInt(2, mem_num);
-			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
