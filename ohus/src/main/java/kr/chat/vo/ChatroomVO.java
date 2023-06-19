@@ -6,7 +6,14 @@ public class ChatroomVO {
 	private int seller_num; // 판매자 회원번호
 	private int buyer_num;  // 구매자 회원번호
 	
+	private String market_title; // 게시글 제목
 	
+	public String getMarket_title() {
+		return market_title;
+	}
+	public void setMarket_title(String market_title) {
+		this.market_title = market_title;
+	}
 	public int getChatroom_num() {
 		return chatroom_num;
 	}
