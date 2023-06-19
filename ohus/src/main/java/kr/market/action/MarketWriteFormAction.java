@@ -15,10 +15,10 @@ public class MarketWriteFormAction implements Action{
 		
 		// 로그인 한 회원만 접근 가능
 		HttpSession session = request.getSession();
-		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		if(mem_num == null) {
-			return "redirect:/omember/loginForm.do";
+		if(user_num == null) {
+			return "redirect:/member/loginForm.do";
 		}
 		
 		return "/WEB-INF/views/market/writeForm.jsp";

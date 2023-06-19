@@ -14,16 +14,16 @@ public class MarketDetailAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 로그인한 회원만 상세 페이지 이동 가능
 		HttpSession session = request.getSession();
-		Integer mem_num = (Integer)session.getAttribute("mem_num"); // 세션에 로그인한 회원 정보 (이름 확인 필요)
+		Integer user_num = (Integer)session.getAttribute("user_num"); // 세션에 로그인한 회원 정보 (이름 확인 필요)
 		
-		if(mem_num == null) { // 로그인 하지 않았을 때
-			return "redirect:/omember/loginForm.do"; // (로그인 폼 경로 확인 필요)
+		if(user_num == null) { // 로그인 하지 않았을 때
+			return "redirect:/member/loginForm.do"; // (로그인 폼 경로 확인 필요)
 		}
 		
 		MarketDAO dao = MarketDAO.getInstance();
 		MarketVO market = dao.getDetailMarket(Integer.parseInt(request.getParameter("market_num")));
 		dao.updateMarketHit(market.getMarket_num());
-		request.setAttribute("mem_num",mem_num);
+		request.setAttribute("user_num",user_num);
 		request.setAttribute("market", market);
 		
 		return "/WEB-INF/views/market/detail.jsp";

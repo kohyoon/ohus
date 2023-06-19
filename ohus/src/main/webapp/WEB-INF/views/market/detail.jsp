@@ -34,7 +34,7 @@
 		<ul class="detail-sub">
 			<li>
 				<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
-				<c:if test="${writer == market.mem_num}">
+				<c:if test="${user_num == market.mem_num}">
 				<input type="button" value="수정하기" onclick="location.href='updateForm.do?market_num=${market.market_num}'">
 				<input type="button" value="삭제하기" id="delete_btn">
 				<script type="text/javascript">
@@ -51,11 +51,11 @@
 				</c:if>
 				<input type="button" value="목록보기" onclick="location.href='list.do'">
 				<c:if test="${market.market_status == 0}">
-					<c:if test="${mem_num == market.mem_num}">
-						<input type="button" value="채팅보기" onclick="location.href='chatroom.do?mem_num=${mem_num}'">
+					<c:if test="${user_num == market.mem_num}">
+						<input type="button" value="채팅보기" onclick="location.href='chatroom.do?mem_num=${user_num}'">
 					</c:if>
-					<c:if test="${mem_num != market.mem_num}">
-						<input type="button" value="채팅보기" onclick="location.href='chat.do?buyer_num=${mem_num}&seller_num=${market.mem_num}'">
+					<c:if test="${user_num != market.mem_num}">
+						<input type="button" value="채팅보기" onclick="location.href='chat.do?buyer_num=${user_num}&seller_num=${market.mem_num}'">
 					</c:if>
 				</c:if>
 				<c:if test="${market.market_status == 0}">
