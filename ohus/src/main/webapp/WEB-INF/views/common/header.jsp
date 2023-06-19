@@ -71,7 +71,7 @@
 										<a href="${pageContext.request.contextPath}/member/myPage.do">
 											<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="my-photo">
 										</a>
-									</li>
+									</li> 
 								</c:if>
 	
 								<!-- 관리자 헤더 -->
