@@ -22,7 +22,7 @@ public class RegisterUserAction implements Action{
 		member.setZipcode(request.getParameter("zipcode"));
 		member.setAddress1(request.getParameter("address1"));
 		member.setAddress2(request.getParameter("address2"));
-		
+
 		//MemberDAO 호출
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMember(member);		
