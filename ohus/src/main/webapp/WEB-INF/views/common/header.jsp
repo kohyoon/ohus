@@ -102,7 +102,7 @@
 											<div id="myDropdown" class="dropdown-content">
 												<a href="#">커뮤니티글쓰기</a> 
 												<a href="#">리뷰등록</a> 
-												<a href="#">상추글쓰기</a>
+												<a href="${pageContext.request.contextPath}/market/writeForm.do">상추글쓰기</a>
 												<a href="#">문의등록</a>
 											</div>
 										</div>

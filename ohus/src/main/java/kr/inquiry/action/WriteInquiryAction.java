@@ -18,6 +18,10 @@ public class WriteInquiryAction implements Action {
 		if(user_num == null) { //로그인 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
+		
+		//전송된 데이터 인코딩 처리
+		request.setCharacterEncoding("utf-8");
+		
 		//자바빈 생성
 		InquiryVO inquiry = new InquiryVO();
 		inquiry.setInq_title(request.getParameter("title"));

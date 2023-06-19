@@ -60,7 +60,7 @@
 			</tr>
 			<c:forEach var="market" items="${list}">
 			<tr>
-				<td>${market.market_photo1}</td>
+				<td><a href="detail.do?market_num=${market.market_num}">${market.market_photo1}</a></td>
 				<td><a href="detail.do?market_num=${market.market_num}">${market.market_title}</a></td>
 				<td>${market.market_regdate}</td>
 				<td>${market.market_hit}</td>

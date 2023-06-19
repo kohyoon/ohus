@@ -5,6 +5,7 @@ create table inquiry(
 	inq_category number(1) not null, --1:사이트 문의 | 2:신고 문의
 	inq_content clob not null,
 	inq_regdate date default sysdate not null,
+	inq_modifydate date,
 	inq_ip varchar2(40) not null,
 	inq_status number(1) default 1 not null, -- 1:처리전 | 2:처리완료
 	mem_num number not null,
