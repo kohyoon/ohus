@@ -1,5 +1,5 @@
 -- 주문관리
-CREATE TABLE order(
+CREATE TABLE orders(
 	order_num number,-- 주문번호
 	item_name varchar2(600) not null,-- 대표상품명
 	mem_num number not null,-- 회원번호
@@ -12,31 +12,31 @@ CREATE TABLE order(
 	order_address2 varchar2(50) not null, -- 상세주소
 	mem_phone varchar2(15) not null, -- 주문자(회원)전화번호
 	order_regdate date default sysdate not null, -- 주문날짜
-	order_notice varchar2(4000), -- 배송메시지
+	order_notice varchar2(1300), -- 배송메시지
 	order_total number(9) not null, -- 주문가격
 	order_quantity number(9) not null, -- 주문수량
-	constraint order_pk primary key (order_num),
-	constraint order_fk foreign key (mem_num) references member (mem_num)
+	constraint orders_pk primary key (order_num),
+	constraint orders_fk foreign key (mem_num) references member (mem_num)
 );
-CREATE sequence order_seq;
+CREATE sequence orders_seq;
 
 -- 주문 상세(단품 주문 상세)
-CREATE TABLE order_detail(
+CREATE TABLE orders_detail(
 	detail_num number, -- 주문상세번호
 	mem_num number not null, -- 회원 번호
 	item_num number not null, -- 상품 번호
 	item_name varchar2(600) not null,-- 상품명
-	item_price number(9) not null, -- 상품금액
+	item_price number(9) not null, -- 상품가격
 	item_quantity number not null, -- 상품개수
 	order_quantity number(5) not null, -- 주문수량
 	item_total number(9) not null, -- 총상품금액(동일상품 합산 금액)
 	order_num number not null, -- 주문번호
-	constraint order_detail_pk primary key (detail_num),
-	constraint order_detail_fk1 foreign key (order_num) references order (order_num),
-	constraint order_detail_fk2 foreign key (mem_num) references order (mem_num),
-	constraint order_detail_fk3 foreign key (item_num) references order (item_num)
+	constraint orders_detail_pk primary key (detail_num),
+	constraint orders_detail_fk1 foreign key (order_num) references orders (order_num),
+	constraint orders_detail_fk2 foreign key (mem_num) references orders (mem_num),
+	constraint orders_detail_fk3 foreign key (item_num) references orders (item_num)
 );
-CREATE sequence order_detail_seq;
+CREATE sequence orders_detail_seq;
 
 -- 장바구니
 CREATE TABLE cart(
@@ -47,6 +47,6 @@ CREATE TABLE cart(
 	mem_num number not null, -- 회원번호
 	constraint cart_pk primary key (cart_num),
 	constraint cart_fk1 foreign key (item_num) references item (item_num),
-	constraint cart_fk2 foreign key (mem_num) references member (mem_num),
+	constraint cart_fk2 foreign key (mem_num) references member (mem_num)
 );
 CREATE sequence cart_seq;
