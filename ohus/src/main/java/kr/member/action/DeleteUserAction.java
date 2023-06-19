@@ -8,7 +8,7 @@ import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.util.FileUtil;
-
+   
 //로그인이 됐는지 확인해야함
 public class DeleteUserAction implements Action {
 
