@@ -8,6 +8,7 @@ public class InquiryVO {
 	private int inq_category;
 	private String inq_content;
 	private Date inq_regdate;
+	private Date inq_modifydate;
 	private String inq_ip;
 	private int inq_status;
 	private int mem_num;
@@ -42,6 +43,12 @@ public class InquiryVO {
 	}
 	public void setInq_regdate(Date inq_regdate) {
 		this.inq_regdate = inq_regdate;
+	}
+	public Date getInq_modifydate() {
+		return inq_modifydate;
+	}
+	public void setInq_modifydate(Date inq_modifydate) {
+		this.inq_modifydate = inq_modifydate;
 	}
 	public String getInq_ip() {
 		return inq_ip;
