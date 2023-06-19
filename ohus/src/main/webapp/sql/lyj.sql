@@ -18,14 +18,16 @@ create table omember_detail(
  zipcode varchar2(5) not null,
  address1 varchar2(90) not null,
  address2 varchar2(90) not null,
- ip varchar2(30) not null,
  photo varchar2(150),
  reg_date date default sysdate not null,
  modify_date date,
  constraint omember_detail_pk primary key (mem_num),
  constraint omember_detail_fk foreign key (mem_num) references omember (mem_num)
 );
+
+alter table omember_detail RENAME COLUMN pw TO password;
 create sequence omember_seq;
+--디테일 시퀀스
 --이벤트
 --이벤트 테이블
 create table oevent(

@@ -14,7 +14,7 @@
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!-- 내용 시작 -->
-		<div class="content-main">
+		<div class="content-main">  
 			<!-- 홈 페이지 전체 영역-->
 			<div class="home-page">
 				<!-- 홈 페이지 상단 이미지 -->

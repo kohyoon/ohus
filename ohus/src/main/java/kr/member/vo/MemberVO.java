@@ -15,7 +15,6 @@ public class MemberVO {
 	private String zipcode;
 	private String address1;
 	private String address2;
-	private String ip;
 	private String photo;
 	private Date reg_date; // 회원 가입일 default SYSDATE
 	private Date modify_date; // 회원 정보 수정일
@@ -117,14 +116,7 @@ public class MemberVO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
+ 
 
 	public String getPhoto() {
 		return photo;

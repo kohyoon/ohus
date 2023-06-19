@@ -46,7 +46,7 @@
 			</div> 
 			<!-- 로그인 하단 -->
 			 <div>
-			 	<input type="submit" value="회원가입" onclick="location.href='registerUserForm.jsp'">
+			 	<input type="button" value="회원가입" onclick="location.href='registerUserForm.jsp'">
 			 	<input type="submit" value="문의사항" onclick="location.href='${pageContext.request.contextPath}/inquiry/inquiry.do'">
 			 </div>                     
 		</form>
