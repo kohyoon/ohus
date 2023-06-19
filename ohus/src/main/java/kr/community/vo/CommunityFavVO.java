@@ -54,5 +54,4 @@ public class CommunityFavVO {
 		this.board_num = board_num;
 	}
 	
-	
 }

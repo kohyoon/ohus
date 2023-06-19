@@ -37,5 +37,4 @@ public class CommunityReportVO {
 	public void setRe_num(int re_num) {
 		this.re_num = re_num;
 	}
-	
 }

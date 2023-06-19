@@ -139,5 +139,4 @@ public class CommunityVO {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	 
 }

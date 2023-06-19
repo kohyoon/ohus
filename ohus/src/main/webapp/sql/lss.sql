@@ -48,6 +48,7 @@ CREATE TABLE cboard_report (
 );
 create sequence cboard_report_seq;
 
+
 -- 커뮤니티 스크랩
 CREATE TABLE cboard_fav ( 
 fav_num NUMBER NOT NULL, -- 커뮤니티 스크랩 번호 
