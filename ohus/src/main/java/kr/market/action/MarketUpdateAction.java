@@ -17,10 +17,10 @@ public class MarketUpdateAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 로그인 한 회원만 접근 가능
 		HttpSession session = request.getSession();
-		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		Integer user_num = (Integer)session.getAttribute("user_num");
 				
-		if(mem_num == null) {
-			return "redirect:/omember/loginForm.do";
+		if(user_num == null) {
+			return "redirect:/member/loginForm.do";
 		}
 		
 		MultipartRequest multi = FileUtil.createFile(request);
@@ -30,7 +30,7 @@ public class MarketUpdateAction implements Action{
 		MarketDAO dao = MarketDAO.getInstance();
 		MarketVO db_market = dao.getDetailMarket(market_num);
 		
-		if(db_market.getMem_num() != mem_num) {
+		if(db_market.getMem_num() != user_num) {
 			FileUtil.removeFile(request, photo1);
 			FileUtil.removeFile(request, photo2);
 			return "/WEB-INF/views/common/notice.jsp";
@@ -43,7 +43,7 @@ public class MarketUpdateAction implements Action{
 		market.setMarket_status(Integer.parseInt(multi.getParameter("market_status")));
 		market.setMarket_photo1(multi.getFilesystemName("market_photo1"));
 		market.setMarket_photo2(multi.getFilesystemName("market_photo2"));
-		market.setMem_num(mem_num);
+		market.setMem_num(user_num);
 		
 		dao.updateMarket(market);
 		
