@@ -400,7 +400,7 @@ public class MemberDAO {
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date"));
 				member.setModify_date(rs.getDate("modify_date"));
-			 
+			       
 				list.add(member);
 			}
 		} catch(Exception e) {
