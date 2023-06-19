@@ -3,7 +3,7 @@ CREATE TABLE order(
 	order_num number,-- 주문번호
 	item_name varchar2(600) not null,-- 대표상품명
 	mem_num number not null,-- 회원번호
-	order_payment number not null,-- 결제 방법(0 : 무통장, 1: 카드)
+	order_payment number(1) not null,-- 결제 방법(0 : 무통장, 1: 카드)
 	order_status number not null,-- 배송상태(0: 결제 완료, 1: 주문 접수, 2: 배송중, 3: 배송완료)
 	order_modifydate date,-- 배송상태 수정일
 	order_name varchar2(30) not null,-- 수령자 이름
@@ -25,11 +25,11 @@ CREATE TABLE order_detail(
 	detail_num number, -- 주문상세번호
 	mem_num number not null, -- 회원 번호
 	item_num number not null, -- 상품 번호
-	item_name varchar2() not null,-- 상품명
-	item_price number() not null, -- 상품가격
-	item_quantity number() not null, -- 상품개수
-	order_quantity number(7) not null, -- 주문개수
-	item_total number(8) not null, -- 총상품금액(동일상품 합산 금액)
+	item_name varchar2(600) not null,-- 상품명
+	item_price number(9) not null, -- 상품금액
+	item_quantity number not null, -- 상품개수
+	order_quantity number(5) not null, -- 주문수량
+	item_total number(9) not null, -- 총상품금액(동일상품 합산 금액)
 	order_num number not null, -- 주문번호
 	constraint order_detail_pk primary key (detail_num),
 	constraint order_detail_fk1 foreign key (order_num) references order (order_num),
