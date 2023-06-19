@@ -190,5 +190,35 @@ public class InquiryDAO {
 	}
 	
 	//문의 글 삭제
+	public void deleteInquiry(int inq_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false); //오토커밋 해제
+			
+			//답변(댓글) 삭제
+			//sql = "";
+			
+			//글 삭제
+			sql = "DELETE FROM inquiry WHERE inq_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, inq_num);
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	
 	
 }
