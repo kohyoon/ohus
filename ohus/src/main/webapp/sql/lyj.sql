@@ -12,7 +12,7 @@ create table omember_detail(
  name varchar2(30) not null,
  auth number(1) default 2 not null,
  reports number(3),
- pw varchar2(15) not null,
+ password varchar2(15) not null,
  phone varchar2(15) not null,
  email varchar2(50) not null,
  zipcode varchar2(5) not null,

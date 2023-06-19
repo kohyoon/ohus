@@ -348,7 +348,6 @@ public class MemberDAO {
 		try {
 			
 			conn = DBUtil.getConnection();
-			
 			if(keyfield != null && !"".equals(keyword)) {
 				
 				if(keyfield.equals("1")) {
