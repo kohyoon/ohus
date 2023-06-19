@@ -8,6 +8,7 @@ public class CartVO {
 	private Date cart_regdate; // 장바구니에 넣은 날짜
 	private int item_num; // 상품번호
 	private int mem_num; // 회원번호
+	private int sub_total; //같은 상품의 총구매 금액
 	
 	public int getCart_num() {
 		return cart_num;
@@ -38,5 +39,11 @@ public class CartVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public int getSub_total() {
+		return sub_total;
+	}
+	public void setSub_total(int sub_total) {
+		this.sub_total = sub_total;
 	}
 }
