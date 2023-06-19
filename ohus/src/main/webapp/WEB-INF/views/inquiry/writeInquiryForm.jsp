@@ -38,6 +38,13 @@
 					<input type="text" name="title" id="title" maxlength="50">
 				</li>
 				<li>
+					<label for="category">카테고리</label>
+					<select name="category">
+						<option value="1">사이트 문의</option>
+						<option value="2">신고 문의</option>
+					</select>
+				</li>
+				<li>
 					<label for="content">내용</label>
 					<textarea rows="5" cols="30" name="content" id="content"></textarea>
 				</li>
