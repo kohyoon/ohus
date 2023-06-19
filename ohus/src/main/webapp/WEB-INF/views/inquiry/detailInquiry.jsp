@@ -19,7 +19,7 @@
 			<li>
 				<label>카테고리</label>
 				<c:if test="${inquiry.inq_category == 1}">사이트 문의</c:if>
-				<c:if test="${inquiry.inq_category == 2}">카테고리 문의</c:if>
+				<c:if test="${inquiry.inq_category == 2}">신고 문의</c:if>
 			</li>
 			<li>
 				<label>작성자</label>
@@ -41,7 +41,9 @@
 			<li>
 				작성일 : ${inquiry.inq_regdate}
 				<c:if test="${user_num == inquiry.mem_num}">
-				<input type="button" value="수정">
+				<input type="button" value="수정" onclick="location.href='modifyInquiryForm.do?inq_num=${inquiry.inq_num}'">
+				<input type="button" value="삭제" onclick="location.href='deleteInquiry.do?inq_num=${inquiry.inq_num}'">
+				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
 				</c:if>
 			</li>
 		</ul>
