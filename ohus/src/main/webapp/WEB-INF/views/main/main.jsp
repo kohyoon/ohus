@@ -36,7 +36,7 @@
 			<div class="footer-upper">
 				<div>
 					<h4>
-						<a href="">고객센터</a>
+						<a href="${pageContext.request.contextPath}/inquiry/listInquiry.do">고객센터</a>
 					</h4>
 					<a class="footer-number" href="">1670-1234</a> <span>평일
 						09:00 ~ 18:00 (주말 & 공휴일 제외)</span>
