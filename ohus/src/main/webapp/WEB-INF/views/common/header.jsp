@@ -117,7 +117,7 @@
 											<div id="myDropdown" class="dropdown-content">
 												<a href="#">공지등록</a> 
 												<a href="#">이벤트등록</a> 
-												<a href="#">상품등록</a>
+												<a href="${pageContext.request.contextPath}/item/writeForm.do">상품등록</a>
 											</div>
 										</div>
 									</li>
