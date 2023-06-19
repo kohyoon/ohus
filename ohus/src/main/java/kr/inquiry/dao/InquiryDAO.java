@@ -26,7 +26,7 @@ public class InquiryDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO inquiry (inq_num, inq_title, inq_category, inq_content, "
-				+ "inq_ip, mem_num) VALUES(inq_seq.nextval, ?,?,?,?,?)";
+				+ "inq_ip, mem_num) VALUES(inquiry_seq.nextval, ?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, inquiry.getInq_title());
 			pstmt.setInt(2, inquiry.getInq_category());
@@ -139,7 +139,8 @@ public class InquiryDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM inquiry i JOIN omember o USING (mem_num) WHERE i.mem_num=?";
+			sql = "SELECT * FROM inquiry i JOIN omember o USING(mem_num) "
+				+ "LEFT OUTER JOIN omember_detail d USING(mem_num) WHERE i.inq_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, inq_num);
 			rs = pstmt.executeQuery();
