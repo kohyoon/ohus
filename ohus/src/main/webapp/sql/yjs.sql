@@ -22,18 +22,23 @@ CREATE SEQUENCE item_seq;
 --상품리뷰
 CREATE TABLE item_review(
 	review_num number primary key,--리뷰번호
-	mem_num number foreign key omember (mem_num),--리뷰작성회원번호
-	item_num number foreign key item (item_num),--리뷰한 상품번호
+	mem_num number not null,--리뷰작성회원번호
+	item_num number not null,--리뷰한 상품번호
 	item_score number(1) not null,--상품점수
 	review_content clob not null,--상품리뷰내용
 	review_photo varchar2(50),--리뷰 사진
-	review_regdate date default sysdate not null--리뷰작성일
+	review_regdate date default sysdate not null,--리뷰작성일
+    CONSTRAINT item_review_fk1 foreign key (mem_num) references omember (mem_num),
+    CONSTRAINT item_review_fk2 foreign key (item_num) references item (item_num)
 );
 CREATE SEQUENCE item_review_seq;
 
+--상품찜
 CREATE TABLE item_fav(
 	fav_num number primary key,--상품찜번호
-	mem_num number foreign key omember (mem_num),--좋아요한 회원번호
-	item_num number foreign key item (item_num)--상품번호
+	mem_num number not null,--좋아요한 회원번호
+	item_num number not null,--상품번호
+    constraint item_fav_fk1 foreign key (mem_num) references omember (mem_num),
+    constraint item_fav_fk2 foreign key (item_num) references item (item_num)
 );
 CREATE SEQUENCE item_fav_seq;
