@@ -18,6 +18,11 @@
 			<%-- 상품 목록 --%>
 			<h4>상품</h4>
 			<div>
+				<c:if test="${count == 0}">
+					<div>
+					표시할 상품 없음
+				</div>
+				</c:if>
 				<c:forEach var="item" items="${itemList}">
 					<div>
 						<a href="${pageContext.request.contextPath}/item/detail.do?item_num=${item.item_num}">
@@ -29,7 +34,9 @@
 					</div>
 				</c:forEach>
 			</div>
+			<c:if test="${count != 0}">
 			<div class = "align-center">${page}</div>
+			</c:if>
 			<%-- 상품 목록 --%>
 		</div>
 		<%-- 내용끝 --%>

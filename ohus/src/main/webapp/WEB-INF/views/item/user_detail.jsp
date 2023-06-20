@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${item.item_name} | 내일의 집</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
@@ -96,6 +96,7 @@
 						<ul>
 							<li>가격 : <b><fmt:formatNumber value="${item.item_price}"/>원</b></li>
 							<li>남은 수량 : <span><fmt:formatNumber value="${item.item_stock}"/></span></li>
+							<li>조회수 : <fmt:formatNumber value="${item.item_hit}"/>회</li>
 							<c:if test="${item.item_stock > 0}">
 								<li>
 									<label for="order_quantity">구매 수량 :</label>
