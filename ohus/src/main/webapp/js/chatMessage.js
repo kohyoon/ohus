@@ -65,6 +65,8 @@ $(function(){
 	function initForm(){
 		$('textarea').val('');
 	}
+	setInterval(function(){
+		messageList(chatroom_num)
+	},1000);
 	
-	setInterval(messageList(chatroom_num),1000);
 });
