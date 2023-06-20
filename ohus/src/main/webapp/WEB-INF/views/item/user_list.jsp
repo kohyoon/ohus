@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>쇼핑</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
@@ -17,11 +17,11 @@
 		<div class = "content-main">
 			<%-- 상품 목록 --%>
 			<h4>상품</h4>
-			<div class="image-space">
+			<div>
 				<c:forEach var="item" items="${itemList}">
 					<div>
 						<a href="${pageContext.request.contextPath}/item/detail.do?item_num=${item.item_num}">
-							<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}"><br>
+							<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="400"><br>
 							${item.item_name}
 							<br>
 							<b><fmt:formatNumber value="${item.item_price}"/>원</b>
@@ -29,6 +29,7 @@
 					</div>
 				</c:forEach>
 			</div>
+			<div class = "align-center">${page}</div>
 			<%-- 상품 목록 --%>
 		</div>
 		<%-- 내용끝 --%>

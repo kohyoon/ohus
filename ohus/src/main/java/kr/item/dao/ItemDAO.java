@@ -59,29 +59,37 @@ public class ItemDAO {
 	//상품 사진 삭제
 	
 	//전체 상품 개수/검색 상품 개수(관리자, 사용자)
-	public int getItemCount(String keyfield, String keyword, int item_status) throws Exception{
+	public int getItemCount(String keyfield, String keyword, int item_status, String item_category) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
 		int count = 0;
+		int cnt = 0;
 		try {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
+			if(item_category != null && !"".equals(item_category)) {
+				sub_sql += " AND item_category = ?";
+			}
 			if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE ?";
-				if(keyfield.equals("2")) sub_sql += "AND item_content LIKE ?";
+				if(keyfield.equals("1")) sub_sql += " AND item_name LIKE ?";
+				if(keyfield.equals("2")) sub_sql += " AND item_content LIKE ?";
 			}
 			//SQL문 작성
 			sql = "SELECT COUNT(*) FROM item WHERE item_status > ? " + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, item_status);
-			if(keyword != null && !"".equals(keyword)) {
-				pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setInt(++cnt, item_status);
+			if(item_category != null && !"".equals(item_category)) {
+				pstmt.setInt(++cnt, Integer.parseInt(item_category));
 			}
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%" + keyword + "%");
+			}
+			
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -95,7 +103,7 @@ public class ItemDAO {
 		return count;
 	}
 	//전체 상품 목록/ 검색 상품 목록(관리자, 사용자)
-	public List<ItemVO> getListItem(int start, int end, String keyfield, String keyword, int item_status) throws Exception{
+	public List<ItemVO> getListItem(int start, int end, String keyfield, String keyword, int item_status, String item_category) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -106,18 +114,25 @@ public class ItemDAO {
 		try {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
-				if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE ?";
-				if(keyfield.equals("2")) sub_sql += "AND item_content LIKE ?";
+			if(item_category != null && !"".equals(item_category)) {
+				sub_sql += " AND item_category = ?";
 			}
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += " AND item_name LIKE ?";
+				if(keyfield.equals("2")) sub_sql += " AND item_content LIKE ?";
+			}
+			
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item WHERE item_status > ? " 
-			+ sub_sql
+			+ sub_sql 
 			+ " ORDER BY item_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(++cnt, item_status);
+			if(item_category != null && !"".equals(item_category)) {
+				pstmt.setInt(++cnt, Integer.parseInt(item_category));
+			}
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%" + keyword + "%");
 			}
