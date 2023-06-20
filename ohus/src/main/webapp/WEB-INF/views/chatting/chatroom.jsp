@@ -32,7 +32,7 @@
 			<c:forEach var="chatroom" items="${list}">
 			<tr>
 				<td>${chatroom.chatroom_num}</td>
-				<td><a href="/chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">${chatroom.market_title}</a></td>
+				<td><a href="chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">${chatroom.market_title}</a></td>
 				<td>${chatroom.buyer_num}</td>
 			</tr>
 			</c:forEach>
