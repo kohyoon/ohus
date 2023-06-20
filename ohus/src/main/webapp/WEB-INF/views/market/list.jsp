@@ -52,20 +52,24 @@
 		</c:if>
 		<c:if test="${count > 0}">
 		<table>
+		<c:forEach var="market" items="${list}">
 			<tr>
-				<th>사진1</th>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>조회</th>
+				<td>
+					<a href="detail.do?market_num=${market.market_num}">
+						<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="120" height="120" class="my-photo">
+					</a>
+				</td>
 			</tr>
-			<c:forEach var="market" items="${list}">
 			<tr>
-				<td><a href="detail.do?market_num=${market.market_num}">${market.market_photo1}</a></td>
-				<td><a href="detail.do?market_num=${market.market_num}">${market.market_title}</a></td>
-				<td>${market.market_regdate}</td>
-				<td>${market.market_hit}</td>
+				<td>제목 : <a href="detail.do?market_num=${market.market_num}">${market.market_title}</a></td>
 			</tr>
-			</c:forEach>
+			<tr>
+				<td>작성일 : ${market.market_regdate}</td>
+			</tr>
+			<tr>
+				<td>조회 : ${market.market_hit}</td>
+			</tr>
+		</c:forEach>
 		</table>
 		<div class="align-center">${page}</div>
 		</c:if>

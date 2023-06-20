@@ -23,6 +23,7 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		
 		try {
 			
 			conn = DBUtil.getConnection();
@@ -103,6 +104,38 @@ public class ChatDAO {
 		
 		return list;
 	}
+	// 채팅방 목록 조회 (구매자가 채팅하기 누를 경우 생성할지 말지 결정)
+	public ChatroomVO getChatroomByBuyer(int market_num, int buyer_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		ChatroomVO chatroom = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM chatroom WHERE market_num = ? AND buyer_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, market_num);
+			pstmt.setInt(2, buyer_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				chatroom = new ChatroomVO();
+				chatroom.setChatroom_num(rs.getInt("chatroom_num"));
+				chatroom.setMarket_num(rs.getInt("market_num"));
+				chatroom.setBuyer_num(rs.getInt("buyer_num"));
+				chatroom.setSeller_num(rs.getInt("seller_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return chatroom;
+	}
+	
 	// 채팅 메시지 작성
 	public void insertChatMessage(ChatVO chat) throws Exception{
 		Connection conn = null;

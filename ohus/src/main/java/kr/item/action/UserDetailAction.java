@@ -16,6 +16,9 @@ public class UserDetailAction implements Action{
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		
 		ItemDAO dao = ItemDAO.getInstance();
+		//조회수 증가
+		dao.updateViewsCount(item_num);
+		
 		ItemVO item = dao.getItem(item_num);
 		
 		//내용 줄바꿈 처리
