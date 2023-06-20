@@ -115,12 +115,12 @@
 										<div class="dropdown">
 											<button onclick="myFunction()" class="dropbtn">글쓰기</button>
 											<div id="myDropdown" class="dropdown-content">
-												<a href="#">공지등록</a> 
+												<a href="#">공지등록</a>
 												<a href="${pageContext.request.contextPath}/event/writeForm.do">이벤트등록</a> 
 												<a href="${pageContext.request.contextPath}/item/writeForm.do">상품등록</a>
 											</div>
 										</div>
-									</li>
+									</li> 
 								</c:if>
 							</ul>
 						</div>
