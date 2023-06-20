@@ -117,16 +117,30 @@
 								</li>
 							</c:if>
 						</ul>
-						
 					</form>
 				</div>
-				<hr size="1" noshade="noshade" width="100%">
+				<div>
+				<hr size="1" noshade="noshade" width="95%">
+				<a href="#item_detail">상품정보</a> <a href="#item_review">리뷰</a> <a href="#item_inquiry">문의</a>
+				<hr size="1" noshade="noshade" width="95%">
+				</div>
+				<p>
+				<div id="item_detail">
 				<img src="${pageContext.request.contextPath}/upload/${item.item_photo2}" width="400">
 				<img src="${pageContext.request.contextPath}/upload/${item.item_photo3}" width="400">
 				<p>
 					${item.item_content}
-				</p>
+				</p>	
+				</div>
 			</c:if>
+		</div>
+		<hr size="1" noshade="noshade" width="95%">
+		<div id="item_review">
+			리뷰는 여기 있습니다.
+		</div>
+		<hr size="1" noshade="noshade" width="95%">	
+		<div id="item_inquiry">
+			문의는 여기 있습니다.
 		</div>
 		<!-- 하단 내용 시작 -->
 		<footer class="footer">
@@ -135,10 +149,9 @@
 					<h4>
 						<a href="${pageContext.request.contextPath}/inquiry/listInquiry.do">고객센터</a>
 					</h4>
-					<a class="footer-number" href="">1670-1234</a> <span>평일
-						09:00 ~ 18:00 (주말 & 공휴일 제외)</span>
+					<a class="footer-number" href="">1670-1234</a> 
+					<span>평일 09:00 ~ 18:00 (주말 & 공휴일 제외)</span>
 				</div>
-				
 			</div>
 			<ul class="footer-lower">
 				<li><a href="">브랜드 스토리</a></li>
