@@ -96,7 +96,7 @@
 	
 								<!-- 회원 - 글쓰기 -->
 								<c:if test="${!empty user_num && user_auth == 2}">
-									<li>
+									<li> 
 										<div class="dropdown">
 											<button onclick="myFunction()" class="dropbtn">글쓰기</button>
 											<div id="myDropdown" class="dropdown-content">
@@ -124,7 +124,7 @@
 								</c:if>
 							</ul>
 						</div>
-						<!-- 서비스헤더 (오른쪽헤더) 시작-->
+						<!-- 서비스헤더 (오른쪽헤더) 시작-->    
 					</div>	
 				</div>	
 			</div>	

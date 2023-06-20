@@ -35,7 +35,7 @@ public class ListAction implements Action {
 		List<EventVO> list = null;
 		if(count>0) {
 			list = dao.getListEvent(page.getStartRow(), page.getEndRow(), keyfield, keyword);
-		}
+		} 
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);

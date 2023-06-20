@@ -36,7 +36,7 @@ public class DetailAction implements Action{
 		
 		
 		//StringUtil 사용 끝-------------
-		
+		 
 		
 		//값 저장
 		request.setAttribute("event", event);

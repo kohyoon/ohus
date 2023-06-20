@@ -1,5 +1,5 @@
 $(function(){
-	let currentPage; //현재 페이지
+	let currentPage; //현재 페이지 
 	let count;
 	let rowCount; //한 화면에 몇 개의 레코드를 보여줄지
 	

@@ -14,7 +14,7 @@ public class AdminWriteFormAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		Integer user_auth = (Integer)session.getAttribute("user_auth"); 
 		
 		if(user_num==null) {
 			return "redirect:/member/loginForm.do"; //로그인 안되어있으면 로그인 하도록

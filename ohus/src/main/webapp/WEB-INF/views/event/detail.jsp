@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- 내용 시작 -->
-<div class="content-main">
+<div class="content-main"> 
 	<!-- 상단 -->
 	<div class="align-center">
 		<h3>제목 : ${event.event_title}</h3>

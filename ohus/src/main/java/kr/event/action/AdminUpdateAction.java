@@ -18,7 +18,7 @@ public class AdminUpdateAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//파일은 필수이므로 나눌 필요 x
-		//관리자 체크
+		//관리자 체크 
 		/*
 		 * 글 수정 case1 : 제목, 내용 작성
 		 * 			 case2 : 제목, 내용, 파일 모두 작성한 경우 

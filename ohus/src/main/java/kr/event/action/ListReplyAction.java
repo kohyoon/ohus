@@ -42,7 +42,7 @@ public class ListReplyAction implements Action{
 		//ajax 방식으로 목록을 표시하기 때문에 PageUtil은 페이지 수를 표시할 목적이 아닌,
 		//목록 데이터의 페이지 처리를 위해 rownum 번호를 구하는 목적(연산)으로 사용함
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum), count, 10); //인자 순서대로 currentpage, count, rowCount
-		
+		 
 		List<EventReplyVO> list = null;
 		
 		if(count>0) { //댓글 개수가 0보다 크면 목록 함수 호출(DAO)

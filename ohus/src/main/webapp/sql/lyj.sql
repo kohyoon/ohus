@@ -1,4 +1,4 @@
---회원관리
+--회원관리 
 --회원테이블
 create table omember(
  mem_num number,

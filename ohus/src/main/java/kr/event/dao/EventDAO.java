@@ -21,7 +21,7 @@ public class EventDAO {
 		return instance;
 	}
 
-	private EventDAO() {}
+	private EventDAO() {} 
 	
 	//----------------------------------
 	//이벤트 등록(관리자)

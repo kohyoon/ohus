@@ -3,5 +3,5 @@
 
  <script>
 	alert('이벤트 등록 완료!');
-	location.href='list.do';
+	location.href='list.do'; 
  </script>   

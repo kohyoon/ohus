@@ -17,7 +17,7 @@ import kr.event.vo.EventReplyVO;
 public class WriteReplyAction implements Action{
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception { 
 		
 		Map<String, String> mapAjax = new HashMap<String, String>();
 		

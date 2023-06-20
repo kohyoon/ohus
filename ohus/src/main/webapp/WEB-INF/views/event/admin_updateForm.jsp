@@ -15,7 +15,7 @@
 		$('#update_form').submit(function(){
 			if($('#event_title').val().trim()==''){
 				alert('제목을 입력하세요');
-				$('#title').val('').focus();
+				$('#title').val('').focus(); 
 				return false;
 			}
 			
