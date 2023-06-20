@@ -8,16 +8,38 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
+import kr.util.PageUtil;
 
 public class UserListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//신규 상품 데이터 처리
+		//아이템카테고리
+		String item_category = request.getParameter("item_category");
+		if(item_category==null) item_category = "";
+				
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum==null) pageNum = "1";
+						
+		String keyfield = request.getParameter("keyfield");
+		String keyword = request.getParameter("keyword");
+				
+		//전체 상품 데이터 처리
 		ItemDAO itemDao = ItemDAO.getInstance();
-		List<ItemVO> itemList = itemDao.getListItem(1, 16, null, null, 1);//맨 뒤 1 : status(표시 상품)
+		//Status 0이면 미표시(1), 표시(2) 모든 개수 체크
+		int count = itemDao.getItemCount(keyfield, keyword, 0, item_category);
+				
+		//페이지 처리
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 1, 10, "userList.do","&item_category="+item_category);//
+				
+		List<ItemVO> itemList = null;
+		if(count > 0) {
+			itemList = itemDao.getListItem(page.getStartRow(), page.getEndRow(), null, null, 1, item_category);//맨 뒤 1 : status(표시 상품)
+		}
 		request.setAttribute("itemList", itemList);
-		
+		request.setAttribute("count", count);
+		request.setAttribute("page", page.getPage());
+				
 		return "/WEB-INF/views/item/user_list.jsp";
 	}
 

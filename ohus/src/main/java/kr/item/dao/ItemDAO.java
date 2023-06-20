@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.item.vo.ItemFavVO;
 import kr.item.vo.ItemVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class ItemDAO {
 	//싱글턴 패턴
@@ -59,29 +61,37 @@ public class ItemDAO {
 	//상품 사진 삭제
 	
 	//전체 상품 개수/검색 상품 개수(관리자, 사용자)
-	public int getItemCount(String keyfield, String keyword, int item_status) throws Exception{
+	public int getItemCount(String keyfield, String keyword, int item_status, String item_category) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
 		int count = 0;
+		int cnt = 0;
 		try {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
+			if(item_category != null && !"".equals(item_category)) {
+				sub_sql += " AND item_category = ?";
+			}
 			if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE ?";
-				if(keyfield.equals("2")) sub_sql += "AND item_content LIKE ?";
+				if(keyfield.equals("1")) sub_sql += " AND item_name LIKE ?";
+				if(keyfield.equals("2")) sub_sql += " AND item_content LIKE ?";
 			}
 			//SQL문 작성
 			sql = "SELECT COUNT(*) FROM item WHERE item_status > ? " + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, item_status);
-			if(keyword != null && !"".equals(keyword)) {
-				pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setInt(++cnt, item_status);
+			if(item_category != null && !"".equals(item_category)) {
+				pstmt.setInt(++cnt, Integer.parseInt(item_category));
 			}
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%" + keyword + "%");
+			}
+			
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -95,7 +105,7 @@ public class ItemDAO {
 		return count;
 	}
 	//전체 상품 목록/ 검색 상품 목록(관리자, 사용자)
-	public List<ItemVO> getListItem(int start, int end, String keyfield, String keyword, int item_status) throws Exception{
+	public List<ItemVO> getListItem(int start, int end, String keyfield, String keyword, int item_status, String item_category) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -106,18 +116,25 @@ public class ItemDAO {
 		try {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
-				if(keyword != null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "AND item_name LIKE ?";
-				if(keyfield.equals("2")) sub_sql += "AND item_content LIKE ?";
+			if(item_category != null && !"".equals(item_category)) {
+				sub_sql += " AND item_category = ?";
 			}
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += " AND item_name LIKE ?";
+				if(keyfield.equals("2")) sub_sql += " AND item_content LIKE ?";
+			}
+			
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item WHERE item_status > ? " 
-			+ sub_sql
+			+ sub_sql 
 			+ " ORDER BY item_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(++cnt, item_status);
+			if(item_category != null && !"".equals(item_category)) {
+				pstmt.setInt(++cnt, Integer.parseInt(item_category));
+			}
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%" + keyword + "%");
 			}
@@ -213,15 +230,149 @@ public class ItemDAO {
 		}
 	}
 	//상품 스크랩 등록
-	
+	public void insertFav(ItemFavVO favVO) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO item_fav (fav_num, mem_num, item_num) "
+				+ "VALUES (item_fav_seq.nextval, ?, ?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, favVO.getMem_num());
+			pstmt.setInt(2, favVO.getItem_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//상품 스크랩 개수
-	
+	public int selectFavCount(int item_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM item_fav WHERE item_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, item_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);//1 : 컬럼 인덱스
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	//회원번호와 상품번호를 이용한 스크랩 정보(회원이 상품을 호출할 때 스크랩 선택여부 표시)
-	
+	public ItemFavVO selectFav(ItemFavVO favVO) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ItemFavVO fav = null;
+		String sql = null;
+			try {
+				//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM item_fav WHERE item_num = ? AND mem_num = ?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, favVO.getItem_num());
+				pstmt.setInt(2, favVO.getMem_num());
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					fav = new ItemFavVO();
+					fav.setFav_num(rs.getInt("fav_num"));
+					fav.setMem_num(rs.getInt("mem_num"));
+					fav.setItem_num(rs.getInt("item_num"));
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return fav;
+	}
 	//상품 스크랩 삭제
-	
+	public void deleteFav(int fav_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try{
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM item_fav WHERE fav_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, fav_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//내가 선택한 스크랩 목록
-	
+	public List<ItemVO> getListItemFav(int start, int end, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ItemVO> list = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM item_fav JOIN omember using(mem_num) JOIN item using(item_num) WHERE mem_num = ? "
+				+ "ORDER BY item_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemVO>();
+			while(rs.next()) {
+				ItemVO item = new ItemVO();
+				item.setItem_num(rs.getInt("item_num"));
+				item.setItem_name(StringUtil.useNoHtml(rs.getString("item_name")));
+				item.setItem_photo1(rs.getString("item_photo1"));
+
+				list.add(item);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	//리뷰 등록
 	
 	//리뷰 개수(페이지 처리)
