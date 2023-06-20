@@ -15,10 +15,12 @@ $(function(){
 					let output = '<div class="item">';
 					output += '<h4>' + item.mem_num + '</h4>';
 					output += '<div class="sub-item">';
-					output += '<p>' + item.message + '</p>';
-					
+					output += '<p>' + item.message + '<small>' + item.reg_date + '</small>' + '</p>';
+					output += '</div>';
 					$('#output').append(output);
 				});
+				
+				$('html').scrollTop($(document).height());
 			},
 			error:function(){
 				alert('네트워크 통신 오류');

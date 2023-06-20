@@ -27,7 +27,7 @@ public class MarketDeleteAction implements Action{
 		if(db_market.getMem_num() != user_num) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		
+		// 채팅방과 참조하고 있어서 채팅방이 생성되어 있는 경우 cascade로 해야할지 정해야함.
 		dao.deleteMarket(market_num);
 		return "/WEB-INF/views/market/delete.jsp";
 	}
