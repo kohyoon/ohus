@@ -38,6 +38,7 @@ create table notice (
 	notice_regdate date default sysdate not null,
 	notice_mdate date,
 	notice_hit number(9) default 0 not null,
+	notice_filename varchar2(50),
 	mem_num number not null,
 	constraint notice_pk primary key (notice_num),
 	constraint notice_fk foreign key (mem_num) references omember (mem_num)
