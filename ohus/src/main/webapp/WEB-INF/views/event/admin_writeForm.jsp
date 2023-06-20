@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
 	$(function(){
-		$('#write_form').submit(function(){
+		$('#write_form').submit(function(){ 
 			
 			//유효성 검사(조건) 시작 - 입력되지 않은 경우
 			

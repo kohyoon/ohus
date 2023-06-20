@@ -17,7 +17,7 @@ public class AdminUpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//파일은 필수이므로 나눌 필요 x
+		//파일은 필수이므로 나눌 필요 x 
 		//관리자 체크 
 		/*
 		 * 글 수정 case1 : 제목, 내용 작성

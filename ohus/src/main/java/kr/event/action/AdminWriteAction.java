@@ -18,7 +18,7 @@ public class AdminWriteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(); 
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		Integer user_num = (Integer)session.getAttribute("user_num"); 
 		
