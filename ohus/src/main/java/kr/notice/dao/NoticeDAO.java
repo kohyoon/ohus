@@ -186,7 +186,41 @@ public class NoticeDAO {
 		}
 	}
 	
-	
 	//글 수정
+	public void updateNotice(NoticeVO notice) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			if(notice.getNotice_filename() != null) {
+				//파일을 업로드한 경우
+				sub_sql += ", notice_filename=?";
+			}
+			sql = "UPDATE notice SET notice_title=?, notice_content=?, notice_mdate=SYSDATE "
+				+ sub_sql + "WHERE notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(++cnt, notice.getNotice_title());
+			pstmt.setString(++cnt, notice.getNotice_content());
+			if(notice.getNotice_filename() != null) {
+				pstmt.setString(++cnt, notice.getNotice_filename());
+			}
+			pstmt.setInt(++cnt, notice.getNotice_num());
+			pstmt.executeUpdate();			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	
+	
+	
+	
 	//글 삭제
 }
