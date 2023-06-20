@@ -12,7 +12,7 @@
 			<!-- 네비게이션 상단 -->
 			<div class="header-upper">
 				<div class="inner">
-					<i class="fas fa-bars searchMenu"></i>
+					<i class="fas fa-bars searchMenu"></i> 
 					<div class="header-upper__inner">
 						<!-- 로고 -->
 						<div class="header-upper__logo">
@@ -116,7 +116,7 @@
 											<button onclick="myFunction()" class="dropbtn">글쓰기</button>
 											<div id="myDropdown" class="dropdown-content">
 												<a href="#">공지등록</a> 
-												<a href="#">이벤트등록</a> 
+												<a href="${pageContext.request.contextPath}/event/writeForm.do">이벤트등록</a> 
 												<a href="${pageContext.request.contextPath}/item/writeForm.do">상품등록</a>
 											</div>
 										</div>
