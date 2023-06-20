@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import kr.controller.Action;
+import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 
@@ -27,13 +28,15 @@ public class MyPageAction implements Action{
 		//회원정보
 		MemberVO member = dao.getMember(user_num);
 		
-		/*
-		 * BoardDAO boardDao = BoardDAO.getInstance(); //게시판 글을 마이 페이지에서 보여주기
-		 * List<BoardVO> boardList = boardDao.getListBoardFav(1,5, user_num);
-		 * 
-		 * request.setAttribute("member", member); request.setAttribute("boardList",
-		 * boardList);
-		 */
+		//상품 스크랩
+		ItemDAO itemDao = ItemDAO.getInstance();
+				
+		//게시판 글(0602 사이에 추가)
+		List<ItemVO> itemList = itemDao.getListItemFav(1, 5, user_num);
+				
+		request.setAttribute("member", member);
+		request.setAttribute("itemList", itemList);
+		//상품 스크랩
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPage.jsp";

@@ -9,6 +9,7 @@
 <title>${item.item_name} | 내일의 집</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/item.fav.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#order_quantity').on('keyup mouseup', function(){
@@ -103,6 +104,12 @@
 									<input type="number" name="order_quantity" 
 									min="1" max="${item.item_stock}" 
 									autocomplete="off" id="order_quantity">
+								</li>
+								<li>
+									<%-- 좋아요 --%>
+									<img id="output_fav" data-num="${item.item_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
+									상품스크랩
+									<span id="output_fcount"></span>
 								</li>
 								<li>
 									<span id="item_total_txt">총 주문 금액 : 0원</span>
