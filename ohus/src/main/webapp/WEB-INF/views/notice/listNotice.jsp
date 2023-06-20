@@ -35,7 +35,7 @@
 		<!-- 검색창 끝 -->
 		<div class="list-pace align-right">
 			<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'"
-				<c:if test="${user_num != 9}">disabled="disabled"</c:if>>
+				>
 			<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
 		</div>
 		<c:if test="${count == 0}">
@@ -53,7 +53,7 @@
 			<c:forEach var="notice" items="${list}">
 			<tr>
 				<td>${notice.notice_num}</td>
-				<td><a href="d">${notice.notice_title}</a></td>
+				<td><a href="detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
 				<td>${notice.notice_regdate}</td>
 			</tr>
 			</c:forEach>
