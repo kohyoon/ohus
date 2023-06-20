@@ -18,6 +18,29 @@ public class NoticeDAO {
 	private NoticeDAO() {}
 	
 	//글 등록
+	public void insertNotice(NoticeVO notice) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "INSERT INTO notice (notice_num, notice_title, notice_content, notice_filename, mem_num) "
+				+ "VALUES(notice_seq.nextval, ?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice.getNotice_title());
+			pstmt.setString(2, notice.getNotice_content());
+			pstmt.setString(3, notice.getNotice_filename());
+			pstmt.setInt(4, notice.getMem_num());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 		
 	//총 레코드 수 | 검색 레코드 수
 	public int getNoticeCount(String keyfield, String keyword) throws Exception{
@@ -36,7 +59,7 @@ public class NoticeDAO {
 				else if(keyfield.equals("2")) sub_sql +="WHERE n.notice_content LIKE ?";
 			}
 			
-			sql = "SELEECT count(*) FROM notice n JOIN omember m USING(mem_num) " + sub_sql;
+			sql = "SELECT count(*) FROM notice n JOIN omember m USING(mem_num) " + sub_sql;
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -74,10 +97,11 @@ public class NoticeDAO {
 				else if(keyfield.equals("2")) sub_sql +="WHERE n.notice_content LIKE ?";
 			}
 						
-			sql = "SELECT * FROM (SELECT a.* rownum rnum "
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
 				+ "FROM (SELECT * FROM notice n JOIN omember m "
-				+ "USING(mem_num) " + sub_sql 
-				+ "ORDER BY n.notice_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+				+ "USING(mem_num) " + sub_sql + "ORDER BY n.notice_num DESC)a)"
+				+ "WHERE rnum >= ? AND rnum <= ?";
+	
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -106,7 +130,63 @@ public class NoticeDAO {
 	}
 	
 	//글 상세
+	public NoticeVO getNotice(int notice_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		NoticeVO notice = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM notice n JOIN omember USING (mem_num) "
+				+ "LEFT OUTER JOIN omember_detail d USING (mem_num) "
+				+ "WHERE n.notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				notice = new NoticeVO();
+				notice.setNotice_num(rs.getInt("notice_num"));
+				notice.setNotice_title(rs.getString("notice_title"));
+				notice.setNotice_content(rs.getString("notice_content"));
+				notice.setNotice_hit(rs.getInt("notice_hit"));
+				notice.setNotice_regdate(rs.getDate("notice_regdate"));
+				notice.setNotice_mdate(rs.getDate("notice_mdate"));
+				notice.setNotice_filename(rs.getString("notice_filename"));
+				notice.setMem_num(rs.getInt("mem_num"));
+				notice.setId(rs.getString("id"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return notice;
+	}
+	
 	//조회수 증가
+	public void updateReadcount(int notice_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE notice SET notice_hit=notice_hit+1 WHERE notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	
 	//글 수정
 	//글 삭제
 }
