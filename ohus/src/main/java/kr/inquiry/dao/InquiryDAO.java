@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.inquiry.vo.InquiryAnswerVO;
 import kr.inquiry.vo.InquiryVO;
 import kr.util.DBUtil;
 
@@ -219,6 +220,31 @@ public class InquiryDAO {
 		}
 	}
 	
+	//답변 등록
+	public void insertAnswer(InquiryAnswerVO inquiryAnswer) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO inquiry_answer (ans_num, ans_content, inq_num, mem_num) "
+				+ "VALUES (inquiry_ans_seq.nextval, ?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, inquiryAnswer.getAns_content());
+			pstmt.setInt(2, inquiryAnswer.getInq_num());
+			pstmt.setInt(3, inquiryAnswer.getMem_num());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
+	
+	
+	//답변 수정
+	//답변 삭제
 	
 }
