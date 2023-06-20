@@ -18,7 +18,7 @@ public class EventDAO {
 	private static EventDAO instance = new EventDAO();
 
 	public static EventDAO getInstance() {
-		return instance;
+		return instance; 
 	}
 
 	private EventDAO() {} 

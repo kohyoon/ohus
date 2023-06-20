@@ -21,7 +21,7 @@
 			<%-- 수정일이 있으면 수정일을 보여주고 작성일은 항상 보여주기 --%>
 			<div class="align-right">
 				<ul class="detail-sub">
-					<li>
+					<li> 
 						조회수 : ${event.event_hit}
 						<br>
 						 <%-- 수정한 날짜가 있으면, 내용을 표시 --%>
