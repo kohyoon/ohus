@@ -8,6 +8,7 @@ public class NoticeVO {
 	private String notice_content;
 	private Date notice_regdate;
 	private Date notice_mdate;
+	private int notice_hit;
 	private int mem_num; //공지사항 작성한 회원 번호
 	private String id; //공지사항 작성한 회원 아이디
 	
@@ -40,6 +41,12 @@ public class NoticeVO {
 	}
 	public void setNotice_mdate(Date notice_mdate) {
 		this.notice_mdate = notice_mdate;
+	}
+	public int getNotice_hit() {
+		return notice_hit;
+	}
+	public void setNotice_hit(int notice_hit) {
+		this.notice_hit = notice_hit;
 	}
 	public int getMem_num() {
 		return mem_num;
