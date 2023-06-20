@@ -27,7 +27,7 @@ public class InsertChatroomAction implements Action{
 
 		ChatDAO dao = ChatDAO.getInstance();
 		ChatroomVO chatroom = new ChatroomVO();
-		ChatroomVO db_chatroom = dao.getChatroomByBuyer(market_num, seller_num);
+		ChatroomVO db_chatroom = dao.getChatroomByBuyer(market_num, buyer_num);
 		// 생성된 채팅방이 존재한지 체크
 		
 		if(db_chatroom == null) {
@@ -35,7 +35,7 @@ public class InsertChatroomAction implements Action{
 			chatroom.setBuyer_num(buyer_num);
 			chatroom.setSeller_num(seller_num);
 			dao.insertChatroom(chatroom);
-			db_chatroom = dao.getChatroomByBuyer(market_num, seller_num);
+			db_chatroom = dao.getChatroomByBuyer(market_num, buyer_num);
 		}
 		request.setAttribute("chatroom", db_chatroom);
 

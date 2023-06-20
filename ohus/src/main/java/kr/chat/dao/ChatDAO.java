@@ -105,7 +105,7 @@ public class ChatDAO {
 		return list;
 	}
 	// 채팅방 목록 조회 (구매자가 채팅하기 누를 경우 생성할지 말지 결정)
-	public ChatroomVO getChatroomByBuyer(int market_num, int seller_num) throws Exception{
+	public ChatroomVO getChatroomByBuyer(int market_num, int buyer_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -114,10 +114,10 @@ public class ChatDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM chatroom WHERE market_num = ? AND seller_num = ?";
+			sql = "SELECT * FROM chatroom WHERE market_num = ? AND buyer_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, market_num);
-			pstmt.setInt(2, seller_num);
+			pstmt.setInt(2, buyer_num);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
