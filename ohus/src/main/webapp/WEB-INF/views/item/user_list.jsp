@@ -8,6 +8,27 @@
 <meta charset="UTF-8">
 <title>쇼핑</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<style type="text/css">
+		.item-container {
+    		display: flex;
+   			flex-wrap: wrap;
+    		align-items: flex-start;
+    		height: 100%;
+    		margin: 0;
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+		}
+
+		.item {
+   			width: 250px; /* Adjust the width as needed */
+    		margin: 10px;
+		}
+		.align-center {
+    		display: flex;
+    		justify-content: center;
+		}
+	</style>
 </head>
 <body>
 	<div class = "page-main">
@@ -16,17 +37,16 @@
 		<%-- 내용시작 --%>
 		<div class = "content-main">
 			<%-- 상품 목록 --%>
-			<h4>상품</h4>
-			<div>
+			<div class="item-container">
 				<c:if test="${count == 0}">
 					<div>
 					표시할 상품 없음
 				</div>
 				</c:if>
 				<c:forEach var="item" items="${itemList}">
-					<div>
+					<div class="item">
 						<a href="${pageContext.request.contextPath}/item/detail.do?item_num=${item.item_num}">
-							<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="400"><br>
+							<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="250"><br>
 							${item.item_name}
 							<br>
 							<b><fmt:formatNumber value="${item.item_price}"/>원</b>

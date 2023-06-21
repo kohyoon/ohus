@@ -27,11 +27,11 @@
 					</li>
 					<li>
 						<label>카테고리</label>
-						<input type="radio" name="item_category" value="0" id="category0">침대
-						<input type="radio" name="item_category" value="1" id="category1">소파
-						<input type="radio" name="item_category" value="2" id="category2">수납
-						<input type="radio" name="item_category" value="1" id="category3">테이블
-						<input type="radio" name="item_category" value="0" id="category4">의자
+						<input type="radio" name="item_category" value="1" id="category1">침대
+						<input type="radio" name="item_category" value="2" id="category2">소파
+						<input type="radio" name="item_category" value="3" id="category3">수납
+						<input type="radio" name="item_category" value="4" id="category4">테이블
+						<input type="radio" name="item_category" value="5" id="category5">의자
 					</li>
 					<li>
 						<label for="item_price">가격</label>
