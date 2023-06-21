@@ -42,11 +42,50 @@
 				작성일 : ${inquiry.inq_regdate}
 				<c:if test="${user_num == inquiry.mem_num}">
 				<input type="button" value="수정" onclick="location.href='modifyInquiryForm.do?inq_num=${inquiry.inq_num}'">
-				<input type="button" value="삭제" onclick="location.href='deleteInquiry.do?inq_num=${inquiry.inq_num}'">
-				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
+				<input type="button" value="삭제" id="delete_btn">
+				<script type="text/javascript">
+					let delete_btn = document.getElementById('delete_btn');
+					//이벤트 연결
+					delete_btn.onclick = function(){
+						let choice = confirm('삭제하시겠습니까?');
+						if(choice){
+							location.replace('deleteInquiry.do?inq_num=${inquiry.inq_num}');
+						}
+					};
+				</script>
 				</c:if>
+				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
 			</li>
 		</ul>
+		<!-- 답변 시작 -->
+		<%-- <c:if test="${user_auth == 9}"> --%>
+		<div id="reply_div">
+			<span class="re-title">댓글 달기</span>
+			<form id="re_form">
+				<input type="hidden" name="board_num" value="${inquiry.inq_num}" id="board_num">
+				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+						<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인 후 작성할 수 있습니다.</c:if></textarea>
+				<c:if test="${!empty user_num}">
+				<div id="re_first">
+					<span class="letter-count">300/300</span>
+				</div>
+				<div id="re_second" class="align-right">
+					<input type="submit" value="전송">
+				</div>
+				</c:if>
+			</form>
+		</div>
+		<%-- </c:if> --%>
+		<!-- 답변 목록 출력 시작 -->
+		<div id="output"></div>
+		<div class="paging-button" style="display:none;">
+			<input type="button" value="목록">
+		</div>
+		<div class="loading" style="display:none;">
+			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+		</div>
+		<!-- 답변 목록 출력 끝 -->
+		<!-- 답변 끝 -->
 	</div>
 	<!-- 내용 끝 -->
 </div>
