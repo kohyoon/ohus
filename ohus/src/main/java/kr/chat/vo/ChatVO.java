@@ -10,6 +10,8 @@ public class ChatVO {
 	private Date reg_date;     // 채팅 메시지 발송 날짜
 	private int read_check;    // 읽기 여부
 	
+	private String id;		   // 메시지 보낸 사람의 아이디
+	
 	public int getChat_num() {
 		return chat_num;
 	}
@@ -45,6 +47,12 @@ public class ChatVO {
 	}
 	public void setRead_check(int read_check) {
 		this.read_check = read_check;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

@@ -137,6 +137,9 @@ public class MarketDAO {
 		
 		return list;
 	}
+	
+	// 내가 작성한 거래글 목록 조회
+	
 	// 거래글 상세
 	public MarketVO getDetailMarket(int market_num) throws Exception{
 		
@@ -231,7 +234,7 @@ public class MarketDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	// 거래글 삭제
+	// 거래글 삭제 , 게시글 삭제시 -> 채팅 내용도 삭제 되도록 해야 되나
 	public void deleteMarket(int market_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -267,4 +270,6 @@ public class MarketDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 추가될 수 있는 작업 : 파일 삭제 기능 (사진 2개 이상을 등록하도록 할 경우 -> 2개까지는 필수, 3개 이상 등록 가능 시 한 개까지의 사진 삭제 기능이 추가됨)
 }

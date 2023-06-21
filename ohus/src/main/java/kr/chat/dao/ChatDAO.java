@@ -170,7 +170,7 @@ public class ChatDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM chat WHERE chatroom_num = ? ORDER BY chat_num ASC";
+			sql = "SELECT * FROM chat c LEFT JOIN omember o ON c.mem_num = o.mem_num WHERE chatroom_num = ? ORDER BY chat_num ASC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, chatroom_num);
 			rs = pstmt.executeQuery();
@@ -183,6 +183,7 @@ public class ChatDAO {
 				chat.setMessage(rs.getString("message"));
 				chat.setReg_date(rs.getDate("reg_date"));
 				chat.setRead_check(rs.getInt("read_check"));
+				chat.setId(rs.getString("id"));
 				list.add(chat);
 			}
 		}catch(Exception e) {
