@@ -29,7 +29,7 @@ alter table omember_detail RENAME COLUMN pw TO password;
 create sequence omember_seq;
 --디테일 시퀀스
 --이벤트
---이벤트 테이블
+--이벤트 테이블  
 create table oevent(
  event_num number,
  event_title varchar2(150) not null,

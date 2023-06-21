@@ -328,7 +328,7 @@ public class EventDAO {
 					+ "WHERE event_num=?";
 		
 			pstmt = conn.prepareStatement(sql);
-			
+			    
 			pstmt.setString(++cnt, event.getEvent_title()); 
 			pstmt.setString(++cnt, event.getEvent_content());
 			

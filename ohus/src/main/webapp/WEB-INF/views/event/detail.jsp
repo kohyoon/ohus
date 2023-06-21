@@ -78,7 +78,7 @@
 			<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인 후 작성할 수 있습니다</c:if></textarea>
 			<c:if test="${!empty user_num}"> <!-- 로그인 되어 있을 때 댓글 달 수 있음 -->
-				<div id="re_first">
+				<div id="re_first">   
 				 	<span class="letter-count">300/300</span> <!-- 글자수 제한 -->
 				</div>
 				<div id="re_second" class="align-right">

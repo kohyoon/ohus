@@ -29,7 +29,7 @@ public class AdminUpdateFormAction implements Action{
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
 		
 		EventDAO dao = EventDAO.getInstance();
-		EventVO event = dao.getEvent(event_num);
+		EventVO event = dao.getEvent(event_num);  
 		
 		//큰따옴표로 제목을 쓴 경우 수정 누르면 이상하게 됨 - 수정 폼의 input 태그 오동작 잡기
 		event.setEvent_title(StringUtil.parseQuot(event.getEvent_title()));

@@ -16,7 +16,7 @@
 			if($('#event_title').val().trim()==''){
 				alert('제목을 입력하세요');
 				$('#title').val('').focus(); 
-				return false;
+				return false;  
 			}
 			
 			if($('#event_content').val()==''){ 
