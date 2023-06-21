@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
 <meta charset="UTF-8">
 <title>이벤트 글 상세 보기 - 사진을 누르면 이벤트 상세글이 보인다</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">

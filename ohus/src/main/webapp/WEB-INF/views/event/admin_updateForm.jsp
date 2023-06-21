@@ -67,7 +67,7 @@
 	<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" name="event_num" value="${event.event_num }">
-	<ul>
+	<ul> 
 		<li>
 			<label for="event_title">제목</label>
 			<input type="text" name="event_title" value="${event.event_title}" id="event_title" maxlength="50">

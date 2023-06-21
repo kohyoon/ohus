@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 public class EventVO {
-
+ 
 	private int event_num;
 	private String event_title;
 	private String event_photo;

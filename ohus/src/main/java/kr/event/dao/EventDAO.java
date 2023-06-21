@@ -315,7 +315,6 @@ public class EventDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
 		String sub_sql = "";
 		int cnt = 0;
                               
