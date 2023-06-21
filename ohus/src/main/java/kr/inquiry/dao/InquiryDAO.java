@@ -9,6 +9,7 @@ import java.util.List;
 import kr.inquiry.vo.InquiryAnswerVO;
 import kr.inquiry.vo.InquiryVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 
 public class InquiryDAO {
 	//싱글턴패턴
@@ -96,9 +97,10 @@ public class InquiryDAO {
 				else if(keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
 			}
 			
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-				+ "(SELECT * FROM inquiry i JOIN omember m USING (mem_num) "
-				+ sub_sql + "ORDER BY i.inq_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+				+ "FROM (SELECT * FROM inquiry i JOIN omember m "
+				+ "USING (mem_num) " + sub_sql + "ORDER BY i.inq_num DESC)a)"
+				+ "WHERE rnum >= ? AND rnum <= ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -242,7 +244,99 @@ public class InquiryDAO {
 		}
 	}
 	
+	//답변 갯수
+	public int getAnswerCount(int inq_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT count(*) FROM inquiry_answer a JOIN omember m "
+				+ "ON a.mem_num=m.mem_num WHERE a.inq_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
+	//답변 목록
+	public List<InquiryAnswerVO> getListAnswer(int start, int end, int inq_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<InquiryAnswerVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM "
+				+ "inquiry_answer a JOIN omember m USING(mem_num) WHERE a.inq_num=? "
+				+ "ORDER BY a.ans_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inq_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<InquiryAnswerVO>();
+			while(rs.next()) {
+				InquiryAnswerVO answer = new InquiryAnswerVO();
+				answer.setAns_num(rs.getInt("inq_num"));
+				answer.setAns_date(DurationFromNow.getTimeDiffLabel(rs.getString("ans_date")));
+				if(rs.getString("ans_mdate") != null) {
+					answer.setAns_mdate(DurationFromNow.getTimeDiffLabel(rs.getString("ans_mdate")));
+				}
+				answer.setAns_content(rs.getString("ans_content"));
+				answer.setAns_num(rs.getInt("ans_num"));
+				answer.setMem_num(rs.getInt("mem_num"));
+				answer.setId(rs.getString("id"));
+				
+				list.add(answer);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	//답변 상세(답변 수정 또는 삭제시 작성자 회원번호 체크 용도로 사용)
+	public InquiryAnswerVO getAnswer(int ans_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		InquiryAnswerVO answer = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM inquiry_answer WHERE ans_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ans_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				answer = new InquiryAnswerVO();
+				answer.setInq_num(rs.getInt("inq_num"));
+				answer.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return answer;
+	}
 	
 	//답변 수정
 	//답변 삭제
