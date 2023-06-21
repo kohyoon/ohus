@@ -186,6 +186,25 @@ public class NoticeDAO {
 		}
 	}
 	
+	//파일 삭제
+	public void deleteFile(int notice_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE notice SET filename='' WHERE notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			pstmt.executeUpdate();			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
 	//글 수정
 	public void updateNotice(NoticeVO notice) throws Exception{
 		Connection conn = null;
@@ -199,10 +218,10 @@ public class NoticeDAO {
 			
 			if(notice.getNotice_filename() != null) {
 				//파일을 업로드한 경우
-				sub_sql += ", notice_filename=?";
+				sub_sql += ", notice_filename=? ";
 			}
-			sql = "UPDATE notice SET notice_title=?, notice_content=?, notice_mdate=SYSDATE "
-				+ sub_sql + "WHERE notice_num=?";
+			sql = "UPDATE notice SET notice_title=?, notice_content=?, "
+				+ "notice_mdate=SYSDATE " + sub_sql + "WHERE notice_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, notice.getNotice_title());
 			pstmt.setString(++cnt, notice.getNotice_content());
@@ -218,9 +237,22 @@ public class NoticeDAO {
 		}
 	}
 	
-	
-	
-	
-	
 	//글 삭제
+	public void deleteNotice(int notice_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM notice WHERE notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			pstmt.executeUpdate();			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }

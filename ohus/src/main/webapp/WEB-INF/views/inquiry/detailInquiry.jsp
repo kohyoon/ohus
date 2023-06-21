@@ -19,7 +19,7 @@
 			<li>
 				<label>카테고리</label>
 				<c:if test="${inquiry.inq_category == 1}">사이트 문의</c:if>
-				<c:if test="${inquiry.inq_category == 2}">신고 문의</c:if>
+				<c:if test="${inquiry.inq_category == 2}">카테고리 문의</c:if>
 			</li>
 			<li>
 				<label>작성자</label>
@@ -53,6 +53,7 @@
 						}
 					};
 				</script>
+				<input type="button" value="수정">
 				</c:if>
 				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
 			</li>

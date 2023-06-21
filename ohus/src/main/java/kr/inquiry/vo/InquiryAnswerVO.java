@@ -5,12 +5,17 @@ import java.sql.Date;
 public class InquiryAnswerVO {
 	private int ans_num;
 	private String ans_content;
-	private String ans_date;
+	private String ans_date ;
 	private String ans_mdate;
 	private int inq_num;
-	private int mem_num; //답변한 관리자 회원번호
-	private String id; //답변한 관리자 아이디
-	
+	private int mem_num;
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getAns_num() {
 		return ans_num;
 	}
@@ -23,6 +28,7 @@ public class InquiryAnswerVO {
 	public void setAns_content(String ans_content) {
 		this.ans_content = ans_content;
 	}
+	
 	public String getAns_date() {
 		return ans_date;
 	}
@@ -46,11 +52,5 @@ public class InquiryAnswerVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 }

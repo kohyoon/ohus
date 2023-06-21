@@ -34,8 +34,7 @@
 		</form>
 		<!-- 검색창 끝 -->
 		<div class="list-pace align-right">
-			<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'"
-				>
+			<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'">
 			<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
 		</div>
 		<c:if test="${count == 0}">
