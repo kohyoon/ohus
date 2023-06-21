@@ -20,7 +20,6 @@ create table inquiry_answer(
 	ans_num number,
 	ans_content clob not null,
 	ans_date date default sysdate not null,
-	ans_mdate date,
 	inq_num number not null,
 	mem_num number not null,
 	constraint inquiry_ans_pk primary key (ans_num),
