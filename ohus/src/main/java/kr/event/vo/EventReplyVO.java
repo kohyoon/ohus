@@ -9,7 +9,16 @@ public class EventReplyVO {
 	private int event_num; //부모글번호
 	private int mem_num; //회원번호
 	
+	//추가적으로 빈번하게 사용되는 변수를 넣어주자
+	private String id;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getRe_num() {
 		return re_num;
 	}
