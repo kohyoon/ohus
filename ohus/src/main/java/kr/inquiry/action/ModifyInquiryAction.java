@@ -41,7 +41,7 @@ public class ModifyInquiryAction implements Action {
 		inquiry.setInq_category(Integer.parseInt(request.getParameter("category")));
 		inquiry.setInq_ip(request.getRemoteAddr());
 		
-		dao.updateInquiry(inquiry);
+		//dao.updateInquiry(inquiry);
 		
 		return "redirect:/inquiry/detailInquiry.do?inq_num=" + inq_num;
 	}
