@@ -28,9 +28,9 @@
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
-		<c:if test="${!empty notie.filename}">
+		<c:if test="${!empty notice.notice_filename}">
 		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${notice.filename}" class="detail-img">
+			<img src="${pageContext.request.contextPath}/upload/${notice.notice_filename}" class="detail-img">
 		</div>
 		</c:if>
 		<p>
