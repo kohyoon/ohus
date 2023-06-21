@@ -166,7 +166,32 @@ public class InquiryDAO {
 	
 		
 	//문의 글 수정
-	
+	public void updateInquriy(InquiryVO inquiry) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "UPDATE inquiry SET inq_title=?, inq_category=?, "
+				+ "inq_content=?, inq_modifydate=SYSDATE, inq_ip=? WHERE inq_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, inquiry.getInq_title());
+			pstmt.setString(2, inquiry.getInq_content());
+			pstmt.setInt(3, inquiry.getInq_category());
+			pstmt.setString(4, inquiry.getInq_ip());
+			pstmt.setInt(5, inquiry.getInq_num());
+			
+			pstmt.executeUpdate();	
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+	}
 	
 	//문의 글 삭제
 	public void deleteInquiry(int inq_num) throws Exception{
