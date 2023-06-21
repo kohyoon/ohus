@@ -234,7 +234,32 @@ $(function(){
 	});
 	
 	//답변 삭제
-	
+	$(document).on('click','.delete-btn', function(){
+		//댓글 번호
+		let ans_num = $(this).attr('data-ansnum');
+		
+		$.ajax({
+			url:'deleteAnswer.do',
+			type:'post',
+			data:{ans_num:ans_num},
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인해야 삭제할 수 있습니다.');
+				} else if(param.result == 'success'){
+					alert('삭제 완료!');
+					selectList(1);
+				} else if(param.result == 'wrongAccess'){ 
+					alert('타인의 댓글을 삭제할 수 없습니다.');
+				} else{
+					alert('댓글 삭제 오류 발생'); //오타 발생한 경우
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+	});
 	
 	
 	
