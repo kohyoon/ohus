@@ -136,7 +136,7 @@ $(function(){
 			remain += '/300';
 			if($(this).attr('id') == 'ans_content'){
 				//등록폼 글자수
-				$('re_first .letter-count').text(remain);
+				$('#re_first .letter-count').text(remain);
 			} else{
 				//수정폼 글자수
 				$('#mre_first .letter-count').text(remain);
