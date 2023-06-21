@@ -131,25 +131,6 @@
 			</div>	
 		</header>		
 		<!-- 상단 메뉴 끝 -->
-		
-		<!-- 하단 네비게이션 처리 시작 -->			
-		<header>
-			<div class="header-lowwer__nav">
-				<div class="header-lower">
-					<div class="inner">
-					<!-- 커뮤니티를 눌렀을 때, 쇼핑을 눌렀을 때, 상추마켓, 오이벤트 -->
-						<nav>
-							<a class="header-lower__item active" href="">일상</a> <a
-								class="header-lower__item" href="">취미</a> <a
-								class="header-lower__item" href="">자랑</a> <a
-								class="header-lower__item" href="">추천</a>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</header>	
-		<!-- 하단 네비게이션 처리 끝 -->
-
 	</div>		
 
 <script type="text/javascript">

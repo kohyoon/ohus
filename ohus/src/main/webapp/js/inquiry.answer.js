@@ -134,24 +134,132 @@ $(function(){
 		}else{ //300자 이하인 경우
 			let remain = 300 - inputLength;
 			remain += '/300';
-			if($(this).attr('id') == 'inq_content'){
+			if($(this).attr('id') == 'ans_content'){
 				//등록폼 글자수
-				$('re_first .letter-count').text(remain);
+				$('#re_first .letter-count').text(remain);
 			} else{
 				//수정폼 글자수
 				$('#mre_first .letter-count').text(remain);
 			}
-			
 		}
-		
 	});
 	
 	//답변 수정 버튼 클릭 시 수정 폼 노출
-	//수정 폼에서 취소 버튼 클릭시 수정 폼 초기화
-	//답변 수정 폼 초기화
-	//답변 수정
-	//답변 삭제
+	$(document).on('click','.modify-btn', function(){
+		//답변 번호
+		let ans_num = $(this).attr('data-ansnum');
+		//답변 내용
+		let ans_content = $(this).parent().find('p').html().replace(/<br>/gi, '\n');
+		
+		//답변 수정폼 UI
+		let modifyUI = '<form id="mre_form">';
+		modifyUI += '<input type="hidden" name="ans_num" id="mre_num" value="' + ans_num + '">';
+		modifyUI += '<textarea rows="3" cols="50" name="ans_content" id="mre_content" class="rep-content">' + ans_content + '</textarea>';
+		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
+		modifyUI += '<div id="mre_second" class="align-right">';
+		modifyUI += ' <input type="submit" value="수정">';
+		modifyUI += ' <input type="button" value="취소" class="re-reset">';
+		modifyUI += '</div>';
+		modifyUI += '<hr size="1" noshade width="96%">';
+		modifyUI += '</form>';
+		
+		//이전에 이미 수정하는 중인 댓글이 있을 경우, 수정버튼을 클릭하면 숨겨져있는 sub-item을 환원시키고 수정폼을 초기화함
+		initModifyForm();
+		
+		//데이터가 표시되어 있는 div 감추기
+		$(this).parent().hide();
+		//수정폼을 수정하고자 하는 데이터가 있는 div 노출
+		$(this).parents('.item').append(modifyUI);
+		
+		//입력한 글자수 셋팅
+		let inputLength = $('#mre_content').val().length;
+		let remain = 300 - inputLength;
+		remain += '/300';
+		
+		//문서 객체에 반영
+		$('#mre_first .letter-count').text(remain);
+		
+	});
 	
+	//수정 폼에서 취소 버튼 클릭시 수정 폼 초기화
+	$(document).on('click','.re-reset',function(){
+		initModifyForm();
+	});
+	
+	//답변 수정 폼 초기화
+	function initModifyForm(){
+		$('.sub-item').show();
+		$('#mre_form').remove();
+	}
+	
+	//답변 수정
+	$(document).on('submit', '#mre_form', function(event){
+		//기본이벤트 제거
+		event.preventDefault();
+		
+		if($('#mre_content').val().trim() == ''){
+			alert('내용을 입력하세요.');
+			$('#mre_content').val('').focus();
+			return false;
+		}
+		
+		//폼에 입력한 데이터 반환
+		let form_data = $(this).serialize();
+		
+		//서버와 통신
+		$.ajax({
+			url:'modifyAnswer.do',
+			type:'post',
+			data:form_data,
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인해야 수정할 수 있습니다.');
+				}else if(param.result == 'success'){
+					$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/g, '&gt;').replace(/\n/g,'<br>'));
+					//날짜
+					$('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초미만');
+					//수정폼 삭제 및 초기화
+					initModifyForm();
+				}else if(param.result == 'wrongAccess'){
+					alert('타인의 댓글을 수정할 수 없습니다.');
+				}else{
+					alert('댓글 수정 오류');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+	});
+	
+	//답변 삭제
+	$(document).on('click','.delete-btn', function(){
+		//댓글 번호
+		let ans_num = $(this).attr('data-ansnum');
+		
+		$.ajax({
+			url:'deleteAnswer.do',
+			type:'post',
+			data:{ans_num:ans_num},
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인해야 삭제할 수 있습니다.');
+				} else if(param.result == 'success'){
+					alert('삭제 완료!');
+					selectList(1);
+				} else if(param.result == 'wrongAccess'){ 
+					alert('타인의 댓글을 삭제할 수 없습니다.');
+				} else{
+					alert('댓글 삭제 오류 발생'); //오타 발생한 경우
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+	});
 	
 	
 	
