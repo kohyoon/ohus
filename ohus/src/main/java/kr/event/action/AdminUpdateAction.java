@@ -57,6 +57,7 @@ public class AdminUpdateAction implements Action{
 		event.setEvent_photo(event_photo);
 		event.setEvent_start(multi.getParameter("event_start"));
 		event.setEvent_end(multi.getParameter("event_end"));
+		event.setWinner_count(Integer.parseInt(multi.getParameter("winner_count")));
 		
 		dao.updateEvent(event);
 		

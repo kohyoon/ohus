@@ -11,7 +11,7 @@
 
 <script type="text/javascript"> 
 
-	$(function(){
+	$(function(){ 
 		$('#update_form').submit(function(){
 			if($('#event_title').val().trim()==''){
 				alert('제목을 입력하세요');
@@ -81,7 +81,9 @@
 		<li>
 			<label for="event_photo">사진</label>
 			<input type="file" name="event_photo" id="event_photo" accept="image/gif, image/png, image/jpeg">
-					<div id="event_photo_detail">
+					<%--파일이 있으면 보여지도록 --%>
+				<c:if test="${!empty event.event_photo}">
+					<div id="file_detail">
 						(${event.event_photo}) 파일이 등록되어있습니다.	
 						<input type="button" value="파일삭제" id="file_del">
 					</div>
@@ -101,7 +103,7 @@
 											if(param.result == 'logout'){
 												alert('로그인 후 사용가능');
 											} else if(param.result== 'success'){
-												$('#event_photo_detail').hide(); //파일 삭제됐으므로 파일명을 안 보이게 해줌
+												$('#file_detail').hide(); //파일 삭제됐으므로 파일명을 안 보이게 해줌
 											} else if(param.result== 'wrongAccess'){
 												alert('잘못된 접근');
 											} else { //오타 내거나 그 외
@@ -120,6 +122,7 @@
 						});
 					
 					</script>
+				</c:if>	
 		</li>
 		
 		<li>

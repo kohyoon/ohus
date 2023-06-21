@@ -1,5 +1,5 @@
 --회원관리  
---회원테이블
+--회원테이블         
 create table omember(
  mem_num number,
  id varchar2(12) unique not null,

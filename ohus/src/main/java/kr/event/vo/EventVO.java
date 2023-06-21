@@ -18,7 +18,7 @@ public class EventVO {
 	private int mem_num;
 	private int event_status; //1:종료된 이벤트, 2:진행중인 이벤트
 	
-	public int getEvent_status() {
+	public int getEvent_status() { 
 		String[] event_ends = event_start.split("-");
 		LocalDate end_day = LocalDate.of(Integer.parseInt(event_ends[0]), Integer.parseInt(event_ends[1]), Integer.parseInt(event_ends[2]));
 		Calendar cal = Calendar.getInstance();

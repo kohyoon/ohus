@@ -213,7 +213,7 @@ public class EventDAO {
 	}
 	
 	
-	//~~~~~이벤트 상세(관리자+사용자)
+	//~~~~~이벤트 상세(관리자+사용자)  
 	public EventVO getEvent(int event_num) throws Exception{
 		
 		Connection conn = null;
@@ -327,7 +327,7 @@ public class EventDAO {
 			}
 			
 
-			sql = "UPDATE oevent SET event_title=?, event_content=?, event_photo=? "
+			sql = "UPDATE oevent SET event_title=?, event_content=?, event_photo=?, "
 					+ "event_start=?, event_end=?, winner_count=?, event_modifydate=SYSDATE " 
 					+ "WHERE event_num=?";
 		
