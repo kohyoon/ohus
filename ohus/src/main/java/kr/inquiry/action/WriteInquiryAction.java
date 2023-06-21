@@ -26,7 +26,6 @@ public class WriteInquiryAction implements Action {
 		InquiryVO inquiry = new InquiryVO();
 		inquiry.setInq_title(request.getParameter("title"));
 		inquiry.setInq_content(request.getParameter("content"));
-		inquiry.setInq_category(Integer.parseInt(request.getParameter("category")));
 		inquiry.setInq_ip(request.getRemoteAddr());
 		inquiry.setMem_num(user_num);
 		
