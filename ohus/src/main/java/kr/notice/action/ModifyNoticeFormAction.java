@@ -24,7 +24,7 @@ public class ModifyNoticeFormAction implements Action {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		//관리자로 로그인 된 경우
-		int notice_num = Integer.parseInt(request.getParameter("user_num"));
+		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		NoticeDAO dao = NoticeDAO.getInstance();
 		NoticeVO notice = dao.getNotice(notice_num);
 		//로그인 한 회원번호와 작성자 회원번호 일치 여부 체크
