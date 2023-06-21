@@ -25,7 +25,7 @@ public class ChatDAO {
 		String sql = null;
 		
 		try {
-			
+			  
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO chatroom (chatroom_num,market_num,seller_num,buyer_num) VALUES (chatroom_seq.nextval,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
