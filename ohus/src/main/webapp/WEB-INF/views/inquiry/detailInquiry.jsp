@@ -8,6 +8,7 @@
 <title>문의글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/inquirt.answer.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -62,9 +63,9 @@
 		<%-- <c:if test="${user_auth == 9}"> --%>
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
-			<form id="re_form">
-				<input type="hidden" name="board_num" value="${inquiry.inq_num}" id="board_num">
-				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+			<form id="inq_form">
+				<input type="hidden" name="inq_num" value="${inquiry.inq_num}" id="inq_num">
+				<textarea rows="3" cols="50" name="inq_content" id="inq_content" class="rep-content"
 						<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인 후 작성할 수 있습니다.</c:if></textarea>
 				<c:if test="${!empty user_num}">
 				<div id="re_first">
