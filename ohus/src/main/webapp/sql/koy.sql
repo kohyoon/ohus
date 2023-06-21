@@ -52,6 +52,7 @@ create table qna(
 	qna_regdate date default sysdate not null,
 	qna_ip varchar2(40) not null,
 	qna_status number(1) default 1 not null,
+	qna_filename varchar2(50),
 	mem_num number not null,
 	detail_num not null,
 	constraint qna_pk primary key (qna_num),
