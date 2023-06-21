@@ -341,5 +341,4 @@ public class InquiryDAO {
 	
 	//답변 수정
 	//답변 삭제
-	
 }
