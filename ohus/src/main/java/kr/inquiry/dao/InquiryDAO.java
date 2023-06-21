@@ -166,7 +166,7 @@ public class InquiryDAO {
 	
 		
 	//문의 글 수정
-	public void updateInquriy(InquiryVO inquiry) throws Exception{
+	public void updateInquiry(InquiryVO inquiry) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
