@@ -12,7 +12,7 @@ create table inquiry(
 	constraint inquiry_pk primary key (inq_num),
 	constraint inquiry_fk foreign key (mem_num) references omember (mem_num)
 );
-
+   
 create sequence inquiry_seq;
 
 -- 문의사항 답변
