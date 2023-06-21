@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript">  
 
 	$(function(){
 		$('#write_form').submit(function(){ 
@@ -34,7 +34,7 @@
 			if($('#event_photo').val()==''){ //파일도 마찬가지로 trim() 없이, 입력하는게 아니라 파일 선택하는 것이므로
 				alert('사진을 선택하세요');
 				$('#photo').focus();
-				return false;
+				return false;                 
 			}
 			
 			//이벤트 시작

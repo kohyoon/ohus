@@ -32,8 +32,8 @@ create sequence omember_seq;
 --이벤트 테이블
 create table oevent(
  event_num number,
- event_title varchar2(12) not null,
- event_photo varchar2(50) not null,
+ event_title varchar2(150) not null,
+ event_photo varchar2(50),
  event_content clob not null,
  event_start varchar2(10) not null,  
  event_end varchar2(10) not null,
