@@ -26,7 +26,6 @@ public class InquiryAnswerVO {
 	public void setAns_content(String ans_content) {
 		this.ans_content = ans_content;
 	}
-	
 	public String getAns_date() {
 		return ans_date;
 	}
