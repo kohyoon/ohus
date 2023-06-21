@@ -244,6 +244,7 @@ public class EventDAO {
 				event.setEvent_regdate(rs.getString("event_regdate"));
 				event.setWinner_count(rs.getInt("winner_count"));
 				event.setEvent_status(rs.getInt("event_status"));
+				event.setEvent_hit(rs.getInt("event_hit"));
 			}
 			
 			
