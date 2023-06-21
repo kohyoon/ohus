@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/event.reply.js"></script>
 </head>
-<body>
+<body>       
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- 내용 시작 -->
 <div class="content-main"> 

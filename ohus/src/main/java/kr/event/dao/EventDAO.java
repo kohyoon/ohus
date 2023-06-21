@@ -255,9 +255,6 @@ public class EventDAO {
 		return event;
 	}
 	
-	
-	
-	
 	//----------------------------------
 	//조회수 증가시키기
 	public void updateReadcount(int event_num) throws Exception{
@@ -332,7 +329,7 @@ public class EventDAO {
 		
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(++cnt, event.getEvent_title());
+			pstmt.setString(++cnt, event.getEvent_title()); 
 			pstmt.setString(++cnt, event.getEvent_content());
 			
 			if(event.getEvent_photo() !=null) {
