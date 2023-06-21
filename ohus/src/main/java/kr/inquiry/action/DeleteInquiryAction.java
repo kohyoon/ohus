@@ -29,7 +29,7 @@ public class DeleteInquiryAction implements Action {
 		}
 		//일치
 		dao.deleteInquiry(inq_num); //글 삭제
-				
+		
 		return "redirect:/inquiry/listInquiry.do";
 	}
 
