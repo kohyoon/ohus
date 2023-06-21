@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,7 +153,15 @@
 							</div>	
 						</li>
 						<li><input type="button" onclick="" value="상추글"></li>
-						<li><a href="#">스크랩</a></li>
+						<li>
+							상품스크랩
+							<c:forEach var="item" items="${itemList}">
+							<a href="${pageContext.request.contextPath}/item/detail.do?item_num=${item.item_num}">
+								<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="100">
+								${item.item_name}
+							</a>
+							</c:forEach>
+						</li>
 						<li><a href="#">문의내용</a></li>
 					</ul>
 				</li>

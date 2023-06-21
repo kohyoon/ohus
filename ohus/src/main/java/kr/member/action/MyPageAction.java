@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 
 import kr.controller.Action;
+import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 
@@ -34,6 +36,15 @@ public class MyPageAction implements Action{
 		 * request.setAttribute("member", member); request.setAttribute("boardList",
 		 * boardList);
 		 */
+		
+		//상품 스크랩
+		ItemDAO itemDao = ItemDAO.getInstance();
+		List<ItemVO> itemList = itemDao.getListItemFav(1, 5, user_num);
+						
+		request.setAttribute("member", member);
+		request.setAttribute("itemList", itemList);
+		//상품 스크랩
+		
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPage.jsp";
