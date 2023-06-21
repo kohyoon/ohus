@@ -340,10 +340,24 @@ public class InquiryDAO {
 	}
 	
 	//답변 수정
-	
-	
-	
-	
+	public void updateAnswer(InquiryAnswerVO answer) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE inquiry_answer SET ans_content=?, ans_mdate=SYSDATE WHERE ans_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answer.getAns_content());
+			pstmt.setInt(2, answer.getAns_num());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//답변 삭제
 }
