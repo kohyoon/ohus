@@ -258,7 +258,7 @@ public class InquiryDAO {
 			sql = "SELECT count(*) FROM inquiry_answer a JOIN omember m "
 				+ "ON a.mem_num=m.mem_num WHERE a.inq_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, count);
+			pstmt.setInt(1, inq_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				count = rs.getInt(1);
@@ -282,8 +282,8 @@ public class InquiryDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM "
-				+ "inquiry_answer a JOIN omember m USING(mem_num) WHERE a.inq_num=? "
-				+ "ORDER BY a.ans_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+				+ "inquiry_answer i JOIN omember m USING(mem_num) WHERE i.inq_num=? "
+				+ "ORDER BY i.ans_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, inq_num);
 			pstmt.setInt(2, start);
@@ -292,13 +292,13 @@ public class InquiryDAO {
 			list = new ArrayList<InquiryAnswerVO>();
 			while(rs.next()) {
 				InquiryAnswerVO answer = new InquiryAnswerVO();
-				answer.setAns_num(rs.getInt("inq_num"));
+				answer.setAns_num(rs.getInt("ans_num"));
 				answer.setAns_date(DurationFromNow.getTimeDiffLabel(rs.getString("ans_date")));
 				if(rs.getString("ans_mdate") != null) {
 					answer.setAns_mdate(DurationFromNow.getTimeDiffLabel(rs.getString("ans_mdate")));
 				}
 				answer.setAns_content(rs.getString("ans_content"));
-				answer.setAns_num(rs.getInt("ans_num"));
+				answer.setInq_num(rs.getInt("inq_num"));
 				answer.setMem_num(rs.getInt("mem_num"));
 				answer.setId(rs.getString("id"));
 				
@@ -340,5 +340,10 @@ public class InquiryDAO {
 	}
 	
 	//답변 수정
+	
+	
+	
+	
+	
 	//답변 삭제
 }
