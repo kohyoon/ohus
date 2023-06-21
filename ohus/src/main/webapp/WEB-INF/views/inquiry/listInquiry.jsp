@@ -48,6 +48,7 @@
 			<input type="button" value="글쓰기" onclick="location.href='writeInquiryForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
 			<input type="button" value="전체목록" onclick="location.href='listInquiry.do'">
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			<input type="button" value="공지사항" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
