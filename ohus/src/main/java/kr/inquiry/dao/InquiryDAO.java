@@ -19,6 +19,7 @@ public class InquiryDAO {
 	}
 	private InquiryDAO() {}
 	
+	
 	//문의 등록
 	public void insertInquiry(InquiryVO inquiry) throws Exception{
 		Connection conn = null;
