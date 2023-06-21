@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
 <title>이벤트 글등록 폼</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">

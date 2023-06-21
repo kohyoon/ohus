@@ -9,7 +9,7 @@ import kr.event.dao.EventDAO;
 import kr.event.vo.EventVO;
 import kr.util.StringUtil;
 
-public class AdminUpdateFormAction implements Action{
+public class AdminUpdateFormAction implements Action{ 
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

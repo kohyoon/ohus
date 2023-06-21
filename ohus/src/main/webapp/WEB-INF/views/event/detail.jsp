@@ -56,7 +56,7 @@
 			
 	<hr size="1" noshade="noshade" width="100%">
 
-	<!-- 내용 -->
+	<!-- 내용 --> 
 	<div class="align-center">
 		이벤트 기간 : ${event.event_start} ~ ${event.event_end}
 		<br>

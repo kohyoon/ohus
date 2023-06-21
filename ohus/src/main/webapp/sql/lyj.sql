@@ -1,6 +1,6 @@
 --회원관리  
 --회원테이블           
-create table omember(
+create table omember( 
  mem_num number,
  id varchar2(12) unique not null,
  auth number(1) default 2 not null,
@@ -18,7 +18,7 @@ create table omember_detail(
  zipcode varchar2(5) not null,
  address1 varchar2(90) not null,
  address2 varchar2(90) not null,
- photo varchar2(150),
+ photo varchar2(150), 
  reg_date date default sysdate not null,
  modify_date date,
  constraint omember_detail_pk primary key (mem_num),

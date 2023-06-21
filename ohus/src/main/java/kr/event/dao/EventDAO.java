@@ -312,10 +312,10 @@ public class EventDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		String sub_sql = "";
+		String sub_sql = ""; 
 		int cnt = 0;
                               
-		try {
+		try { 
 			conn = DBUtil.getConnection();
 			
 			if(event.getEvent_photo() !=null) {

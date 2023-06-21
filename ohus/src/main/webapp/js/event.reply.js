@@ -4,7 +4,7 @@ $(function(){
 	let rowCount; //한 화면에 몇 개의 레코드를 보여줄지
 	
 	//댓글 목록  
-	function selectList(pageNum){
+	function selectList(pageNum){ 
 		//pageNum을 저장해놓자
 		currentPage = pageNum;
 		//로딩 이미지 보여지게 하기

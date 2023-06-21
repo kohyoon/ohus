@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>이벤트 수정 폼</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -81,7 +81,7 @@
 		<li>
 			<label for="event_photo">사진</label>
 			<input type="file" name="event_photo" id="event_photo" accept="image/gif, image/png, image/jpeg">
-					<%--파일이 있으면 보여지도록 --%>
+					<%--파일이 있으면 보여지도록 --%> 
 				<c:if test="${!empty event.event_photo}">
 					<div id="file_detail">
 						(${event.event_photo}) 파일이 등록되어있습니다.	

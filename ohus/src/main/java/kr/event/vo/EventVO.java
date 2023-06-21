@@ -3,7 +3,7 @@ package kr.event.vo;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-public class EventVO {
+public class EventVO { 
  
 	private int event_num;
 	private String event_title;
