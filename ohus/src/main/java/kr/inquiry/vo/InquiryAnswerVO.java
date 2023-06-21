@@ -1,7 +1,5 @@
 package kr.inquiry.vo;
 
-import java.sql.Date;
-
 public class InquiryAnswerVO {
 	private int ans_num;
 	private String ans_content;
