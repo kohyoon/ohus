@@ -40,6 +40,7 @@ public class AdminListAction implements Action{
 		//페이지 처리
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 5, 10, "list.do");//
 		
+		
 		//목록 데이터 호출
 		List<ItemVO> list = null;//
 		if(count > 0) {
