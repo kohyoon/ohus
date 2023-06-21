@@ -7,7 +7,35 @@ public class NoticeVO {
 	private String notice_title;
 	private String notice_content;
 	private Date notice_regdate;
+	private Date notice_mdate;
+	private int notice_hit;
+	private String notice_filename;
 	private int mem_num;
+	private String id;
+	public Date getNotice_mdate() {
+		return notice_mdate;
+	}
+	public void setNotice_mdate(Date notice_mdate) {
+		this.notice_mdate = notice_mdate;
+	}
+	public int getNotice_hit() {
+		return notice_hit;
+	}
+	public void setNotice_hit(int notice_hit) {
+		this.notice_hit = notice_hit;
+	}
+	public String getNotice_filename() {
+		return notice_filename;
+	}
+	public void setNotice_filename(String notice_filename) {
+		this.notice_filename = notice_filename;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getNotice_num() {
 		return notice_num;
 	}
