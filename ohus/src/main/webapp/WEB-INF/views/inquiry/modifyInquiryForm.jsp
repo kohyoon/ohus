@@ -42,7 +42,7 @@
 					<label for="category">카테고리</label>
 					<select name="category">
 						<option value="1" <c:if test="${inquiry.inq_category == 1}">selected</c:if>>사이트 문의</option>
-						<option value="2" <c:if test="${inquiry.inq_category == 2}">selected</c:if>>신고 문의</option>
+						<option value="2" <c:if test="${inquiry.inq_category == 2}">selected</c:if>>기타 문의</option>
 					</select>
 				</li>
 				<li>
