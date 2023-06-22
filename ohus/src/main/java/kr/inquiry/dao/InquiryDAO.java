@@ -152,6 +152,7 @@ public class InquiryDAO {
 				inquiry.setInq_num(rs.getInt("inq_num"));
 				inquiry.setInq_title(rs.getString("inq_title"));
 				inquiry.setInq_content(rs.getString("inq_content"));
+				inquiry.setInq_category(rs.getInt("inq_category"));
 				inquiry.setInq_regdate(rs.getDate("inq_regdate"));
 				inquiry.setMem_num(rs.getInt("mem_num"));
 				inquiry.setId(rs.getString("id"));			
@@ -174,17 +175,17 @@ public class InquiryDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "UPDATE inquiry SET inq_title=?, inq_category=?, "
-				+ "inq_content=?, inq_modifydate=SYSDATE, inq_ip=? WHERE inq_num=?";
+			sql = "UPDATE inquiry SET inq_title=?,inq_category=?,"
+				+ "inq_content=?,inq_modifydate=SYSDATE,inq_ip=? WHERE inq_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, inquiry.getInq_title());
-			pstmt.setString(2, inquiry.getInq_content());
-			pstmt.setInt(3, inquiry.getInq_category());
+			pstmt.setInt(2, inquiry.getInq_category());
+			pstmt.setString(3, inquiry.getInq_content());
 			pstmt.setString(4, inquiry.getInq_ip());
 			pstmt.setInt(5, inquiry.getInq_num());
 			
-			pstmt.executeUpdate();	
+			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -205,7 +206,10 @@ public class InquiryDAO {
 			conn.setAutoCommit(false); //오토커밋 해제
 			
 			//답변(댓글) 삭제
-			//sql = "";
+			sql = "DELETE FROM inquiry_answer WHERE inq_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inq_num);
+			pstmt.executeUpdate();
 			
 			//글 삭제
 			sql = "DELETE FROM inquiry WHERE inq_num=?";
@@ -360,4 +364,21 @@ public class InquiryDAO {
 	}
 	
 	//답변 삭제
+	public void deleteAnswer(int ans_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE inquiry_answer WHERE ans_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ans_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
