@@ -5,47 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상추 메인</title>
+<title>상추 마켓</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market_list.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('#search_form').submit(function(){
-			if($('#keyword').val().trim() == ''){
-				alert('검색어를 입력하세요');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
-	});
-</script>
 </head>
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2>상추 메인</h2>
-		<!-- 검색창 시작 -->
-		<form id="search_form" action="list.do" method="get">
-			<ul class="search">
-				<li>
-					<select name="keyfield">
-						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
-						<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>제목+내용</option>
-					</select>
-				</li>
-				<li>
-					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
-				</li>
-				<li>
-					<input type="submit" value="검색">
-				</li>
-			</ul>		
-		</form>
-		<!-- 검색창 끝 -->
+		<div class="page-title">
+			<img src="${pageContext.request.contextPath}/upload/lettuce.png" width="100px" height="100px">
+			<h2> 상추 마켓</h2>
+		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			등록된 게시물이 없습니다.

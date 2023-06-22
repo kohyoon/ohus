@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: 'omyu_pretty';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .page-main {
 	margin: 0 auto;
 }
@@ -10,11 +17,6 @@
 
 ul li {
 	list-style: none;
-}
-
-.content-main h2 {
-	margin: 50px 150px;
-	font-size: 70px;
 }
 
 .content-wrap {
@@ -116,4 +118,23 @@ h3.box-title {
 	color: #424242;
 	word-break: keep-all;
 	word-wrap: break-word;
+}
+
+/* 메인 타이틀
+---------------------------*/
+.page-title{
+  display:flex;
+  font-family: 'omyu_pretty';
+  color: green;
+}
+.page-title img{
+  margin: 50px 160px;
+  position:absolute
+
+}
+.page-title h2{
+  margin:10px 0 0 90px;
+  position: relative;
+  margin:60px 50px 20px 250px;
+	font-size: 70px;
 }
