@@ -32,7 +32,7 @@
 			</li>
 			<li>
 				<label>처리상태</label>
-				<input type="checkbox" <c:if test="${inquiry.inq_status == 2}">checked</c:if>>처리완료
+				<input type="checkbox" <c:if test="${inquiry.inq_status == 2}">checked disabled</c:if>>처리완료
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
