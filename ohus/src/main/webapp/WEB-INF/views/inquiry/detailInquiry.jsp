@@ -54,7 +54,8 @@
 						}
 					};
 				</script>
-				<input type="button" value="수정">
+				
+
 				</c:if>
 				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
 			</li>
