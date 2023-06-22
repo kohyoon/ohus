@@ -235,7 +235,7 @@ $(function(){
 	
 	//답변 삭제
 	$(document).on('click','.delete-btn', function(){
-		//댓글 번호
+		//답변 번호
 		let ans_num = $(this).attr('data-ansnum');
 		
 		$.ajax({
