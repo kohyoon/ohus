@@ -566,6 +566,33 @@ public class OrderDAO {
 			
 		}
 		
+		//주문번호 반환
+		public int getOrderNumByDetailNum (int detail_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int order_num = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "SELECT order_num FROM orders_detail WHERE detail_num=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, detail_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					order_num = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+			return order_num;
+		}
+		
 }
 
 
