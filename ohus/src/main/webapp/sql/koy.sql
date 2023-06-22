@@ -57,9 +57,9 @@ create table qna(
 	qna_status number(1) default 1 not null,
 	qna_filename varchar2(50),
 	mem_num number not null,
-	order_num not null,
+	detail_num not null,
 	constraint qna_pk primary key (qna_num),
-	constraint qna_fk foreign key (order_num) references orders(order_num)
+	constraint qna_fk foreign key (detail_num) references orders_detail(detail_num)
 );
 
 create sequence qna_seq;
