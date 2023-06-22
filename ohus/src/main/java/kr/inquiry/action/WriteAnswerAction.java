@@ -39,6 +39,7 @@ public class WriteAnswerAction implements Action {
 				
 				InquiryDAO dao = InquiryDAO.getInstance();
 				dao.insertAnswer(answer);
+				dao.updateStatus(Integer.parseInt(request.getParameter("inq_num")));
 				
 				mapAjax.put("result", "success");
 			}
