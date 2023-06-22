@@ -13,7 +13,7 @@ public class QnaVO {
 	private String qna_filename;
 	private int mem_num;
 	private String id; //작성자 아이디
-	private int order_num; //상품 상세 번호
+	private int detail_num; //상품 상세 번호
 	
 	public int getQna_num() {
 		return qna_num;
@@ -75,10 +75,10 @@ public class QnaVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getOrder_num() {
-		return order_num;
+	public int getDetail_num() {
+		return detail_num; 
 	}
-	public void setOrder_num(int order_num) {
-		this.order_num = order_num;
+	public void setDetail_num(int detail_num) {
+		this.detail_num = detail_num;
 	}
 }

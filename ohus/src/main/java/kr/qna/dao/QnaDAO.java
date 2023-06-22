@@ -24,9 +24,9 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
-		try {
+		try { 
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO qna (qna_num,qna_title,qna_content,qna_filename,qna_ip,mem_num,order_num) "
+			sql = "INSERT INTO qna (qna_num,qna_title,qna_content,qna_filename,qna_ip,mem_num,detail_num) "
 				+ "VALUES(qna_seq.nextval, ?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, qna.getQna_title());
@@ -34,7 +34,7 @@ public class QnaDAO {
 			pstmt.setString(3, qna.getQna_filename());
 			pstmt.setString(4, qna.getQna_ip());
 			pstmt.setInt(5, qna.getMem_num());
-			pstmt.setInt(6, qna.getOrder_num());
+			pstmt.setInt(6, qna.getDetail_num());
 			
 			
 		}catch(Exception e) {
