@@ -46,7 +46,7 @@ create table notice (
 
 create sequence notice_seq;
 
--- 상품문의 
+-- 상품문의  
 create table qna(
 	qna_num number,
 	qna_title varchar2(30) not null,
