@@ -14,9 +14,9 @@ public class EventVO {
 	private int event_hit; //이벤트 조회수
 	private String event_regdate; //이벤트 게시글 작성일
 	private String event_modifydate; //이벤트 게시글 수정일
-	private int winner_count; //이벤트 당첨자 수
 	private int mem_num;
 	private int event_status; //1:종료된 이벤트, 2:진행중인 이벤트
+	private int winner_count; //당첨자수
 	
 	public int getEvent_status() { 
 		String[] event_ends = event_start.split("-");
@@ -35,6 +35,18 @@ public class EventVO {
 		}
 		return event_status;
 	}
+	
+	
+	public int getWinner_count() {
+		return winner_count;
+	}
+
+
+	public void setWinner_count(int winner_count) {
+		this.winner_count = winner_count;
+	}
+
+
 	public void setEvent_status(int event_status) {
 		this.event_status = event_status;
 	}
@@ -99,12 +111,7 @@ public class EventVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public int getWinner_count() {
-		return winner_count;
-	}
-	public void setWinner_count(int winner_count) {
-		this.winner_count = winner_count;
-	}
+
 	
 	
 	

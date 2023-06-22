@@ -39,14 +39,13 @@ create table oevent(
  event_end varchar2(10) not null,
  event_regdate default sysdate not null, --이벤트 글 작성일
  event_modifydate, --이벤트 글 수정일
- event_status number(1) default 2 not null, --이벤트 상태(진행중, 종료) 1:종료 2: 진행중
+ event_status number(1) not null, --이벤트 상태(진행중, 종료) 1:종료 2: 진행중
  event_hit number default 0 not null, --조회수
  mem_num number not null, 
  winner_count number not null, --이벤트 당첨자 수
  constraint oevent_pk primary key(event_num),
- constraint oevent_fk foreign key(mem_num) references omember(mem_num)
-
-
+ constraint oevent_fk foreign key(mem_num) references omember(mem_num),
+ constraint oevent_fk2 foreign key(mem_num) references omember(mem_num)
 );
 create sequence oevent_seq;
 --이벤트 댓글 테이블
@@ -57,6 +56,7 @@ create table oevent_reply(
  re_modifydate Date, --댓글 수정일
  re_ip varchar(40) not null, --댓글 작성자 ip
  event_num number not null,
+ event_winner number(1) default 0 not null, --이벤트 당첨자(1) 당첨자 아님(0)
  mem_num number not null,
  constraint oevent_reply_pk primary key(re_num),
  constraint oevent_reply_fk1 foreign key(event_num) references oevent(event_num), --부모글
