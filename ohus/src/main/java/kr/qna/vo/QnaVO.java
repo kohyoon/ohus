@@ -5,12 +5,6 @@ import java.sql.Date;
 public class QnaVO {
 	private int qna_num;
 	private String qna_title;
-	public String getQna_title() {
-		return qna_title;
-	}
-	public void setQna_title(String qna_title) {
-		this.qna_title = qna_title;
-	}
 	private String qna_content;
 	private Date qna_regdate;
 	private Date mdate;
@@ -19,13 +13,19 @@ public class QnaVO {
 	private String qna_filename;
 	private int mem_num;
 	private String id; //작성자 아이디
-	private int detail_num; //상품 상세 번호
+	private int order_num; //상품 상세 번호
 	
 	public int getQna_num() {
 		return qna_num;
 	}
 	public void setQna_num(int qna_num) {
 		this.qna_num = qna_num;
+	}
+	public String getQna_title() {
+		return qna_title;
+	}
+	public void setQna_title(String qna_title) {
+		this.qna_title = qna_title;
 	}
 	public String getQna_content() {
 		return qna_content;
@@ -75,10 +75,10 @@ public class QnaVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getDetail_num() {
-		return detail_num;
+	public int getOrder_num() {
+		return order_num;
 	}
-	public void setDetail_num(int detail_num) {
-		this.detail_num = detail_num;
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
 	}
 }
