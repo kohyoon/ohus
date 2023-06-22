@@ -51,22 +51,24 @@ create table qna(
 	qna_num number,
 	qna_content clob not null,
 	qna_regdate date default sysdate not null,
+	qna_mdate date,
 	qna_ip varchar2(40) not null,
 	qna_status number(1) default 1 not null,
 	qna_filename varchar2(50),
 	mem_num number not null,
 	detail_num not null,
 	constraint qna_pk primary key (qna_num),
-	constraint qna_fk foreign key (detail_num) references order_detail(detail_num)
+	constraint qna_fk foreign key (detail_num) references orders_detail(detail_num)
 );
 
 create sequence qna_seq;
 
 -- 상품문의 답변
-create tabel qna_answer(
+create table qna_answer(
 	qans_num number,
 	qans_content clob not null,
 	qans_date date default sysdate not null,
+	qans_mdate date,
 	qna_num number not null,
 	mem_num number not null, -- 답변한 관리자
 	constraint qna_ans_pk primary key (qna_num),
