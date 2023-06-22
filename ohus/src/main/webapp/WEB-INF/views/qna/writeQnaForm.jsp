@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +44,14 @@
 				<li>
 					<label for="filename">파일</label>
 					<input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
+				</li>
+				<li>
+					<label for="detail_num">구매내역</label>
+					<select>
+						<%-- <c:forEach var="">
+						
+						</c:forEach> --%>
+					</select>
 				</li>
 			</ul>
 			<div class="align-center">
