@@ -27,14 +27,12 @@ CREATE TABLE orders_detail(
 	item_num number not null, -- 상품 번호
 	item_name varchar2(600) not null,-- 상품명
 	item_price number(9) not null, -- 상품가격
-	item_quantity number not null, -- 상품개수
+	-- item_quantity number not null, -- 상품개수
 	order_quantity number(5) not null, -- 주문수량
 	item_total number(9) not null, -- 총상품금액(동일상품 합산 금액)
 	order_num number not null, -- 주문번호
 	constraint orders_detail_pk primary key (detail_num),
-	constraint orders_detail_fk1 foreign key (order_num) references orders (order_num),
-	constraint orders_detail_fk2 foreign key (mem_num) references orders (mem_num),
-	constraint orders_detail_fk3 foreign key (item_num) references orders (item_num)
+	constraint orders_detail_fk1 foreign key (order_num) references orders (order_num)
 );
 CREATE sequence orders_detail_seq;
 

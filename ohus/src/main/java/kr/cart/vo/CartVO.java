@@ -2,6 +2,8 @@ package kr.cart.vo;
 
 import java.sql.Date;
 
+import kr.item.vo.ItemVO;
+
 public class CartVO {
 	private int cart_num; // 장바구니 번호
 	private int order_quantity; // 주문수량
@@ -9,6 +11,9 @@ public class CartVO {
 	private int item_num; // 상품번호
 	private int mem_num; // 회원번호
 	private int sub_total; //같은 상품의 총구매 금액
+	
+	private ItemVO itemVO;
+	
 	
 	public int getCart_num() {
 		return cart_num;
@@ -45,5 +50,11 @@ public class CartVO {
 	}
 	public void setSub_total(int sub_total) {
 		this.sub_total = sub_total;
+	}
+	public ItemVO getItemVO() {
+		return itemVO;
+	}
+	public void setItemVO(ItemVO itemVO) {
+		this.itemVO = itemVO;
 	}
 }

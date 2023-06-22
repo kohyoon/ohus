@@ -18,6 +18,7 @@ public class OrderVO {
 	private int order_status; // 배송상태
 	private Date order_modifydate; // 배송상태 수정일
 	private int mem_num; // 회원 번호
+	private String id;
 	
 	public int getOrder_num() {
 		return order_num;
@@ -109,5 +110,12 @@ public class OrderVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	
 }
