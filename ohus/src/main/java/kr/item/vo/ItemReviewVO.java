@@ -10,6 +10,7 @@ public class ItemReviewVO {
 	private String review_content;//리뷰 내용
 	private String review_photo;//리뷰 사진
 	private Date review_regdate;//리뷰 등록일
+	private Date review_mdate;//리뷰 수정일
 	private String id;//id
 	
 	public int getReview_num() {
@@ -59,5 +60,11 @@ public class ItemReviewVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public Date getReview_mdate() {
+		return review_mdate;
+	}
+	public void setReview_mdate(Date review_mdate) {
+		this.review_mdate = review_mdate;
 	}
 }

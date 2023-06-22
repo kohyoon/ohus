@@ -24,7 +24,12 @@ public class UserDetailAction implements Action{
 		//내용 줄바꿈 처리
 		item.setItem_content(StringUtil.useBrHtml(item.getItem_content()));
 		
+		//리뷰 개수
+		int reviewCount = dao.getReviewCount(item_num);
+		
+		
 		request.setAttribute("item", item);
+		request.setAttribute("reviewCount", reviewCount);
 		
 		return "/WEB-INF/views/item/user_detail.jsp";
 	}

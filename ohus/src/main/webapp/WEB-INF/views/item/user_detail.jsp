@@ -129,7 +129,9 @@
 				</div>
 				<div>
 				<hr size="1" noshade="noshade" width="95%">
-				<a href="#item_detail">상품정보</a> <a href="#item_review">리뷰</a> <a href="#item_inquiry">문의</a>
+				<a href="#item_detail">상품정보</a> 
+				<a href="#item_review">리뷰 <small>${reviewCount}개</small></a> 
+				<a href="#item_inquiry">문의</a>
 				<hr size="1" noshade="noshade" width="95%">
 				</div>
 				<p>

@@ -21,7 +21,7 @@ public class UserListAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum = "1";
 				
-		String keyfield = request.getParameter("keyfield");
+		String keyfield = "1";
 		String keyword = request.getParameter("keyword");
 		
 		//전체 상품 데이터 처리

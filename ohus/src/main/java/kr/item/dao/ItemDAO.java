@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.item.vo.ItemFavVO;
+import kr.item.vo.ItemReviewVO;
 import kr.item.vo.ItemVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -374,17 +375,160 @@ public class ItemDAO {
 		return list;
 	}
 	//리뷰 등록
-	
+	public void insertReview(ItemReviewVO itemReview) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO item_review (review_num, mem_num, item_num, item_score, "
+				+ "review_content, review_photo) VALUES (item_review_seq.nextval, ?, ?, ?, ?, ?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, itemReview.getMem_num());
+			pstmt.setInt(2, itemReview.getItem_num());
+			pstmt.setInt(3, itemReview.getItem_score());
+			pstmt.setString(4, itemReview.getReview_content());
+			pstmt.setString(5, itemReview.getReview_photo());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//리뷰 개수(페이지 처리)
-	
+	public int getReviewCount(int item_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM item_review r "
+				+ "JOIN item i ON r.item_num = i.item_num "
+				+ "WHERE r.item_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, item_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);//1 : 컬럼 인덱스
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	//리뷰 목록
-	
+	public List<ItemReviewVO> getReviewList(int start, int end, int item_num) throws Exception{
+		Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ItemReviewVO> list = null;
+			String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM item_review r JOIN omember m USING(mem_num) "
+				+ "WHERE r.item_num = ? ORDER BY r.review_num DESC)a) "
+				+ "WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, item_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemReviewVO>();
+			while(rs.next()) {
+				ItemReviewVO review = new ItemReviewVO();
+				review.setReview_num(rs.getInt("review_num"));
+				review.setMem_num(rs.getInt("mem_num"));
+				review.setItem_num(rs.getInt("item_num"));
+				review.setItem_score(rs.getInt("item_score"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_photo(rs.getString("review_photo"));
+				review.setReview_regdate(rs.getDate("review_regdate"));
+				review.setId(rs.getString("id"));
+				
+				list.add(review);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	//리뷰 상세(리뷰 수정, 삭제시 리뷰 작성자 회원번호 확인 용도로 사용)
-	
+	public ItemReviewVO getReviewDetail(int review_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ItemReviewVO review = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM item_review WHERE review_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, review_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				review = new ItemReviewVO();
+				review.setReview_num(rs.getInt("review_num"));
+				review.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return review;
+	}
 	//리뷰 수정
-	
-	//리뷰 삭제
-	
-	//리뷰 사진 삭제
-	
+	public void updateReview(ItemReviewVO review) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE item_review SET item_score = ?, review_photo = ?, review_content = ? "
+				+ "review_mdate = SYSDATE WHERE review_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, review.getItem_score());
+			pstmt.setString(2, review.getReview_photo());
+			pstmt.setString(3, review.getReview_content());
+			pstmt.setInt(4, review.getReview_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
