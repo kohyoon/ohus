@@ -133,8 +133,43 @@ public class QnaDAO {
 		return list;
 	}
 	
-	
 	//상품문의 상세
+	public QnaVO getQna(int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		QnaVO qna = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM qna q JOIN omember USING(mem_num) "
+				+ "LEFT OUTER JOIN omember_detail d USING(mem_num) "
+				+ "WHERE q.qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qna = new QnaVO();
+				qna.setQna_num(rs.getInt("qna_num"));
+				qna.setQna_title(rs.getString("qna_title"));
+				qna.setQna_content(rs.getString("qna_content"));
+				qna.setQna_regdate(rs.getDate("qna_regdate"));
+				qna.setMdate(rs.getDate("qna_mdate"));
+				qna.setQna_status(rs.getInt("qna_status"));
+				qna.setQna_filename(rs.getString("filename"));
+				qna.setMem_num(rs.getInt("mem_num"));
+				qna.setId(rs.getString("id"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return qna;
+	}
+	
+	
 	//파일 삭제
 	//상품문의 수정
 	//상품문의 삭제
