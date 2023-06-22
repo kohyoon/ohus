@@ -567,7 +567,7 @@ public class OrderDAO {
 		}
 		
 		//주문번호 반환
-		public int getOrderNumByDetailNum (int detail_num) throws Exception{
+		public int getOrderNumByDetail_Num (int detail_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
