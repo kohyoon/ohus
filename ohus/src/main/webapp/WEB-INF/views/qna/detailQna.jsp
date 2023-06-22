@@ -11,10 +11,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/qna.answer.js"></script>
 </head>
 <body>
-<div class="page-main">
+<div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="container">
 		<h2>${qna.qna_title}</h2>
 		<ul>
 			<li>

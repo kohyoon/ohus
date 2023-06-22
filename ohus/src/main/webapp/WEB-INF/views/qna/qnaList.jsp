@@ -10,10 +10,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="page-main">
+<div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="container">
 		<h2>상품문의 게시판 목록</h2>
 		<!-- 검색창 시작 -->
 		<form id="search_form" action="qnaList.do" method="get">
@@ -65,6 +65,7 @@
 		</c:if>
 	</div>
 	<!-- 내용 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>
 </html>

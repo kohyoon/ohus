@@ -21,10 +21,10 @@
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="container">
 		<h2>문의게시판</h2>
 		<!-- 검색창 시작 -->
 		<form id="search_form" action="list.do" method="get">
@@ -86,6 +86,7 @@
 		</c:if>
 	</div>
 	<!-- 내용 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>
 </html>

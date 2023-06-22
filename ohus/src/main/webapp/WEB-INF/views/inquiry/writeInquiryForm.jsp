@@ -26,10 +26,10 @@
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="container">
 		<h2>문의게시판 글쓰기</h2>
 		<form id="write_form" action="writeInquiry.do" method="post">
 			<ul>

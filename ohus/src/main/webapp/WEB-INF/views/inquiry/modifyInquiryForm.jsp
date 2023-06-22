@@ -26,10 +26,10 @@
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="container">
 		<h2>문의글 수정</h2>
 		<form id="modify_form" action="modifyInquiry.do" method="post">
 			<input type="hidden" name="inq_num" value="${inquiry.inq_num}">

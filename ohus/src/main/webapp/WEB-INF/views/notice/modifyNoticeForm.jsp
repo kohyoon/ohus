@@ -10,10 +10,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="page-main">
+<div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
-	<div class="content-main">
+	<div class="container">
 		<h2>공지사항 글 수정</h2>
 		<form id="modify_form" action="modifyNotice.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="notice_num" value="${notice.notice_num}">
