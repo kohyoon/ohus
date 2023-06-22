@@ -93,7 +93,7 @@ public class MarketDAO {
 			}
 			
 			sql = "SELECT * FROM "
-					+ "(SELECT a.*, rownum rnum FROM (SELECT * FROM market " 
+					+ "(SELECT a.*, rownum rnum FROM (SELECT * FROM market m LEFT JOIN omember o ON m.mem_num = o.mem_num " 
 					+ sub_sql 
 					+ "ORDER BY market_num DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
@@ -126,7 +126,7 @@ public class MarketDAO {
 				market.setMarket_photo1(rs.getString("market_photo1"));
 				market.setMarket_photo2(rs.getString("market_photo2"));
 				market.setMem_num(rs.getInt("mem_num"));
-			
+				market.setId(rs.getString("id"));
 				list.add(market);
 			}
 		}catch(Exception e) {	

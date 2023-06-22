@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>상추 메인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market_list.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -47,31 +48,29 @@
 		<!-- 검색창 끝 -->
 		<c:if test="${count == 0}">
 		<div class="result-display">
-			표시할 게시물이 없습니다.
+			등록된 게시물이 없습니다.
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		<table>
-		<c:forEach var="market" items="${list}">
-			<tr>
-				<td>
-					<a href="detail.do?market_num=${market.market_num}">
-						<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="120" height="120" class="my-photo">
-					</a>
-				</td>
-			</tr>
-			<tr>
-				<td>제목 : <a href="detail.do?market_num=${market.market_num}">${market.market_title}</a></td>
-			</tr>
-			<tr>
-				<td>작성일 : ${market.market_regdate}</td>
-			</tr>
-			<tr>
-				<td>조회 : ${market.market_hit}</td>
-			</tr>
-		</c:forEach>
-		</table>
-		<div class="align-center">${page}</div>
+		<div class="content-wrap">
+			<c:forEach var="market" items="${list}">
+			<div class="box-item">
+				<a href="detail.do?market_num=${market.market_num}">
+					<div class="img-box">
+						<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="250" height="250" class="my-photo"><br>
+					</div>
+						<h3 class="box-title">${market.market_title}</h3>
+						<div class="box-writer">
+							${market.id}
+						</div>
+						<div class="box-date-hit">
+							${market.market_regdate} ${market.market_hit}
+						</div>
+				</a>
+			</div>
+			</c:forEach>
+		</div>
+		<div class="page">${page}</div>
 		</c:if>
 	</div>
 	<!-- 내용 끝 -->

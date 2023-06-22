@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+.page-main {
+	margin: 0 auto;
+}
+
+.content-main {
+	justify-content: center;
+}
+
+ul li {
+	list-style: none;
+}
+
+.content-main h2 {
+	margin: 50px 150px;
+	font-size: 70px;
+}
+
+.content-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin: 50px 150px;
+	gap: 20px;
+}
+
+.content-wrap>div {
+	flex: 0 0 auto;
+	width: 100%;
+	max-width: 250px;
+	background-color: #ffffff;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media ( min-width : 768px) {
+	.content-wrap>div {
+		max-width: calc(33.3% - 20px);
+	}
+}
+
+@media ( min-width : 992px) {
+	.content-wrap>div {
+		max-width: calc(25% - 20px);
+	}
+}
+
+a {
+	text-decoration: none;
+}
+
+.img-box {
+	width: 250px; /* 원하는 가로 크기 */
+	height: 250px; /* 원하는 세로 크기 */
+	overflow: hidden;
+}
+
+a:visited {
+	color: #000000;
+}
+
+.my-photo {
+	transition: transform 0.3s ease-in-out;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.my-photo:hover {
+	transform: scale(1.1);
+}
+
+div.page {
+	clear: both;
+	text-align: center;
+}
+
+form#search_form {
+	border: none;
+}
+
+ul.search {
+	width: 340px;
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+}
+
+ul.search li {
+	margin: 0 0 9px 0;
+	padding: 0;
+	display: inline;
+}
+
+.result-display {
+	text-align: center;
+}
+
+/* 게시글 스타일
+---------------------------*/
+.box-writer{
+	font-weight:400;
+}
+.box-item {
+	text-align: center;
+	display: block;
+}
+
+h3.box-title {
+	margin: 10px 0 3px;
+	line-height: 24px;
+	font-size: 17px;
+	font-weight: 700;
+	color: #424242;
+	word-break: keep-all;
+	word-wrap: break-word;
+}
