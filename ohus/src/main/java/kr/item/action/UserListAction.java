@@ -30,11 +30,11 @@ public class UserListAction implements Action{
 		int count = itemDao.getItemCount(keyfield, keyword, 0, item_category);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "userList.do","&item_category="+item_category);//
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "userList.do", "&item_category="+item_category);//
 		
 		List<ItemVO> itemList = null;
 		if(count > 0) {
-			itemList = itemDao.getListItem(page.getStartRow(), page.getEndRow(), null, null, 1, item_category);//맨 뒤 1 : status(표시 상품)
+			itemList = itemDao.getListItem(page.getStartRow(), page.getEndRow(), keyfield, keyword, 1, item_category);//맨 뒤 1 : status(표시 상품)
 		}
 		//List<ItemVO> //
 		request.setAttribute("itemList", itemList);

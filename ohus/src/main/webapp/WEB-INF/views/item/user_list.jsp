@@ -36,6 +36,18 @@
 		<jsp:include page="/WEB-INF/views/item/item_header.jsp"/>
 		<%-- 내용시작 --%>
 		<div class = "content-main">
+			<%-- 검색창 시작 --%>
+			<form id="search_form" action="userList.do" method="get">
+				<ul class="search">
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					</li>
+					<li>
+						<input type="submit" value="검색">
+					</li>
+				</ul>
+			</form>
+			<%-- 검색창 끝 --%>
 			<%-- 상품 목록 --%>
 			<div class="item-container">
 				<c:if test="${count == 0}">
