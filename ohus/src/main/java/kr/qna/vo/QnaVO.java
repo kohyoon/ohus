@@ -76,7 +76,7 @@ public class QnaVO {
 		this.id = id;
 	}
 	public int getDetail_num() {
-		return detail_num;
+		return detail_num; 
 	}
 	public void setDetail_num(int detail_num) {
 		this.detail_num = detail_num;
