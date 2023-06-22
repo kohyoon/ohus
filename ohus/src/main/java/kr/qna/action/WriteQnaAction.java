@@ -30,7 +30,7 @@ public class WriteQnaAction implements Action {
 		qna.setQna_ip(request.getRemoteAddr());
 		qna.setQna_filename(multi.getFilesystemName("filename"));
 		qna.setMem_num(user_num);
-		qna.setDetail_num(Integer.parseInt(multi.getParameter("detail_num")));
+		//qna.setDetail_num(Integer.parseInt(multi.getParameter("detail_num")));
 		
 		QnaDAO dao = QnaDAO.getInstance();
 		dao.insertQna(qna);
