@@ -17,27 +17,18 @@
 	<h2>FAQ</h2>
 	
 	<h2><a href="${pageContext.request.contextPath}/notice/listNotice.do">공지사항</a></h2>
-	<c:if test="${count == 0}">
-	<div class="result-display">
-		표시할 공지사항이 없습니다.
-	</div>
-	</c:if>
-	<c:if test="${count > 0}">
 	<table>
 		<tr>
-			<th>글번호</th>
 			<th>제목</th>
 			<th>작성일</th>
 		</tr>
-		<c:forEach var="notice" items="${list}">
+		<c:forEach var="notice" items="${noticeList}">
 		<tr>
-			<td>${notice.notice_num}</td>
-			<td><a href="detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+			<td><a href="${pageContext.request.contextPath}/notice/detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
 			<td>${notice.notice_regdate}</td>
 		</tr>
 		</c:forEach>
 	</table>
-	</c:if>
 	
 	<h2><a href="${pageContext.request.contextPath}/inquiry/listInquiry.do">문의게시판</a></h2>
 	
