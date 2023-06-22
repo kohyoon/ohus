@@ -12,6 +12,8 @@ import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.order.dao.OrderDAO;
+import kr.order.vo.OrderVO;
 
 public class MyPageAction implements Action{
 
@@ -33,16 +35,21 @@ public class MyPageAction implements Action{
 		 * BoardDAO boardDao = BoardDAO.getInstance(); //게시판 글을 마이 페이지에서 보여주기
 		 * List<BoardVO> boardList = boardDao.getListBoardFav(1,5, user_num);
 		 * 
-		 * request.setAttribute("member", member); request.setAttribute("boardList",
-		 * boardList);
+		 * request.setAttribute("member", member); 
+		 * request.setAttribute("boardList", boardList);
 		 */
 		
 		//상품 스크랩
 		ItemDAO itemDao = ItemDAO.getInstance();
 		List<ItemVO> itemList = itemDao.getListItemFav(1, 5, user_num);
+		
+		// 주문 정보
+		OrderDAO orderDao = OrderDAO.getInstance();
+		List<OrderVO> orderList = orderDao.getListOrderByMem_num(1, 5, null, null, user_num);
 						
 		request.setAttribute("member", member);
 		request.setAttribute("itemList", itemList);
+		request.setAttribute("orderList", orderList);
 		//상품 스크랩
 		
 		
