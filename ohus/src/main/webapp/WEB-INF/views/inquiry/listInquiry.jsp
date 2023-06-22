@@ -49,6 +49,7 @@
 			<input type="button" value="전체목록" onclick="location.href='listInquiry.do'">
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			<input type="button" value="공지사항" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">
+			<input type="button" value="상품문의" onclick="location.href='${pageContext.request.contextPath}/qna/qnaList.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
