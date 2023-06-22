@@ -154,6 +154,8 @@ public class InquiryDAO {
 				inquiry.setInq_content(rs.getString("inq_content"));
 				inquiry.setInq_category(rs.getInt("inq_category"));
 				inquiry.setInq_regdate(rs.getDate("inq_regdate"));
+				inquiry.setInq_modifydate(rs.getDate("inq_modifydate"));
+				inquiry.setInq_status(rs.getInt("inq_status"));
 				inquiry.setMem_num(rs.getInt("mem_num"));
 				inquiry.setId(rs.getString("id"));			
 			}
@@ -381,4 +383,25 @@ public class InquiryDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//문의처리완료
+	public void updateStatus(int inq_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE inquiry SET inq_status=2 WHERE inq_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inq_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	
 }
