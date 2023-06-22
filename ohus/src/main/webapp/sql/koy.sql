@@ -49,6 +49,7 @@ create sequence notice_seq;
 -- 상품문의
 create table qna(
 	qna_num number,
+	qna_title varchar2(30) not null,
 	qna_content clob not null,
 	qna_regdate date default sysdate not null,
 	qna_mdate date,

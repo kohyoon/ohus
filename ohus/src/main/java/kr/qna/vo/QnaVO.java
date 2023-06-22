@@ -4,6 +4,13 @@ import java.sql.Date;
 
 public class QnaVO {
 	private int qna_num;
+	private String qna_title;
+	public String getQna_title() {
+		return qna_title;
+	}
+	public void setQna_title(String qna_title) {
+		this.qna_title = qna_title;
+	}
 	private String qna_content;
 	private Date qna_regdate;
 	private Date mdate;
