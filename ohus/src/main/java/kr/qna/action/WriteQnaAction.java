@@ -1,4 +1,4 @@
-package writeQnaForm;
+package kr.qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
