@@ -38,7 +38,7 @@
 	<h2><a href="${pageContext.request.contextPath}/qna/qnaList.do">상품문의</a></h2>
 	</div>
 	<!-- 내용 끝 -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>   
 </div>
 </body>
 </html>

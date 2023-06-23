@@ -10,7 +10,6 @@ public class FaqPageAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
 		return "/WEB-INF/views/inquiry/faq.jsp";
 	}
 
