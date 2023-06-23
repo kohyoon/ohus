@@ -55,7 +55,7 @@
 			<c:forEach var="qna" items="${list}">
 			<tr>
 				<td>${qna.qna_num}</td>
-				<td><a href="detailQna.jsp?qna_num=${qna.qna_num}">${qna.qna_title}</a></td>
+				<td><a href="detailQna.do?qna_num=${qna.qna_num}">${qna.qna_title}</a></td>
 				<td>${qna.id}</td>
 				<td>${qna.qna_regdate}</td>
 			</tr>
