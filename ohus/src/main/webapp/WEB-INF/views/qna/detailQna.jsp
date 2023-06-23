@@ -16,6 +16,7 @@
 	<!-- 내용 시작 -->
 	<div class="container">
 		<h2>${qna.qna_title}</h2>
+		<input type="hidden" name="item_num" value="${order.item_num}">
 		<ul>
 			<li>
 				작성자 : ${qna.id}

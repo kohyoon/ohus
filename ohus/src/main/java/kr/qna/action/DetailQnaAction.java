@@ -14,13 +14,14 @@ public class DetailQnaAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//상품문의번호
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
-		QnaDAO dao = QnaDAO.getInstance();
 		
+		QnaDAO dao = QnaDAO.getInstance();
 		QnaVO qna = dao.getQna(qna_num);
 		
 		//HTML 태그를 허용하지 않음
 		qna.setQna_title(StringUtil.useNoHtml(qna.getQna_title()));
-		qna.setQna_content(StringUtil.useBrNoHtml(qna.getQna_title()));
+		//HTML 태그를 허용하지 않으면서 줄바꿈 처리
+		qna.setQna_content(StringUtil.useBrNoHtml(qna.getQna_content()));
 		
 		request.setAttribute("qna", qna);
 		
