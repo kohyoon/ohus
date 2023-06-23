@@ -7,9 +7,10 @@ public class CommunityReplyVO {
 	private String re_modifydate; // 댓글 수정일
 	private String re_ip; // 댓글 ip
 	private int re_fav; // 댓글 좋아요
-	private int board_num; // 게시글 번호
+	private int cboard_num; // 게시글 번호
 	private int mem_num; // 회원 번호
 	private String id; // 아이디
+	
 	
 	public int getRe_num() {
 		return re_num;
@@ -59,12 +60,12 @@ public class CommunityReplyVO {
 		this.re_fav = re_fav;
 	}
 	
-	public int getBoard_num() {
-		return board_num;
+	public int getCboard_num() {
+		return cboard_num;
 	}
 	
-	public void setBoard_num(int board_num) {
-		this.board_num = board_num;
+	public void setCboard_num(int cboard_num) {
+		this.cboard_num = cboard_num;
 	}
 	
 	public int getMem_num() {

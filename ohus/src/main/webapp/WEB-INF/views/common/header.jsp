@@ -23,7 +23,7 @@
 							<ul>
 								
 									<li class="header-upper__item upper__active">
-										<h3><a href="${pageContext.request.contextPath}/cboard/list.do">
+										<h3><a href="${pageContext.request.contextPath}/community/list.do">
 											커뮤니티
 										</a></h3>
 									</li>	 
@@ -100,7 +100,7 @@
 										<div class="dropdown">
 											<button onclick="myFunction()" class="dropbtn">글쓰기</button>
 											<div id="myDropdown" class="dropdown-content">
-												<a href="#">커뮤니티글쓰기</a> 
+												<a href="${pageContext.request.contextPath}/community/writeForm.do">커뮤니티글쓰기</a> 
 												<a href="#">리뷰등록</a> 
 												<a href="${pageContext.request.contextPath}/market/writeForm.do">상추글쓰기</a>
 												<a href="#">문의등록</a>

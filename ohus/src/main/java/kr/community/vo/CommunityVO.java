@@ -2,142 +2,113 @@ package kr.community.vo;
 
 import java.sql.Date;
 
+
 public class CommunityVO {
-	 private int board_num; // 게시물 번호
-	 private String title; // 게시물 제목
-	 private int hit; // 게시물 조회수
-	 private int category; // 커뮤니티 카테고리
-	 private String content; // 게시물 내용
-	 private String photo1; // 사진1
-	 private String photo2; // 사진2
-	 private Date reg_date; // 게시물 등록일
-	 private Date modify_date; // 게시물 최종 수정일
-	 private String ip; // ip 주소
-	 private int order_num; //  주문 번호
-	 private int mem_num; // 회원 번호
-	 private int cboard_fav; // 게시물 좋아요 
-	 
-	 private String id; // 회원 아이디
-	 private String photo; // 회원 프로필 사진 파일명
+	private int cboard_num; //글번호
+	private String cboard_title; //제목
+	private int cboard_hit; //조회수
+	private int cboard_category; //카테고리
+	private String cboard_content; //내용
+	private String cboard_photo1; //사진1
+	private String cboard_photo2; //사진2
+	private Date cboard_regdate; //등록일
+	private Date cboard_modifydate; //수정일
+	private String cboard_ip; //ip
+	private int order_num; //주문번호
+	private int mem_num; //회원번호
+	private int cboard_fav; //좋아요
 	
-	 public int getBoard_num() {
-		return board_num;
+	private String id;//회원 아이디
+	private String photo; //회원 프로필 사진 파일명
+	
+	public int getCboard_num() {
+		return cboard_num;
 	}
-	
-	public void setBoard_num(int board_num) {
-		this.board_num = board_num;
+	public void setCboard_num(int cboard_num) {
+		this.cboard_num = cboard_num;
 	}
-	
-	public String getTitle() {
-		return title;
+	public String getCboard_title() {
+		return cboard_title;
 	}
-	
-	public void setTitle(String title) {
-		this.title = title;
+	public void setCboard_title(String cboard_title) {
+		this.cboard_title = cboard_title;
 	}
-	
-	public int getHit() {
-		return hit;
+	public int getCboard_hit() {
+		return cboard_hit;
 	}
-	
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setCboard_hit(int cboard_hit) {
+		this.cboard_hit = cboard_hit;
 	}
-	
-	public int getCategory() {
-		return category;
+	public int getCboard_category() {
+		return cboard_category;
 	}
-	
-	public void setCategory(int category) {
-		this.category = category;
+	public void setCboard_category(int cboard_category) {
+		this.cboard_category = cboard_category;
 	}
-	
-	public String getContent() {
-		return content;
+	public String getCboard_content() {
+		return cboard_content;
 	}
-	
-	public void setContent(String content) {
-		this.content = content;
+	public void setCboard_content(String cboard_content) {
+		this.cboard_content = cboard_content;
 	}
-	
-	public String getPhoto1() {
-		return photo1;
+	public String getCboard_photo1() {
+		return cboard_photo1;
 	}
-	
-	public void setPhoto1(String photo1) {
-		this.photo1 = photo1;
+	public void setCboard_photo1(String cboard_photo1) {
+		this.cboard_photo1 = cboard_photo1;
 	}
-	
-	public String getPhoto2() {
-		return photo2;
+	public String getCboard_photo2() {
+		return cboard_photo2;
 	}
-	
-	public void setPhoto2(String photo2) {
-		this.photo2 = photo2;
+	public void setCboard_photo2(String cboard_photo2) {
+		this.cboard_photo2 = cboard_photo2;
 	}
-	
-	public Date getReg_date() {
-		return reg_date;
+	public Date getCboard_regdate() {
+		return cboard_regdate;
 	}
-	
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setCboard_regdate(Date cboard_regdate) {
+		this.cboard_regdate = cboard_regdate;
 	}
-	
-	public Date getModify_date() {
-		return modify_date;
+	public Date getCboard_modifydate() {
+		return cboard_modifydate;
 	}
-	
-	public void setModify_date(Date modify_date) {
-		this.modify_date = modify_date;
+	public void setCboard_modifydate(Date cboard_modifydate) {
+		this.cboard_modifydate = cboard_modifydate;
 	}
-	
-	public String getIp() {
-		return ip;
+	public String getCboard_ip() {
+		return cboard_ip;
 	}
-	
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setCboard_ip(String cboard_ip) {
+		this.cboard_ip = cboard_ip;
 	}
-	
 	public int getOrder_num() {
 		return order_num;
 	}
-	
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
 	}
-	
 	public int getMem_num() {
 		return mem_num;
 	}
-	
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	
 	public int getCboard_fav() {
 		return cboard_fav;
 	}
-	
 	public void setCboard_fav(int cboard_fav) {
 		this.cboard_fav = cboard_fav;
 	}
-	
 	public String getId() {
 		return id;
 	}
-	
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 	public String getPhoto() {
 		return photo;
 	}
-	
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
 }
