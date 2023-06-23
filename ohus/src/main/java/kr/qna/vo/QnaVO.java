@@ -7,13 +7,15 @@ public class QnaVO {
 	private String qna_title;
 	private String qna_content;
 	private Date qna_regdate;
-	private Date mdate;
+	private Date qna_mdate;
 	private String qna_ip;
 	private int qna_status;
 	private String qna_filename;
 	private int mem_num;
 	private String id; //작성자 아이디
-	private int detail_num; //상품 상세 번호
+	private int detail_num; //주문 상세 번호
+	private int order_num; //주문 번호
+	private int item_num; //상품번호
 	
 	public int getQna_num() {
 		return qna_num;
@@ -39,11 +41,11 @@ public class QnaVO {
 	public void setQna_regdate(Date qna_regdate) {
 		this.qna_regdate = qna_regdate;
 	}
-	public Date getMdate() {
-		return mdate;
+	public Date getQna_mdate() {
+		return qna_mdate;
 	}
-	public void setMdate(Date mdate) {
-		this.mdate = mdate;
+	public void setQna_mdate(Date qna_mdate) {
+		this.qna_mdate = qna_mdate;
 	}
 	public String getQna_ip() {
 		return qna_ip;
@@ -76,9 +78,21 @@ public class QnaVO {
 		this.id = id;
 	}
 	public int getDetail_num() {
-		return detail_num; 
+		return detail_num;
 	}
 	public void setDetail_num(int detail_num) {
 		this.detail_num = detail_num;
+	}
+	public int getOrder_num() {
+		return order_num; 
+	}
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
+	}
+	public int getItem_num() {
+		return item_num;
+	}
+	public void setItem_num(int item_num) {
+		this.item_num = item_num;
 	}
 }
