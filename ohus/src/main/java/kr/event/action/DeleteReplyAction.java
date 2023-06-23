@@ -20,8 +20,9 @@ public class DeleteReplyAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8"); 
-		
+		//이벤트 번호 가져오기
 		int re_num = Integer.parseInt(request.getParameter("re_num"));
+		
 		
 		Map<String, String> mapAjax = new HashMap<String, String>();
 		
@@ -39,7 +40,7 @@ public class DeleteReplyAction implements Action{
 			mapAjax.put("result", "logout");
 		} 
 		//로그인 o + 로그인번호=작성자 번호
-		//즉, 로그인 되어있고 그 로그인 한 회원이 작성자인 경우
+		//즉, 로그인 되어있고 그 로그인 한 회원이 작성자이고 댓글은 단 적이 없는 경우
 		else if(user_num!=null && user_num==db_reply.getMem_num()) {
 			dao.deleteReplyEvent(re_num); //삭제 메서드 호출
 			mapAjax.put("result", "success"); //정상 처리된 것을 알려주기

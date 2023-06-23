@@ -58,6 +58,7 @@ create table oevent_reply(
  event_num number not null,
  event_winner number(1) default 0 not null, --이벤트 당첨자(1) 당첨자 아님(0)
  mem_num number not null,
+ re_status number(1), --댓글 달았으면 1로 해줌
  constraint oevent_reply_pk primary key(re_num),
  constraint oevent_reply_fk1 foreign key(event_num) references oevent(event_num), --부모글
  constraint oevent_reply_fk2 foreign key(mem_num) references omember(mem_num) --회원번호

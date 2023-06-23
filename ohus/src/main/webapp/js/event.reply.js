@@ -127,7 +127,7 @@ $(function(){
 					alert('로그인 후 작성할 수 있습니다');
 				}
 				//2. success로 정상 실행되었거나
-				else if(param.result='success'){
+				else if(param.result=='success'){
 					
 					//폼 초기화 --아래서 정의한 함수
 					initForm();
@@ -136,7 +136,12 @@ $(function(){
 					//첫 번째 페이지의 게시글을 다시 호출해준다
 					selectList(1);
 					
-				} else{
+				} 
+				//댓글이 중복된 경우
+				else if(param.result=='duplication'){
+					alert('댓글은 한 이벤트 당 하나만 등록할 수 있습니다');
+				}
+				else{
 					alert('댓글 등록 오류 발생');
 				}
 			}, 
