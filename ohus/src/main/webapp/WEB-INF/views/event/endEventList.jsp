@@ -73,7 +73,7 @@
 			<!-- =========오른쪽 버튼처리 끝 =========-->
 			
 			<!-- ======이벤트 글 리스트 처리 시작=========== -->
-		<c:if test="${count==0}">
+			<c:if test="${count==0}">
 					<!-- 종료된 이벤트가 없음 -->
 					<div class="result-display">
 						<span>종료된 이벤트가 없네요!</span>
@@ -104,7 +104,7 @@
 									</div>
 									
 									<div class="event-go">
-										<input type="button" value="추첨시작" onclick="location.href='result.do'"">
+										<input type="button" value="추첨시작" onclick="location.href='playEvent.do?event_num=${event.event_num}'"">
 									</div>
 	
 								</li>

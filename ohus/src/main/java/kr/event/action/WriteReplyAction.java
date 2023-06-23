@@ -31,25 +31,22 @@ public class WriteReplyAction implements Action{
 		if(user_num == null) {
 			mapAjax.put("result", "logout");
 		}
-		EventReplyVO reply = null;
-		EventDAO dao = EventDAO.getInstance();
-		//메서드 호출
-		reply=dao.checkReply(user_num, event_num);
 		
-		
-		if(reply!=null) {
-			
-			mapAjax.put("result", "duplication");
-		}
-		
-		
-		//로그인 된 경우
+		//로그인 된 경우 
 		else {
+			EventDAO dao = EventDAO.getInstance();
+			EventReplyVO reply = null;
+			
+			//댓글 중복 체크
+			reply=dao.checkReply(user_num, event_num);
+			
+			if(reply!=null) {
+				
+				mapAjax.put("result", "duplication");
+			}
+			else {
 			request.setCharacterEncoding("utf-8");
-			
-			
-			
-			//dao에서 넘긴 값을 그대로 저장해주기
+			reply = new EventReplyVO();
 			reply.setMem_num(user_num);
 			reply.setRe_content(request.getParameter("re_content"));
 			reply.setRe_ip(request.getRemoteAddr());
@@ -58,6 +55,7 @@ public class WriteReplyAction implements Action{
 			dao.insertReplyEvent(reply); //댓글 등록을 해줌
 			
 			mapAjax.put("result", "success");
+			}
 		}
 		
 		//JSON 데이터 생성

@@ -492,28 +492,43 @@ public class EventDAO {
 	}
 	
 	//댓글 단 사람들을 배열로 가져옴 - 당첨자 추첨(랜덤) - 당첨된 사람을 받아와서 update해줌 - event_winner=1인 사람은 로그인 할 때 알림창
-	public void updateEventwinner(int mem_num) throws Exception{ 
+	public EventReplyVO updateEventwinner(int mem_num) throws Exception{ 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		EventReplyVO event = new EventReplyVO();
 		
 		try {
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
 			//댓글은 단 회원 한정
-			sql = "UPDATE oevent SET event_winner=1 WHERE mem_num=?";
+			sql = "SELECT * FROM oevent_reply WHERE mem_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
 			
 			
-			conn.commit();
+			
+			if(rs.next()) {
+				
+				event.setEvent_num(rs.getInt("event_num")); //부모글번호
+				event.setMem_num(rs.getInt("mem_num"));
+				event.setRe_num(rs.getInt("re_num"));
+				event.setRe_content(rs.getString("re_content"));
+				event.setRe_date(rs.getString("re_date"));
+				event.setRe_modifydate(rs.getString("re_modifydate"));
+				event.setRe_ip(rs.getString("re_ip"));
+				event.setWinner_count(rs.getInt("winner_count"));
+				event.setEvent_winner(rs.getInt("event_winner"));
+				
+			}
 		} catch(Exception e) {
-			conn.rollback();
 			throw new Exception(e);
 		} finally {
-			
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
+		
+		return event;
 	}
 	
 

@@ -28,6 +28,16 @@
 
 </script>
 
+<style type="text/css">
+#event-status-1{
+	color : blue;
+	}
+#event-status-2{
+	color: gray;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -70,7 +80,7 @@
 				<div class="list-space align-right">
 				
 					<!-- 로그인 + 관리자의 경우만 버튼이 보이도록 처리 -->
-					<input type="button" value="추첨" onclick="location.href='endEventList.do'">
+					<input type="button" value="종료이벤트" onclick="location.href='endEventList.do'">
 					<input type="button" value="등록" onclick="location.href='writeForm.do'">
 					<input type="button" value="목록" onclick="location.href='list.do'"> 
 					
@@ -111,8 +121,10 @@
 								</div>
 								<!-- 이벤트 사진 아래 (진행중) (기간) -->
 								<div class="event_footer">
-									<div class="event-status">
+									<div class="event-status-1">
 										<c:if test="${event.event_status==1}">종료</c:if>
+									</div>
+									<div class="event-status-2">	
 										<c:if test="${event.event_status==2}">진행중</c:if>
 									</div>
 									

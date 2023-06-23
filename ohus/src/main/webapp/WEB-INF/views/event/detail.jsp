@@ -77,7 +77,7 @@
 		<form id="re_form">
 			<input type="hidden" name="event_num" value="${event.event_num}" id="event_num">
 			<!-- 회원인 경우에만 달 수 있고, 댓글은 이벤트 당 하나만 달 수 있다 -->
-			<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+			<textarea rows="3" cols="50" name="re_content" id="re_content" class="re-content"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인 후 작성할 수 있습니다</c:if></textarea>
 			<c:if test="${!empty user_num}"> <!-- 로그인 되어 있고 status가 1이 아니면 댓글 달 수 있음 -->
 				<div id="re_first">   
