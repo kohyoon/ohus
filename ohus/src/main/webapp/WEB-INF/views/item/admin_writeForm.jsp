@@ -35,7 +35,7 @@
 					</li>
 					<li>
 						<label for="item_price">가격</label>
-						<input type="number" name="item_price" id="item_price" min="1" max="999999999">
+						<input type="number" name="item_price" id="item_price" min="1" max="999999999">원
 					</li>
 					<li>
 						<label for="item_content">상품상세정보</label>

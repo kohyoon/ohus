@@ -38,7 +38,7 @@ public class AdminListAction implements Action{
 		int count = dao.getItemCount(keyfield, keyword, 0, item_category);//
 				
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 5, 10, "list.do");//
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "list.do");//
 		
 		
 		//목록 데이터 호출

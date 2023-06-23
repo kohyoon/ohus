@@ -283,7 +283,7 @@ public class ItemDAO {
 		return count;
 	}
 	//회원번호와 상품번호를 이용한 스크랩 정보(회원이 상품을 호출할 때 스크랩 선택여부 표시)
-	public ItemFavVO selectFav(ItemFavVO favVO) throws Exception{
+	public ItemFavVO selectFav(int item_num, int mem_num) throws Exception{
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -297,8 +297,8 @@ public class ItemDAO {
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, favVO.getItem_num());
-			pstmt.setInt(2, favVO.getMem_num());
+			pstmt.setInt(1, item_num);
+			pstmt.setInt(2, mem_num);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

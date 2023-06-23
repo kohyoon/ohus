@@ -34,7 +34,7 @@ public class ItemWriteFavAction implements Action{
 			favVO.setMem_num(user_num);
 			
 			//좋아요 등록 여부 확인
-			ItemFavVO db_fav = dao.selectFav(favVO);
+			ItemFavVO db_fav = dao.selectFav(item_num, user_num);
 			if(db_fav != null) {//좋아요 등록 되어 있음
 				//좋아요 삭제 처리
 				dao.deleteFav(db_fav.getFav_num());

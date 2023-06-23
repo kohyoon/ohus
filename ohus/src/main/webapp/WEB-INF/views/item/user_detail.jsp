@@ -21,7 +21,7 @@
 					$('#order_quantity').val('');
 					return;
 				}
-				if(Number($('#item_quantity').val()) < $('#order_quantity').val()){
+				if(Number($('#item_stock').val()) < $('#order_quantity').val()){
 					alert('수량이 부족합니다.');
 					$('#order_quantity').val('');
 					$('#item_total_txt').text('총 주문 금액 : 0원');
@@ -68,6 +68,42 @@
 			
 		});
 	</script>
+	<style type="text/css">
+		.content-main{
+			width: 680px;
+			margin 0 auto;
+		}
+		.btn {
+		  margin: 1rem;
+		  padding: 0.5rem 1rem;
+		  font-size: 1.3rem;
+		  font-weight: 500;
+		  border-radius: 4px;
+		  text-align: center;
+		  text-decoration: none;
+		  cursor: pointer;
+		  transition: background-color 0.3s ease-in-out;
+		  width: 200px;
+		  height: 60px;
+		  
+		  &:hover {
+		    filter: brightness(90%);
+		  }
+		}
+
+		.btn-cart {
+		  background-color: white;
+		  color: #35c5f0;
+		  border-color: #35c5f0;
+		  box-shadow: 0 0px 0px rgba(53, 196, 240);
+		}
+		
+		.btn-buy {
+		  background-color: #35c5f0;
+		  border:none;
+		  color: #fff;
+		}
+	</style>
 </head>
 <body>
 	<div class="page-main">
@@ -106,17 +142,19 @@
 									autocomplete="off" id="order_quantity">
 								</li>
 								<li>
-									<%-- 좋아요 --%>
 									<img id="output_fav" data-num="${item.item_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
-									상품스크랩
-									<span id="output_fcount"></span>
+									<span id="output_fcount"></span>회
 								</li>
 								<li>
 									<span id="item_total_txt">총 주문 금액 : 0원</span>
 								</li>
 								<li>
-									<input type="submit" value="장바구니에 담기">
-									<input type="submit" value="바로 구매">
+									<button class="btn btn-cart" type="submit">
+									    장바구니
+									</button>
+									<button class="btn btn-buy" type="submit">
+										바로 구매
+									</button>
 								</li>
 							</c:if>
 							<c:if test="${item.item_stock <= 0}">
@@ -152,30 +190,6 @@
 		<div id="item_inquiry">
 			문의는 여기 있습니다.
 		</div>
-		<!-- 하단 내용 시작 -->
-		<footer class="footer">
-			<div class="footer-upper">
-				<div>
-					<h4>
-						<a href="${pageContext.request.contextPath}/inquiry/listInquiry.do">고객센터</a>
-					</h4>
-					<a class="footer-number" href="">1670-1234</a> 
-					<span>평일 09:00 ~ 18:00 (주말 & 공휴일 제외)</span>
-				</div>
-			</div>
-			<ul class="footer-lower">
-				<li><a href="">브랜드 스토리</a></li>
-				<li><a href="">회사소개</a></li>
-				<li><a href="">채용정보</a></li>
-				<li><a href="">이용약관</a></li>
-				<li><a href="">개인정보처리방침</a></li>
-				<li><a href="">공지사항</a></li>
-				<li><a href="">고객센터</a></li>
-				<li><a href="">고객의 소리</a></li>
-				<li><a href="">전문가 등록</a></li>
-			</ul>
-		</footer>
-		<!-- 하단 내용 끝 -->
 		<%-- 내용 끝 --%>
 	</div>
 </body>

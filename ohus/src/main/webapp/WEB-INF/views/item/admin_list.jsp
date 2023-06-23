@@ -37,6 +37,7 @@
 		</form>
 		<%-- 검색창 끝 --%>
 		<div>
+			<input type = "button" value="상품 등록" onclick="location.href='writeForm.do'">
 			<input type="button" value = "목록" onclick = "location.href = 'list.do'">
 			<input type="button" value = "홈으로" onclick = "location.href = '${pageContext.request.contextPath}/main/main.do'">
 		</div>
