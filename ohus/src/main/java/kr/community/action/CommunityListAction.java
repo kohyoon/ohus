@@ -10,6 +10,7 @@ import kr.community.vo.CommunityVO;
 import kr.controller.Action;
 import kr.util.PageUtil;
 
+
 public class CommunityListAction implements Action {
     @Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

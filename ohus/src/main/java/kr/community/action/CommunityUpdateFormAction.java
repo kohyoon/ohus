@@ -9,6 +9,7 @@ import kr.community.vo.CommunityVO;
 import kr.controller.Action;
 import kr.util.StringUtil;
 
+
 public class CommunityUpdateFormAction implements Action{
 	
 	

@@ -13,6 +13,7 @@ import kr.community.dao.CommunityDAO;
 import kr.community.vo.CommunityFavVO;
 import kr.controller.Action;
 
+
 public class CommunityGetFavAction implements Action {
     
     @Override

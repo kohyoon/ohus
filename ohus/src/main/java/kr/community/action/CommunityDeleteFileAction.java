@@ -14,6 +14,7 @@ import kr.community.vo.CommunityVO;
 import kr.controller.Action;
 import kr.util.FileUtil;
 
+
 public class CommunityDeleteFileAction implements Action{
 	
 	@Override

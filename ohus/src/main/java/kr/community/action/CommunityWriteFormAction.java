@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
+
 public class CommunityWriteFormAction implements Action{
 	
 	@Override

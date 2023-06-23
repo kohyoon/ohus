@@ -8,6 +8,7 @@ import kr.community.vo.CommunityVO;
 import kr.controller.Action;
 import kr.util.StringUtil;
 
+
 public class CommunityDetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -11,6 +11,7 @@ import kr.community.vo.CommunityVO;
 import kr.controller.Action;
 import kr.util.FileUtil;
 
+
 public class CommunityWriteAction implements Action{
 	
 	@Override
