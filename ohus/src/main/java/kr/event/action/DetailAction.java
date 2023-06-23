@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.event.dao.EventDAO;
+import kr.event.vo.EventReplyVO;
 import kr.event.vo.EventVO;
 import kr.util.StringUtil;
 //글 상세 보기 - 로그인 상관 없음! 제목 누르면 볼 수 있는 것 
@@ -19,7 +20,6 @@ public class DetailAction implements Action{
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
 		
 		EventDAO dao = EventDAO.getInstance();
-		
 		//조회수(hit) 증가 -DAO-updatereadcount 메서드 호출!
 		dao.updateReadcount(event_num);
 		

@@ -10,11 +10,21 @@ public class EventReplyVO {
 	private int event_num; // 부모글번호
 	private int mem_num; // 회원번호
 	private int event_winner; // 기본값 0(꽝), 1(당첨)
+	private int re_status; // null 허용, 1이면 댓글 단 상태
 	
 
 	// 추가적으로 빈번하게 사용되는 변수를 넣어주자
 	private String id;
 	private int winner_count; // 이벤트 당첨자 수
+	
+	
+	public int getRe_status() {
+		return re_status;
+	}
+
+	public void setRe_status(int re_status) {
+		this.re_status = re_status;
+	}
 
 	public int getWinner_count() {
 		return winner_count;

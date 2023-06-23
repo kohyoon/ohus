@@ -11,7 +11,7 @@ import java.util.logging.SimpleFormatter;
 
 import kr.event.vo.EventReplyVO;
 import kr.event.vo.EventVO;
-
+import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
 import kr.util.StringUtil;
@@ -492,7 +492,7 @@ public class EventDAO {
 	}
 	
 	//댓글 단 사람들을 배열로 가져옴 - 당첨자 추첨(랜덤) - 당첨된 사람을 받아와서 update해줌 - event_winner=1인 사람은 로그인 할 때 알림창
-	public void updateEventwinner(int mem_num) throws Exception{ //당첨자가 한두명이 아님.. 배열로 받아와야되나?
+	public void updateEventwinner(int mem_num) throws Exception{ 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -530,8 +530,9 @@ public class EventDAO {
 		try {
 			
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO oevent_reply(re_num, re_content, re_ip, mem_num, event_num) "
-					+ "VALUES(oevent_reply_seq.nextval, ?, ?, ?, ?)";
+			//댓글을 달면 re_status를 1로 변경해줘서 댓글 중복 제거
+			sql = "INSERT INTO oevent_reply(re_num, re_content, re_ip, mem_num, event_num, re_status) "
+					+ "VALUES(oevent_reply_seq.nextval, ?, ?, ?, ?, 1)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, eventReply.getRe_content());
 			pstmt.setString(2, eventReply.getRe_ip()); 
@@ -646,7 +647,7 @@ public class EventDAO {
 		
 	// ================================================
 	// 댓글 상세 - 댓글 수정 및 삭제 시 작성사 회원번호 체크 용도로 사용
-public EventReplyVO getReplyEvent(int re_num) throws Exception{
+	public EventReplyVO getReplyEvent(int re_num) throws Exception{
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -676,7 +677,8 @@ public EventReplyVO getReplyEvent(int re_num) throws Exception{
 	}
 	return reply;
 }
-	
+
+			
 	// ================================================
 	// 댓글 수정  
 	public void updateReplyEvent(EventReplyVO reply) throws Exception{
@@ -725,6 +727,36 @@ public EventReplyVO getReplyEvent(int re_num) throws Exception{
 		}
 	}
 	
+	//댓글 중복 확인하기 위한 메서드
+	public EventReplyVO checkReply(int mem_num, int event_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		EventReplyVO eventreply = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM oevent_reply WHERE mem_num=? and event_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, event_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				eventreply = new EventReplyVO();
+				eventreply.setEvent_num(event_num);
+			}
+		
+			
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return eventreply; //값이 없으면 null을 return --댓글을 달 수 있음
 	
-	
+	}
 } //end DAO
