@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>고객센터 메인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -14,7 +15,9 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-	<h2>FAQ</h2>
+	<h2>
+		<a href="${pageContext.request.contextPath}/inquiry/faq.do">FAQ</a>
+	</h2>
 	
 	<h2><a href="${pageContext.request.contextPath}/notice/listNotice.do">공지사항</a></h2>
 	<table>
@@ -35,7 +38,7 @@
 	<h2><a href="${pageContext.request.contextPath}/qna/qnaList.do">상품문의</a></h2>
 	</div>
 	<!-- 내용 끝 -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>   
 </div>
 </body>
 </html>
