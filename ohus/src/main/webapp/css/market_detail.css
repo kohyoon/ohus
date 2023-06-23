@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+/* 페이지 메인 스타일
+-------------------------------------*/
+div.page-main{
+  width:680px;
+  margin: 0 auto;
+}
+/* 페이지 헤더 스타일
+-------------------------------------*/
+.header-title{
+  font-size: 50px;
+  font-style: italic;
+  text-align: center;
+}
+.my-photo{
+  border-radius: 50%;
+  float: left;
+}
+
+.header-user-id{
+  margin-left: 130px;
+}
+
+.header-date{
+  margin-left: 130px;
+}
+
+/* 페이지 이미지 스타일
+-------------------------------------*/
+.inner-img img{
+  width:100%;
+  height:500px;
+  padding:50px 0;
+}
+
+
+/* 페이지 내용 스타일
+-------------------------------------*/
+.content-main{
+  padding-bottom:30px;
+}
+
+
+
+/* 페이지 버튼 스타일
+-------------------------------------*/
+ul li{
+  list-style: none;
+}
+
+.content-footer .footer-button{
+  top:50%;
+  background-color:#3DC37B;
+  color: #fff;
+  border:none; 
+  border-radius:10px; 
+  padding:15px;
+  min-height:30px; 
+  min-width: 120px;
+}
+
+.content-footer .footer-button:hover {
+  background-color: #2A8E57;
+}
