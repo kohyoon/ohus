@@ -4,7 +4,7 @@ CREATE TABLE orders(
 	item_name varchar2(600) not null,-- 대표상품명
 	mem_num number not null,-- 회원번호
 	order_payment number(1) not null,-- 결제 방법(0 : 무통장, 1: 카드)
-	order_status number not null,-- 배송상태(0: 결제 완료, 1: 주문 접수, 2: 배송중, 3: 배송완료)
+	order_status number(1) default 1 not null,-- 배송상태(1: 배송대기, 2: 배송준비중, 3: 배송증, 4: 배송완료, 5: 주문취소)
 	order_modifydate date,-- 배송상태 수정일
 	order_name varchar2(30) not null,-- 수령자 이름
 	order_zipcode varchar2(5) not null, -- 배송지 우편번호

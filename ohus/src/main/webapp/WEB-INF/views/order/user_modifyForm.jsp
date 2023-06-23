@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>상품구매상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<c:if test = "${order.status < 2}">
+<c:if test = "${order.order_status < 2}">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -123,7 +123,7 @@
 					   >${order.order_notice}</textarea>
 				</li> 
 				</c:if> 
-				<c:if test = "${order.status >= 2}">
+				<c:if test = "${order.order_status >= 2}">
 				<li>
 					<label>수령자</label>
 					${order.order_name}
@@ -177,8 +177,11 @@
 						}
 					</script>
 				</c:if>
+				<c:if test = "${order.order_status == 4}">
+					<input type="button" value="상품후기작성" onclick = "">
+				</c:if>
 				<input type = "button" value = "MY페이지"
-				 onclick = "${pageContext.request.contextPath}/member/myPage.do">
+				 onclick = "location.href='${pageContext.request.contextPath}/member/myPage.do'">
 				<input type="button" value="주문목록" onclick="orderList.do'">
 			</div> 
 		</form>
@@ -196,7 +199,7 @@
     var element_layer = document.getElementById('layer');
 
     function closeDaumPostcode() {
-        // iframe을 넣은 element를 안보이게 한다.
+        // ifame을 넣은 element를 안보이게 한다.
         element_layer.style.display = 'none';
     }
 

@@ -52,8 +52,7 @@
 		</form>
 		<div class="list-space align-right">
 			<input type="button" value="목록" onclick="location.href='list.do'">
-			<input type="button" value="홈으로"
-			 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
@@ -80,11 +79,11 @@
 				<td><fmt:formatNumber value="${order.order_total}"/>원</td>
 				<td>${order.order_regdate}</td>
 				<td>
-					<c:if test="${order.status == 1}">배송대기</c:if>
-					<c:if test="${order.status == 2}">배송준비중</c:if>
-					<c:if test="${order.status == 3}">배송중</c:if>
-					<c:if test="${order.status == 4}">배송완료</c:if>
-					<c:if test="${order.status == 5}">주문취소</c:if>
+					<c:if test="${order.order_status == 1}">배송대기</c:if>
+					<c:if test="${order.order_status == 2}">배송준비중</c:if>
+					<c:if test="${order.order_status == 3}">배송중</c:if>
+					<c:if test="${order.order_status == 4}">배송완료</c:if>
+					<c:if test="${order.order_status == 5}">주문취소</c:if>
 				</td>
 			</tr>
 			</c:forEach>

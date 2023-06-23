@@ -120,6 +120,7 @@
 												<a href="#">이벤트등록</a>
 												<a href="${pageContext.request.contextPath}/item/list.do">상품목록</a>
 												<a href="${pageContext.request.contextPath}/item/writeForm.do">상품등록</a>
+												<a href="${pageContext.request.contextPath}/order/list.do">주문목록</a>
 											</div>
 										</div>
 									</li>

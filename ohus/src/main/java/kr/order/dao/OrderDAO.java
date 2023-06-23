@@ -527,7 +527,7 @@ public class OrderDAO {
 				conn = DBUtil.getConnection();
 				conn.setAutoCommit(false);
 				
-				sql = "UPDATE orders SET status=5, modify_date=SYSDATE WHERE order_num=?";
+				sql = "UPDATE orders SET order_status=5, order_modifydate=SYSDATE WHERE order_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
@@ -537,7 +537,7 @@ public class OrderDAO {
 				List<OrderDetailVO> detailList = getListOrderDetail(order_num);
 				
 				// 주문취소로 주문 상품의 재고수를 환원
-				sql = "UPDATE item SET quantity = quantity + ? WHERE item_num=?";
+				sql = "UPDATE item SET item_stock = item_stock + ? WHERE item_num=?";
 				
 				pstmt2 = conn.prepareStatement(sql);
 				for(int i=0; i<detailList.size(); i++) {

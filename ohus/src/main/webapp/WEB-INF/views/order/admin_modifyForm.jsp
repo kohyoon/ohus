@@ -6,7 +6,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>[관리자]구매정보수정</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<c:if test = "${order.status < 2}">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//주문 유효성 체크
+		$('#order_modify').submit(function(){
+			// 배송대기일 경우만 조건체크
+			if($('input[type=radio]:checked').val()==1){
+				let items = document.querySelectorAll('input[type="text"]');
+				 for(let i=0;i<items.length;i++){
+				    if(items[i].value.trim()==''){
+						let label = document.querySelector('label[for="'+items[i].id+'"]');
+						alert(label.textContent + ' 항목 필수 입력');
+						items[i].value = '';
+						items[i].focus();
+						return false;
+				    }
+				}
+			} 
+		}) 
+		let origin_status = ${order.order_status};
+		$('input[type=radio]').click(function(){
+			if(origin_status == 1 && $('input[type=radio]:checked').val()!=1){
+				$('input[type=text],textarea').parent().hide();
+			} else {
+				$('input[type=text],textarea').parent().show();
+			}
+		}) 
+	});
+</script>
+</c:if>
 </head>
 <body>
 <div class = "page-main">
@@ -21,7 +53,7 @@
 				<th>상품가격</th>
 				<th>합계</th>
 			</tr>
-			<c:forEach var = "detail" items = "${detail.list}">
+			<c:forEach var = "detail" items = "${detailList}">
 			<tr>
 				<td>
 					${detail.item_name}
@@ -101,7 +133,7 @@
 					</li>
 					</c:if>
 					
-					<c:if test = "${order.order_status}">
+					<c:if test = "${order.order_status >= 2}">
 					<li>
 						<label>구매자</label>
 						${order.order_name}

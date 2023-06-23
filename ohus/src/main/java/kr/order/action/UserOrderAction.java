@@ -97,6 +97,8 @@ public class UserOrderAction implements Action{
 		order.setOrder_address2(request.getParameter("order_address2"));
 		order.setMem_phone(request.getParameter("mem_phone"));
 		order.setOrder_notice(request.getParameter("order_notice"));
+		order.setOrder_quantity(Integer.parseInt(request.getParameter("order_quantity")));
+		order.setOrder_status(1);
 		order.setMem_num(user_num);
 		OrderDAO orderDao = OrderDAO.getInstance();
 		orderDao.insertOrder(order, orderDetailList);

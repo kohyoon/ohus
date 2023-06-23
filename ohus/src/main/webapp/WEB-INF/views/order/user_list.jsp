@@ -34,6 +34,7 @@
 		<h3>구매 목록</h3>
 		<form action = "orderList.do" method = "get" id = "search_form">
 			<ul class = "search">
+			<%-- 검색창 카테고리 --%>
 				<li>
 					<select name = "keyfield" id = "keyfield">
 						<option value = "1" <c:if test = "${param.keyfield == 1}">selected</c:if>>주문번호</option>
@@ -44,16 +45,16 @@
 					<input type = "search" size = "16" name = "keyword" id = "keyword" value = "${param.keyword}">
 				</li>
 				<li>
-					<input type = "submit" value = "찾기">
+					<input type = "submit" value = "검색">
 				</li>
 			</ul>
 		</form>
 		<div class = "align-right">
-			<input type = "button" value = "목록" onclick = "location.href='orderList.do'">
+			<input type = "button" value = "전체목록" onclick = "location.href='orderList.do'">
 		</div>
 		<c:if test = "${count == 0}">
 			<div class = "result-display">
-				<span>표시할 주문내역에 없습니다.</span>
+				<span>표시할 주문내역이 없습니다.</span>
 			</div>
 		</c:if>
 		<c:if test = "${count > 0}">
@@ -75,14 +76,14 @@
 						<td>
 							${order.item_name}
 						</td>
-						<td class = "align-canter"><fmt:formatNumber value = "${order.order_total}"/>원</td>
-						<td class = "align-canter">${order.order_regdate}</td>
-						<td class = "align-canter">
-							<c:if test = "${order.status == 1}">배송대기</c:if>
-							<c:if test = "${order.status == 2}">배송준비중</c:if>
-							<c:if test = "${order.status == 3}">배송중</c:if>
-							<c:if test = "${order.status == 4}">배송완료</c:if>
-							<c:if test = "${order.status == 5}">주문취소</c:if>
+						<td class = "align-center"><fmt:formatNumber value = "${order.order_total}"/>원</td>
+						<td class = "align-center">${order.order_regdate}</td>
+						<td class = "align-center">
+							<c:if test = "${order.order_status == 1}">배송대기</c:if>
+							<c:if test = "${order.order_status == 2}">배송준비중</c:if>
+							<c:if test = "${order.order_status == 3}">배송중</c:if>
+							<c:if test = "${order.order_status == 4}">배송완료</c:if>
+							<c:if test = "${order.order_status == 5}">주문취소</c:if>
 						</td>
 					</tr>
 				</c:forEach>
@@ -93,6 +94,19 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
