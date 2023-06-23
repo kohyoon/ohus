@@ -8,6 +8,7 @@ public class CommunityFavVO {
 	
 	
 	
+	
 	public CommunityFavVO() {}
 	
 	public CommunityFavVO(int cboard_num, 

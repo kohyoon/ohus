@@ -12,6 +12,7 @@ public class CommunityReplyVO {
 	private String id; // 아이디
 	
 	
+	
 	public int getRe_num() {
 		return re_num;
 	}

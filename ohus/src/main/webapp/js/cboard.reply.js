@@ -235,6 +235,7 @@ $(function(){
 		});
 		
 	});
+	
 	//댓글 삭제
 	$(document).on('click','.delete-btn',
 	                          function(){

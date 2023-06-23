@@ -14,6 +14,7 @@ import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 
+
 public class CommunityDAO {
 	//싱글턴 패턴
 	private static CommunityDAO instance = new CommunityDAO();

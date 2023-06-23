@@ -20,6 +20,7 @@ CREATE TABLE cboard (
 create sequence cboard_seq; 
 
 
+
 -- 커뮤니티 댓글
 CREATE TABLE cboard_reply (
   re_num NUMBER NOT NULL, -- 댓글 번호

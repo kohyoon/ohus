@@ -8,6 +8,7 @@ public class CommunityReportVO {
 	private int re_num; // 댓글 번호
 	
 	
+	
 	public int getDec_num() {
 		return dec_num;
 	}

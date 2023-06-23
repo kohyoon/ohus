@@ -85,6 +85,7 @@
 									</li>
 								</c:if>
 	
+	
 								<!-- 회원 - 장바구니 -->
 								<c:if test="${!empty user_num && user_auth == 2}">
 									<li>

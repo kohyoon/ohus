@@ -14,6 +14,7 @@ $(function () {
 			}
 		});
 	}
+	
 	// 좋아요 등록(및 삭제) 이벤트 처리
 	$('#output_fav').click(function () {
 		$.ajax({

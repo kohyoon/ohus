@@ -3,6 +3,7 @@ package kr.community.vo;
 import java.sql.Date;
 
 
+
 public class CommunityVO {
 	private int cboard_num; //글번호
 	private String cboard_title; //제목
