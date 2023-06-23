@@ -223,7 +223,9 @@ public class OrderDAO {
 						order.setOrder_address1(rs.getString("order_address1"));
 						order.setOrder_address2(rs.getString("order_address2"));
 						order.setMem_phone(rs.getString("mem_phone"));
-						order.setId(rs.getString("id"));
+						order.setOrder_notice(rs.getString("order_notice"));
+						order.setOrder_regdate(rs.getDate("order_regdate"));
+						order.setMem_num(rs.getInt("mem_num"));
 						
 						list.add(order);
 				}
@@ -326,6 +328,9 @@ public class OrderDAO {
 					order.setOrder_address1(rs.getString("order_address1"));
 					order.setOrder_address2(rs.getString("order_address2"));
 					order.setMem_phone(rs.getString("mem_phone"));
+					order.setOrder_notice(rs.getString("order_notice"));
+					order.setOrder_regdate(rs.getDate("order_regdate"));
+					order.setMem_num(rs.getInt("mem_num"));
 					
 					list.add(order);
 				}
@@ -423,26 +428,16 @@ public class OrderDAO {
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					order = new OrderVO();
-					order.setOrder_num(
-							rs.getInt("order_num"));
-					order.setItem_name(
-						  rs.getString("item_name"));
-					order.setOrder_total(
-						   rs.getInt("order_total"));
-					order.setOrder_payment(
-							   rs.getInt("order_payment"));
-					order.setOrder_status(
-							    rs.getInt("order_status"));
-					order.setOrder_name(
-						rs.getString("order_name"));
-					order.setOrder_zipcode(
-						rs.getString("order_zipcode"));
-					order.setOrder_address1(
-					  rs.getString("order_address1"));
-					order.setOrder_address2(
-					   rs.getString("order_address2"));
-					order.setMem_phone(
-						rs.getString("Mem_phone"));
+					order.setOrder_num(rs.getInt("order_num"));
+					order.setItem_name(rs.getString("item_name"));
+					order.setOrder_total(rs.getInt("order_total"));
+					order.setOrder_payment(rs.getInt("order_payment"));
+					order.setOrder_status(rs.getInt("order_status"));
+					order.setOrder_name(rs.getString("order_name"));
+					order.setOrder_zipcode(rs.getString("order_zipcode"));
+					order.setOrder_address1(rs.getString("order_address1"));
+					order.setOrder_address2(rs.getString("order_address2"));
+					order.setMem_phone(rs.getString("Mem_phone"));
 					order.setOrder_notice(rs.getNString("order_notice"));
 					order.setOrder_regdate(rs.getDate("order_regdate"));
 					order.setMem_num(rs.getInt("mem_num"));
@@ -564,33 +559,6 @@ public class OrderDAO {
 			} DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 			
-		}
-		
-		//주문번호 반환
-		public int getOrderNumByDetail_Num (int detail_num) throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = null;
-			int order_num = 0;
-			
-			try {
-				conn = DBUtil.getConnection();
-				
-				sql = "SELECT order_num FROM orders_detail WHERE detail_num=?";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, detail_num);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					order_num = rs.getInt(1);
-				}
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-			}
-			return order_num;
 		}
 		
 }
