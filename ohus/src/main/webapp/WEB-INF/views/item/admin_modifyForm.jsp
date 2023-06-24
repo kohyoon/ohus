@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>상품 수정</title>
 	<link rel = "stylesheet" href = "${pageContext.request.contextPath}/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		#(function(){
@@ -42,10 +43,11 @@
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<%-- 내용 시작 --%>
-		<div class="content-main">
-			<h2>상품 수정</h2>
-			<form action="modify.do" method="post" enctype="multipart/form-data" id="write_form">
+		<p>
+		<div class="admin-item-submit">
+			<form action="modify.do" method="post" enctype="multipart/form-data" id="write_form" class="write-form">
 				<ul>
+					<li><h1>상품 수정</h1></li>
 					<li>
 						<label>상품 판매 가능 여부</label>
 						<input type="radio" name="item_status" value="1" id="status1" <c:if test="${item.item_status == 1}">checked</c:if>>미표시
@@ -69,7 +71,7 @@
 					</li>
 					<li>
 						<label for="item_content">상품상세정보</label>
-						<textarea rows="5" cols="30" name="item_content" id="item_content">${item.item_content}</textarea>
+						<textarea rows="5" cols="60" name="item_content" id="item_content">${item.item_content}</textarea>
 					</li>
 					<li>
 						<label for="item_stock">재고</label>
@@ -99,9 +101,15 @@
 					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="수정">
-					<input type="button" value="삭제" onclick="location.href='delete.do?item_num=${item.item_num}'">
-					<input type="button" value="목록" onclick="location.href='list.do'">
+					<button class="ad-btn ad-regi" type="submit">
+						상품 수정
+					</button>
+					<button class="ad-btn ad-list" type="button"  onclick="location.href='list.do'">
+						상품 목록
+					</button>
+					<button class="ad-btn ad-del" type="button"  onclick="location.href='delete.do?item_num=${item.item_num}'">
+						상품 삭제
+					</button>
 				</div>
 			</form>
 		</div>
