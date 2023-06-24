@@ -399,6 +399,7 @@ public class EventDAO {
 				event.setEvent_start(rs.getString("event_start"));
 				event.setEvent_end(rs.getString("event_end"));
 				event.setEvent_status(rs.getInt("event_status"));
+				event.setWinner_count(rs.getInt("winner_count"));
 				
 				list.add(event);
 			}
@@ -474,8 +475,6 @@ public class EventDAO {
 				event.setRe_date(rs.getString("re_date"));
 				event.setRe_modifydate(rs.getString("re_modifydate"));
 				event.setRe_ip(rs.getString("re_ip"));
-				event.setWinner_count(rs.getInt("winner_count"));
-				event.setEvent_winner(rs.getInt("event_winner"));
 				
 				list.add(event);
 			}
@@ -491,14 +490,14 @@ public class EventDAO {
 		return list;
 	}
 	
-	//댓글 단 사람들을 배열로 가져옴 - 당첨자 추첨(랜덤) - 당첨된 사람을 받아와서 update해줌 - event_winner=1인 사람은 로그인 할 때 알림창
+	//댓글 단 가져옴 - 당첨자 추첨(랜덤) - 당첨된 사람을 받아와서 update해줌 - event_winner=1인 사람은 로그인 할 때 알림창
 	public EventReplyVO updateEventwinner(int mem_num) throws Exception{ 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		EventReplyVO event = new EventReplyVO();
-		
+		//여기
 		try {
 			conn = DBUtil.getConnection();
 			//댓글은 단 회원 한정
@@ -506,8 +505,6 @@ public class EventDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			rs = pstmt.executeQuery();
-			
-			
 			
 			if(rs.next()) {
 				
@@ -518,8 +515,7 @@ public class EventDAO {
 				event.setRe_date(rs.getString("re_date"));
 				event.setRe_modifydate(rs.getString("re_modifydate"));
 				event.setRe_ip(rs.getString("re_ip"));
-				event.setWinner_count(rs.getInt("winner_count"));
-				event.setEvent_winner(rs.getInt("event_winner"));
+				event.setRe_status(rs.getInt("re_status"));
 				
 			}
 		} catch(Exception e) {

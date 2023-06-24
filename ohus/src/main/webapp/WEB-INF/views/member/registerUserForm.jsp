@@ -7,6 +7,61 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+
+form {
+	width: 600px;
+	margin: 0 auto;
+	padding: 10px 10px 10px 30px;
+	align-items: center;
+	justify-content: center;
+}
+
+form ul li {
+	clear: both;
+}
+
+ul {
+	list-style: none;
+}
+
+label {
+	width: 130px;
+	float: left; /*태그를 왼쪽에 정렬*/
+}
+
+input {
+	margin-top: 4px;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+	width: 310px;
+}
+
+#register_form input[id="id"] {
+	width: 223px;
+}
+
+input[id="zipcode"] {
+	width: 205px;
+}
+
+input[type="number"] {
+	width: 100px;
+}
+
+.form-notice {
+	margin-left: 130px;
+}
+input[type="submit"]{
+	width : 500px;
+	text-align: center;
+}
+
+
+</style>
+
+
 <script type="text/javascript">
 	$(function(){
 		//0:중복 체크 미실시, id 중복
@@ -109,57 +164,55 @@
 		  action="registerUser.do" method="post">
 			<ul>
 				<li>
-					<label for="id">아이디</label>
+					<label for="id"><b>아이디</b></label>
 					<input type="text" name="id"
 					   id="id" maxlength="12"
-					   autocomplete="off">
+					   autocomplete="off" placeholder="아이디">
 					<input type="button" 
 					 value="id중복체크" id="id_check">
 					<span id="message_id"></span>
 					<div class="form-notice">*영문 또는 숫자(4자~12자)</div>    
 				</li>
 				<li>
-					<label for="name">이름</label>
+					<label for="name"><b>이름</b></label>
 					<input type="text" name="name"
-					  id="name" maxlength="10">
+					  id="name" maxlength="10" placeholder="이름">
 				</li>
 				<li>
-					<label for="password">비밀번호</label>
+					<label for="password"><b>비밀번호</b></label>
 					<input type="password" name="password"
-					  id="password" maxlength="12">
+					  id="password" maxlength="12" placeholder="비밀번호">
 				</li>
 				<li>
-					<label for="phone">전화번호</label>
+					<label for="phone"><b>전화번호</b></label>
 					<input type="text" name="phone"
-					  id="phone" maxlength="15">
+					  id="phone" maxlength="15" placeholder="전화번호">
 				</li>
 				<li>
-					<label for="email">이메일</label>
+					<label for="email"><b>이메일</b></label>
 					<input type="email" name="email"
-					  id="email" maxlength="50">
+					  id="email" maxlength="50" placeholder="이메일">
 				</li>
 				<li>
-					<label for="zipcode">우편번호</label>
+					<label for="zipcode"><b>우편번호</b></label>
 					<input type="text" name="zipcode"
-					  id="zipcode" maxlength="5">
+					  id="zipcode" maxlength="5" placeholder="우편번호">
 					<input type="button" value="우편번호 찾기"
 					 onclick="execDaumPostcode()">  
 				</li>
 				<li>
-					<label for="address1">주소</label>
+					<label for="address1"><b>주소</b></label>
 					<input type="text" name="address1"
-					  id="address1" maxlength="30">
+					  id="address1" maxlength="30" placeholder="주소">
 				</li>
 				<li>
-					<label for="address2">나머지 주소</label>
+					<label for="address2"><b>상세주소</b></label>
 					<input type="text" name="address2"
-					  id="address2" maxlength="30">
+					  id="address2" maxlength="30" placeholder="상세주소">
 				</li>
 			</ul> 
 			<div class="align-center">
-				<input type="submit" value="등록">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="submit" value="회원가입하기">
 			</div> 
 		</form>
 	</div>
