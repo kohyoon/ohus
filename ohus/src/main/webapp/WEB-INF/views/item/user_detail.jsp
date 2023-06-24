@@ -66,13 +66,63 @@
 				})
 			});
 			
+			$('input[type="search"]').attr('placeholder','상품 검색');
+			
+			function searchData(){
+				let data = $('input[type="search"]').val();
+				location.href="userList.do?keyword="+data;
+			};
+			
+			$('input[type="search"]').keypress(function(){
+				if(event.keyCode==13){
+					searchData();	
+				}
+				
+			});	
+			
 		});
 	</script>
 	<style type="text/css">
 		.content-main{
-			width: 680px;
-			margin 0 auto;
+			padding:20px 60px;
+			margin: 0 auto;
 		}
+		.imagedetail{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		.imagedetail div{
+			display: inline-block; /* 가로로 나열하기 위해 block레벨 요소를 inline-block레벨로 전환 */
+			width: 550px; /* 영역 크기 지정 안해주면 inline 레벨처럼 내용물 만큼만 차지하기 때문에 크기 지정 */
+            height: 550px; /* 영역 크기 지정 안해주면 inline 레벨처럼 내용물 만큼만 차지하기 때문에 크기 지정 */
+		}
+		.item-detail{
+			float:right;
+		}
+		#price{
+			font-size: 35px;
+			font-weight:bold;
+		}
+		#item_total_txt{
+			color:#000;
+			font-weight:bold;
+			text-align:right;
+			font-size: 30px;
+		}
+		.item-detail li{
+			padding:0 0 5px 0;
+			font-size: 20px;
+		}
+		#reviewCount{
+			color: #35c5f0;
+		}
+		.item-detail form{
+			border:none;
+			margin:0;
+		}
+		
+		/* 버튼
+		---------------------*/
 		.btn {
 		  margin: 1rem;
 		  padding: 0.5rem 1rem;
@@ -90,12 +140,10 @@
 		    filter: brightness(90%);
 		  }
 		}
-
-		.btn-cart {
-		  background-color: white;
-		  color: #35c5f0;
-		  border-color: #35c5f0;
-		  box-shadow: 0 0px 0px rgba(53, 196, 240);
+		.btn-cart{
+			background-color: white;
+			color: #35c5f0;
+			border: solid #35c5f0;
 		}
 		
 		.btn-buy {
@@ -103,10 +151,57 @@
 		  border:none;
 		  color: #fff;
 		}
+		
+	/* 네비게이션 하단 영역 ---------------------------------------------------*/
+	.inner {
+	  display: flex;
+	  height: 40px;
+	}
+	
+	.inner nav {
+	  display: flex;
+	  flex-flow: row nowrap;
+	  justify-content: flex-start;
+	  color: #424242;
+	}
+	
+	.lower__item {
+	  font-size: 1.2rem;
+	  font-weight: 700;
+	  color: #424242;
+	  cursor: pointer;
+	  /* margin: 8px 0; */
+	  padding: 11px 10px;
+	  /* position: relative; */
+	  flex-shrink: 0;
+	}
+	
+	.lower__item:hover {
+	  color: #35c5f0;
+	}
+	
+	.lower__item.active {
+	  border-bottom: 2px solid #35c5f0;
+	}
+	
+	.lower .inner div {
+	  display: none;
+	}
+	
+	/* 상세정보 ---------------------------------------------------*/
+	#item_detail{
+		padding:20px 60px;
+		margin: 0 auto;
+		float: center;
+		width:1000px;
+	}
+	#detail_content{
+		
+	}
 	</style>
 </head>
 <body>
-	<div class="page-main">
+	<div>
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<jsp:include page="/WEB-INF/views/item/item_header.jsp"/>
 		<%-- 내용 시작 --%>
@@ -121,74 +216,83 @@
 				</div>
 			</c:if>
 			<c:if test="${item.item_status == 2}">
-				<div>
-					<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="400">
+				<div class="imagedetail">
+					<div class="item-image">
+						<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="550" height="550">
+					</div>
+					<div class="item-detail"><br><br>
+						
+						<form id="item_cart">
+							<input type="hidden" name="item_num" value="${item.item_num}" id="item_num">
+							<input type="hidden" name="item_price" value="${item.item_price}" id="item_price">
+							<input type="hidden" name="item_stock" value="${item.item_stock}" id="item_stock">
+							<ul>
+								<li><h1>${item.item_name}</h1></li>
+								<li id="price"><b><fmt:formatNumber value="${item.item_price}"/>원</b></li>
+								<li>남은 수량 : <span><fmt:formatNumber value="${item.item_stock}"/></span></li>
+								<li>조회수 : <fmt:formatNumber value="${item.item_hit}"/>회</li>
+								<li>&#11088; :  <span id="reviewCount">${reviewCount}개 리뷰</span></li>
+								<c:if test="${item.item_stock > 0}">
+									<li>
+										<label for="order_quantity">구매 수량 :</label>
+										<input type="number" name="order_quantity" 
+										min="1" max="${item.item_stock}" 
+										autocomplete="off" id="order_quantity">
+									</li>
+									<li>
+										<img id="output_fav" data-num="${item.item_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
+										<span id="output_fcount"></span>회
+									</li>
+									<li id="item_total_txt">총 주문 금액 : 0원</li>
+									<li>
+										<button class="btn btn-cart" type="submit">
+										    장바구니
+										</button>
+										<button class="btn btn-buy" type="submit">
+											바로 구매
+										</button>
+									</li>
+								</c:if>
+								<c:if test="${item.item_stock <= 0}">
+									<li>
+										<span>품절</span>
+									</li>
+								</c:if>
+							</ul>
+						</form>
+					</div>
 				</div>
-				<h1>${item.item_name}</h1>
-				<div>
-					<form id="item_cart">
-						<input type="hidden" name="item_num" value="${item.item_num}" id="item_num">
-						<input type="hidden" name="item_price" value="${item.item_price}" id="item_price">
-						<input type="hidden" name="item_stock" value="${item.item_stock}" id="item_stock">
-						<ul>
-							<li>가격 : <b><fmt:formatNumber value="${item.item_price}"/>원</b></li>
-							<li>남은 수량 : <span><fmt:formatNumber value="${item.item_stock}"/></span></li>
-							<li>조회수 : <fmt:formatNumber value="${item.item_hit}"/>회</li>
-							<c:if test="${item.item_stock > 0}">
-								<li>
-									<label for="order_quantity">구매 수량 :</label>
-									<input type="number" name="order_quantity" 
-									min="1" max="${item.item_stock}" 
-									autocomplete="off" id="order_quantity">
-								</li>
-								<li>
-									<img id="output_fav" data-num="${item.item_num}" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
-									<span id="output_fcount"></span>회
-								</li>
-								<li>
-									<span id="item_total_txt">총 주문 금액 : 0원</span>
-								</li>
-								<li>
-									<button class="btn btn-cart" type="submit">
-									    장바구니
-									</button>
-									<button class="btn btn-buy" type="submit">
-										바로 구매
-									</button>
-								</li>
-							</c:if>
-							<c:if test="${item.item_stock <= 0}">
-								<li>
-									<span>품절</span>
-								</li>
-							</c:if>
-						</ul>
-					</form>
-				</div>
-				<div>
-				<hr size="1" noshade="noshade" width="95%">
-				<a href="#item_detail">상품정보</a> 
-				<a href="#item_review">리뷰 <small>${reviewCount}개</small></a> 
-				<a href="#item_inquiry">문의</a>
-				<hr size="1" noshade="noshade" width="95%">
-				</div>
+				<p>
+			</c:if>
+				<hr size="1" noshade="noshade" color="#ededed" width="100%">
+					<div class="lower">
+						<div class="low-inner">
+							<nav>
+								<a class="lower__item" href="#item_detail">상품정보</a> 
+								<a class="lower__item" href="#item_review">리뷰 <small>${reviewCount}개</small></a> 
+								<a class="lower__item" href="#item_inquiry">문의</a>
+							</nav>
+						</div>
+					</div>
+				<hr size="1" noshade="noshade" color="#ededed" width="100%">
 				<p>
 				<div id="item_detail">
-				<img src="${pageContext.request.contextPath}/upload/${item.item_photo2}" width="400">
-				<img src="${pageContext.request.contextPath}/upload/${item.item_photo3}" width="400">
-				<p>
-					${item.item_content}
-				</p>	
+					<img src="${pageContext.request.contextPath}/upload/${item.item_photo2}" width="1000" height="1000"><br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_photo3}" width="1000" height="1000"><br>
+					<p id="detail-content">
+						${item.item_content}
+					</p>	
 				</div>
-			</c:if>
-		</div>
-		<hr size="1" noshade="noshade" width="95%">
-		<div id="item_review">
-			리뷰는 여기 있습니다.
-		</div>
-		<hr size="1" noshade="noshade" width="95%">	
-		<div id="item_inquiry">
-			문의는 여기 있습니다.
+			<hr size="1" noshade="noshade" width="100%">
+			<div id="item_review">
+				<h2>상품 리뷰</h2>
+				리뷰는 여기 있습니다.
+			</div>
+			<hr size="1" noshade="noshade" width="100%">	
+			<div id="item_inquiry">
+				<h2>상품 문의</h2>
+				문의는 여기 있습니다.
+			</div>
 		</div>
 		<%-- 내용 끝 --%>
 	</div>

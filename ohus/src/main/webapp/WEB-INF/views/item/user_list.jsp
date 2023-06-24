@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>쇼핑</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	
 	<style type="text/css">
 		.item-main {
   			padding: 0;
@@ -49,12 +51,21 @@
 		
 	</style>
 	<script type="text/javascript">
-		function submitForm(event) {
-		    if (event.keyCode === 13) {
-		      event.preventDefault(); // 엔터 키의 기본 동작인 폼 제출을 방지
-		      document.getElementById('search_form').submit(); // 폼 제출
-		    }
-		  }
+		$(function(){
+			$('input[type="search"]').attr('placeholder','상품 검색');
+			
+			function searchData(){
+				let data = $('input[type="search"]').val();
+				location.href="userList.do?keyword="+data;
+			};
+			
+			$('input[type="search"]').keypress(function(){
+				if(event.keyCode==13){
+					searchData();	
+				}
+				
+			});
+		});
 	</script>
 </head>
 <body>
@@ -63,18 +74,6 @@
 		<jsp:include page="/WEB-INF/views/item/item_header.jsp"/>
 		<%-- 내용시작 --%>
 		<div class = "item-main">
-			<%-- 검색창 시작 --%>
-			<form id="search_form" action="userList.do" method="get">
-				<ul class="search">
-					<li>
-						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
-					</li>
-					<li>
-						<input type="submit" value="검색" style="display: none;">
-					</li>
-				</ul>
-			</form>
-			<%-- 검색창 끝 --%>
 			<%-- 상품 목록 --%>
 			<div class="item-list">
 				<c:if test="${count == 0}">

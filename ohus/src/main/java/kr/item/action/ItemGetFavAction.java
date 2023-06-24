@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemFavVO;
 
 public class ItemGetFavAction implements Action{
 
@@ -18,6 +19,7 @@ public class ItemGetFavAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
+		
 		//전송된 데이터 반환
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		
@@ -29,8 +31,17 @@ public class ItemGetFavAction implements Action{
 		if(user_num == null) {//미로그인
 			mapAjax.put("status", "noFav");
 			mapAjax.put("count", dao.selectFavCount(item_num));
-		}else {
-			mapAjax.put("count", dao.selectFavCount(item_num));
+		}else {//로그인된 경우
+			ItemFavVO itemFav = dao.selectFav(item_num, user_num);
+			if(itemFav != null) {
+				//로그인한 회원이 해당 상품을 스크랩했던 경우
+				mapAjax.put("status", "yesFav");
+				mapAjax.put("count", dao.selectFavCount(item_num));
+			}else {
+				//로그인한 회원이 해당 상품을 스크랩하지 않은 경우
+				 mapAjax.put("status", "noFav");
+	             mapAjax.put("count", dao.selectFavCount(item_num));
+			}
 		}
 		//JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();
