@@ -30,27 +30,13 @@ public class MarketDAO {
 		try {
 			conn = DBUtil.getConnection();
 			if(keyword != null && !keyword.equals("")) {
-				if(keyfield.equals("1")) { // 제목
-					sub_sql += "WHERE market_title LIKE ?";
-				}else if(keyfield.equals("2")) { // 내용
-					sub_sql += "WHERE market_content LIKE ?";
-				}else if(keyfield.equals("3")) { // 제목+내용
-					sub_sql += "WHERE market_title LIKE ? OR market_content LIKE ?";
-				}
+				sub_sql += "WHERE market_title LIKE ?"; // 제목으로만 검색
 			}
-			
 			sql = "SELECT COUNT(*) FROM market " + sub_sql;
 			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword != null && !keyword.equals("")) {
-				if(keyfield.equals("1")) {
-					pstmt.setString(1,"%" + keyword + "%");
-				}else if(keyfield.equals("2")) {
-					pstmt.setString(1, "%" + keyword + "%");
-				}else if(keyfield.equals("3")) {
-					pstmt.setString(1, "%" + keyword + "%");
-					pstmt.setString(2, "%" + keyword + "%");
-				}
+				pstmt.setString(1,"%" + keyword + "%");
 			}
 			
 			rs = pstmt.executeQuery();
@@ -83,13 +69,7 @@ public class MarketDAO {
 			conn = DBUtil.getConnection();
 			// 검색 내용이 존재 할 경우 keyfield에 따른 sub_sql 정의
 			if(keyword != null && !keyword.equals("")) {
-				if(keyfield.equals("1")) { // 제목
-					sub_sql += "WHERE market_title LIKE ? ";
-				}else if(keyfield.equals("2")) { // 내용
-					sub_sql += "WHERE market_content LIKE ? ";
-				}else if(keyfield.equals("3")) { // 제목+내용
-					sub_sql += "WHERE market_title LIKE ? OR market_content LIKE ? ";
-				}
+				sub_sql += "WHERE market_title LIKE ? ";
 			}
 			
 			sql = "SELECT * FROM "
@@ -100,14 +80,7 @@ public class MarketDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword != null && !keyword.equals("")) {
-				if(keyfield.equals("1")) {
-					pstmt.setString(++cnt,"%" + keyword + "%");
-				}else if(keyfield.equals("2")) {
-					pstmt.setString(++cnt,"%" + keyword + "%");
-				}else if(keyfield.equals("3")) {
-					pstmt.setString(++cnt,"%" + keyword + "%");
-					pstmt.setString(++cnt,"%" + keyword + "%");
-				}
+				pstmt.setString(++cnt,"%" + keyword + "%");
 			}
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);
