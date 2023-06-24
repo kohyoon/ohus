@@ -7,6 +7,28 @@
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<style type="text/css">
+/*초기화*/
+*{
+    margin: 0;
+    padding: 0;
+    font: normal 12px "Noto Sans CJK KR";
+}
+
+ul, ol {
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #111;
+}
+input,textarea{outline: none;}
+
+#wrapper{width: 100%;}
+
+
+
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
