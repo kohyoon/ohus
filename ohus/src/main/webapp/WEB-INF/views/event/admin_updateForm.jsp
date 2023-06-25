@@ -7,12 +7,30 @@
 <meta charset="UTF-8"> 
 <title>이벤트 수정 폼</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/admin_updateForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript"> 
 
 	$(function(){ 
 		$('#update_form').submit(function(){
+			
+			//종료날짜가 시작 날짜보다 큰 경우
+			var startDate = $('#event_start').val();
+			var endDate = $('#event_end').val();
+
+			var startArray = startDate.split('-');
+			var endArray = endDate.split('-');
+			//배열에 담겨있는 연월일을 사용해서 Date 객체 생성
+			var start_date = new Date(startArray[0], startArray[1], startArray[2]);
+			var end_date = new Date(endArray[0], endArray[1], endArray[2]);
+			//날짜를 숫자형대의 날짜 정보로 변환하여 비교한다.
+			if(start_date.getTime() > end_date.getTime()) {
+				alert('시작일은 종료일보다 클 수 없습니다')
+				return false;
+				}
+			
+			
 			if($('#event_title').val().trim()==''){
 				alert('제목을 입력하세요');
 				$('#title').val('').focus(); 
@@ -54,7 +72,6 @@
 	});
 	
 </script>
-
 
 </head>
 <body>
@@ -144,7 +161,6 @@
 	
 	<div class="align-center">
 		<input type="submit" value="수정">
-		<input type="submit" value="글상세" onclick="location.href='detail.do?event_num=${event.event_num}'"> 
 	</div>
 	
 	</form>

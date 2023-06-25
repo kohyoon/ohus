@@ -19,7 +19,7 @@ public class EventVO {
 	private int winner_count; //당첨자수
 	
 	public int getEvent_status() { 
-		String[] event_ends = event_start.split("-");
+		String[] event_ends = event_end.split("-");
 		LocalDate end_day = LocalDate.of(Integer.parseInt(event_ends[0]), Integer.parseInt(event_ends[1]), Integer.parseInt(event_ends[2]));
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);

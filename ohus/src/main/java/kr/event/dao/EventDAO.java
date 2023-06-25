@@ -129,7 +129,7 @@ public class EventDAO {
 			sql = "SELECT * FROM (SELECT a.*,"
 				+ "rownum rnum FROM (SELECT * "
 				+ "FROM oevent " + sub_sql + " ORDER BY "
-				+ "event_start DESC)a) "
+				+ "event_status DESC, event_end ASC)a) "
 				+ "WHERE rnum>=? AND rnum<=?";
 
 			pstmt = conn.prepareStatement(sql);

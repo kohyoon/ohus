@@ -14,7 +14,7 @@ create table omember_detail(
  reports number(3),
  password varchar2(15) not null,
  phone varchar2(15) not null,
- email varchar2(50) not null,
+ email varchar2(200) not null,
  zipcode varchar2(5) not null,
  address1 varchar2(90) not null,
  address2 varchar2(90) not null,
@@ -37,8 +37,8 @@ create table oevent(
  event_content clob not null,
  event_start varchar2(10) not null,  
  event_end varchar2(10) not null,
- event_regdate default sysdate not null, --이벤트 글 작성일
- event_modifydate, --이벤트 글 수정일
+ event_regdate date default sysdate not null, --이벤트 글 작성일
+ event_modifydate date, --이벤트 글 수정일
  event_status number(1) not null, --이벤트 상태(진행중, 종료) 1:종료 2: 진행중
  event_hit number default 0 not null, --조회수
  mem_num number not null, 

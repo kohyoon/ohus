@@ -91,6 +91,15 @@ background-color : skyblue;
 	margin-left : 1300px;
 }
 
+
+.event-list ul:hover img {
+    opacity: 0.7;
+  }
+
+  .event-list ul img {
+    transition: opacity 0.3s ease;
+  }
+
 		
 </style>
 	<script type="text/javascript">
@@ -165,7 +174,7 @@ background-color : skyblue;
 									<!-- 이벤트 사진을 누르면 상세글로 이동함 -->
 								
 									<a href="detail.do?event_num=${event.event_num}">
-										<img src="${pageContext.request.contextPath}/upload/${event.event_photo}">
+										<img src="${pageContext.request.contextPath}/upload/${event.event_photo}" width="640" height="190">
 									</a> 
 									<br>
 									

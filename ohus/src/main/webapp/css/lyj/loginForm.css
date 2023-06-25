@@ -1,0 +1,128 @@
+@charset "UTF-8";
+form {
+	width: 600px;
+	margin: 0 auto;
+	padding: 10px 10px 10px 30px;
+	align-items: center;
+	justify-content: center;
+	
+}
+form ul li {
+	clear: both;
+}
+
+ul {
+	list-style: none;
+}
+
+label {
+	width: 130px;
+	float: left; /*태그를 왼쪽에 정렬*/
+}
+
+input {
+	margin-top: 4px;
+}
+.content-main {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+
+    .content-main ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .content-main li {
+        margin-bottom: 15px;
+    }
+
+     .content-main label {
+        display: block;
+        margin-top : 8px;
+        margin-bottom: 4px;
+    }
+
+    .content-main input[type="text"],
+    .content-main input[type="password"]{
+       width: 33%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    }
+input[type="text"],
+input[type="password"] {
+    width: 33%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+    
+
+    .align-center input[type="submit"] {
+     width: 70%;
+        padding: 13px;
+        background-color: #35c5f0 ;
+        border: none;
+        color: white;
+        font-weight: bold;
+        font-size : 15px;
+        cursor: pointer;
+        margin-right: 200px;
+        margin-top: 10px;
+        
+        
+    }
+     .align-center input[type="submit"]:hover{
+    	 background-color: #09addb;
+    	 color : white;
+     }
+     
+  
+    .form-notice {
+        font-size: 12px;
+        color: #999;
+        text-align: center;
+        
+    }
+    
+    input[type="text"]:focus {
+        outline: none !important; 
+        border-color: #35c5f0; 
+        box-shadow: 0 0 10px #35c5f0;
+      }
+       input[type="password"]:focus{
+        outline: none !important; 
+        border-color: #35c5f0; 
+        box-shadow: 0 0 10px #35c5f0;
+      }
+      
+      .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 120px;
+    margin-top: 2px;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    color: gray;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.divider {
+    margin: 0 10px;
+    color: gray;
+}
+
+

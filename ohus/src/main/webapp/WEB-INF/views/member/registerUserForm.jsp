@@ -6,68 +6,17 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/registerUserForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<style type="text/css">
-
-form {
-	width: 600px;
-	margin: 0 auto;
-	padding: 10px 10px 10px 30px;
-	align-items: center;
-	justify-content: center;
-}
-
-form ul li {
-	clear: both;
-}
-
-ul {
-	list-style: none;
-}
-
-label {
-	width: 130px;
-	float: left; /*태그를 왼쪽에 정렬*/
-}
-
-input {
-	margin-top: 4px;
-}
-
-input[type="text"], input[type="password"], input[type="email"] {
-	width: 310px;
-}
-
-#register_form input[id="id"] {
-	width: 223px;
-}
-
-input[id="zipcode"] {
-	width: 205px;
-}
-
-input[type="number"] {
-	width: 100px;
-}
-
-.form-notice {
-	margin-left: 130px;
-}
-input[type="submit"]{
-	width : 500px;
-	text-align: center;
-}
-
-
-</style>
-
 
 <script type="text/javascript">
 	$(function(){
 		//0:중복 체크 미실시, id 중복
 		//1:id 미중복
 		let idChecked = 0;
-		
+	
+	
+
 		//아이디 중복 체크
 		$('#id_check').click(function(){
 			
@@ -88,13 +37,11 @@ input[type="submit"]{
 					if(param.result == 'idNotFound'){
 						//id 미중복
 						idChecked = 1;
-						$('#message_id').css('color','blue')
-						                .text('등록 가능 ID');
+						$('#message_id').css('color','blue').text('등록 가능 ID');
 					}else if(param.result == 'idDuplicated'){
 						//id 중복
 						idChecked = 0;
-						$('#message_id').css('color','red')
-						                .text('중복된 ID');
+						$('#message_id').css('color','red').text('중복된 ID');
 						$('#id').val('').focus();
 					}else{
 						idChecked = 0;
@@ -116,43 +63,79 @@ input[type="submit"]{
 			$('#message_id').text('');
 		});//end of keydown
 		
+
+		//이메일 직접입력 
+		//이메일 입력방식 선택
+		$('#selectEmail').change(function(){
+		   $("#selectEmail option:selected").each(function () {
+				
+				if($(this).val()== '1'){ //직접입력일 경우
+					 $("#str_email02").val(''); 
+					 $("#str_email02").attr("disabled",false); //활성화
+				}else{ //직접입력이 아닐경우
+					 $("#str_email02").val($(this).text());//선택값 입력
+					 $("#str_email02").attr("disabled",true); //비활성화
+				}
+		   });
+		});
+
+
+		$("#str_email01").blur(function(){
+			email();	
+		});
+		
+		$("#str_email02").change(function(){
+			email();	
+		});
+
+		function email() {
+			const str_email01 = $("#str_email01").val();
+			const middle = $("#middle").text();
+			const str_email02 = $("#str_email02").val();
+			if(str_email01 != "" && str_email02 != "") {
+				$("#email").val(str_email01+middle+str_email02);
+			}
+		};
+		
+		
 		//회원 정보 등록 유효성 체크
 		$('#register_form').submit(function(){
-			let items = document.querySelectorAll(
-					   'input[type="text"],input[type="password"],input[type="email"]');
+			
+			
+			let items = document.querySelectorAll('input[type="text"],input[type="password"]');
 			 for(let i=0;i<items.length;i++){
 				 
 			    if(items[i].value.trim()==''){
-					let label = 
-						document.querySelector(
-					 'label[for="'+items[i].id+'"]');
+			    	let label = document.querySelector('label[for="'+items[i].id+'"]');
 					alert(label.textContent + ' 항목 필수 입력');
 					items[i].value = '';
 					items[i].focus();
 					return false;
 			    }
 			    
-			    if(items[i].id == 'id' && 
-			    	 !/^[A-Za-z0-9]{4,12}$/.test(
-			    	             $('#id').val())){
+			    if(items[i].id == 'id' && !/^[A-Za-z0-9]{4,12}$/.test($('#id').val())){
 					alert('영문 또는 숫자 사용, 최소 4자 ~ 최대 12자를 사용하세요');
 					$('#id').val('');
 					$('#id').focus();
 					return false;
 				}
 			    
-			    if(items[i].id == 'id' && 
-			    		            idChecked == 0){
+			    if(items[i].id == 'id' && idChecked == 0){
 					alert('아이디 중복 체크 필수');
 					return false;
 			    }
+			    
+			  
 			}
 			
 			
 		});
 		
-	});
+	}); //end
 </script>
+
+
+
 </head>
 <body>
 <div class="page-main">
@@ -160,16 +143,12 @@ input[type="submit"]{
 	<!-- 내용 시작 -->
 	<div class="content-main">
 		<h2>회원가입</h2>
-		<form id="register_form" 
-		  action="registerUser.do" method="post">
+		<form id="register_form" action="registerUser.do" method="post">
 			<ul>
-				<li>
+				 <li>
 					<label for="id"><b>아이디</b></label>
-					<input type="text" name="id"
-					   id="id" maxlength="12"
-					   autocomplete="off" placeholder="아이디">
-					<input type="button" 
-					 value="id중복체크" id="id_check">
+					<input type="text" name="id" id="id" maxlength="12" autocomplete="off" placeholder="아이디">
+					<input type="button" value="id중복체크" id="id_check">
 					<span id="message_id"></span>
 					<div class="form-notice">*영문 또는 숫자(4자~12자)</div>    
 				</li>
@@ -188,11 +167,28 @@ input[type="submit"]{
 					<input type="text" name="phone"
 					  id="phone" maxlength="15" placeholder="전화번호">
 				</li>
-				<li>
-					<label for="email"><b>이메일</b></label>
-					<input type="email" name="email"
-					  id="email" maxlength="50" placeholder="이메일">
-				</li>
+				 <li>
+	                <label for="email"><b>이메일</b></label>
+	                <div class="email-container">
+	                    <input type="text" id="str_email01" style="width: 100px" placeholder="이메일" required>
+	                    <span id="middle">@</span>
+	                    <input type="text" id="str_email02" style="width: 100px;" placeholder="도메인" required>
+	                    <select style="width: 100px; margin-right: 10px" name="selectEmail" id="selectEmail">
+	                        <option value="1">직접입력</option>
+	                        <option value="naver.com">naver.com</option>
+	                        <option value="hanmail.net">hanmail.net</option>
+	                        <option value="daum.net">daum.net</option>
+	                        <option value="gmail.com">gmail.com</option>
+	                        <option value="nate.com">nate.com</option>
+	                        <option value="hotmail.com">hotmail.com</option>
+	                        <option value="outlook.com">outlook.com</option>
+	                        <option value="icloud.com">icloud.com</option>
+	                    </select>
+	                </div>
+	                <input type="hidden" id="email" name="email" value=""> <!-- 최종 이메일 -->
+            </li>
+					
+			
 				<li>
 					<label for="zipcode"><b>우편번호</b></label>
 					<input type="text" name="zipcode"
@@ -210,12 +206,19 @@ input[type="submit"]{
 					<input type="text" name="address2"
 					  id="address2" maxlength="30" placeholder="상세주소">
 				</li>
+				
 			</ul> 
-			<div class="align-center">
-				<input type="submit" value="회원가입하기">
-			</div> 
+			
 		</form>
+		
+	
 	</div>
+	<p>
+	<p>
+	<div class="align-center">
+			<input type="submit" value="회원가입">
+	</div> 
+</div>
 	<!-- 내용 끝 -->
 	<!-- 우편번호 검색 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->

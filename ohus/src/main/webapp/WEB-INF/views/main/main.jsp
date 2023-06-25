@@ -7,10 +7,62 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/koy.css">
+<style type="text/css">
+
+
+/* 홈페이지 상단 이미지
+------------------------------------------------------------------ */
+.home-header__upper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.home-header__upper:hover img {
+  transform: scale(110%);
+}
+
+.home-header__upper:hover .home-header-tit a {
+  background: #35c5f0;
+  border: none;
+}
+
+.home-header__upper img {
+  width: 100%;
+  filter: brightness(65%);
+  transition: 0.3s;
+  vertical-align: bottom;
+}
+
+.home-header-tit {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 2.5rem;
+  color: #fff;
+}
+
+.home-header-tit h4 {
+  font-size: 1.4rem;
+  padding: 1rem 0;
+}
+
+.home-header-tit a {
+  display: inline-block;
+  width: 100px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}  
+
+</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
 </head>
 <body> 
 	<div class="page-main">
