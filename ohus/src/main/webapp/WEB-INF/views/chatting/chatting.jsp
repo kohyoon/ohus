@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>채팅방</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/chatting.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chatMessage.js"></script>
 <script type="text/javascript">
@@ -19,23 +20,26 @@
 	<!-- 채팅방 헤더 시작 -->
 	<!-- 보내는 사람 정보, 게시글 제목 필요-->
 	<!-- 채팅방 헤더 끝 -->
-	
-	<!-- 채팅 내용 시작 -->
-	<div class="content-main">		
-		<!-- 채팅 내용 출력 시작 -->
-		<div id="output"></div>
-		<!-- 채팅 내용 출력 끝 -->
-		<div id="chatting_div">
+	<div class="chatting-main">
+		<!-- 채팅 내용 시작 -->
+		<div class="content-main">		
+			<!-- 채팅 내용 출력 시작 -->
+			<div class="chatting-content">
+				<div id="output"></div>
+			</div>
+			<!-- 채팅 내용 출력 끝 -->
+			<div id="chatting_send">
 			<form id="chat_form">
 				<input type="hidden" name="chatroom_num" value="${chatroom_num}" id="chatroom_num">
-				<textarea rows="3" cols="20" name="message" id="message" class="rep-content"></textarea>
-				<div id="re_second" class="align-right">
+				<input type="text" name="message" id="message" class="chat-message" placeholder="내용을 입력하세요.">
+				<div id="re_second" class="chat-sender">
 					<input type="submit" value="전송">
 				</div>
 			</form>
 		</div>
+		</div>
+		<!-- 채팅 내용 끝 -->
 	</div>
-	<!-- 채팅 내용 끝 -->
 </div>
 </body>
 </html>

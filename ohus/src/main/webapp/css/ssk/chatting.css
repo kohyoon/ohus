@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+/* 전체 페이지 스타일 */
+div.page-main{
+    overflow: hidden;
+}
+div.chatting-main{
+    height: 700px;
+    width: 100%;
+    margin:0 auto;
+	background-color:#E6E6E6;
+	position:absolute;
+}
+
+/* 채팅 메세지 출력 부분 스타일 */
+div.content-main{
+    width:600px;
+    height: 600px;
+    margin: 50px auto 0;
+    background-color: white;
+    box-shadow:0 1px 10px 2px gray;
+    position: relative;
+    overflow: auto;
+}
+
+/* 채팅 메세지 입력 부분 스타일 */
+div#chatting_send{
+    position: sticky;
+    bottom:0;
+    margin: 0 auto;
+
+}
+.chat-message{
+    border: none;
+    border-top:1px solid #E6E6E6;
+    font-size:20px;
+    height:40px;
+    float:left;
+    width:80%;
+}
+.chat-sender input{
+    height: 40px;
+    width: 19%;
+    border:none;
+    border-radius: 10px;
+    background-color: aqua;
+}
+.chat-sender input:hover{
+    background-color: blue;
+    color:white;
+}

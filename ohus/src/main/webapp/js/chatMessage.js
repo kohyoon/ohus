@@ -1,7 +1,7 @@
-$(function(){
-	
+$(function(){	
 	// 채팅 목록
 	function messageList(chatroom_num){
+		$('.content-main').scrollTop($('.content-main').prop('scrollHeight'));
 		$.ajax({
 			url: 'chatMessageList.do',
 			type: 'get',
@@ -19,8 +19,7 @@ $(function(){
 					output += '</div>';
 					$('#output').append(output);
 				});
-				
-				$('html').scrollTop($(document).height());
+				$('.content-main').scrollTop($('.content-main').prop('scrollHeight'));
 			},
 			error:function(){
 				alert('네트워크 통신 오류');
@@ -65,7 +64,7 @@ $(function(){
 	});
 	
 	function initForm(){
-		$('textarea').val('');
+		$('.chat-message').val('');
 	}
 	setInterval(function(){
 		messageList(chatroom_num)
