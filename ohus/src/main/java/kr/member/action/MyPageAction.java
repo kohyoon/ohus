@@ -14,6 +14,7 @@ import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 import kr.order.dao.OrderDAO;
 import kr.order.vo.OrderVO;
+import kr.util.PageUtil;
 
 public class MyPageAction implements Action{
 
@@ -26,6 +27,8 @@ public class MyPageAction implements Action{
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";			
 		}
+		
+		
 		//로그인이 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		//회원정보
@@ -47,12 +50,23 @@ public class MyPageAction implements Action{
 		OrderDAO orderDao = OrderDAO.getInstance();
 		List<OrderVO> orderList = orderDao.getListOrderByMem_num(1, 5, null, null, user_num);
 						
+		
+		//분리한 마이페이지 처리
+		String page = request.getParameter("page");
+
+				
+				
+			    // 페이지 정보를 request 객체에 추가
+		request.setAttribute("page", page);
 		request.setAttribute("member", member);
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("orderList", orderList);
-		//상품 스크랩
 		
 		
+		
+		
+
+	
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myPage.jsp";
 	}

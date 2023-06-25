@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/modifyUserForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//회원 정보 등록 유효성 체크
 		$('#modify_form').submit(function(){
-			let items = document.querySelectorAll(
-					   'input[type="text"],input[type="email"]');
+			let items = document.querySelectorAll('input[type="text"],input[type="email"]');
 			 for(let i=0;i<items.length;i++){
 				 
 			    if(items[i].value.trim()==''){
@@ -79,8 +79,6 @@
 			</ul> 
 			<div class="align-center">
 				<input type="submit" value="수정">
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div> 
 		</form>
 	</div>

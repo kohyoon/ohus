@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>MY페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/myPage.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -100,196 +101,60 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<!-- 전체 div 시작-->
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!-- 내용 시작 -->
-	<div class="content-main">
-		<div class="mypage-header">
-			<ul>
-				<li>
-					<a href="#">프로필</a>
-					<ul>
-						<li>
-							<a href="#">사진</a>
-							<!-- 왼쪽 : 프로필 수정가능 -->
-							<div class="align-left">
-							
-								<c:if test="${empty member.photo}">
-									<img src="${pageContext.request.contextPath}/images/face.png"
-									   width="200" height="200" class="my-photo">
-								</c:if>
-								<c:if test="${!empty member.photo}">
-									<img src="${pageContext.request.contextPath}/upload/${member.photo}"
-									   width="200" height="200" class="my-photo">
-								</c:if>
+<ul class="">
+		      <li>
+		        <a href="#" class="toggle">프로필</a>
+		        <ul class="submenu">
+		          <%@ include file="myPage1.jsp" %>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="#" class="toggle">나의쇼핑</a>
+		        <ul class="submenu">
+		          <%@ include file="myPage2.jsp" %>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="#" class="toggle">나의참여</a>
+		        <ul class="submenu">
+		          <%@ include file="myPage3.jsp" %>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="#" class="toggle">설정</a>
+		        <ul class="submenu">
+		          <%@ include file="myPage4.jsp" %>
+		        </ul>
+</div>
+<!-- 전체 div 끝-->
 
-								<div class="align-center">
-									<input type="button" value="수정" id="photo_btn">
-								</div>
-								<div id="photo_choice" style="display:none;">
-									<input type="file" id="photo"
-									 accept="image/gif,image/png,image/jpeg">
-									<br>
-									<input type="button" value="전송" id="photo_submit">
-									<input type="button" value="취소" id="photo_reset">                        
-								</div>
-							</div>
-							
-							<!-- 오른쪽 내가 커뮤니티에 올린 사진 -->
-							<div class="align-right">
-								<div class="mypage-div">
-									<table>
-										<c:forEach var="cboard" items="${cboardList}">
-											<tr> 
-												<td>
-													<a href="${pageContext.request.contextPath}/cboard/detail.do?cboard_num=${cboard.cboard_num}">
-														<img src="${pageContext.request.contextPath}/upload/${cboard.cboardVO.photo1}" width="80">
-													</a>
-												</td>
-											</tr>
-										</c:forEach>
-									</table>
-								</div> 
-							</div>	
-						</li>
-						<li><input type="button" onclick="" value="상추글"></li>
-						<li>
-							상품스크랩
-							<c:forEach var="item" items="${itemList}">
-							<a href="${pageContext.request.contextPath}/item/detail.do?item_num=${item.item_num}">
-								<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="100">
-								${item.item_name}
-							</a>
-							</c:forEach>
-						</li>
-						<li><a href="#">문의내용</a></li>
-					</ul>
-				</li>
-				
-				<li><a href="#">나의쇼핑</a></li>
-				<li><a href="#">나의참여</a></li>
-				<li><a href="#">설정</a></li>
-			
-			</ul>
-		
-		
-		
-		</div>
-	
-	</div> <!-- 임시로 닫음 빼기 -->	
-</div>	
-	
-	
-	
-	
-	
-		<%-- <div class="mypage-div">
-			<h3>프로필 사진</h3>
-			<!-- 프로필 사진 시작 -->
-			<ul>
-				<li>
-					<c:if test="${empty member.photo}">
-					<img src="${pageContext.request.contextPath}/images/face.png"
-					   width="200" height="200" class="my-photo">
-					</c:if>
-					<c:if test="${!empty member.photo}">
-					<img src="${pageContext.request.contextPath}/upload/${member.photo}"
-					   width="200" height="200" class="my-photo">
-					</c:if>
-				</li>
-				<li>
-					<div class="align-center">
-						<input type="button" value="수정" id="photo_btn">
-					</div>
-					<div id="photo_choice" style="display:none;">
-						<input type="file" id="photo"
-						 accept="image/gif,image/png,image/jpeg">
-						<br>
-						<input type="button" value="전송" id="photo_submit">
-						<input type="button" value="취소" id="photo_reset">                        
-					</div>
-				</li>
-			</ul>
-			<!-- 프로필 사진 끝 -->
-			<h3>
-				연락처
-				<input type="button" 
-				 value="연락처 수정"
-				 onclick="location.href='modifyUserForm.do'">
-			</h3>
-			<ul>
-				<li>이름 : ${member.name}</li>
-				<li>전화번호 : ${member.phone}</li>
-				<li>이메일 : ${member.email}</li>
-				<li>우편번호 : ${member.zipcode}</li>
-				<li>주소 : ${member.address1} ${member.address2}</li>
-				<li>가입일 : ${member.reg_date}</li>
-				<c:if test="${!empty member.modify_date}">
-					<li>최근 정보 수정일 : ${member.modify_date}</li>
-				</c:if>
-			</ul>
-		</div>end of .mypage-div
-		
-		<div class="mypage-div">
-			<h3>
-				비밀번호 수정
-				<input type="button" 
-				 value="비밀번호 수정"
-				 onclick="location.href='modifyPasswordForm.do'">
-			</h3>
-			<h3>
-				회원탈퇴
-				<input type="button"
-				 value="회원탈퇴"
-				 onclick="location.href='deleteUserForm.do'">
-			</h3>
-		</div>end of .mypage-div
-		
-		mypage에 좋아요 누른 게시물 목록 나타내기
-		<div class="mypage-div">
-			<h3>좋아요 누른 게시물 목록</h3>
-			<table>
-				<tr>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>등록일</th>
-				</tr>
-				<c:forEach var="cboard" items="${cboardList}">
-					<tr> 말줄임(...) 사용!
-						<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${cboard.cboard_num}" target="_blank">${fn:substring(board.title,0,12)}</a></td>
-						<td>${cboard.title}</td>
-						<td>${cboard.reg_date}</td>
-					</tr>
-				</c:forEach>
-			</table> --%>
-			
-			<%-- order 작업 중 --%>
-			<h3>
-				상품구매목록
-				<input type = "button" value = "구매목록보기" onclick = "location.href='${pageContext.request.contextPath}/order/orderList.do'">
-			</h3>
-			<ul>
-				<li>
-					<c:forEach var = "order" items = "${orderList}">
-						<div>
-							<a href = "${pageContext.request.contextPath}/order/orderModifyForm.do?order_num=${order.order_num}">
-								${order.order_num} ${order.item_name}(${order.order_regdate})	
-								<c:if test = "${order.order_status == 1}">배송대기</c:if>
-								<c:if test = "${order.order_status == 2}">배송준비중</c:if>
-								<c:if test = "${order.order_status == 3}">배송중</c:if>
-								<c:if test = "${order.order_status == 4}">배송완료</c:if>
-								<c:if test = "${order.order_status == 5}">주문취소</c:if>
-							</a>
-						</div>
-					</c:forEach>
-				</li>
-			</ul>
-			
-		<%--</div> 
-		<div class="mypage-end"></div>
-	</div>
-	<!-- 내용 끝 -->
-</div>--%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function toggleSubMenu(element) {
+  var submenu = element.nextElementSibling;
+  submenu.classList.toggle("show");
+}
+
+$(document).ready(function() {
+  // 하위 메뉴 초기 상태는 숨김으로 설정
+  $('.submenu').hide();
+
+  // 상단 메뉴 클릭 이벤트 처리
+  $('.toggle').click(function() {
+    // 다른 하위 메뉴 숨김
+    $('.submenu').hide();
+    
+    // 클릭한 상단 메뉴의 하위 메뉴만 보이게 설정
+    $(this).siblings('.submenu').show();
+  });
+});
+</script>
+
+
+
 </body>
 </html>
 

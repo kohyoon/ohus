@@ -1,0 +1,98 @@
+@charset "UTF-8";
+.mypage-header {
+  padding: 6px;
+
+}
+
+.menu-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-list li {
+  margin-right: 20px;
+  font-weight: bold;
+  
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #333;
+  
+}
+
+.submenu {
+  display: none;
+  white-space: nowrap;
+}
+
+.submenu.show {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+ul.menu-list li {
+  position: relative;
+}
+
+
+ul.menu-list li.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #000;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+ul.menu-list li:not(:last-child) .toggle {
+  margin-right: 200px; /* 간격 조정 */
+  font-weight: bold;
+  
+}
+
+
+
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-right: 10px;
+}
+
+.page-main {
+  display: flex;
+  justify-content: center;
+}
+
+ul.menu-list {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.menu-list li a {
+  text-align: center;
+}
+
+.main-content {
+  margin-top: 50px; /* 상단 메뉴 높이만큼 여백 추가 */
+  margin-bottom: 100px; /* 하단 메뉴 높이만큼 여백 추가 */
+}
