@@ -1,5 +1,14 @@
 
 @charset "UTF-8";
+
+/*페이지 메인 간격*/
+.page-main{
+	 max-width: 1700px;
+        margin: 0 auto;
+        padding: 20px;
+}
+
+
 /* 헤더 상단 영역 -----------------------------------------------------*/
 .header-upper {
   border-bottom: 1px solid #ededed;
@@ -57,10 +66,7 @@
   display: none;
   list-style: none;
 }
-/*추가한 것 헤더*/
-.header-upper_test li{
-  float:left;
-}
+
 
 /* 공통 정렬
 ------------------*/
@@ -141,55 +147,6 @@
   flex-flow: column nowrap;
 }
 
-/* 홈페이지 상단 이미지
------------------------------------------------------------------- */
-.home-header__upper {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.home-header__upper:hover img {
-  transform: scale(110%);
-}
-
-.home-header__upper:hover .home-header-tit a {
-  background: #35c5f0;
-  border: none;
-}
-
-.home-header__upper img {
-  width: 100%;
-  filter: brightness(65%);
-  transition: 0.3s;
-  vertical-align: bottom;
-}
-
-.home-header-tit {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  padding: 2.5rem;
-  color: #fff;
-}
-
-.home-header-tit h4 {
-  font-size: 1.4rem;
-  padding: 1rem 0;
-}
-
-.home-header-tit a {
-  display: inline-block;
-  width: 100px;
-  height: 32px;
-  text-align: center;
-  line-height: 32px;
-  border-radius: 5px;
-  border: 1px solid #fff;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
 
 
 
@@ -340,13 +297,7 @@
     color: #424242;
   }
 
-  .header-upper__nav ul {
-    display: flex;
-  }
-  .header-upper__nav ul li a{
- 	 text-decoration-line : none;
-	color : black;
-  }
+
   .header-upper__item {
     font-weight: bold;
     margin-right: 1rem;
@@ -366,34 +317,7 @@
     color: #35c5f0;
   }
 
-  .header-upper__service ul {
-    display: inline-block;
-  }
 
-  .header-upper__service ul li a {
-    margin: 0 30px 0 20px; /*상우하좌*/
-    display: inline-block;
-    text-decoration-line : none;
-    color:black;
-  }
-
-  .header-upper__service ul li:nth-child(1) {
-    border-right: 1px solid #757575;
-    padding-right: 2px;
-  }
-
-  .header-upper__service ul li:nth-child(3) {
-    border-left: 1px solid #757575;
-    display: none;
-  }
-  
-  #header-upper__service ul li.register_bar {
-	margin: 0 5px 0 5px;
-}
-
-#header-upper__service ul li.login_bar {
-	margin: 0 5px 0 20px;
-}
 
   /* 785px 홈 페이지 전체 영역 -------------------------------------*/
 
@@ -491,28 +415,7 @@
   
 
 @media (min-width: 1045px) {
-  .header-upper__searchBar input {
-    border: none;
-    width: 230px;
-    margin-left: 5rem;
-  }
 
-  .header-upper__searchBar input:focus {
-    outline: none;
-  }
-
-  .header-upper__searchBar .fa-search {
-    margin-left: 0.5rem;
-  }
-
-  .header-upper__searchBar {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    border: 1px solid #dbdbdb;
-    border-radius: 0.3rem;
-    margin-right: 1rem;
-  }
 
   .mobile-searchBar {
     display: none;
@@ -583,56 +486,60 @@ a:visited {
 	color: #000000;
 }
 
-a:hover {
-	text-decoration: none;
-	color: #6C6C6C;
-}
+ a:hover {
+    color: #35c5f0;
+  }
 
 ul li{
 	text-decoration: none;
 	list-style: none;
 }
-
-
-
-/*
+  
+  /*
 글쓰기 버튼 드롭다운
 */
 li .dropbtn {
     display: inline-block;
-    background-color : skyblue;
+    border : none;
+    background-color : #35c5f0;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: white;
-    color : black;
+li .dropdown:hover .dropbtn {
+    background-color: #09addb ;
+    color : white;
 }
 
 li.dropdown {
     display: inline-block;
-}
+} 
 
 
 .dropdown-content { 
-	display: none; position: absolute; background-color:#f9f9f9; 
-	min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	display: none; 
+	position: absolute; 
+	background-color:#fafafa;
+	min-width: 160px; 
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 } 
 .dropdown-content a 
 { 
-	color: black; padding: 12px 16px;
-	text-decoration: none; display: block; text-align: left; 
+	color: black; 
+	padding: 12px 16px;
+	text-decoration: none; 
+	display: block; text-align: left; 
 }
 
 .dropdown-content a:hover {
-	background-color: white
+	background-color: #e6e6e6;
+	color : black;
 	
 } 
 .show {
 	display: block;
 	}}
-/* 
-*/
+
+
