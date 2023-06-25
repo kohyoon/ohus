@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>상추 마켓</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market_list.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/market_list.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
