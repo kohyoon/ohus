@@ -185,19 +185,34 @@ public class MarketDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+		String sub_sql = "";
+		int cnt = 0;
 		try {
 			conn = DBUtil.getConnection();
+			if(market.getMarket_photo1()!=null && market.getMarket_photo2()==null) {
+				sub_sql = ",market_photo1=?";
+			}else if(market.getMarket_photo1()==null && market.getMarket_photo2()!=null) {
+				sub_sql = ",market_photo2=?";
+			}else if(market.getMarket_photo1()!=null && market.getMarket_photo2()!=null){
+				sub_sql = ",market_photo1=?,market_photo2=?";
+			}
 			sql = "UPDATE market SET "
-					+ "market_title=?,market_content=?,market_modifydate=SYSDATE,market_status=?,market_photo1=?,market_photo2=? "
-					+ "WHERE market_num=?";
+					+ "market_title=?,market_content=?,market_modifydate=SYSDATE,market_status=?"
+					+ sub_sql
+					+ " WHERE market_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, market.getMarket_title());
-			pstmt.setString(2, market.getMarket_content());
-			pstmt.setInt(3, market.getMarket_status());
-			pstmt.setString(4, market.getMarket_photo1());
-			pstmt.setString(5, market.getMarket_photo2());
-			pstmt.setInt(6, market.getMarket_num());
+			pstmt.setString(++cnt, market.getMarket_title());
+			pstmt.setString(++cnt, market.getMarket_content());
+			pstmt.setInt(++cnt, market.getMarket_status());
+			if(market.getMarket_photo1()!=null && market.getMarket_photo2()==null) {
+				pstmt.setString(++cnt, market.getMarket_photo1());
+			}else if(market.getMarket_photo1()==null && market.getMarket_photo2()!=null) {
+				pstmt.setString(++cnt, market.getMarket_photo2());
+			}else if(market.getMarket_photo1()!=null && market.getMarket_photo2()!=null){
+				pstmt.setString(++cnt, market.getMarket_photo1());
+				pstmt.setString(++cnt, market.getMarket_photo2());
+			}
+			pstmt.setInt(++cnt, market.getMarket_num());
 			
 			pstmt.executeUpdate();
 			

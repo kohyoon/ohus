@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>거래글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/market_detail.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -21,14 +21,15 @@
 		<c:if test="${!empty market.market_modifydate}">
 			<h6 class="header-date">작성일 : ${market.market_regdate} 수정일 : ${market.market_modifydate} 조회수 : ${market.market_hit}</h6>
 		</c:if>
+		<c:if test="${empty market.market_modifydate}">
 			<h6 class="header-date">작성일 : ${market.market_regdate} 조회수 : ${market.market_hit}</h6> 
-		
+		</c:if>
 		<div class="content-img">
 			<div class="inner-img">
-				<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="300" height="300" class="my-photo">
+				<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="300" height="300" class="content-photo">
 			</div>
 			<div class="inner-img">
-				<img src="${pageContext.request.contextPath}/upload/${market.market_photo2}" width="300" height="300" class="my-photo">
+				<img src="${pageContext.request.contextPath}/upload/${market.market_photo2}" width="300" height="300" class="content-photo">
 			</div>	
 		</div>
 		
@@ -67,7 +68,7 @@
 						</c:if>
 					</c:if>
 					<c:if test="${market.market_status == 1}">
-						<input class="footer-button" type="button" value="채팅하기" disabled="disabled">
+						<input class="close-chat" type="button" value="채팅하기" disabled="disabled">
 					</c:if>
 				</li>
 			</ul>
