@@ -1,0 +1,127 @@
+@charset "UTF-8";
+/* 페이지 스타일 */
+div.content-main {
+	width: 960px;
+	margin: 0 auto;
+	background: white;
+	border: 1px solid gray;
+	min-height: 700px;
+	overflow: auto;
+	padding: 10px 20px;
+}
+
+/* 폼 스타일 */
+.half {
+	float: left;
+	width: 48%;
+}
+
+.right {
+	margin-top: 40px;
+	margin-right: 2%;
+}
+
+.left {
+	margin-left: 2%;
+}
+
+/* input, textarea 스타일 */
+.left input {
+	width: 80%;
+	display: block;
+	margin-top: 40px;
+	padding: 8px;
+	border: 0;
+	box-shadow: 0 1px 10px 2px gray;
+}
+
+.left textarea {
+	width: 80%;
+	display: block;
+	padding: 8px;
+	border: 0;
+	box-shadow: 0 1px 10px 2px gray;
+	min-height: 300px;
+}
+
+/* 거래상태, 첨부파일 스타일 */
+div.status label {
+	float: left;
+	display: block;
+	padding: 8px;
+	font-size: 15px;
+	width: 100px;
+	text-align: center;
+	background-color: #E6E6E6;
+}
+
+div.status select {
+	display: block;
+	margin-left: 35%;
+	padding: 8px;
+	font-size: 15px;
+}
+
+div.photos {
+	margin-top: 40px;
+}
+
+div.photos label {
+	padding: 8px;
+	font-size: 15px;
+}
+
+.photos-main-title {
+	display: block;
+	padding: 8px;
+	font-size: 15px;
+	width: 100px;
+	text-align: center;
+	background-color: #E6E6E6;
+}
+
+.photos .photo1-name, .photos .photo2-name {
+	height: 40px;
+	padding: 0 10px;
+	margin-top: 10px;
+	vertical-align: middle;
+}
+
+.photos-select {
+	display: inline-block;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.photos input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+.photos-select:hover{
+	border: 1px solid black;
+}
+
+.preview{
+	margin-top:10px;
+	
+}
+#photo_preview{
+	object-fit:scale-down;
+}
+.buttons input{
+  float:left;
+  margin:20px 10px;
+  width:100px;
+}
+
+.buttons input:hover{
+  cursor: pointer;
+  background-color: gray;
+}
