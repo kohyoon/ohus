@@ -13,14 +13,14 @@ public class CommunityDetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//글번호
-		int board_num = Integer.parseInt(
+		int cboard_num = Integer.parseInt(
 						   request.getParameter(
 								     "cboard_num"));
 		CommunityDAO dao = CommunityDAO.getInstance();
 		//조회수 증가
-		dao.updateReadcount(board_num);
+		dao.updateReadcount(cboard_num);
 		
-		CommunityVO board = dao.getBoard(board_num);
+		CommunityVO board = dao.getBoard(cboard_num);
 		
 		//HTML 태그를 허용하지 않음
 		board.setCboard_title(

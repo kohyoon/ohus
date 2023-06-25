@@ -13,6 +13,7 @@ CREATE TABLE cboard (
   order_num NUMBER, -- 주문 번호
   mem_num NUMBER NOT NULL, -- 회원 번호
   cboard_fav NUMBER(5) NOT NULL, -- 게시물 좋아요
+  favCount NUMBER(5), -- 좋아요 갯수
   CONSTRAINT cboard_pk PRIMARY KEY (cboard_num),
   CONSTRAINT cboard_fk1 FOREIGN KEY (order_num) REFERENCES orders (order_num),
   CONSTRAINT cboard_fk2 FOREIGN KEY (mem_num) REFERENCES omember (mem_num)

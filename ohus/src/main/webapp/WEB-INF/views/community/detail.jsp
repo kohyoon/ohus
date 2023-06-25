@@ -10,6 +10,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cboard.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/cboard.reply.js"></script>
+
 </head>
 
 <body>
@@ -112,12 +113,15 @@
 		<div id="loading" style="display:none;">
 			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
 		</div>
+		
 		<!-- 댓글 목록 출력 끝 -->
 		<!-- 댓글 끝 -->
-	</div>
-	
+
+		</div>
 	<!-- 내용 끝 -->
 </div>
+
+
 </body>
 </html>
 

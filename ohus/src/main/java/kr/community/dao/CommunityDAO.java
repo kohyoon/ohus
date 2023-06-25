@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.community.vo.CommunityFavVO;
 import kr.community.vo.CommunityReplyVO;
+import kr.community.vo.CommunityReportVO;
 import kr.community.vo.CommunityVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
@@ -54,7 +55,7 @@ public class CommunityDAO {
 	}	
 	//총 레코드 수(검색 레코드 수)
 	public int getBoardCount(String keyfield,
-			                 String keyword)
+			                 String keyword, String cboard_category)
 	                        throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -62,10 +63,15 @@ public class CommunityDAO {
 		String sql = null;
 		String sub_sql = "";
 		int count = 0;
+		int cnt = 0;
 		
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
+			
+			if(cboard_category != null && !"".equals(cboard_category)) {
+				sub_sql += "WHERE cboard_category = ?";
+			}
 			
 			if (keyword != null && !"".equals(keyword)) {
 				  if (keyfield.equals("1")) sub_sql += "WHERE b.cboard_title LIKE ?";
@@ -78,9 +84,14 @@ public class CommunityDAO {
 				+ "JOIN omember m ON b.mem_num = m.mem_num " + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			
+			if(cboard_category != null && !"".equals(cboard_category)) {
+				pstmt.setInt(++cnt, Integer.parseInt(cboard_category));
+			}
+			
 			if(keyword != null 
 					      && !"".equals(keyword)) {
-				pstmt.setString(1, "%" + keyword + "%");
+				pstmt.setString(++cnt, "%" + keyword + "%");
 			}
 			
 			//SQL 실행
@@ -95,9 +106,10 @@ public class CommunityDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}	
 		return count;
-	}    
+	}
+	
 	// 글 목록(검색글 목록)
-	public List<CommunityVO> getListBoard(int start, int end, String keyfield, String keyword, String sort) throws Exception {
+	public List<CommunityVO> getListBoard(int start, int end, String keyfield, String keyword, String sort, String cboard_category) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -110,31 +122,37 @@ public class CommunityDAO {
 	        // 커넥션 풀로부터 커넥션을 할당
 	        conn = DBUtil.getConnection();
 
-	        if (keyword != null && !"".equals(keyword)) {
-	            if (keyfield.equals("1")) sub_sql += "WHERE b.cboard_title LIKE ?";
-	            else if (keyfield.equals("2")) sub_sql += "WHERE m.id LIKE ?";
-	            else if (keyfield.equals("3")) sub_sql += "WHERE b.cboard_content LIKE ?";
+	        if (cboard_category != null && !"".equals(cboard_category)) {
+	            sub_sql += "AND cboard_category = ?";
 	        }
-	        
+
+	        if (keyword != null && !"".equals(keyword)) {
+	            if (keyfield.equals("1")) sub_sql += "AND b.cboard_title LIKE ?";
+	            else if (keyfield.equals("2")) sub_sql += "AND m.id LIKE ?";
+	            else if (keyfield.equals("3")) sub_sql += "AND b.cboard_content LIKE ?";
+	        }
+
 	        if (sort == null) {
 	            // "sort"가 null인 경우 기본 정렬 옵션을 설정
 	            sort = "latest";
 	        }
-	        
+
 	        // 정렬 기준에 따라 SQL문 작성
-	        if (sort.equals("recent")) {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM cboard b JOIN omember m ON b.mem_num = m.mem_num " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
+	        if (sort.equals("latest")) {
+	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
 	        } else if (sort.equals("hits")) {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM cboard b JOIN omember m ON b.mem_num = m.mem_num " + sub_sql + " ORDER BY b.cboard_hit DESC)a) WHERE rnum>=? AND rnum<=?";
+	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_hit DESC)a) WHERE rnum>=? AND rnum<=?";
 	        } else if (sort.equals("favorites")) {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM cboard b JOIN omember m ON b.mem_num = m.mem_num " + sub_sql + " ORDER BY b.cboard_fav DESC)a) WHERE rnum>=? AND rnum<=?";
+	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_fav DESC)a) WHERE rnum>=? AND rnum<=?";
 	        } else {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM cboard b JOIN omember m ON b.mem_num = m.mem_num " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
+	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
 	        }
-	        
-	        
+
 	        // PreparedStatement 객체 생성
 	        pstmt = conn.prepareStatement(sql);
+	        if (cboard_category != null && !"".equals(cboard_category)) {
+	            pstmt.setInt(++cnt, Integer.parseInt(cboard_category));
+	        }
 	        // 데이터 바인딩
 	        if (keyword != null && !"".equals(keyword)) {
 	            pstmt.setString(++cnt, "%" + keyword + "%");
@@ -154,18 +172,25 @@ public class CommunityDAO {
 	            board.setId(rs.getString("id"));
 	            board.setCboard_photo1(rs.getString("cboard_photo1"));
 	            board.setCboard_fav(rs.getInt("cboard_fav"));
-					
-					//자바빈을 ArrayList에 저장
-					list.add(board);
-				}
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				//자원정리
-				DBUtil.executeClose(rs, pstmt, conn);
-			}
-			return list;
-		}
+	            
+	            // 좋아요 개수 조회
+	            int cboard_num = rs.getInt("cboard_num");
+	            int favCount = selectFavCount(cboard_num);
+	            board.setFavCount(favCount);
+	            
+	            // 자바빈을 ArrayList에 저장
+	            list.add(board);
+	        }
+	    } catch(Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        // 자원정리
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+	    return list;
+	}
+
+
 	
 	//글 상세
 	public CommunityVO getBoard(int cboard_num) throws Exception {
@@ -754,5 +779,31 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 신고하기
+	public void reportReply(CommunityReportVO report) throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DBUtil.getConnection();
+
+            String sql = "INSERT INTO cboard_report (dec_num, dec_category, dec_regdate, mem_num, re_num) " +
+                    "VALUES (cboard_report_seq.nextval, ?, SYSDATE, ?, ?)";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, report.getDec_category());
+            pstmt.setInt(2, report.getMem_num());
+            pstmt.setInt(3, report.getRe_num());
+
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            DBUtil.executeClose(null, pstmt, conn);
+        }
+    }
+	
+
 	
 }

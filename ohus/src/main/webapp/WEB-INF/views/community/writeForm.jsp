@@ -39,12 +39,12 @@
 			<ul>
 				<li>
 					<label for="cboard_category">카테고리</label>
-					<select name="cboard_category" id="category">
-						<option value="0" selected>일상</option>
-						<option value="1">취미</option>
-						<option value="2">자랑</option>
-						<option value="3">추천</option>
-					</select>
+					<li>
+						<label>카테고리</label>
+						<input type="radio" name="cboard_category" value="0" id="category1">일상
+						<input type="radio" name="cboard_category" value="1" id="category2">취미
+						<input type="radio" name="cboard_category" value="2" id="category3">자랑
+						<input type="radio" name="cboard_category" value="3" id="category4">추천
 				</li>
 				<li>
 					<label for="cborad_title">제목</label>

@@ -5,7 +5,8 @@
         <div class="header-lower">
             <div class="inner">
                 <nav>
-                    <a class="header-lower__item active" href="list.do">일상</a> 
+                    <a class="header-lower__item active" href="list.do">전체</a>
+                    <a class="header-lower__item" href="list.do?cboard_category=0" style="margin-left: 1cm;">일상</a> 
                     <a class="header-lower__item" href="list.do?cboard_category=1" style="margin-left: 1cm;">취미</a> 
                     <a class="header-lower__item" href="list.do?cboard_category=2" style="margin-left: 1cm;">자랑</a> 
                     <a class="header-lower__item" href="list.do?cboard_category=3" style="margin-left: 1cm;">추천</a>

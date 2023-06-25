@@ -18,6 +18,7 @@ public class CommunityVO {
 	private int order_num; //주문번호
 	private int mem_num; //회원번호
 	private int cboard_fav; //좋아요
+	private int favCount;
 	
 	private String id;//회원 아이디
 	private String photo; //회원 프로필 사진 파일명
@@ -112,4 +113,11 @@ public class CommunityVO {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	public int getFavCount() {
+		return favCount;
+	}
+	public void setFavCount(int favCount) {
+		this.favCount = favCount;
+	}
+	
 }

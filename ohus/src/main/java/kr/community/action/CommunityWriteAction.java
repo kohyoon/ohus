@@ -33,7 +33,7 @@ public class CommunityWriteAction implements Action{
 		CommunityVO board = new CommunityVO();
 		board.setCboard_category(Integer.parseInt(
 				multi.getParameter("cboard_category")));
-		board.setCboard_title(
+				board.setCboard_title(
 				multi.getParameter("cboard_title"));
 		board.setCboard_content(
 			  multi.getParameter("cboard_content"));
