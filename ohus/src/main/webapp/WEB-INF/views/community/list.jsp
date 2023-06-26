@@ -25,13 +25,23 @@
     		align-items: center;
 		}
 		.community {
-   			width: 250px; /* Adjust the width as needed */
+   			width: calc(25% - 20px); /* 4개씩 정렬 */
     		margin: 10px;
+    		border-radius: 10px; /* 모서리를 둥글게 */
+		}
+		.community .photo1 {
+   			width: 100%;
+   			height: 200px; /* 세로 크기 조정 */
+   			object-fit: cover;
+   			border-radius: 10px; /* 모서리를 둥글게 */
 		}
 		.align-center {
     		display: flex;
     		justify-content: center;
-		}				
+		}
+        .community-center {
+            text-align: center; /* 가운데 정렬 */
+        }				
     </style>
 </head>
 <body>
@@ -58,11 +68,12 @@
                 <div class="community">
                    
                            <a href="${pageContext.request.contextPath}/community/detail.do?cboard_num=${board.cboard_num}">
-                            <img src="${pageContext.request.contextPath}/upload/${board.cboard_photo1}" width="100%">
-                            ${board.cboard_title}
+                            <img src="${pageContext.request.contextPath}/upload/${board.cboard_photo1}" class="photo1">
                            </a>
-                            <br>
+                            <div class="community-center">${board.cboard_title}</div> <!-- 가운데 정렬 -->
+
                             
+                            <div class="community-center">
                             <c:choose>
                                 <c:when test="${not empty board.photo}">
                                     <img src="${board.photo}" alt="photo" width="15" height="15">
@@ -75,6 +86,7 @@
                             <br>
                             좋아요 ${board.favCount}
                             조회 ${board.cboard_hit}
+                           </div>
                            </div>
                            </c:forEach>
                            </c:if>

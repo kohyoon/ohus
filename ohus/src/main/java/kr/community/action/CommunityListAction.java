@@ -32,7 +32,7 @@ public class CommunityListAction implements Action {
 	 
 	    // keyfield,keyword,currentPage,count,
 	    // rowCount,pageCount,요청URL
-	    PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "list.do", "&cboard_category="+cboard_category);
+	    PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "list.do", "&cboard_category="+cboard_category);
 
 	    List<CommunityVO> list = null;
 	    if (count > 0) {
@@ -47,6 +47,5 @@ public class CommunityListAction implements Action {
 	    // JSP 경로 반환
 	    return "/WEB-INF/views/community/list.jsp";
 	}
-
 }
 

@@ -34,9 +34,9 @@ function selectList(pageNum) {
 
         // 날짜
         if (item.re_modifydate) {
-          output += '<span class="modify-date">최근 수정일 : ' + item.re_modifydate + '</span>';
+          output += '<span class="modify-date">' + item.re_modifydate + '</span>';
         } else {
-          output += '<span class="modify-date">등록일 : ' + item.re_date + '</span>';
+          output += '<span class="modify-date">' + item.re_date + '</span>';
         }
         // 수정, 삭제, 신고 버튼
         // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크

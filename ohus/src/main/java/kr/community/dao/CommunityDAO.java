@@ -136,7 +136,7 @@ public class CommunityDAO {
 	            // "sort"가 null인 경우 기본 정렬 옵션을 설정
 	            sort = "latest";
 	        }
-
+	        	
 	        // 정렬 기준에 따라 SQL문 작성
 	        if (sort.equals("latest")) {
 	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
