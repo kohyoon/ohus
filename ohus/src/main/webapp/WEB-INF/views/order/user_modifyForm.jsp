@@ -55,6 +55,12 @@
 				<th>합계</th>
 			</tr>
 			<c:forEach var="detail" items="${detailList}">
+			<td>
+				<a href = "${pageContext.request.contextPath}/item/detail.do?item_num=${cart.item_num}">
+					<img src = "${pageContext.request.contextPath}/upload/${cart.itemVO.item_photo1}" width = "80"> <!-- 사진 크기 -->
+					${cart.itemVO.item_name}
+				</a>
+			</td>
 			<tr>
 				<td>
 					${detail.item_name}

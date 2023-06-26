@@ -19,6 +19,7 @@ public class ItemVO {
 	private Date item_regdate;
 	private Date item_mdate;
 	private int item_status;
+	private int order_quantity;
 	
 	public int getItem_num() {
 		return item_num;
@@ -116,4 +117,11 @@ public class ItemVO {
 	public void setItem_status(int item_status) {
 		this.item_status = item_status;
 	}
+	public int getOrder_quantity() {
+		return order_quantity;
+	}
+	public void setOrder_quantity(int order_quantity) {
+		this.order_quantity = order_quantity;
+	}
+	
 }
