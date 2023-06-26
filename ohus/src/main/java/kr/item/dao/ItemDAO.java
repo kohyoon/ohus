@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.item.vo.ItemFavVO;
+import kr.item.vo.ItemQnaVO;
 import kr.item.vo.ItemReviewVO;
 import kr.item.vo.ItemVO;
 import kr.util.DBUtil;
@@ -581,4 +582,200 @@ public class ItemDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//==상품 문의==//
+		//상품 문의 갯수
+		public int getQnaCount(int item_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT count(*) FROM item_qna WHERE item_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, item_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		
+		//상품 문의 목록
+		public List<ItemQnaVO> getListQna(int start, int end, int item_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ItemQnaVO> list = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "SELECT * FROM (SELECT a.*,rownum rnum "
+					+ "FROM (SELECT * FROM item_qna q JOIN omember m USING(mem_num) "
+					+ "JOIN item i USING (item_num))a) WHERE item_num=? AND (rnum >= ? AND rnum <= ?)";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, item_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ItemQnaVO>();
+				while(rs.next()) {
+					ItemQnaVO qna = new ItemQnaVO();
+					qna.setQna_num(item_num);
+					qna.setQna_title(rs.getString("qna_title"));
+					qna.setQna_content(rs.getString("qna_content"));
+					qna.setQna_category(rs.getInt("qna_category"));
+					qna.setQna_regdate(rs.getDate("qna_regdate"));
+					qna.setQna_status(rs.getInt("qna_status"));
+					qna.setMem_num(rs.getInt("mem_num"));
+					qna.setId(rs.getString("id"));
+					qna.setItem_num(rs.getInt("item_num"));
+					qna.setItem_name(rs.getString("item_name"));
+					
+					list.add(qna);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		//상품 문의 등록
+		public void insertItemQna(ItemQnaVO qna) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "INSERT INTO item_qna (qna_num, qna_title, qna_content, qna_category, "
+					+ "qna_ip, mem_num, item_num) VALUES(item_qna_seq.nextval, ?,?,?,?,?,?)";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, qna.getQna_title());
+				pstmt.setString(2, qna.getQna_content());
+				pstmt.setInt(3, qna.getQna_category());
+				pstmt.setString(4, qna.getQna_ip());
+				pstmt.setInt(5, qna.getMem_num());
+				pstmt.setInt(6, qna.getItem_num());
+				pstmt.executeUpdate();			
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+		}
+		
+		//상품 문의 상세
+		public ItemQnaVO getItemQna(int qna_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ItemQnaVO qna = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "SELECT * FROM item_qna q JOIN omember USING(mem_num) "
+					+ "LEFT OUTER JOIN omember_detail d USING(mem_num) WHERE q.qna_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, qna_num);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					qna = new ItemQnaVO();
+					qna.setQna_num(rs.getInt("qna_num"));
+					qna.setQna_title(rs.getString("qna_title"));
+					qna.setQna_content(rs.getString("qna_content"));
+					qna.setQna_category(rs.getInt("qna_category"));
+					qna.setQna_regdate(rs.getDate("qna_regdate"));
+					qna.setQna_mdate(rs.getDate("qna_mdate"));
+					qna.setQna_status(rs.getInt("qna_status"));
+					qna.setMem_num(rs.getInt("mem_num"));
+					qna.setItem_num(rs.getInt("item_num"));				
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return qna;
+		}
+		
+		//상품 문의 수정
+		public void updateItemQna(ItemQnaVO qna) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			int cnt = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "UPDATE item_qna SET qna_title=?, qna_content=?, qna_category=?, qna_mdate=SYSDATE, "
+					+ "qna_ip=? WHERE qna_num=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, qna.getQna_title());
+				pstmt.setString(2, qna.getQna_content());
+				pstmt.setInt(3, qna.getQna_category());
+				pstmt.setString(4, qna.getQna_ip());
+				pstmt.setInt(5, qna.getQna_num());
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		//상품 문의 삭제
+		public void deleteItemQna(int qna_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
+				
+				//답변 삭제
+				sql = "DELETE FROM item_answer WHERE qna_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, qna_num);
+				pstmt.executeUpdate();
+				
+				//글 삭제
+				sql = "DELETE FROM item_qna WHERE qna_num=?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, qna_num);
+				pstmt2.executeUpdate();
+				
+				conn.commit();
+			}catch(Exception e) {
+				conn.rollback();
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt2, null);
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 }
