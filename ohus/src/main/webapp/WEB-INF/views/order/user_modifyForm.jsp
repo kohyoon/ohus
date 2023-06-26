@@ -182,7 +182,7 @@
 				</c:if>
 				<input type = "button" value = "MY페이지"
 				 onclick = "location.href='${pageContext.request.contextPath}/member/myPage.do'">
-				<input type="button" value="주문목록" onclick="orderList.do'">
+				<input type="button" value="주문목록" onclick="list.do">
 			</div> 
 		</form>
 	</div>

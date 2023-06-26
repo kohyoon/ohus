@@ -40,6 +40,7 @@ public class UserOrderFormAction implements Action{
 		// 장바구니에 담겨있는 상품 정보 호출
 		List<CartVO> cartList = dao.getListCart(user_num);
 		ItemDAO itemDao = ItemDAO.getInstance();
+		int order_quantity = 0;
 		for(CartVO cart : cartList) {
 			ItemVO item = itemDao.getItem(cart.getItem_num());
 			if(item.getItem_status() == 1) {
@@ -55,11 +56,15 @@ public class UserOrderFormAction implements Action{
 				
 				return "/WEB-INF/views/common/alert_singleView.jsp";
 			}
+			order_quantity += cart.getOrder_quantity();
 		}
+		
+		
+		
 		
 		request.setAttribute("list", cartList);
 		request.setAttribute("all_total", all_total);
-		
+		request.setAttribute("order_quantity", order_quantity);
 		return "/WEB-INF/views/order/user_orderForm.jsp";
 	}
 

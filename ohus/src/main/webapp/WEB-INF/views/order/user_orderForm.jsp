@@ -10,7 +10,28 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	
+	$(function(){
+		//주문 유효성 체크
+		$('#order_form').submit(function(){
+			let items = document.querySelectorAll('input[type="text"]');
+			 for(let i=0;i<items.length;i++){
+				 
+			    if(items[i].value.trim()==''){
+					let label = document.querySelector('label[for="'+items[i].id+'"]');
+					alert(label.textContent + ' 항목 필수 입력');
+					items[i].value = '';
+					items[i].focus();
+					return false;
+			    }
+			}
+			
+			if($('input[type=radio]:checked').length<1){
+				alert('결제 수단을 선택하세요!');
+				return false;
+			}
+			
+		});
+	});
 </script>
 </head>
 <body>
@@ -54,6 +75,7 @@
 			</tr>
 		</table>
 		<form id = "order_form" action = "order.do" method = "post">
+			<input type = "hidden" value = "${order_quantity}" name = "order_quantity">
 			<ul>
 				<li>
 					<label for = "order_name">수령자</label>
