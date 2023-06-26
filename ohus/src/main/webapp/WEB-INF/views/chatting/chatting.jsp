@@ -17,10 +17,21 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!-- 채팅방 헤더 시작 -->
-	<!-- 보내는 사람 정보, 게시글 제목 필요-->
-	<!-- 채팅방 헤더 끝 -->
+
 	<div class="chatting-main">
+		<!-- 채팅방 헤더 시작 -->
+		<div class="chatting-header">
+			<ul>
+				<li>
+					<img src="${pageContext.request.contextPath}/upload/${your.photo}" width="30px" height="30px">
+					<small>${your.id}</small>
+				</li>
+				<li class="chatting-title">
+					<p><strong>${market_title}</strong></p>
+				</li>
+			</ul>
+		</div>
+		<!-- 채팅방 헤더 끝 -->
 		<!-- 채팅 내용 시작 -->
 		<div class="content-main">		
 			<!-- 채팅 내용 출력 시작 -->

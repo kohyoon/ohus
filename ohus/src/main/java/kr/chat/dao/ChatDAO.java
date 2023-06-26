@@ -199,5 +199,33 @@ public class ChatDAO {
 	// 구매자 입장에서는 -> seller의 ID를 헤더에 띄우고, chatroom테이블의 marketNum을 이용해 title을 가져옴
 	// 판매자 입장에서는 -> buyer의 ID를 헤더에 띄우고, chatroom 테이블의 marketNum을 이용해 title을 가져옴
 	// 조인 방법 SELECT * FROM chatroom c LEFT JOIN market m ON c.market_num=m.market_num LEFT JOIN omember o ON c.buyer_num = o.mem_num WHERE chatroom_num = 21;
-	
+	public ChatroomVO getDetailChatroomInfo(int chatroom_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		ChatroomVO chatroom = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM chatroom c LEFT JOIN market m ON c.market_num=m.market_num WHERE chatroom_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,chatroom_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				chatroom = new ChatroomVO();
+				chatroom.setBuyer_num(rs.getInt("buyer_num"));
+				chatroom.setChatroom_num(rs.getInt("chatroom_num"));
+				chatroom.setMarket_num(rs.getInt("market_num"));
+				chatroom.setMarket_title(rs.getString("market_title"));
+				chatroom.setSeller_num(rs.getInt("seller_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return chatroom;
+	}
 }

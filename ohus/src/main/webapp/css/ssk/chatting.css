@@ -7,16 +7,40 @@ div.page-main{
 div.chatting-main{
     height: 700px;
     width: 100%;
-    margin:0 auto;
+    margin:60px auto;
 	background-color:#E6E6E6;
 	position:absolute;
 }
 
+/* 채팅 헤더 */
+div.chatting-header{
+	height:60px;
+	width:600px;
+	margin:0 auto;
+	position:relative;
+}
+div.chatting-header small{
+	font-size:14px;
+}
+div.chatting-header ul{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+div.chatting-header li{
+	display: inline-block;
+}
+
+.chatting-title{
+	margin: 0 0 0 20px;
+	font-size: 20px;
+}
 /* 채팅 메세지 출력 부분 스타일 */
 div.content-main{
     width:600px;
     height: 600px;
-    margin: 50px auto 0;
+    margin: 0 auto;
     background-color: white;
     position: relative;
     overflow: auto;
