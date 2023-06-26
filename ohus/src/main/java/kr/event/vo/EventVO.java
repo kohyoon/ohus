@@ -17,6 +17,7 @@ public class EventVO {
 	private int mem_num;
 	private int event_status; //1:종료된 이벤트, 2:진행중인 이벤트
 	private int winner_count; //당첨자수
+	private int event_check; //이벤트 추첨여부 0 : 추첨안함 1:추첨함
 	
 	public int getEvent_status() { 
 		String[] event_ends = event_end.split("-");
@@ -37,6 +38,16 @@ public class EventVO {
 	}
 	
 	
+	public int getEvent_check() {
+		return event_check;
+	}
+
+
+	public void setEvent_check(int event_check) {
+		this.event_check = event_check;
+	}
+
+
 	public int getWinner_count() {
 		return winner_count;
 	}
@@ -111,8 +122,12 @@ public class EventVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-
-	
-	
-	
+	@Override
+	public String toString() {
+		return "EventVO [event_num=" + event_num + ", event_title=" + event_title + ", event_photo=" + event_photo
+				+ ", event_content=" + event_content + ", event_start=" + event_start + ", event_end=" + event_end
+				+ ", event_hit=" + event_hit + ", event_regdate=" + event_regdate + ", event_modifydate="
+				+ event_modifydate + ", mem_num=" + mem_num + ", event_status=" + event_status + ", winner_count="
+				+ winner_count + "]";
+	}
 }

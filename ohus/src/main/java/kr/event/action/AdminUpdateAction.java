@@ -44,6 +44,9 @@ public class AdminUpdateAction implements Action{
 		int event_num = Integer.parseInt(multi.getParameter("event_num"));
 		String event_photo = multi.getFilesystemName("event_photo");
 		
+		//이벤트 상태 - 1이면 종료, 2이면 진행중
+		int event_status = Integer.parseInt(multi.getParameter("event_status"));
+		
 		EventDAO dao = EventDAO.getInstance();
 		
 		//수정 전 데이터 반환
@@ -58,8 +61,7 @@ public class AdminUpdateAction implements Action{
 		event.setEvent_start(multi.getParameter("event_start"));
 		event.setEvent_end(multi.getParameter("event_end"));
 		event.setWinner_count(Integer.parseInt(multi.getParameter("winner_count")));
-		//event.setEvent_hit(Integer.parseInt(multi.getParameter("event_hit")));
-		
+		event.setEvent_status(event_status); //날짜에 따른 이벤트 상태를 변경해줘야함
 		dao.updateEvent(event);
 		
 		//새 파일로 교체할 때 원래 파일 제거해주기(수정 전 내용 지워주기)

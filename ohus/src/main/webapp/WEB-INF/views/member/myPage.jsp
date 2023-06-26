@@ -11,100 +11,52 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/myPage.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		//수정버튼 이벤트 연결
-		$('#photo_btn').click(function(){
-			$('#photo_choice').show();
-			$(this).hide();//수정버튼 감추기
-		});//end of click - 수정버튼
-		
-		//이미지 미리 보기
-		//처음 화면에 보여지는 이미지 저장
-		let photo_path = $('.my-photo').attr('src');
-		//선택한 이미지
-		let my_photo;
-		$('#photo').change(function(){
-			my_photo = this.files[0];
-			if(!my_photo){
-				$('.my-photo').attr('src',
-						             photo_path);
-				return;
-			}
-			//파일 용량 체크
-			if(my_photo.size > 1024*1024){
-				alert(Math.round(my_photo.size/1024) 
-				  + 'kbytes(1024kbytes까지만 업로드 가능)');
-				$('.my-photo').attr('src',photo_path);
-				$(this).val('');//선택한 파일 정보 지우기
-				return;
-			}
-			
-			let reader = new FileReader();
-			reader.readAsDataURL(my_photo);
-			
-			reader.onload=function(){$('.my-photo').attr('src', reader.result);
-			};
-		});//end of change		
-		
-		//전송버튼 이벤트 연결
-		$('#photo_submit').click(function(){
-			if($('#photo').val()==''){
-				alert('파일을 선택하세요!');
-				$('#photo').focus();
-				return;
-			}
-			
-			//서버에 파일(사진) 전송
-			let form_data = new FormData();
-			form_data.append('photo',my_photo);
-			$.ajax({
-				url:'updateMyPhoto.do',
-				type:'post',
-				data:form_data,
-				dataType:'json',
-				contentType:false,//데이터 객체를 문자열로 바꿀지에 대한 설정,true면 일반 문자
-				processData:false,//해당 타입을 true로 하면 일반 text로 구분
-				enctype:'multipart/form-data',
-				success:function(param){
-					if(param.result == 'logout'){
-						alert('로그인 후 사용하세요!');
-					}else if(param.result == 'success'){
-						alert('프로필 사진이 수정되었습니다.');
-						//업로드한 이미지로 초기 이미지 대체 -- 이미지를 변경하려다가 취소했을 때 face.jpg가 아닌
-						//그 이후에 변경한 이미지로 남아있어야되기 때문에 중간에 바꾼 이미지를 초기 이미지로 인식하게 처리해줘야한다
-						photo_path = $('.my-photo').attr('src');
-						$('#photo').val('');
-						$('#photo_choice').hide();
-						$('#photo_btn').show();
-					}else{
-						alert('파일 전송 오류 발생');
-					}
-				},
-				error:function(){
-					alert('네트워크 오류 발생');
-				}
-			});
-			
-		});//end of click - 전송버튼
-		
-		//취소버튼 이벤트 연결
-		$('#photo_reset').click(function(){
-			//초기 이미지 표시
-			$('.my-photo').attr('src',photo_path);
-			$('#photo').val('');
-			$('#photo_choice').hide();
-			$('#photo_btn').show(); //수정버튼 노출
-		});//end of click - 취소버튼
-		
-	});
-</script>
+
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<!-- 전체 div 시작-->
-<div class="page-main">
-<ul class="">
+<!-- ---============ -->
+<!-- 상품 네비게이션 처리 시작 -->		
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>	
+<header>
+	<div class="header-lowwer__nav">
+		<div class="header-lower">
+			<div class="inner">
+				<nav>
+					<a href="myPage1.do" class="toggle">프로필</a>
+						<div>
+				        <ul class="submenu">
+				          <%-- <%@ include file="myPage1.jsp" %> --%>
+				        </ul>
+				        </div>
+					<a class="header-lower__item" href="myPage2.do">나의쇼핑</a> 
+						<ul class="submenu">
+				          <%@ include file="myPage2.jsp" %>
+				        </ul>
+					<a class="header-lower__item" href="myPage3.do">나의참여</a> 
+					<ul class="submenu">
+		          <%@ include file="myPage3.jsp" %>
+		        </ul>
+					
+					<a class="header-lower__item" href="myPage4.do">설정</a>
+					<ul class="submenu">
+		          <%@ include file="myPage4.jsp" %>
+		        </ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<p>
+</header>	
+<!-- 상품 네비게이션 처리 끝 -->
+
+
+<%-- <!-- 전체 div 시작-->
+<div class="wrap">
+		
+	<div class="page-main">
+
+		<div class="content-main">
+			<ul class="">
 		      <li>
 		        <a href="#" class="toggle">프로필</a>
 		        <ul class="submenu">
@@ -128,8 +80,10 @@
 		        <ul class="submenu">
 		          <%@ include file="myPage4.jsp" %>
 		        </ul>
+		</div>
+	</div>		
 </div>
-<!-- 전체 div 끝-->
+<!-- 전체 div 끝--> --%>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

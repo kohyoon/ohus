@@ -106,4 +106,11 @@ public class EventReplyVO {
 		this.mem_num = mem_num;
 	}
 
+	@Override
+	public String toString() {
+		return "EventReplyVO [re_num=" + re_num + ", re_content=" + re_content + ", re_date=" + re_date
+				+ ", re_modifydate=" + re_modifydate + ", re_ip=" + re_ip + ", event_num=" + event_num + ", mem_num="
+				+ mem_num + ", event_winner=" + event_winner + ", re_status=" + re_status + ", id=" + id
+				+ ", winner_count=" + winner_count + "]";
+	}
 }

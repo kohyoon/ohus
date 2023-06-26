@@ -1,39 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>이벤트 추첨결과</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <title>이벤트 추첨</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<!--  내용 시작 -->
-		<div class="content-main">
-			<h2>당첨 결과</h2>
-			
-			<!-- 우측 버튼 시작 -->
-			<div class="list-space align-right">
-				<input type="button" value="목록" onclick="location.href='endEventList.do'"> 
-			</div>	
-			<!-- 우측 버튼 끝 -->
-			
-			<!-- =========오른쪽 버튼처리 끝 =========-->
-			
-			<!-- ======이벤트 글 리스트 처리 시작=========== -->
-			
-			<%-- 	<c:forEach var="replyList" items="${list}">
-					
-										${replyList.re_ip }
-									
-				
-			</c:forEach> --%>
-			<!-- ======이벤트 글 리스트 처리 끝=========== -->		
-		</div>
-		<!-- 내용 끝 -->
-	</div>
+<div class="container">
+    <h1>이벤트 추첨</h1>
+    
+    <<c:if test="${!empty plz}">
+    <!-- 이미 추첨이 실행된 경우, 추첨 결과를 표시 -->
+    <table>
+        <!-- 테이블 헤더 -->
+        <tbody>
+            <c:forEach var="plz" items="${plz}">
+                <!-- 테이블 데이터 -->
+            </c:forEach>
+        </tbody>
+    </table>
+</c:if>
+
+<c:if test="${empty plz}">
+    <!-- 추첨이 실행되지 않은 경우, 추첨 시작 버튼을 표시 -->
+    <input type="button" value="추첨 시작" onclick="location.href='playEvent.do?event_num=${event.event_num}'">
+</c:if>
+
+</div>
 </body>
 </html>

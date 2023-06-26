@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.List" %>
+<%@ page import="kr.event.dao.EventDAO" %>
+<%@ page import="kr.event.vo.EventVO" %>
+<%@ page import="kr.event.vo.EventReplyVO" %>
+<%@ page import="kr.event.vo.EventWinnerVO" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +100,7 @@
 		<div class = "event-main">
 			<%-- 검색창 시작 --%>
 			<form id="search_form" action="list.do" method="get" >
+			<input type="hidden" name="event_num" value="${event.event_num}" id="event_num">
 				<ul class="align-center">
 					<li >
 						<select name="keyfield"> 
@@ -127,10 +135,9 @@
 							<figure>
 									<!-- 이벤트 사진을 누르면 상세글로 이동함 -->
 									<a href="detail.do?event_num=${event.event_num}">
-										<img src="${pageContext.request.contextPath}/upload/${event.event_photo}">
+										<img src="${pageContext.request.contextPath}/upload/${event.event_photo}" width="640" height="190">
 									</a> 
 									<br>
-									
 								</a>
 								<b>
 								<!-- 이벤트 사진 하단 -->
@@ -145,7 +152,15 @@
 									
 									
 									<div class="event-go">
-										<input type="button" value="추첨시작" onclick="location.href='playEvent.do?event_num=${event.event_num}'"">
+									<!-- 추첨결과가 있으면 목록보기로 바꿔주기 alert로 추첨이 완료되었습니다! 하고 목록 보여주기 -->
+									
+									<c:if test="${event.event_check==1}">
+										<input type="button" value="추첨결과" onclick="location.href='playEventResult.do?event_num=${event.event_num}'">
+									</c:if>
+									<c:if test="${event.event_check<1 }">
+										<input type="button" value="추첨시작" onclick="location.href='playEvent.do?event_num=${event.event_num}'">
+									</c:if>
+									
 									</div>
 
 									

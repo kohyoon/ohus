@@ -83,7 +83,6 @@
 	<h2>글 수정</h2>	
 	<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" name="event_num" value="${event.event_num }">
 	<ul> 
 		<li>
 			<label for="event_title">제목</label>
@@ -156,6 +155,10 @@
 			<label for="winner_count">당첨자수</label>
 			<input type="number" name="winner_count" id="winner_count" min="0" max="100" value="${event.winner_count}">
 		</li>
+		
+		
+	<input type="hidden" name="event_num" value="${event.event_num }">
+	<input type="hidden" name="event_status" value="${event.event_status}">
 
 	</ul>
 	

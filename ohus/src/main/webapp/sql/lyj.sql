@@ -43,6 +43,7 @@ create table oevent(
  event_hit number default 0 not null, --조회수
  mem_num number not null, 
  winner_count number not null, --이벤트 당첨자 수
+ event_check number(1) not null default 0, --이벤트 추첨 확인 0 : 추첨 안 함, 1: 추첨완료
  constraint oevent_pk primary key(event_num),
  constraint oevent_fk foreign key(mem_num) references omember(mem_num),
  constraint oevent_fk2 foreign key(mem_num) references omember(mem_num)
@@ -65,3 +66,32 @@ create table oevent_reply(
 
 );
 create sequence oevent_reply_seq;
+
+
+--이벤트 당첨 정보를 저장하는 테이블을 만들자
+--회원번호, 당첨날짜, 이벤트 번호를 저장해서 이미 추첨을 한 경우 dao를 호출해서 보여지도록
+create table oevent_winner(
+    win_num number, --당첨 식별번호
+    re_num number not null, --당첨된 댓글 번호
+    event_num number not null, --이벤트 번호
+	constraint oevent_winner_pk primary key(win_num),
+	constraint oevent_winner_fk1 foreign key(re_num) references oevent_reply(re_num), --댓글 번호 가져오기
+	constraint oevent_winner_fk2 foreign key(event_num) references oevent(event_num)
+
+
+);
+
+create sequence oevent_winner_seq;
+
+
+
+
+
+
+
+
+
+
+
+
+
