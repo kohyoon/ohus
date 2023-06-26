@@ -14,7 +14,8 @@
 		<%-- 내용시작 --%>
 		<p>
 		<div class="item-review">
-			<form action="review.do" method="post" enctype="multipart/form-data" id="review_form" class="review-form">
+			<form action="userReview.do" method="post" enctype="multipart/form-data" id="review_form" class="review-form">
+				<input type="hidden" value="${item_num}" name="item_num">
 				<div>
 					<a href="javascript:window.history.back();">X</a>
 				</div>

@@ -39,7 +39,7 @@ public class UserReviewFormAction implements Action{
 		String item_name = item.getItem_name();
 		String item_photo1 = item.getItem_photo1();
 		
-		
+		request.setAttribute("item_num", item_num);
 		request.setAttribute("item_name", item_name);
 		request.setAttribute("item_photo1", item_photo1);
 		

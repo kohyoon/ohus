@@ -435,7 +435,7 @@ public class ItemDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "INSERT INTO item_review (review_num, mem_num, item_num, item_score, "
-				+ "review_content, review_photo) VALUES (item_review_seq.nextval, ?, ?, ?, ?, ?)";
+				+ "review_content, review_photo, review_regdate) VALUES (item_review_seq.nextval, ?, ?, ?, ?, ?, SYSDATE)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
