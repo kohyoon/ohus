@@ -9,6 +9,47 @@
 <title>${item.item_name} | 내일의 집</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
+	<style type="text/css">
+		*{margin:0; padding:0;}
+		a.button{display:inline-block; padding: 10px 20px; text-decoration:none; color:#fff; background:#000; margin:20px;}
+		#modal{
+		  display:none;
+		  position:fixed; 
+		  width:100%; height:100%;
+		  top:0; left:0; 
+		  background:rgba(0,0,0,0.3);
+		}
+		.modal-con{
+		  display:none;
+		  position:fixed;
+		  top:50%; left:50%;
+		  transform: translate(-50%,-50%);
+		  max-width:70%;
+		  min-height:50%;
+		  background:#fff;
+		}
+		.modal-con .title{
+		  font-size:20px; 
+		  padding: 20px; 
+		  background :#35C5F0;
+		}
+		.modal-con .con{
+		  font-size:15px; line-height:1.3;
+		  padding: 30px;
+		}
+		.modal-con .close{
+		  display:block;
+		  position:absolute;
+		  width:30px; height:30px;
+		  border-radius:50%; 
+		  border: 3px solid #000;
+		  text-align:center; line-height: 30px;
+		  text-decoration:none;
+		  color:#000; font-size:20px; font-weight: bold;
+		  right:10px; top:10px;
+		}
+	</style>
+	
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/item.fav.js"></script>
 	<script type="text/javascript">
@@ -184,10 +225,110 @@
 				리뷰는 여기 있습니다.
 			</div>
 			<hr size="1" noshade="noshade" width="100%">	
+			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
 				<h2>상품 문의</h2>
-				문의는 여기 있습니다.
+				<div id="wrap">
+					<a href="javascript:openModal('modal');" class="button modal-open">문의하기</a>
+				</div>
+				<!-- 문의하기 폼 시작 -->
+				<div id="modal"></div>
+					<div class="modal-con modal">
+					   	<a href="javascript:;" class="close">X</a>
+					    <p class="title">문의하기 등록</p>
+					    <div class="con">
+					    	<form id="qna_form" action="writeQna.do" method="post">
+					    		<input type="hidden" name="item_num" value="${item.item_num}">
+					    		<ul>
+									<li>
+										<label for="qna_category">카테고리</label>
+										<input type="radio" name="qna_category" value="1">상품
+										<input type="radio" name="qna_category" value="2">배송
+										<input type="radio" name="qna_category" value="3">반품
+										<input type="radio" name="qna_category" value="4">교환
+										<input type="radio" name="qna_category" value="5">환불
+										<input type="radio" name="qna_category" value="6">기타
+									</li>
+									<li>
+										<input type="text" name="qna_title" id="qna_title" placeholder="제목">
+									</li>
+									<li>
+										<textarea rows="5" cols="30" name="qna_content" id="qna_content" placeholder="내용"></textarea>
+									</li>
+								</ul>
+								<input type="submit" value="등록">
+							</form>
+					    </div>
+					 </div>
+				
+				
+				<script type="text/javascript">
+					function openModal(modalname){
+						$("#modal").fadeIn(300);
+						$("."+modalname).fadeIn(300);
+						
+					}
+
+					$("#modal, .close").on('click',function(){
+						//문의등록폼 초기화
+						$('#qna_title').val('');
+						$('#qna_content').val('');
+						
+						$("#modal").fadeOut(300);
+						$(".modal-con").fadeOut(300);
+					});
+					
+					$('#qna_form').on('submit', function(){
+						if($('#qna_title').val().trim() == ''){
+							alert('제목을 입력하세요.');
+							$('#qna_title').val('').focus();
+							return false;
+						}
+						
+						if($('#qna_content').val().trim() == ''){
+							alert('내용을 입력하세요.');
+							$('#qna_content').val('').focus();
+							return false;
+						}
+						
+						if($('input[name="qna_category"]:checked').length < 1){
+							alert('카테고리를 선택하세요.');
+							return false;
+						}
+					}); //end of submit
+					
+				</script>
+				<!-- 문의하기 폼 끝 -->
+				<c:if test="${qnaCount == 0}">
+				<div class="result-display">
+					등록된 문의가 없습니다.
+				</div>
+				</c:if>
+				<c:if test="${qnaCount > 0}">
+				<c:forEach var="qna" items="${list}">
+					<h4>${qna.qna_title}</h4>
+					<ul class="basic-ul">
+						<li>
+							<small>
+								<c:if test="${qna.qna_category == 1}">상품</c:if>
+								<c:if test="${qna.qna_category == 2}">배송</c:if>
+								<c:if test="${qna.qna_category == 3}">반품</c:if>
+								<c:if test="${qna.qna_category == 4}">교환</c:if>
+								<c:if test="${qna.qna_category == 5}">기타</c:if>
+								| 
+								<c:if test="${qna.qna_status == 1}">처리전</c:if>
+								<c:if test="${qna.qna_status == 2}">처리완료</c:if>
+							</small>
+								<p>
+								<span>${qna.qna_content}</span>
+								<br>${qna.qna_regdate} 등록
+						</li>
+						<hr size="1" noshade="noshade" color="#ededed" width="100%">
+					</ul>
+				</c:forEach>
+				</c:if>
 			</div>
+			<!-- 상품문의 부분 끝 -->
 			</c:if>
 		</div>
 		<%-- 내용 끝 --%>
