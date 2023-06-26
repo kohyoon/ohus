@@ -7,7 +7,7 @@ public class ChatVO {
 	private int chatroom_num;  // 채팅방 번호
 	private int mem_num;       // 작성자 번호
 	private String message;    // 채팅 메시지
-	private Date reg_date;     // 채팅 메시지 발송 날짜
+	private String reg_date;     // 채팅 메시지 발송 날짜
 	private int read_check;    // 읽기 여부
 	
 	private String id;		   // 메시지 보낸 사람의 아이디
@@ -36,10 +36,10 @@ public class ChatVO {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 	public int getRead_check() {

@@ -181,7 +181,7 @@ public class ChatDAO {
 				chat.setChatroom_num(rs.getInt("chatroom_num"));
 				chat.setMem_num(rs.getInt("mem_num"));
 				chat.setMessage(rs.getString("message"));
-				chat.setReg_date(rs.getDate("reg_date"));
+				chat.setReg_date(rs.getString("reg_date"));
 				chat.setRead_check(rs.getInt("read_check"));
 				chat.setId(rs.getString("id"));
 				list.add(chat);
@@ -195,5 +195,9 @@ public class ChatDAO {
 		return list;
 	}
 	
+	// 채팅방 상세 정보 조회 (채팅 화면에 채팅방에 대한 정보를 뿌리기 위함, 채팅방이 생성된 게시물의 title, 상대방의 id가 필요)
+	// 구매자 입장에서는 -> seller의 ID를 헤더에 띄우고, chatroom테이블의 marketNum을 이용해 title을 가져옴
+	// 판매자 입장에서는 -> buyer의 ID를 헤더에 띄우고, chatroom 테이블의 marketNum을 이용해 title을 가져옴
+	// 조인 방법 SELECT * FROM chatroom c LEFT JOIN market m ON c.market_num=m.market_num LEFT JOIN omember o ON c.buyer_num = o.mem_num WHERE chatroom_num = 21;
 	
 }

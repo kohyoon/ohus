@@ -12,10 +12,16 @@ $(function(){
 			success:function(param){
 				$('#output').empty();
 				$(param.list).each(function(index,item){
-					let output = '<div class="item">';
-					output += '<h4>' + item.id + '</h4>';
+					let output = '';
+					if(param.user_num == item.mem_num){
+						output = '<div class="myItem" style="width: auto; font-size: 16px; font-family: Arial;">';
+					}else{
+						output = '<div class="yourItem" style="width: auto; font-size: 16px; font-family: Arial;">';
+					}
 					output += '<div class="sub-item">';
-					output += '<p>' + item.message + '<small>' + item.reg_date + '</small>' + '</p>';
+					output += '<p>' + item.message + '</p>';
+					output += '</div>';
+					output += '<small>' + formatDate(item.reg_date) + '</small>'
 					output += '</div>';
 					$('#output').append(output);
 				});
@@ -69,5 +75,15 @@ $(function(){
 	setInterval(function(){
 		messageList(chatroom_num)
 	},1000);
+	
+	function formatDate(dateString){
+		let date = new Date(dateString);
+		let hours = date.getHours();
+		let minutes = date.getMinutes();
+		if(hours<10)hours = '0' + hours;
+		if(minutes<10)minutes = '0' + minutes;
+		let formattedTime = hours + ':' + minutes;
+		return formattedTime;
+	}
 	
 });

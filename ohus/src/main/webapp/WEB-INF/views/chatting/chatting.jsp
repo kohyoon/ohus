@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>채팅방</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/chatting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatting.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chatMessage.js"></script>
 <script type="text/javascript">
@@ -28,7 +28,8 @@
 				<div id="output"></div>
 			</div>
 			<!-- 채팅 내용 출력 끝 -->
-			<div id="chatting_send">
+		</div>
+		<div id="chatting_send">
 			<form id="chat_form">
 				<input type="hidden" name="chatroom_num" value="${chatroom_num}" id="chatroom_num">
 				<input type="text" name="message" id="message" class="chat-message" placeholder="내용을 입력하세요.">
@@ -36,7 +37,6 @@
 					<input type="submit" value="전송">
 				</div>
 			</form>
-		</div>
 		</div>
 		<!-- 채팅 내용 끝 -->
 	</div>
