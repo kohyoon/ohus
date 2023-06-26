@@ -72,18 +72,32 @@ $(function(){
 	function initForm(){
 		$('.chat-message').val('');
 	}
-	setInterval(function(){
+	
+	let intervalId = setInterval(function(){
 		messageList(chatroom_num)
 	},1000);
 	
+
+	$('#btnStop').click(function(){
+		clearInterval(intervalId);
+	});
+	
+	$('#btnPlay').click(function(){
+		intervalId = setInterval(function(){
+			messageList(chatroom_num)
+		},1000);
+	});
+	
 	function formatDate(dateString){
 		let date = new Date(dateString);
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
 		let hours = date.getHours();
 		let minutes = date.getMinutes();
 		if(hours<10)hours = '0' + hours;
 		if(minutes<10)minutes = '0' + minutes;
-		let formattedTime = hours + ':' + minutes;
+		let formattedTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
 		return formattedTime;
 	}
-	
 });

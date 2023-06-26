@@ -15,7 +15,7 @@ div.chatting-main{
 /* 채팅 헤더 */
 div.chatting-header{
 	height:60px;
-	width:600px;
+	width:500px;
 	margin:0 auto;
 	position:relative;
 }
@@ -38,8 +38,8 @@ div.chatting-header li{
 }
 /* 채팅 메세지 출력 부분 스타일 */
 div.content-main{
-    width:600px;
-    height: 600px;
+    width:500px;
+    height: 500px;
     margin: 0 auto;
     background-color: white;
     position: relative;
@@ -56,9 +56,13 @@ div.yourItem{
 }
 div.myItem .sub-item{
 	background-color:#aaedf2;
+	height:25px;
+	border-radius:15px;
 }
 div.yourItem .sub-item{	
-	background-color:gray;
+	background-color:#ccc8c8;
+	height:25px;
+	border-radius:15px;
 }
 div.myItem small{
 	float:right;	
@@ -70,7 +74,7 @@ div.yourItem small{
 /* 채팅 메세지 입력 부분 스타일 */
 div#chatting_send{
     bottom:0;
-    width:600px;
+    width:500px;
    	margin:0 auto;
 	background-color:white;
 }
@@ -93,6 +97,32 @@ div#chatting_send{
 .chat-sender input:hover{
     background-color: blue;
     color:white;
+}
+.stop{
+    width:500px;
+   	margin:0 auto;
+}
+.stop input{
+	border:none;
+    border-radius: 10px;
+    background-color: #f7c0bc;
+}
+.stop input:hover{
+	background-color: red;
+	color:white;
+}
+.play{
+	width:500px;
+	margin:0 auto;
+}
+.play input{
+	border:none;
+	border-radius: 10px;
+	background-color:#4fd666;
+}
+.play input:hover{
+	background-color: blue;
+	color:white;
 }
 
 
