@@ -7,36 +7,45 @@
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<style type="text/css">
-/*초기화*/
-*{
-    margin: 0;
-    padding: 0;
-    font: normal 12px "Noto Sans CJK KR";
-}
-
-ul, ol {
-    list-style: none;
-}
-a{
-    text-decoration: none;
-    color: #111;
-}
-input,textarea{outline: none;}
-
-#wrapper{width: 100%;}
-
-
-
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div id="cs_center">
+		<button onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
+		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2>공지사항 목록</h2>
+		<h2 style="text-align:center;">공지사항 목록</h2>	
+		<c:if test="${count == 0}">
+		<div class="result-display">
+			표시할 공지사항이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${count > 0}">
+		<table>
+			<tr style="pointer-events: none;">
+				<th>글번호</th>
+				<th style="width:75%;">제목</th>
+				<th>작성일</th>
+			</tr>
+			<c:forEach var="notice" items="${list}">
+			<tr>
+				<td>${notice.notice_num}</td>
+				<td><a href="detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+				<td>${notice.notice_regdate}</td>
+			</tr>
+			</c:forEach>
+		</table>
+		<div class="align-center page">${page}</div>
+		</c:if>
+		<div class="bottoms">
 		<!-- 검색창 시작 -->
 		<form id="search_form" action="listNotice.do" method="get">
 			<ul class="search">
@@ -55,34 +64,14 @@ input,textarea{outline: none;}
 			</ul>
 		</form>
 		<!-- 검색창 끝 -->
-		<div class="list-pace align-right">
+		<div class="buttons">
 			<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'">
 			<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
 		</div>
-		<c:if test="${count == 0}">
-		<div class="result-display">
-			표시할 공지사항이 없습니다.
 		</div>
-		</c:if>
-		<c:if test="${count > 0}">
-		<table>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-			</tr>
-			<c:forEach var="notice" items="${list}">
-			<tr>
-				<td>${notice.notice_num}</td>
-				<td><a href="detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
-				<td>${notice.notice_regdate}</td>
-			</tr>
-			</c:forEach>
-		</table>
-		<div class="align-center">${page}</div>
-		</c:if>
 	</div>
 	<!-- 내용 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>
 </html>

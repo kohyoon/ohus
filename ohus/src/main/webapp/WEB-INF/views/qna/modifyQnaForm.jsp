@@ -92,7 +92,7 @@
 					<select name="order_num" id="order_num">
 						<option>===선택===</option>
 						<c:forEach var="order" items="${list}">
-						<option value="${order.order_num}">[${order.order_num}] ${order.item_name}</option>
+						<option value="${order.detail_num}"<c:if test="${order.order_num}">selected</c:if>>[${order.order_num}] ${order.item_name}</option>
 						</c:forEach>
 					</select>
 				</li>

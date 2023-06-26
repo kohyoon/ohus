@@ -8,6 +8,8 @@
 <title>문의게시판</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -24,6 +26,11 @@
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div id="cs_center">
+		<button onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
+		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
 		<h2>문의게시판</h2>
@@ -48,9 +55,6 @@
 		<div class="list-space align-right">
 			<input type="button" value="글쓰기" onclick="location.href='writeInquiryForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
 			<input type="button" value="전체목록" onclick="location.href='listInquiry.do'">
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			<input type="button" value="공지사항" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">
-			<input type="button" value="상품문의" onclick="location.href='${pageContext.request.contextPath}/qna/qnaList.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">

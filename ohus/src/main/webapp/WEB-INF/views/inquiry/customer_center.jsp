@@ -8,6 +8,7 @@
 <title>고객센터 메인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <style type="text/css">
 h1{
     text-align: center;
@@ -53,7 +54,7 @@ section h2{
 		</tr>
 		<c:forEach var="notice" items="${noticeList}">
 		<tr>
-			<td><a href="${pageContext.request.contextPath}/notice/detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+			<td width="80%"><a href="${pageContext.request.contextPath}/notice/detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
 			<td>${notice.notice_regdate}</td>
 		</tr>
 		</c:forEach>
@@ -62,7 +63,6 @@ section h2{
 	<section>
 	<h2><a href="${pageContext.request.contextPath}/inquiry/listInquiry.do">문의게시판</a></h2>
 	</section>
-	<h2><a href="${pageContext.request.contextPath}/qna/qnaList.do">상품문의</a></h2>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>   

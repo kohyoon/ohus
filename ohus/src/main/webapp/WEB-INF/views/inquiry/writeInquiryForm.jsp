@@ -6,6 +6,21 @@
 <meta charset="UTF-8">
 <title>문의게시판 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/form.css">
+<style type="text/css">
+#list{
+	width: 30%;
+	padding: 13px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 15px;
+	cursor: pointer;
+	margin-right: 200px;
+	margin-top: 10px;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -30,7 +45,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2>문의게시판 글쓰기</h2>
+		<h2 class="align-center">문의게시판 글쓰기</h2>
 		<form id="write_form" action="writeInquiry.do" method="post">
 			<ul>
 				<li>
@@ -51,7 +66,7 @@
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="등록">
-				<input type="button" value="목록" onclick="location.href='listInquiry.do'">
+				<input type="button" value="목록" id="list" onclick="location.href='listInquiry.do'">
 			</div>
 		</form>
 	</div>
