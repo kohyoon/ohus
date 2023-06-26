@@ -12,7 +12,7 @@
 	<style type="text/css">
 		*{margin:0; padding:0;}
 		a.button{display:inline-block; padding: 10px 20px; text-decoration:none; color:#fff; background:#000; margin:20px;}
-		#modal{
+		.modal{
 		  display:none;
 		  position:fixed; 
 		  width:100%; height:100%;
@@ -133,6 +133,7 @@
 			$('#header4').on("click", function(){header4.classList.add('active');});
 			$('#header5').on("click", function(){header5.classList.add('active');});
 			$('#header6').on("click", function(){header6.classList.add('active');});
+			
 		});
 	</script>
 </head>
@@ -228,12 +229,14 @@
 			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
 				<h2>상품 문의</h2>
-				<div id="wrap">
-					<a href="javascript:openModal('modal');" class="button modal-open">문의하기</a>
-				</div>
+				<!-- <div id="wrap">
+					<a href="javascript:openModal('modal1');" class="button modal-open">문의하기</a>
+				</div> -->
+				<input type="button" value="문의하기" onclick="openModal('modal1')">
+				
 				<!-- 문의하기 폼 시작 -->
 				<div id="modal"></div>
-					<div class="modal-con modal">
+					<div class="modal-con modal1">
 					   	<a href="javascript:;" class="close">X</a>
 					    <p class="title">문의하기 등록</p>
 					    <div class="con">
@@ -261,52 +264,16 @@
 					    </div>
 					 </div>
 				
-				
-				<script type="text/javascript">
-					function openModal(modalname){
-						$("#modal").fadeIn(300);
-						$("."+modalname).fadeIn(300);
-						
-					}
-
-					$("#modal, .close").on('click',function(){
-						//문의등록폼 초기화
-						$('#qna_title').val('');
-						$('#qna_content').val('');
-						
-						$("#modal").fadeOut(300);
-						$(".modal-con").fadeOut(300);
-					});
-					
-					$('#qna_form').on('submit', function(){
-						if($('#qna_title').val().trim() == ''){
-							alert('제목을 입력하세요.');
-							$('#qna_title').val('').focus();
-							return false;
-						}
-						
-						if($('#qna_content').val().trim() == ''){
-							alert('내용을 입력하세요.');
-							$('#qna_content').val('').focus();
-							return false;
-						}
-						
-						if($('input[name="qna_category"]:checked').length < 1){
-							alert('카테고리를 선택하세요.');
-							return false;
-						}
-					}); //end of submit
-					
-				</script>
 				<!-- 문의하기 폼 끝 -->
 				<c:if test="${qnaCount == 0}">
 				<div class="result-display">
 					등록된 문의가 없습니다.
 				</div>
 				</c:if>
+				
 				<c:if test="${qnaCount > 0}">
 				<c:forEach var="qna" items="${list}">
-					<h4>${qna.qna_title}</h4>
+					<h4>${qna.qna_title} (문의번호: ${qna.qna_num})</h4>
 					<ul class="basic-ul">
 						<li>
 							<small>
@@ -319,9 +286,95 @@
 								<c:if test="${qna.qna_status == 1}">처리전</c:if>
 								<c:if test="${qna.qna_status == 2}">처리완료</c:if>
 							</small>
-								<p>
-								<span>${qna.qna_content}</span>
-								<br>${qna.qna_regdate} 등록
+							<p>
+							<span>${qna.qna_content}</span>
+							<br>${qna.qna_regdate}
+														
+							<input type="button" value="수정" onclick="openModal('modal2')">
+							<!-- 수정폼 -->
+								<div class="modal-con modal2">
+									<a href="javascript:;" class="close">X</a>
+									<p class="title">문의 수정 ${qna.qna_num}</p>
+									<div class="con">
+										<form id="modify_form" action="modifyQna.do" method="post">
+											<input type="hidden" value="${item.item_num}" name="item_num">
+											<input type="hidden" value="${qna.qna_num}" name="qna_num">
+											<ul>	
+												<li>
+													<label>카테고리</label>
+													<input type="radio" name="qna_category" value="1" <c:if test="${qna.qna_category == 1}">checked</c:if>>상품
+													<input type="radio" name="qna_category" value="2" <c:if test="${qna.qna_category == 2}">checked</c:if>>배송
+													<input type="radio" name="qna_category" value="3" <c:if test="${qna.qna_category == 3}">checked</c:if>>반품
+													<input type="radio" name="qna_category" value="4" <c:if test="${qna.qna_category == 4}">checked</c:if>>교환
+													<input type="radio" name="qna_category" value="5" <c:if test="${qna.qna_category == 5}">checked</c:if>>환불
+													<input type="radio" name="qna_category" value="6" <c:if test="${qna.qna_category == 6}">checked</c:if>>기타
+												</li>
+												<li>
+													<input type="text" name="qna_title" id="qna_title" placeholder="제목" value="${qna.qna_title}">
+												</li>
+												<li>
+													<textarea rows="5" cols="30" name="qna_content" id="qna_content" placeholder="내용">${qna.qna_content}</textarea>
+												</li>
+											</ul>
+											<input type="submit" value="수정">
+										</form>
+									</div>
+								</div>
+							<!-- 수정폼 끝 -->
+								<script type="text/javascript">
+									function openModal(modalname){
+										$("#modal").fadeIn(300);
+										$("."+modalname).fadeIn(300);
+									}
+						
+									$("#modal, .close").on('click',function(){
+										$("#modal").fadeOut(300);
+										$(".modal-con").fadeOut(300);
+										
+										//문의등록폼 초기화
+										$('#qna_title').val('');
+										$('#qna_content').val('');
+									});
+									
+									$('#qna_form').on('submit', function(){
+										if($('#qna_title').val().trim() == ''){
+											alert('제목을 입력하세요.');
+											$('#qna_title').val('').focus();
+											return false;
+										}
+												
+										if($('#qna_content').val().trim() == ''){
+											alert('내용을 입력하세요.');
+											$('#qna_content').val('').focus();
+											return false;
+										}
+												
+										if($('input[name="qna_category"]:checked').length < 1){
+											alert('카테고리를 선택하세요.');
+											return false;
+										}
+									}); //end of submit
+									
+									$('#modify_form').on('submit', function(){
+										if($('#qna_title').val().trim() == ''){
+											alert('제목을 입력하세요.');
+											$('#qna_title').val('').focus();
+											return false;
+										}
+												
+										if($('#qna_content').val().trim() == ''){
+											alert('내용을 입력하세요.');
+											$('#qna_content').val('').focus();
+											return false;
+										}
+												
+										if($('input[name="qna_category"]:checked').length < 1){
+											alert('카테고리를 선택하세요.');
+											return false;
+										}
+									}); //end of submit
+								</script>
+							<input type="button" value="삭제" onclick="location.href='deleteQna.do'">
 						</li>
 						<hr size="1" noshade="noshade" color="#ededed" width="100%">
 					</ul>
