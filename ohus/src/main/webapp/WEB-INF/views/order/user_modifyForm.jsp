@@ -78,7 +78,11 @@
 					     value="${detail.item_total}"/>원
 				</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/item/userReviewForm.do?item_num=${detail.item_num}">후기작성</a>
+					<form action="${pageContext.request.contextPath}/item/userReviewForm.do" method="post">
+						<input type="hidden" value="${detail.mem_num}" name="mem_num">
+						<input type="hidden" value="${detail.item_num}" name="item_num">
+						<button type="submit">후기작성</button>
+					</form>
 				</td>
 			</tr>	
 			</c:forEach>

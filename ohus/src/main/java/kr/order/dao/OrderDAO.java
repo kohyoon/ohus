@@ -369,6 +369,7 @@ public class OrderDAO {
 					detail.setItem_total(rs.getInt("item_total"));
 					detail.setOrder_quantity(rs.getInt("order_quantity"));
 					detail.setOrder_num(rs.getInt("order_num"));
+					detail.setMem_num(rs.getInt("mem_num"));
 					
 					list.add(detail);
 				}
