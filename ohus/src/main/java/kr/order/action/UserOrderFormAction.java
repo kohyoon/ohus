@@ -40,7 +40,9 @@ public class UserOrderFormAction implements Action{
 		// 장바구니에 담겨있는 상품 정보 호출
 		List<CartVO> cartList = dao.getListCart(user_num);
 		ItemDAO itemDao = ItemDAO.getInstance();
+		
 		int order_quantity = 0;
+		
 		for(CartVO cart : cartList) {
 			ItemVO item = itemDao.getItem(cart.getItem_num());
 			if(item.getItem_status() == 1) {

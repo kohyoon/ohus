@@ -78,9 +78,9 @@ public class UserOrderAction implements Action{
 			orderDetail.setItem_num(cart.getItem_num());
 			orderDetail.setItem_name(cart.getItemVO().getItem_name());
 			orderDetail.setItem_price(cart.getItemVO().getItem_price());
+			orderDetail.setOrder_quantity(cart.getOrder_quantity());
 			orderDetail.setItem_total(cart.getSub_total());
 			orderDetail.setMem_num(cart.getMem_num());
-			
 			orderDetailList.add(orderDetail);
 			
 		}
