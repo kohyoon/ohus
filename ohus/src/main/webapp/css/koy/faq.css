@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/*==faq 표시 버튼==*/
+#faq_category{
+	font-size:12px;
+	text-align:center;
+}
+#faq_category button{
+	border-radius: 20px;
+	background-color:#99e3f7;
+	border:none;
+	color:white;
+	padding:6px 20px;
+	width:130px;
+}
+#faq_category #this_faq{
+	border-radius:20px;
+	background-color:#44d5fc;
+	border:none;
+	color:white;
+	padding:6px 20px;
+}
+
+/*==고객센터 표시 버튼==*/
+#cs_center{
+	font-size:16px;
+	text-align:center;
+}
+#cs_center button{
+	border-radius:13px;
+	background-color:#d29cff;
+	border:none;
+	color:white;
+	padding:6px 20px;
+	width: 120px;
+}
+#cs_center #this_cs{
+	border-radius:20px;
+	background-color:#7702d9;
+	border:none;
+	color:white;
+	padding:6px 20px;
+}

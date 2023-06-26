@@ -7,26 +7,7 @@
 <title>FAQ</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
-<style type="text/css">
-#faq_category{
-	font-size:12px;
-	text-align:center;
-}
-#faq_category button{
-	border-radius: 20px;
-	background-color:skyblue;
-	border:none;
-	color:white;
-	padding:6px 20px;
-}
-#faq_category #this_page{
-	border-radius:20px;
-	background-color:#dae1ed;
-	border:none;
-	color:black;
-	padding:6px 20px;
-}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -60,13 +41,18 @@ $(document).ready(function($){
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div id="cs_center">
+		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
 		<!-- FAQ 카테고리 시작 -->
 		<div id="faq_category">
 			<button onclick="location.href='faqPay.do'">결제</button>
 			<button onclick="location.href='faqDelivery.do'">배송관련</button>
-			<button id="this_page" onclick="location.href='faqMemInfo.do'">회원정보</button>
+			<button id="this_faq" onclick="location.href='faqMemInfo.do'">회원정보</button>
 			<button onclick="location.href='faqService.do'">서비스/기타</button>
 		</div>
 		<!-- FAQ 카테고리 끝 -->
@@ -119,19 +105,6 @@ $(document).ready(function($){
 			</div>
 		</div>
 		<!-- FAQ 내용 끝 -->
-		
-	
-	
-		<section>
-			<h1><a href="faq.do">FAQ</a></h1>
-			<nav>
-				<label>결제</label>
-				<label>회원정보</label>
-				<label>서비스</label>
-				<label>기타</label>
-			</nav>
-			
-		</section>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
