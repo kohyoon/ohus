@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
-		#(function(){
+		$(function(){
 			$('#write_form').submit(function(){
 				if($('#name').val().trim() == ''){
 					alert('상품명 미입력');

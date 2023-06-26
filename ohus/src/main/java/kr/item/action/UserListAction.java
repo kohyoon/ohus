@@ -27,10 +27,10 @@ public class UserListAction implements Action{
 		//전체 상품 데이터 처리
 		ItemDAO itemDao = ItemDAO.getInstance();
 		//Status 0이면 미표시(1), 표시(2) 모든 개수 체크
-		int count = itemDao.getItemCount(keyfield, keyword, 0, item_category);
+		int count = itemDao.getItemCount(keyfield, keyword, 1, item_category);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 3, 10, "userList.do", "&item_category="+item_category);
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "userList.do", "&item_category="+item_category);
 		
 		List<ItemVO> itemList = null;
 		if(count > 0) {

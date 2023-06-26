@@ -77,6 +77,9 @@
 					<fmt:formatNumber
 					     value="${detail.item_total}"/>원
 				</td>
+				<td>
+					<a href="${pageContext.request.contextPath}/item/userReviewForm.do?item_num=${detail.item_num}">후기작성</a>
+				</td>
 			</tr>	
 			</c:forEach>
 			<tr>
