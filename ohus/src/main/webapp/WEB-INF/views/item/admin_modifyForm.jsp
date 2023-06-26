@@ -46,6 +46,7 @@
 		<p>
 		<div class="admin-item-submit">
 			<form action="modify.do" method="post" enctype="multipart/form-data" id="write_form" class="write-form">
+				<input type="hidden" name="item_num" value="${item.item_num}">
 				<ul>
 					<li><h1>상품 수정</h1></li>
 					<li>

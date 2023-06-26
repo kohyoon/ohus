@@ -71,6 +71,11 @@
 			
 			function searchData(){
 				let data = $('input[type="search"]').val();
+				if(data == ''){
+					alert('검색어를 입력하세요.');
+					$('input[type="search"]').val('').focus();
+					return false;
+				}
 				location.href="userList.do?keyword="+data;
 			};
 			
@@ -81,6 +86,12 @@
 				
 			});	
 			
+			$('#header1').on("click", function(){header1.classList.add('active');});
+			$('#header2').on("click", function(){header2.classList.add('active');});
+			$('#header3').on("click", function(){header3.classList.add('active');});
+			$('#header4').on("click", function(){header4.classList.add('active');});
+			$('#header5').on("click", function(){header5.classList.add('active');});
+			$('#header6').on("click", function(){header6.classList.add('active');});
 		});
 	</script>
 </head>
@@ -105,7 +116,6 @@
 						<img src="${pageContext.request.contextPath}/upload/${item.item_photo1}" width="550" height="550">
 					</div>
 					<div class="item-detail"><br><br>
-						
 						<form id="item_cart">
 							<input type="hidden" name="item_num" value="${item.item_num}" id="item_num">
 							<input type="hidden" name="item_price" value="${item.item_price}" id="item_price">
@@ -147,18 +157,19 @@
 					</div>
 				</div>
 				<p>
-			</c:if>
-				<hr size="1" noshade="noshade" color="#ededed" width="100%">
-					<div class="lower">
-						<div class="low-inner">
+				<br>
+				<div class="item-header__nav">
+					<div class="item-header">
+						<div class="inner">
 							<nav>
-								<a class="lower__item" href="#item_detail">상품정보</a> 
-								<a class="lower__item" href="#item_review">리뷰 <small>${reviewCount}개</small></a> 
-								<a class="lower__item" href="#item_inquiry">문의</a>
+								<a id="header7" class="item-header__item" href="#item_detail">상품정보</a> 
+								<a id="header8" class="item-header__item" href="#item_review">리뷰 <small>${reviewCount}개</small></a>  
+								<a id="header9" class="item-header__item" href="#item_inquiry">문의</a> 
 							</nav>
 						</div>
 					</div>
-				<hr size="1" noshade="noshade" color="#ededed" width="100%">
+				</div>
+				
 				<p>
 				<div id="item_detail">
 					<img src="${pageContext.request.contextPath}/upload/${item.item_photo2}" width="1000" height="1000"><br>
@@ -169,7 +180,7 @@
 				</div>
 			<hr size="1" noshade="noshade" width="100%">
 			<div id="item_review">
-				<h2>상품 리뷰</h2>
+				<h2>상품 후기</h2>
 				리뷰는 여기 있습니다.
 			</div>
 			<hr size="1" noshade="noshade" width="100%">	
@@ -177,6 +188,7 @@
 				<h2>상품 문의</h2>
 				문의는 여기 있습니다.
 			</div>
+			</c:if>
 		</div>
 		<%-- 내용 끝 --%>
 	</div>

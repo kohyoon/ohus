@@ -16,6 +16,11 @@
 			
 			function searchData(){
 				let data = $('input[type="search"]').val();
+				if(data == ''){
+					alert('검색어를 입력하세요.');
+					$('input[type="search"]').val('').focus();
+					return false;
+				}
 				location.href="userList.do?keyword="+data;
 			};
 			
@@ -25,6 +30,13 @@
 				}
 				
 			});
+			
+			$('#header1').on("click", function(){header1.classList.add('active');});
+			$('#header2').on("click", function(){header2.classList.add('active');});
+			$('#header3').on("click", function(){header3.classList.add('active');});
+			$('#header4').on("click", function(){header4.classList.add('active');});
+			$('#header5').on("click", function(){header5.classList.add('active');});
+			$('#header6').on("click", function(){header6.classList.add('active');});
 		});
 	</script>
 </head>

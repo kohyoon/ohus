@@ -82,7 +82,7 @@
 							<c:if test = "${order.order_status == 1}">배송대기</c:if>
 							<c:if test = "${order.order_status == 2}">배송준비중</c:if>
 							<c:if test = "${order.order_status == 3}">배송중</c:if>
-							<c:if test = "${order.order_status == 4}">배송완료</c:if>
+							<c:if test = "${order.order_status == 4}">배송완료 <a href="location.href='${pageContext.request.contextPath}/item/writeReviewForm.do?item_num=${item.item_num}'">후기작성</a></c:if>
 							<c:if test = "${order.order_status == 5}">주문취소</c:if>
 						</td>
 					</tr>

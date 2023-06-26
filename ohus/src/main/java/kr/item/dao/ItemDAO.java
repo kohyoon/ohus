@@ -56,7 +56,57 @@ public class ItemDAO {
 		}
 	}
 	//상품 수정(관리자 전용)
-	
+	public void updateItem(ItemVO item) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			
+			if(item.getItem_photo1() != null) {
+				sub_sql += " item_photo1 = ?,";
+			}
+			if(item.getItem_photo2() != null) {
+				sub_sql += " item_photo2 = ?,";
+			}
+			if(item.getItem_photo3() != null) {
+				sub_sql += " item_photo3 = ?,";
+			}
+			//SQL문 작성
+			sql = "UPDATE item SET item_name = ?, item_category = ?, item_price = ?, item_content = ?, "
+				+ "item_stock = ?, item_origin = ?, " + sub_sql + " item_mdate = SYSDATE, "
+				+ "item_status = ? WHERE item_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터바인딩
+			pstmt.setString(++cnt, item.getItem_name());
+			pstmt.setInt(++cnt, item.getItem_category());
+			pstmt.setInt(++cnt, item.getItem_price());
+			pstmt.setString(++cnt, item.getItem_content());
+			pstmt.setInt(++cnt, item.getItem_stock());
+			pstmt.setString(++cnt, item.getItem_origin());
+			if(item.getItem_photo1() != null) {
+				pstmt.setString(++cnt, item.getItem_photo1());
+			}
+			if(item.getItem_photo2() != null) {
+				pstmt.setString(++cnt, item.getItem_photo2());
+			}
+			if(item.getItem_photo3() != null) {
+				pstmt.setString(++cnt, item.getItem_photo3());
+			}
+			pstmt.setInt(++cnt, item.getItem_status());
+			pstmt.setInt(++cnt, item.getItem_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//상품 삭제(관리자 전용)
 	
 	//상품 사진 삭제
