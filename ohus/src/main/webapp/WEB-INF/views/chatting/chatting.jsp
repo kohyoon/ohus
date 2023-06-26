@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>채팅방</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/chatting.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chatMessage.js"></script>
 <script type="text/javascript">
