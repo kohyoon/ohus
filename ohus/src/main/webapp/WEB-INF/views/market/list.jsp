@@ -49,13 +49,15 @@
 					<div class="img-box">
 						<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="250" height="250" class="my-photo"><br>
 					</div>
-						<h3 class="box-title">${market.market_title}</h3>
-						<div class="box-writer">
-							${market.id}
-						</div>
-						<div class="box-date-hit">
-							${market.market_regdate} ${market.market_hit}
-						</div>
+					<h3 class="box-title">${market.market_title}</h3>
+					<div class="box-writer">
+						<c:if test="${market.market_status == 1}"><span class="sold">거래완료</span></c:if>
+						<c:if test="${market.market_status == 0}"><span class="selling">판매중</span></c:if>
+						${market.id}
+					</div>
+					<div class="box-date-hit">
+						${market.market_regdate} ${market.market_hit}
+					</div>
 				</a>
 			</div>
 			</c:forEach>

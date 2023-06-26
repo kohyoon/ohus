@@ -133,8 +133,20 @@ h3.box-title {
 
 }
 .page-title h2{
-  margin:10px 0 0 90px;
-  position: relative;
-  margin:60px 50px 20px 250px;
+  	margin:10px 0 0 90px;
+  	position: relative;
+  	margin:60px 50px 20px 250px;
 	font-size: 70px;
+}
+/* 거래 상태에 따른 스타일 */
+.selling{
+	background-color: aqua;
+	border-radius: 30px;
+	font-size:20px;
+}
+.sold{
+	background-color: red;
+	border-radius: 30px;
+	color:white;
+	font-size:20px;
 }
