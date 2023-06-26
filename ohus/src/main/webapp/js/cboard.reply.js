@@ -28,30 +28,38 @@ function selectList(pageNum) {
 
       $(param.list).each(function (index, item) {
         let output = '<div class="item">';
-        output += '<h4>' + item.id + '</h4>';
+        output += '<h4 class="item-id">' + item.id + '</h4>';
         output += '<div class="sub-item">';
-        output += '<p>' + item.re_content + '</p>';
+        output += '<div class="sub-item-content">';
+        output += '<p class="re-content">' + item.re_content + '</p>';
 
         // 날짜
         if (item.re_modifydate) {
-          output += '<span class="modify-date">' + item.re_modifydate + '</span>';
+          output += '<span class="modify-date modify">' + item.re_modifydate + '</span>';
         } else {
-          output += '<span class="modify-date">' + item.re_date + '</span>';
+          output += '<span class="modify-date modify">' + item.re_date + '</span>';
         }
+
+        output += '</div>';
+        
         // 수정, 삭제, 신고 버튼
         // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
         if (param.user_num == item.mem_num) {
           // 로그인한 회원번호와 작성자 회원번호 일치
-          output += ' <input type="button" data-renum="' + item.re_num + '" value="수정" class="modify-btn">';
-          output += ' <input type="button" data-renum="' + item.re_num + '" value="삭제" class="delete-btn">';
-          output += ' <input type="button" data-renum="' + item.re_num + '" value="신고" class="report-btn">';
+          output += '<div class="sub-item-buttons">';
+          output += ' <input type="button" data-renum="' + item.re_num + '" value="수정" class="modify-btn" style="background: transparent; color: #828C94; border: none;">';
+	      output += ' <input type="button" data-renum="' + item.re_num + '" value="삭제" class="delete-btn" style="background: transparent; color: #828C94; border: none;">';
+          output += ' <input type="button" data-renum="' + item.re_num + '" value="신고" class="report-btn" style="background: transparent; color: #828C94; border: none;">';
+
+          output += '</div>';
         }
 
-        output += '<hr size="1" noshade width="100%">';
         output += '</div>';
         output += '</div>';
-
-        // 문서 객체에 추가
+		
+		
+		
+        // 문서 객체에 추가		
         $('#output').append(output);
       });
 
@@ -78,6 +86,8 @@ function selectList(pageNum) {
     }
   });
 }
+
+
 
 // 팝업 열기
 function openReportPopup(renum) {

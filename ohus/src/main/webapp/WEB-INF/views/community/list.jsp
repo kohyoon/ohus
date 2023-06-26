@@ -51,7 +51,7 @@
     <!-- 내용 시작 -->
     <div class="content-main">
 
-        <div class="result-display">
+        <div class="result-display" style="color: #424242";>
         전체 ${count}
     	</div>
         <div class = "community-main">
@@ -70,7 +70,9 @@
                            <a href="${pageContext.request.contextPath}/community/detail.do?cboard_num=${board.cboard_num}">
                             <img src="${pageContext.request.contextPath}/upload/${board.cboard_photo1}" class="photo1">
                            </a>
-                            <div class="community-center">${board.cboard_title}</div> <!-- 가운데 정렬 -->
+                            <div class="community-center" style="font-weight: bold; font-size: 24px;">${board.cboard_title}</div>
+
+ <!-- 가운데 정렬 -->
 
                             
                             <div class="community-center">
@@ -82,10 +84,10 @@
                                     <img src="${pageContext.request.contextPath}/images/face.png" width="15" height="15">
                                 </c:otherwise>
                             </c:choose>
-                            ${board.id}
+                            <span style="color: #424242; font-size: 14px;">${board.id}</span>
                             <br>
-                            좋아요 ${board.favCount}
-                            조회 ${board.cboard_hit}
+                            <div class="community-center" style="color: #757575; font-size: 13px;" >좋아요 ${board.favCount} 조회 ${board.cboard_hit}</div>
+
                            </div>
                            </div>
                            </c:forEach>

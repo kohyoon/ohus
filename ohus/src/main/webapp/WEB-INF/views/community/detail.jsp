@@ -14,7 +14,8 @@
             margin-left: 5cm;
             margin-right: 5cm;
         }
-        .content-center {
+        .content-center,
+        .paging-button {
             text-align: center;
         }
         .detail-info {
@@ -53,6 +54,41 @@
         .re-title {
             font-weight: bold;
         }
+        .hr-container {
+  			background: #EAEDEF;
+		}
+
+		.custom-hr {
+  			height: 1px;
+  			border: none;
+  			background: #EAEDEF;
+		}
+		.sub-item {
+  			display: flex;
+  			justify-content: space-between;
+		}
+
+		.sub-item-content {
+  			flex: 1;
+		}
+
+		.sub-item-buttons {
+  			display: flex;
+  			gap: 10px;
+		}
+		.modify-date.modify {
+  			font-size: 12px;
+  			color: #828C94;
+		}
+		.item-id {
+  			margin-bottom: 0.2cm;
+		}
+
+		.re-content {
+  			margin-top: 0.2cm;
+		}
+		
+		
     </style>
 </head>
 
@@ -62,7 +98,7 @@
     <!-- 내용 시작 -->
     <div class="content-main">
         <div class="content-center">
-            <h2>${board.cboard_title}</h2><br><br><br>
+            <h1>${board.cboard_title}</h1><br><br><br>
             <div class="detail-info">
                 <div class="info-left">
                     <div class="move-left">
@@ -90,7 +126,9 @@
         </div>
     </div>
     <br><br>
-    <hr size="1" noshade="noshade" width="100%">
+    <div class="hr-container">
+    <hr class="custom-hr" size="1" noshade="noshade" width="100%">
+    </div>
     <br><br><br><br><br><br>
 
     <c:if test="${!empty board.cboard_photo1}">
@@ -111,18 +149,20 @@
 
     <br><br><br><br><br><br>
 
-    <div class="detail-info">
+    <div class="detail-info" style="color: #828C94;">
         <div class="info-left">
-            좋아요  <span id="output_fcount"></span> &nbsp;
-            조회 ${board.cboard_hit}
-        </div>
+    		좋아요  <span id="output_fcount"></span> &nbsp;
+    		조회 ${board.cboard_hit}
+		</div>
+
 
         <div class="info-right">
             <div class="detail-sub">
                 <div>
                     <c:if test="${user_num == board.mem_num}">
-                        <input type="button" value="수정" onclick="location.href='updateForm.do?cboard_num=${board.cboard_num}'">
-                        <input type="button" value="삭제" id="delete_btn">
+                        <input type="button" value="수정" onclick="location.href='updateForm.do?cboard_num=${board.cboard_num}'" style="background: transparent; color: #828C94; border: none;">
+						<input type="button" value="삭제" id="delete_btn" style="background: transparent; color: #828C94; border: none;">
+
                         <script type="text/javascript">
                             let delete_btn = document.getElementById('delete_btn');
                             // 이벤트 연결
@@ -139,7 +179,10 @@
         </div>
     </div>
 
-    <hr size="1" noshade="noshade" width="100%">
+	<div class="hr-container">
+    <hr class="custom-hr" size="1" noshade="noshade" width="100%">
+    </div>
+    
     <br><br>
     <div class="detail-info">
         <div class="info-left">
@@ -166,35 +209,49 @@
         </div>
     </div>
     <br><br>
-    <hr size="1" noshade="noshade" width="100%">
+    <div class="hr-container">
+    <hr class="custom-hr" size="1" noshade="noshade" width="100%">
+    </div>
     <br><br>
     <!-- 댓글 시작 -->
     <div id="reply_div">
-        <span class="re-title">댓글</span><br><br><br>
-        <form id="re_form">
-            <c:if test="${!empty board.photo}">
-                <img src="${pageContext.request.contextPath}/upload/${board.photo}" width="50" height="50" class="my-photo">
-            </c:if>
-            <c:if test="${empty board.photo}">
-                <img src="${pageContext.request.contextPath}/images/face.png" width="50" height="50" class="my-photo">
-            </c:if>
+    <span class="re-title">댓글</span><br><br><br>
+    <form id="re_form" style="display: flex; align-items: center;">
+        <c:if test="${!empty board.photo}">
+            <img src="${pageContext.request.contextPath}/upload/${board.photo}" width="50" height="50" class="my-photo">
+        </c:if>
+        <c:if test="${empty board.photo}">
+            <img src="${pageContext.request.contextPath}/images/face.png" width="50" height="50" class="my-photo">
+        </c:if>
+        <div style="flex-grow: 1; margin-left: 10px; position: relative;">
             <input type="hidden" name="cboard_num" value="${board.cboard_num}" id="cboard_num">
-            <textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
-                <c:if test="${empty user_num}">disabled="disabled"</c:if>
-            ><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-
-            <c:if test="${!empty user_num}">
-                <div id="re_second" class="align-right">
-                    <input type="submit" value="전송">
+            <div style="display: flex;">
+                <textarea rows="3" name="re_content" id="re_content" class="rep-content"
+                    <c:if test="${empty user_num}">disabled="disabled"</c:if>
+                style="width: 100%; border-color: #C2C8CC;"
+               	><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
+				<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #C2C8CC;">
+                    칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)
                 </div>
-            </c:if>
-        </form>
-    </div>
+                <c:if test="${!empty user_num}">
+                   <div id="re_second" class="align-right" style="margin-left: 10px; display: flex; flex-direction: column; align-items: center;">
+    				<input type="submit" value="전송" style="background: transparent; color: #C2C8CC; border: none; margin-top: auto; margin-bottom: auto;">
+					</div>
+
+                </c:if>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br>
+
+
+
 
     <!-- 댓글 목록 출력 시작 -->
     <div id="output"></div>
-    <div class="paging-button" style="display:none;">
-        <input type="button" value="다음글 보기">
+    <div class="paging-button" style="display:none; color: #828C94; border: none;">
+        <input type="button"  value="다음글 보기" style="background: transparent; color: #C2C8CC; border: none; margin-top: auto; margin-bottom: auto;">
     </div>
     <div id="loading" style="display:none;">
         <img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
