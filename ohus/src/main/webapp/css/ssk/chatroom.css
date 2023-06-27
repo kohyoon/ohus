@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.content-main{
+    width: 600px;
+    margin: 0 auto;
+}
+table{
+	width:100%;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+.chatroom-item td:hover {
+    cursor: pointer;
+    border-color: aqua;
+}
+.chatroom-item{
+	height:50px;
+}

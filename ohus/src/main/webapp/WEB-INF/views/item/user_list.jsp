@@ -50,8 +50,8 @@
 			<div class="item-list">
 				<c:if test="${count == 0}">
 					<div>
-					표시할 상품 없음
-				</div>
+						표시할 상품 없음
+					</div>
 				</c:if>
 				<c:forEach var="item" items="${itemList}">
 					<ul class="horizontal-list">

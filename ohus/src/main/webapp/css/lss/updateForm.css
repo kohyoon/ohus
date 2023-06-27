@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+	label {
+		width: 100px; /* 레이블의 너비 조정 */
+	}
+	input[type="text"],
+	textarea {
+		width: 300px; /* 입력 칸의 너비 조정 */
+	}
+	.content-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	}
+	.horizontal-line {
+	display: flex;
+	align-items: center;
+	}
+	.horizontal-line hr {
+	flex-grow: 1;
+	border: none;
+	border-top: 1px solid #000;
+	margin: 0 10px;
+	}
+	.custom-hr {
+  			height: 1px;
+  			border: none;
+  			background: #EAEDEF;
+	}
+	.button-container {
+  			text-align: center;
+	}
+
+	input[type=file]::file-selector-button {
+  			width: 150px;
+  			height: 30px;
+  			background: #fff;
+  			border: 1px solid rgb(77, 77, 77);
+  			border-radius: 10px;
+  			cursor: pointer;
+	}
+
+	input[type=file]::file-selector-button:hover {
+  			background: rgb(77, 77, 77);
+  			color: #fff;
+	}	

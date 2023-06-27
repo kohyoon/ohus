@@ -16,9 +16,10 @@
 		<h2>거래글 삭제 성공</h2>
 		<div class="result-display">
 			<div class="align-center">
-				글이 삭제 되었습니다.
-				<p>
-				<input type="button" value="목록보기" onclick="location.href='list.do'">
+				<script>
+					alert('글이 삭제 되었습니다. 거래글 목록으로 이동합니다.');
+					location.href='list.do';
+				</script>
 			</div>
 		</div>
 	</div>
