@@ -29,6 +29,8 @@ public class UserOrderFormAction implements Action{
 			return "redirect:/item/itemList.do";
 		}
 		
+		
+		
 		CartDAO dao = CartDAO.getInstance();
 		int all_total = dao.getTotalByMem_num(user_num);
 		if(all_total <= 0) {
@@ -37,7 +39,7 @@ public class UserOrderFormAction implements Action{
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
 		
-		// 장바구니에 담겨있는 상품 정보 호출
+		// 장바구니(목록)에 담겨있는 상품 정보 호출
 		List<CartVO> cartList = dao.getListCart(user_num);
 		ItemDAO itemDao = ItemDAO.getInstance();
 		
