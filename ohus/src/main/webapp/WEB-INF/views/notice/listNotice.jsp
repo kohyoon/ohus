@@ -38,7 +38,7 @@
 			<c:forEach var="notice" items="${list}">
 			<tr>
 				<td>${notice.notice_num}</td>
-				<td><a href="detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+				<td><a href="detailNotice.do?notice_num=${notice.notice_num}"><b>[공지]</b> ${notice.notice_title}</a></td>
 				<td>${notice.notice_regdate}</td>
 			</tr>
 			</c:forEach>
@@ -46,29 +46,30 @@
 		<div class="align-center page">${page}</div>
 		</c:if>
 		<div class="bottoms">
-		<!-- 검색창 시작 -->
-		<form id="search_form" action="listNotice.do" method="get">
-			<ul class="search">
-				<li>
-					<select name="keyfield">
-						<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
-						<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>내용</option>
-					</select>
-				</li>
-				<li>
-					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
-				</li>
-				<li>
-					<input type="submit" value="검색">
-				</li>
-			</ul>
-		</form>
-		<!-- 검색창 끝 -->
-		<div class="buttons">
-			<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'">
-			<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
+			<!-- 검색창 시작 -->
+			<form id="search_form" action="listNotice.do" method="get">
+				<ul class="search">
+					<li>
+						<select name="keyfield">
+							<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
+							<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>내용</option>
+						</select>
+					</li>
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					</li>
+					<li>
+						<input type="submit" value="검색">
+					</li>
+				</ul>
+			</form>
+			<!-- 검색창 끝 -->	
+			<div class="list-space align-right">
+				<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
+				<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
+			</div>		
 		</div>
-		</div>
+		
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

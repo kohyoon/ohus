@@ -20,6 +20,22 @@
 	margin-right: 200px;
 	margin-top: 10px;
 }
+
+.align-center #list:hover{
+	background-color: #09addb;
+	color : white;	
+}
+
+  #two_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #two_buttons input[type="submit"],
+  #two_buttons input[type="button"] {
+    margin: 0 10px;
+  }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -64,7 +80,7 @@
 					<textarea rows="5" cols="30" name="content" id="content"></textarea>
 				</li>
 			</ul>
-			<div class="align-center">
+			<div class="align-center" id="two_buttons">
 				<input type="submit" value="등록">
 				<input type="button" value="목록" id="list" onclick="location.href='listInquiry.do'">
 			</div>

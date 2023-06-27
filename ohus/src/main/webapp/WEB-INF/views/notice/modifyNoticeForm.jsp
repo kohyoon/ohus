@@ -7,14 +7,61 @@
 <meta charset="UTF-8">
 <title>공지사항 글 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/form.css">
+<style type="text/css">
+#list{
+	width: 30%;
+	padding: 13px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 15px;
+	cursor: pointer;
+	margin-right: 200px;
+	margin-top: 10px;
+}
+
+.align-center #list:hover{
+	background-color: #09addb;
+	color : white;	
+}
+
+  #two_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #two_buttons input[type="submit"],
+  #two_buttons input[type="button"] {
+    margin: 0 10px;
+  }
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#write_form").submit(function(){
+			if($('#title').val().trim() == ''){
+				alert('제목을 입력하세요.');
+				$('#title').val('').focus();
+				return false;
+			}
+			if($('#content').val().trim() == ''){
+				alert('내용을 입력하세요.');
+				$('#content').val('').focus();
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2>공지사항 글 수정</h2>
+		<h2 style="text-align:center;">공지사항 글 수정</h2>
 		<form id="modify_form" action="modifyNotice.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="notice_num" value="${notice.notice_num}">
 			<ul>
@@ -66,9 +113,9 @@
 					</c:if>
 				</li>
 			</ul>
-			<div class="align-center">
-				<input type="submit" value="수정">
-				<input type="button" value="이전" onclick="location.href='detailNotice.do?notice_num=${notice.notice_num}'">
+			<div class="align-center" id="two_buttons">
+				<input type="submit" value="등록">
+				<input type="button" value="목록" id="list" onclick="location.href='detailNotice.do?notice_num=${notice.notice_num}'">
 			</div>
 		</form>
 	</div>

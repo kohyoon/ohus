@@ -11,6 +11,7 @@
 	color:white;
 	padding:6px 20px;
 	width:130px;
+	cursor: pointer;
 }
 #faq_category #this_faq{
 	border-radius:20px;
@@ -32,6 +33,7 @@
 	color:white;
 	padding:6px 20px;
 	width: 120px;
+	cursor: pointer;
 }
 #cs_center #this_cs{
 	border-radius:20px;

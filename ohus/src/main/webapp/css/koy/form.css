@@ -47,23 +47,6 @@ input[type="text"]{
     vertical-align: middle;
 }
 
-.align-center input[type="submit"] {
-	width: 30%;
-	padding: 13px;
-	background-color: #35c5f0 ;
-	border: none;
-	color: white;
-	font-weight: bold;
-	font-size : 15px;
-	cursor: pointer;
-	margin-right: 200px;
-	margin-top: 10px;
-}
-.align-center input[type="submit"]:hover{
-	background-color: #09addb;
-	color : white;
-}
-
 input[type="text"]:focus, textarea:focus {
 	outline: none !important; 
 	border-color: #35c5f0; 
@@ -94,3 +77,25 @@ select option{
 	padding:3px 0;
 }
 
+.align-center input[type="submit"] {
+	width: 30%;
+	padding: 13px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 15px;
+	cursor: pointer;
+	margin-right: 200px;
+	margin-top: 10px;
+}
+.align-center input[type="submit"]:hover{
+	background-color: #09addb;
+	color : white;
+}
+
+.align-center {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
