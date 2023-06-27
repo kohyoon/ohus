@@ -89,6 +89,12 @@
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>   
 		<!-- 하단 내용 끝 -->
 	</div>
+	<%-- 당첨자 알림창 --%>
+    <c:if test="${showWinnerAlert}">
+        <script>
+            alert('당첨을 축하합니다!');
+        </script>
+    </c:if>
 </body>
 </html>
 

@@ -538,7 +538,7 @@ public class EventDAO {
 	}
 
 	
-	//당첨된 회원과의 매핑
+	//당첨자 확인 메서드
 	public boolean checkEventWinner(int mem_num) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
@@ -565,7 +565,7 @@ public class EventDAO {
 	        DBUtil.executeClose(rs, pstmt, conn);
 	    }
 
-	    return isWinner;
+	    return isWinner; //당첨자면 true, 당첨자가 아니면 false;
 	}
 	
 	//이벤트 추첨 버튼을 눌렀을 때 event_check를 1로 변경해줌
