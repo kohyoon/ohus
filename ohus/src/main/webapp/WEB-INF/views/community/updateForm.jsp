@@ -23,34 +23,77 @@
             });
         });
     </script>
-    
-    
+    <style>
+	label {
+		width: 100px; /* 레이블의 너비 조정 */
+	}
+	input[type="text"],
+	textarea {
+		width: 300px; /* 입력 칸의 너비 조정 */
+	}
+	.content-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	}
+	.horizontal-line {
+	display: flex;
+	align-items: center;
+	}
+	.horizontal-line hr {
+	flex-grow: 1;
+	border: none;
+	border-top: 1px solid #000;
+	margin: 0 10px;
+	}
+	.custom-hr {
+  			height: 1px;
+  			border: none;
+  			background: #EAEDEF;
+	}
+	.button-container {
+  			text-align: center;
+	}
+
+	input[type=file]::file-selector-button {
+  			width: 150px;
+  			height: 30px;
+  			background: #fff;
+  			border: 1px solid rgb(77, 77, 77);
+  			border-radius: 10px;
+  			cursor: pointer;
+	}
+
+	input[type=file]::file-selector-button:hover {
+  			background: rgb(77, 77, 77);
+  			color: #fff;
+	}	
+</style>
 </head>
 <body>
 <div class="page-main">
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <!-- 내용 시작 -->
+    <div class="content-wrapper">
     <div class="content-main">
-        <h2>게시글 수정</h2>
         <form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
             <input type="hidden" name="cboard_num" value="${board.cboard_num}" />
-            <ul>
-                <li>
-                    <label for="title">제목</label>
-                    <input type="text" name="cboard_title" value="${board.cboard_title}" id="title" maxlength="50" />
-                </li>
-                <li>
-                    <label for="content">내용</label>
-                    <textarea rows="5" cols="30" name="cboard_content" id="content" maxlength="50">${board.cboard_content}</textarea>
-                </li>
-                <li>
-                    <label for="filename">사진1</label>
-                    <input type="file" name="cboard_photo1" id="filename" accept="image/gif,image/png,image/jpeg" />
+            <div class="horizontal-line">
+			<hr>
+			<h2 class="summary_title" style="color: #828C94;"> 게시글 수정 </h2>
+			<hr>
+			</div>
+            <br>
+			<hr class="custom-hr" size="1" noshade="noshade" width="100%">
+			<br>
+			<div>
+			<input type="file" name="cboard_photo1" id="filename" accept="image/gif,image/png,image/jpeg" />
                     <c:if test="${not empty board.cboard_photo1}">
                         <div id="file_detail">
                             (${board.cboard_photo1})파일이 등록되어 있습니다.
-                            <input type="button" value="파일삭제" id="file_del1" />
-                        </div>
+                            <input type="button" value="파일삭제" id="file_del1" style="width: 60px; height: 20px; background: #fff; border: 1px solid rgb(77, 77, 77); border-radius: 10px; cursor: pointer;">
+						 </div>
                         <script type="text/javascript">
                             $(function () {
                                 $('#file_del1').click(function () {
@@ -81,15 +124,12 @@
                             });
                         </script>
                     </c:if>
-                </li>
-                
-                <li>
-                    <label for="filename">사진2</label>
+					<br><br>
                     <input type="file" name="cboard_photo2" id="filename" accept="image/gif,image/png,image/jpeg" />
                     <c:if test="${not empty board.cboard_photo2}">
                         <div id="file_detail">
                             (${board.cboard_photo2})파일이 등록되어 있습니다.
-                            <input type="button" value="파일삭제" id="file_del2" />
+                            <input type="button" value="파일삭제" id="file_del2" style="width: 60px; height: 20px; background: #fff; border: 1px solid rgb(77, 77, 77); border-radius: 10px; cursor: pointer;">
                         </div>
                         <script type="text/javascript">
                             $(function () {
@@ -121,14 +161,26 @@
                             });
                         </script>
                     </c:if>
-                </li>
-            </ul>
-            <div class="align-center">
-                <input type="submit" value="수정" />
-                <input type="button" value="글상세" onclick="location.href='detail.do?cboard_num=${board.cboard_num}'" />
-            </div>
+                    </div><br><br>
+         			<hr class="custom-hr" size="1" noshade="noshade" width="100%">
+					<br>
+					<input type="text" name="cboard_title" id="title" maxlength="50" placeholder="제목을 입력해주세요." style="font-size: 24px; color: #C2C8CC; width: 600px; height: 25px; border: 1px solid transparent;"><br><br>
+					<hr class="custom-hr" size="1" noshade="noshade" width="100%">
+					<textarea rows="5" cols="30" name="cboard_content" id="content" maxlength="300" placeholder="내용을 입력해주세요." style="font-size: 16px; color: #C2C8CC; width: 600px; height: 200px; border: 1px solid transparent;"></textarea>
+
+					<br><br>
+			
+					<hr class="custom-hr" size="1" noshade="noshade" width="100%">
+			
+					<br><br>
+         	
+					<div class="button-container">                		
+                		<input type="button" value="이전" style="font-size: 18px; background-color: #35C5F0; color: #FFFFFF; border-radius: 5px; width: 6em; height: 3em; border: none;" onclick="location.href='detail.do?cboard_num=${board.cboard_num}'" />
+                		<input type="submit" value="수정" style="font-size: 18px; background-color: #35C5F0; color: #FFFFFF; border-radius: 5px; width: 6em; height: 3em; border: none;" />
+            		</div>
         </form>
     </div>
+</div>    
     <!-- 내용 끝 -->
 </div>
 </body>

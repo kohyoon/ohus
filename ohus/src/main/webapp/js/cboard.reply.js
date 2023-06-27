@@ -2,6 +2,8 @@ $(function(){
 	let currentPage;
 	let count;
 	let rowCount;
+
+	
 	
 // 댓글 목록
 function selectList(pageNum) {
@@ -56,8 +58,7 @@ function selectList(pageNum) {
 
         output += '</div>';
         output += '</div>';
-		
-		
+
 		
         // 문서 객체에 추가		
         $('#output').append(output);
@@ -92,8 +93,8 @@ function selectList(pageNum) {
 // 팝업 열기
 function openReportPopup(renum) {
   // 팝업 창 크기 설정
-  var popupWidth = 300;
-  var popupHeight = 300;
+  var popupWidth = 400;
+  var popupHeight = 400;
   var leftPosition = (window.innerWidth - popupWidth) / 2;
   var topPosition = (window.innerHeight - popupHeight) / 2;
 
@@ -101,14 +102,15 @@ function openReportPopup(renum) {
   var reportPopup = window.open('', '신고하기', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
 
   // 팝업 창 내용 추가
-  var reportContent = '<h3>신고하기</h3>';
-  reportContent += '<label><input type="radio" name="reportCategory" value="1">주제와 맞지 않음</label><br>';
-  reportContent += '<label><input type="radio" name="reportCategory" value="2">광고</label><br>';
-  reportContent += '<label><input type="radio" name="reportCategory" value="3">저작권 침해</label><br>';
-  reportContent += '<label><input type="radio" name="reportCategory" value="4">욕설/비방</label><br>';
-  reportContent += '<label><input type="radio" name="reportCategory" value="5">개인정보 노출</label><br>';
-  reportContent += '<label><input type="radio" name="reportCategory" value="6">기타</label><br>';
-  reportContent += '<button id="submitReport">신고</button>';
+  var reportContent = '<h3>신고 사유를 선택해주세요</h3>';
+  reportContent += '<label style="display: inline-block; text-align: left;"><input type="radio" name="reportCategory" value="1">주제와 맞지 않음</label><br><br>';
+  reportContent += '<label style="display: inline-block; text-align: left;"><input type="radio" name="reportCategory" value="2">광고</label><br><br>';
+  reportContent += '<label style="display: inline-block; text-align: left;"><input type="radio" name="reportCategory" value="3">저작권 침해</label><br><br>';
+  reportContent += '<label style="display: inline-block; text-align: left;"><input type="radio" name="reportCategory" value="4">욕설/비방</label><br><br>';
+  reportContent += '<label style="display: inline-block; text-align: left;"><input type="radio" name="reportCategory" value="5">개인정보 노출</label><br><br>';
+  reportContent += '<label style="display: inline-block; text-align: left;"><input type="radio" name="reportCategory" value="6">기타</label><br><br>';
+  reportContent += '<button id="submitReport" style="padding: 0.3cm; border-radius: 10px; background-color: #35C5F0; color: #FFFFFF;">신고하기</button>';
+
 
   reportPopup.document.write(reportContent);
 
@@ -230,22 +232,20 @@ function openReportPopup(renum) {
 	
 	//댓글 수정 버튼 클릭시 수정폼 노출
 	$(document).on('click','.modify-btn',
-	                       function(){
+	                       function(){					   
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
 		//댓글 내용
-		let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+		let content = $(this).parents('.sub-item').find('p').html().replace(/<br>/gi,'\n');
 		                                         //g:지정문자열 모두, i:대소문자 무시
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="re_num" id="mre_num" value="' + re_num + '">';
-		modifyUI += '<textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">' + content + '</textarea>';
-		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
+		modifyUI += '<textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content" style="width: 100%; border-color: #C2C8CC; display: block; margin: 0 auto;">' + content + '</textarea>';
 		modifyUI += '<div id="mre_second" class="align-right">';
-		modifyUI += ' <input type="submit" value="수정">';
-		modifyUI += ' <input type="button" value="취소" class="re-reset">';
+		modifyUI += ' <input type="submit" value="수정" style="background: transparent; color: #828C94; border: none;">';
+		modifyUI += ' <input type="button" value="취소" class="re-reset" style="background: transparent; color: #828C94; border: none;">';
 		modifyUI += '</div>';
-		modifyUI += '<hr size="1" noshade width="96%">';
 		modifyUI += '</form>';
 		
 		//이전에 이미 수정하는 댓글이 있을 경우
