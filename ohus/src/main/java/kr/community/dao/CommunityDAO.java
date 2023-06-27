@@ -109,7 +109,7 @@ public class CommunityDAO {
 	}
 	
 	// 글 목록(검색글 목록)
-	public List<CommunityVO> getListBoard(int start, int end, String keyfield, String keyword, String sort, String cboard_category) throws Exception {
+	public List<CommunityVO> getListBoard(int start, int end, String keyfield, String keyword, String cboard_category) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -131,22 +131,8 @@ public class CommunityDAO {
 	            else if (keyfield.equals("2")) sub_sql += "AND m.id LIKE ?";
 	            else if (keyfield.equals("3")) sub_sql += "AND b.cboard_content LIKE ?";
 	        }
-
-	        if (sort == null) {
-	            // "sort"가 null인 경우 기본 정렬 옵션을 설정
-	            sort = "latest";
-	        }
-	        	
-	        // 정렬 기준에 따라 SQL문 작성
-	        if (sort.equals("latest")) {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
-	        } else if (sort.equals("hits")) {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_hit DESC)a) WHERE rnum>=? AND rnum<=?";
-	        } else if (sort.equals("favorites")) {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_fav DESC)a) WHERE rnum>=? AND rnum<=?";
-	        } else {
-	            sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
-	        }
+	            	
+	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
 
 	        // PreparedStatement 객체 생성
 	        pstmt = conn.prepareStatement(sql);
@@ -189,6 +175,7 @@ public class CommunityDAO {
 	    }
 	    return list;
 	}
+
 
 
 	

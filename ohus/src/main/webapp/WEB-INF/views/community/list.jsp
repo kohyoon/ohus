@@ -93,7 +93,7 @@
                            </a>
                             <div class="community-center" style="font-weight: bold; font-size: 24px;">${board.cboard_title}</div>
 
- <!-- 가운데 정렬 -->
+							 <!-- 가운데 정렬 -->
 
                             
                             <div class="community-center">
