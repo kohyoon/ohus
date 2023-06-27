@@ -27,25 +27,34 @@ $(function(){
 				
 				$(param.list).each(function(index, item){
 					let output = '<div class="item">';
-					output += '<h4>' + item.id + '</h4>';
-					output += '<div class="sub-item">';
-					output += '<p>' + item.ans_content + "</p>";
+					output += '<span><b>' + item.id + '</b></span>';
+					/*output += '<div class="sub-item">';
+					output += '<p>' + item.ans_content + "</p>";*/
 					
 					//날짜
 					if(item.inq_mdate){
-						output += '<span class="modify-date">최근 수정일 : ' + item.ans_mdate +'</span>';
+						output += '<span class="modify-date"><small> ' + item.ans_mdate +' 작성</small></span>';
 					} else{
-						output += '<span class="modify-date">등록일 : ' + item.ans_date +'</span>';
+						output += '<span class="modify-date"><small> ' + item.ans_date +' 작성</small></span>';
 					}
 					
 					//수정, 삭제 버튼
 					//로그인 한 회원번호와 작성자의 회원번호 일치 여부 체크
+					/*if(param.user_num == item.mem_num){
+						//일치
+						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="수정" class="modify-btn">';
+						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="삭제" class="delete-btn">';
+					}*/
+					
+					output += '<div class="sub-item">';
+					output += '<p>' + item.ans_content + "</p>";
+					output += '<div class="align-right re_buttons">';
 					if(param.user_num == item.mem_num){
 						//일치
 						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="삭제" class="delete-btn">';
 					}
-					
+					output += '</div>';
 					output += '<hr size="1" noshade width="100%">';
 					output += '</div>';
 					output += '</div>';
@@ -77,10 +86,10 @@ $(function(){
 		selectList(currentPage + 1)
 	});
 	
-	//답변 둥록
+	//답변 등록
 	$('#ans_form').submit(function(event){
 		//기본 이벤트 제어
-		event.preventDefault();
+		//event.preventDefault();
 		
 		if($('#ans_content').val().trim() == ''){ //답변 내용이 비어 있는 경우
 			alert('답변 내용을 입력하세요.');

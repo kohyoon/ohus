@@ -6,7 +6,7 @@
 }
 #faq_category button{
 	border-radius: 20px;
-	background-color:#99e3f7;
+	background-color:#91addb;
 	border:none;
 	color:white;
 	padding:6px 20px;
@@ -15,20 +15,22 @@
 }
 #faq_category #this_faq{
 	border-radius:20px;
-	background-color:#44d5fc;
+	background-color:#163566;
 	border:none;
 	color:white;
 	padding:6px 20px;
+	font-weight:bold;
 }
 
 /*==고객센터 표시 버튼==*/
 #cs_center{
 	font-size:16px;
 	text-align:center;
+	margin-top:30px;
 }
 #cs_center button{
 	border-radius:13px;
-	background-color:#d29cff;
+	background-color:rgb(160, 237, 248);
 	border:none;
 	color:white;
 	padding:6px 20px;
@@ -37,8 +39,9 @@
 }
 #cs_center #this_cs{
 	border-radius:20px;
-	background-color:#7702d9;
+	background-color:rgb(43, 223, 255);
 	border:none;
 	color:white;
 	padding:6px 20px;
+	font-weight:bold;
 }

@@ -60,6 +60,7 @@ textarea{
     border-radius: 3px;
     box-sizing: border-box;
     vertical-align: middle;
+   	resize: none;
 }
 
 select{
@@ -77,7 +78,7 @@ select option{
 	padding:3px 0;
 }
 
-.align-center input[type="submit"] {
+.align-center input[type="submit"]{
 	width: 30%;
 	padding: 13px;
 	background-color: #35c5f0 ;

@@ -11,6 +11,17 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#search_form').submit(function(){
+			if($('#keyword').val().trim() == ''){
+				alert('검색어를 입력하세요.');
+				$('#keyword').val('').focus();
+				return false;
+			}
+		}); //end of submit
+	});
+</script>
 </head>
 <body>
 <div class="home-page">
@@ -38,7 +49,7 @@
 			<c:forEach var="notice" items="${list}">
 			<tr>
 				<td>${notice.notice_num}</td>
-				<td><a href="detailNotice.do?notice_num=${notice.notice_num}"><b>[공지]</b> ${notice.notice_title}</a></td>
+				<td style="text-align:left;"><a href="detailNotice.do?notice_num=${notice.notice_num}"><b>[공지]</b> ${notice.notice_title}</a></td>
 				<td>${notice.notice_regdate}</td>
 			</tr>
 			</c:forEach>

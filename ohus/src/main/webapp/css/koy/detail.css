@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+/*제목,카테고리,작성자,작성일,처리상태
+======================================*/
+.detail-info{
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+.detail-info li span{
+	color:#35c5f0;
+	font-weight:bold;
+}
+
+/*버튼
+============*/
+
+.detail-sub{
+	float:right;
+}
+
+.detail-sub input[type="button"],input[type="submit"]{
+	width: 50px;
+	padding: 8px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 7px;
+	cursor: pointer;
+	margin-right: 2px;
+	margin-top: 10px;
+}
+
+.detail-sub input[type="button"]:hover, input[type="submit"]:hover{
+	background-color: #09addb;
+	color : white;
+}
+
+/*내용
+============*/
+.content{
+	height:200px;
+}
+
+
+/*댓글폼
+============*/
+textarea{
+    width:100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    vertical-align: middle;
+   	resize: none;
+}
+
+/*댓글내용
+============*/
+/* 게시판 글 상세
+-------------------*/
+ul.detail-info{
+	list-style:none;
+}
+
+ul.detail-sub{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul.detail-sub li{
+	display:inline-block;
+	width:49%;
+	height:50%;
+	vertical-align:middle;
+}
+ul.detail-sub li:first-child img{ /*첫번째 li 태그에 대한 속성*/
+	vertical-align:middle;
+}
+ul.detail-sub li:last-child{
+	text-align:right;
+	line-height:250%;
+}
+#output_fav{
+	cursor:pointer;
+}
+div#reply_div{
+	padding:10px 10px 5px 10px;
+	margin-top:10px;
+	background-color:#EEEEEE;
+	border-radius:10px;
+}
+
+span.re-title{
+	color:#000000;
+	font-size:12pt;
+	line-height:200%; /*줄간격*/
+}
+span.letter-count{
+	font-size:10pt;
+	color:#999999;
+	text-align:right;
+}
+textarea.rep-content{
+	width:90%;
+	height:50px;
+	margin:10px 10px;
+}
+div#re_first,div#mre_first{
+	float:left;
+	width:70%;
+	padding-left:15px;
+	margin-bottom:10px;
+}
+div#re_second,div#mre_second{
+	float:left;
+	width:19%;
+	margin-bottom:10px;
+}
+div#loading{
+	text-align:center;
+}
+div.paging-button{
+	text-align:right;
+}
+div#output{
+	clear:both; /*float 제거*/
+}
+form#mre_form{
+	border:none;
+	margin:5px;
+	resize:none;
+}
+
+
+
+
+
+/*댓글 버튼
+============*/
+.re_buttons input[type="button"],input[type="submit"]{
+	width: 50px;
+	padding: 8px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 7px;
+	cursor: pointer;
+	margin-right: 2px;
+	margin-top: 10px;
+}
+
+.re_buttons input[type="button"]:hover, input[type="submit"]:hover{
+	background-color: #09addb;
+	color : white;
+}

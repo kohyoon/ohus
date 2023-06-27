@@ -11,10 +11,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <style type="text/css">
-h1{
-    text-align: center;
-    margin-top:30px;
-    color: #222;
+.title{
+    margin:30px 0;
+	width:100%;
+	float:center;
+ 	display:inline-block;
+ 	text-align:center;
+ 	
+}
+.title img{
+	padding:0;
+}
+.title span{
+    padding:10px;
+	font-size:40px;
+	font-weight:bold;
 }
 
 .align-left{
@@ -31,6 +42,10 @@ h1{
 #faq_div{
 	width:45%;
 	float:left;
+}
+
+#faq_category button:hover{
+	background-color:#163566;
 }
 
 #inquiry_div{
@@ -85,7 +100,10 @@ h1{
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-	<h1>고객센터</h1>
+		<div class="title">
+			<img src="${pageContext.request.contextPath}/images/customer-service.png" width="30" height="33">
+			<span>고객센터</span>
+		</div>
 	<div>
 		<div id="faq_div">
 			<h2>
@@ -116,12 +134,12 @@ h1{
 			</h2>
 			<table>
 				<tr style="pointer-events: none;">
-					<th>제목</th>
+					<th width="70%">제목</th>
 					<th>작성일</th>
 				</tr>
 				<c:forEach var="notice" items="${noticeList}">
 				<tr>
-					<td width="80%"><a href="${pageContext.request.contextPath}/notice/detailNotice.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+					<td width="80%" style="text-align:left;"><a href="${pageContext.request.contextPath}/notice/detailNotice.do?notice_num=${notice.notice_num}"><b>[공지]</b> ${notice.notice_title}</a></td>
 					<td>${notice.notice_regdate}</td>
 				</tr>
 				</c:forEach>

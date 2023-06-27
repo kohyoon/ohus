@@ -4,22 +4,24 @@
 	margin-bottom: 16px;
 }
 
-.container > table{
+table{
     width: 100%;
     max-width: 100%;
-    border-spacing: 0;
+    /* border-spacing: 0;
     border-collapse: collapse;
+    border-top:2px solid #111; */
     table-layout: fixed;
-    border-top:2px solid #111;
-}
-table{
-	border-left:none;
-	border-right:none;
 }
 
 table tr{
     width: 100%;
-    height: 26px;
+    height: 36px;
+    border-style:none;
+}
+
+table tr:first-child{
+	background-color:#e5e5e5;
+	border-top:2px solid #111;
 }
 
 table tr:hover{
@@ -29,41 +31,103 @@ table tr:hover{
 table td{
     padding: 16px;
     border-bottom: 1px solid #ccc;
+    border-left:none;
+    text-align:center;
 }
 
 table td:first-child, table td:last-child{
 	text-align:center;
 }
 
+table tr:first-child, table td:first-child{
+	border-left:0;
+}
+
+table tr:last-child, table td:last-child{
+	border-right:0;
+}
+
 .bottoms{
 	display:inline;
 }
 
+/*검색창
+=====================*/
 #search_form {
 	font-size: 14px;
     color: #333;
     box-sizing: content-box;
-    position: absolute;
-    /*top:200px;*/
     border:none;
 }
 
 ul.search{
-	width:300px;
+	width:500px;
 	list-style:none;
-	padding:8px;
 	margin:0 auto;
+	text-align:center;
 }
 
 ul.search li{
-	margin:0 0 9px 0;
 	padding:0;
+	margin:0;
 	display:inline;
 }
 
-#write{
-	float:right;
+ul.search li select{
+	/* float:left; */
+	background-color:#ffffff;
+	border:1px solid #cccccc;
+	border-radius:15px 0 0 15px; /*상좌 상우 하우 하좌*/
+	box-shadow:0 1px 1px rgba(0,0,0,0.05);
+	width:90px;
+	height:26px;
+	padding:0 0 0 10px;
+	font-size:12px;
+	color:#555555;
 }
+
+ul.search input[type="search"]{
+	box-shadow:0 1px 1px rgba(0,0,0,0.05);
+	border:1px solid #ccc;
+	width:150px;
+	height:26px;
+	padding:0;
+	font-size:12px;
+	color:#555555;
+	margin-left:-1px;
+}
+
+ul.search input[type="submit"]{
+	width:50px;
+	height:26px;
+	border-radius:0 15px 15px 0;
+	border:1px solid #ccc;
+	padding:0;
+	margin-left:-1px;
+}
+
+/* 버튼
+================*/
+
+.align-right input[type="button"] {
+	width: 50px;
+	padding: 8px;
+	background-color: #35c5f0 ;
+	border: none;
+	border-radius:4px;
+	color: white;
+	font-weight: bold;
+	font-size :10px;
+	cursor: pointer;
+	margin-right:1px;
+	margin-top: 10px;
+}
+
+.align-right input[type="button"]:hover{
+	background-color: #09addb;
+	color : white;
+}
+
 
 
 

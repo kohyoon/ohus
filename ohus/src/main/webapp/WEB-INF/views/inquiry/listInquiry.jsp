@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#search_form').submit(function(){
-			if($('keyword').val().trim() == ''){
+			if($('#keyword').val().trim() == ''){
 				alert('검색어를 입력하세요.');
 				$('#keyword').val('').focus();
 				return false;
@@ -28,12 +28,12 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div id="cs_center">
 		<button onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
-		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
+		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
 	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2>문의게시판</h2>
+		<h2 style="text-align:center;">문의게시판</h2>
 		<!-- 검색창 시작 -->
 		<form id="search_form" action="list.do" method="get">
 			<ul class="search">
@@ -52,10 +52,7 @@
 			</ul>
 		</form>
 		<!-- 검색창 끝 -->
-		<div class="list-space align-right">
-			<input type="button" value="글쓰기" onclick="location.href='writeInquiryForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
-			<input type="button" value="전체목록" onclick="location.href='listInquiry.do'">
-		</div>
+		
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			표시할 게시물이 없습니다.
@@ -64,29 +61,33 @@
 		<c:if test="${count > 0}">
 		<table>
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
+				<th style="width:5%;">글번호</th>
+				<th style="width:60%;">제목</th>
+				<th>작성자ID</th>
 				<th>작성일</th>
 				<th>처리여부</th>
 			</tr>
 			<c:forEach var="inquiry" items="${list}">
 			<tr>
 				<td>${inquiry.inq_num}</td>
-				<td><a href="detailInquiry.do?inq_num=${inquiry.inq_num}">${inquiry.inq_title}</a></td>
-				<td>${inquiry.id }</td>
+				<td style="text-align:left;"><a href="detailInquiry.do?inq_num=${inquiry.inq_num}">${inquiry.inq_title}</a></td>
+				<td>${inquiry.id}</td>
 				<td>${inquiry.inq_regdate}</td>
-				<td>
+				<td class="status">
 					<c:if test="${inquiry.inq_status == 1}">
-					처리전
+					<span style="color:blue;">처리전</span>
 					</c:if>
-					<c:if test="${inquiry.inq_status == 2 }">
-					<b>처리완료</b>
+					<c:if test="${inquiry.inq_status == 2}">
+					<span style="color:red;"><b>처리완료</b></span>
 					</c:if>
 				</td>
 			</tr>
 			</c:forEach>
 		</table>
+		<div class="list-space align-right" style="margin:0;">
+			<input type="button" value="글쓰기" onclick="location.href='writeInquiryForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
+			<input type="button" value="전체목록" onclick="location.href='listInquiry.do'">
+		</div>
 		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
