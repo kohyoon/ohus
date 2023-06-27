@@ -56,7 +56,7 @@
 						${market.id}
 					</div>
 					<div class="box-date-hit">
-						${market.market_regdate} ${market.market_hit}
+						${market.market_regdate} 조회수 ${market.market_hit}
 					</div>
 				</a>
 			</div>
