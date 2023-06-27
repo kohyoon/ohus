@@ -69,7 +69,7 @@ public class ChatDAO {
 		return count;
 	}
 	// 채팅방 목록 조회 (작성자가 채팅하기 버튼을 누를 경우)
-	public List<ChatroomVO> getChatroomList(int seller_num, int market_num) throws Exception{
+	public List<ChatroomVO> getChatroomList(int start, int end, int seller_num, int market_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -80,10 +80,15 @@ public class ChatDAO {
 		try {
 			
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM chatroom c JOIN market m ON c.market_num = m.market_num WHERE c.market_num=? AND c.seller_num=?";
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM chatroom c LEFT JOIN market m ON c.market_num = m.market_num LEFT JOIN omember o ON c.buyer_num = o.mem_num WHERE c.market_num=? AND c.seller_num=? "
+					+ "ORDER BY chatroom_num DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, market_num);
 			pstmt.setInt(2, seller_num);
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -94,6 +99,7 @@ public class ChatDAO {
 				chatroom.setSeller_num(rs.getInt("seller_num"));
 				chatroom.setMarket_num(rs.getInt("market_num"));
 				chatroom.setMarket_title(rs.getString("market_title"));
+				chatroom.setId(rs.getString("id"));
 				list.add(chatroom);
 			}
 		}catch(Exception e) {

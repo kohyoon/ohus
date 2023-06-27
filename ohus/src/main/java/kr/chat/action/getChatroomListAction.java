@@ -11,6 +11,7 @@ import kr.chat.vo.ChatroomVO;
 import kr.controller.Action;
 import kr.market.dao.MarketDAO;
 import kr.market.vo.MarketVO;
+import kr.util.PageUtil;
 
 public class getChatroomListAction implements Action{
 
@@ -24,8 +25,12 @@ public class getChatroomListAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) pageNum = "1";
+		
 		int market_num = Integer.parseInt(request.getParameter("market_num"));
 		int count = 0;
+		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,10,5,"chatroom.do");
 		
 		// 로그인한 회원과 거래글 작성자가 같은지 확인
 		MarketDAO marketDao = MarketDAO.getInstance();
@@ -35,10 +40,11 @@ public class getChatroomListAction implements Action{
 		}
 		
 		ChatDAO dao = ChatDAO.getInstance();
-		List<ChatroomVO> list = dao.getChatroomList(user_num, market_num);
+		List<ChatroomVO> list = dao.getChatroomList(page.getStartRow(),page.getEndRow(),user_num, market_num);
 		count = dao.getChatroomCount(user_num, market_num);
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("page", page.getPage());
 		return "/WEB-INF/views/chatting/chatroom.jsp";
 	}
 

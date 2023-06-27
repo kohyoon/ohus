@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>채팅방 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/chatroom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -30,11 +31,23 @@
 				
 			</tr>
 			<c:forEach var="chatroom" items="${list}">
-			<tr>
-				<td>${chatroom.chatroom_num}</td>
-				<td><a href="chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">${chatroom.market_title}</a></td>
-				<td>${chatroom.buyer_num}</td>
-			</tr>
+				<tr class="chatroom-item">
+					<td>
+						<a href="chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">
+							<div>${chatroom.chatroom_num}</div>
+						</a>
+					</td>
+					<td>
+						<a href="chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">
+							<div>${chatroom.market_title}</div>
+						</a>
+					</td>
+					<td>
+						<a href="chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">
+							<div>${chatroom.id}</div>
+						</a>
+					</td>
+				</tr>
 			</c:forEach>
 		</table>
 		<div class="align-center">${page}</div>

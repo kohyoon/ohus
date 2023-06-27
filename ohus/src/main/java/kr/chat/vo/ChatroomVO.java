@@ -7,6 +7,7 @@ public class ChatroomVO {
 	private int buyer_num;  // 구매자 회원번호
 	
 	private String market_title; // 게시글 제목
+	private String id; // 구매자 id;
 	
 	public String getMarket_title() {
 		return market_title;
@@ -37,6 +38,12 @@ public class ChatroomVO {
 	}
 	public void setBuyer_num(int buyer_num) {
 		this.buyer_num = buyer_num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
