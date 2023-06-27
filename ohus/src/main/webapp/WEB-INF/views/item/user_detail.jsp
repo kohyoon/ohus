@@ -226,6 +226,9 @@
 			<div id="item_review">
 				<h3>상품 후기 <font color="#35c5f0">${reviewCount}개</font></h3><br>
 				<%-- 후기 목록 출력 시작 --%>
+				<c:if test="${reviewCount == 0}">
+					아직 후기가 없어요...<small>따끈따끈</small>
+				</c:if>
 				<div id="output"></div>
 				<div class="paging-button" style="display:none">
 					<input type="button" value="후기 더보기">
