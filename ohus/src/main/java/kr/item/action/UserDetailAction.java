@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemQnaVO;
+import kr.item.vo.ItemReviewVO;
 import kr.item.vo.ItemVO;
 import kr.util.PageUtil;
 import kr.util.StringUtil;
@@ -42,6 +43,13 @@ public class UserDetailAction implements Action{
 			list = dao.getListQna(1, 10, item_num);
 		}
 		
+		List<ItemReviewVO> reviewList = null;
+		reviewList = dao.getReviewList(page.getStartRow(), page.getEndRow(), item_num);
+		
+		double avgscore = dao.avgReview(item_num);
+		
+		request.setAttribute("avgscore", avgscore);
+		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("reviewCount", reviewCount);
 		request.setAttribute("item", item);
 		request.setAttribute("qnaCount", qnaCount);

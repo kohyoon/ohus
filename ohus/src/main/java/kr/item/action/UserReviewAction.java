@@ -31,7 +31,7 @@ public class UserReviewAction implements Action{
 		review.setItem_num(Integer.parseInt(multi.getParameter("item_num")));
 		review.setItem_score(Integer.parseInt(multi.getParameter("item_score")));
 		review.setReview_content(multi.getParameter("review_content"));
-		review.setReview_photo(multi.getParameter("review_photo"));
+		review.setReview_photo(multi.getFilesystemName("review_photo"));
 		
 		dao.insertReview(review);
 		

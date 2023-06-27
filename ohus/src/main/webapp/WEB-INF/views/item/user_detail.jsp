@@ -9,6 +9,8 @@
 <title>${item.item_name} | 내일의 집</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
+	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/item.review.js"></script>
 	<style type="text/css">
 		*{margin:0; padding:0;}
 		a.button{display:inline-block; padding: 10px 20px; text-decoration:none; color:#fff; background:#000; margin:20px;}
@@ -167,7 +169,7 @@
 								<li id="price"><b><fmt:formatNumber value="${item.item_price}"/>원</b></li>
 								<li>남은 수량 : <span><fmt:formatNumber value="${item.item_stock}"/></span></li>
 								<li>조회수 : <fmt:formatNumber value="${item.item_hit}"/>회</li>
-								<li>&#11088; :  <span id="reviewCount">${reviewCount}개 리뷰</span></li>
+								<li><big><font color="#35c5f0">★</font></big> <small>${avgscore}</small> | <span id="reviewCount"> ${reviewCount}개 리뷰</span></li>
 								<c:if test="${item.item_stock > 0}">
 									<li>
 										<label for="order_quantity">구매 수량 :</label>
@@ -220,10 +222,15 @@
 						${item.item_content}
 					</p>	
 				</div>
-			<hr size="1" noshade="noshade" width="100%">
+			<hr size="1" noshade="noshade" width="100%"><br>
 			<div id="item_review">
 				<h2>상품 후기</h2>
-				리뷰는 여기 있습니다.
+				<%-- 후기 목록 출력 시작 --%>
+				<div id="output"></div>
+				<div class="paging-button" style="display:none">
+					<input type="button" value="후기 더보기">
+				</div>
+				<%-- 후기 목록 출력 끝 --%>
 			</div>
 			<hr size="1" noshade="noshade" width="100%">	
 			<!-- 상품문의 부분 시작 -->

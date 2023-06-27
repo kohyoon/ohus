@@ -108,10 +108,6 @@ public class ItemDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//상품 삭제(관리자 전용)
-	
-	//상품 사진 삭제
-	
 	//전체 상품 개수/검색 상품 개수(관리자, 사용자)
 	public int getItemCount(String keyfield, String keyword, int item_status, String item_category) throws Exception{
 		Connection conn = null;
@@ -581,6 +577,36 @@ public class ItemDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	
+	//리뷰 평균 점수
+	public double avgReview(int item_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		double avgscore = 0.0;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT AVG(item_score) AS average_score FROM item_review WHERE item_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, item_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				avgscore = rs.getDouble("average_score");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		return avgscore;
 	}
 	
 	//==상품 문의==//
