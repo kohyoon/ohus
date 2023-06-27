@@ -226,17 +226,38 @@ public class MarketDAO {
 	public void deleteMarket(int market_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "DELETE FROM market WHERE market_num = ?";
+			conn.setAutoCommit(false);
+			// market_num과 관련한 채팅방들의 채팅 내용 삭제
+			sql = "DELETE FROM chat WHERE chatroom_num IN (SELECT chatroom_num FROM chatroom WHERE market_num=?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, market_num);
 			pstmt.executeUpdate();
+			
+			// chatroom 삭제
+			sql = "DELETE FROM chatroom WHERE market_num = ?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, market_num);
+			pstmt2.executeUpdate();
+			
+			// market 삭제
+			sql = "DELETE FROM market WHERE market_num = ?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, market_num);
+			pstmt3.executeUpdate();
+			
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
