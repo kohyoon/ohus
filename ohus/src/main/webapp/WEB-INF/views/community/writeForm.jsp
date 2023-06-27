@@ -110,8 +110,8 @@
 			
 			<br><br>
 			<div class="button-container">
-				<input type="submit" value="등록" style="font-size: 18px; background-color: #35C5F0; color: #FFFFFF; border-radius: 5px; width: 6em; height: 3em; border: none;">
 				<input type="button" value="목록" style="font-size: 18px; background-color: #35C5F0; color: #FFFFFF; border-radius: 5px; width: 6em; height: 3em; border: none;">
+				<input type="submit" value="등록" style="font-size: 18px; background-color: #35C5F0; color: #FFFFFF; border-radius: 5px; width: 6em; height: 3em; border: none;">
 			</div>
 		</form>
 	</div>

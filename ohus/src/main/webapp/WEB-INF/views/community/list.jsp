@@ -7,7 +7,28 @@
     <title>커뮤니티-일상</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-    
+    <script type="text/javascript">
+		$(function(){
+			$('input[type="search"]').attr('placeholder','커뮤니티 검색');
+			
+			function searchData(){
+				let data = $('input[type="search"]').val();
+				if(data == ''){
+					alert('검색어를 입력하세요.');
+					$('input[type="search"]').val('').focus();
+					return false;
+				}
+				location.href="list.do?keyword="+data;
+			};
+			
+			$('input[type="search"]').keypress(function(){
+				if(event.keyCode==13){
+					searchData();	
+				}
+				
+			});
+		});			
+	</script>		
     <style>
         .result-display,
         .content-main {
