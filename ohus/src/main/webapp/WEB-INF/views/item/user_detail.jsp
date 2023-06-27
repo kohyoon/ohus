@@ -169,7 +169,7 @@
 								<li id="price"><b><fmt:formatNumber value="${item.item_price}"/>원</b></li>
 								<li>남은 수량 : <span><fmt:formatNumber value="${item.item_stock}"/></span></li>
 								<li>조회수 : <fmt:formatNumber value="${item.item_hit}"/>회</li>
-								<li><big><font color="#35c5f0">★</font></big> <small>${avgscore}</small> | <span id="reviewCount"> ${reviewCount}개 리뷰</span></li>
+								<li><font color="#35c5f0"><big>★</big></font> <small>${avgscore}</small> | <span id="reviewCount"> ${reviewCount}개 리뷰</span></li>
 								<c:if test="${item.item_stock > 0}">
 									<li>
 										<label for="order_quantity">구매 수량 :</label>
@@ -224,7 +224,7 @@
 				</div>
 			<hr size="1" noshade="noshade" width="100%"><br>
 			<div id="item_review">
-				<h2>상품 후기</h2>
+				<h3>상품 후기 <font color="#35c5f0">${reviewCount}개</font></h3><br>
 				<%-- 후기 목록 출력 시작 --%>
 				<div id="output"></div>
 				<div class="paging-button" style="display:none">

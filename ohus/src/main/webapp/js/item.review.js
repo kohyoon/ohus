@@ -27,19 +27,20 @@ $(function(){
 				}
 				
 				$(param.list).each(function(index, item){
-					let output = '<div class="item">';
+					let output = '<br><div class="item">';
 					output += '<div class="sub-item">';
 					output += '<img src="../upload/' + item.review_photo + '" width="300" height="300" style="border-radius: 7px;"><br>';
 					output += '<h4>' + item.id + '</h4>';
 					output += '<span><big><font color="#35c5f0">★</font></big><small>' + item.item_score + '</small></span>';
-					output += '<p>' + item.review_content + '</p>';
-					
 					//날짜
 					if(item.review_mdate){
-						output += '<span class="modify-date"><small>' + item.review_mdate + '</small></span>';
+						output += '<span class="modify-date"><small> | ' + item.review_mdate + '</small></span>';
 					}else{
-						output += '<span class="modify-date"><small>' + item.review_regdate + '</small></span>';
+						output += '<span class="modify-date"><small> |' + item.review_regdate + '</small></span>';
 					}
+					output += '<p>' + item.review_content + '</p>';
+					
+					
 					//수정 삭제 버튼
 					//로그인한 회원번호와 작성자의 회원번호 일치여부 확인
 					if(param.user_num == item.mem_num){
@@ -47,7 +48,7 @@ $(function(){
 						output += ' <input type="button" data-renum="' + item.review_num + '" value="수정" class="modify-btn">';
 					}
 					
-					output += '<hr size="1" noshade width="100%">';
+					output += '<hr size="0.5" noshade width="100%" color="#d9d9d9">';
 					output += '</div>';
 					output += '</div>';
 					
