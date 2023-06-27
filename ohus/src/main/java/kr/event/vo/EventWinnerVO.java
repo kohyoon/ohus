@@ -4,7 +4,14 @@ public class EventWinnerVO {
 	private int win_num; //당첨 식별 번호
 	private int re_num; //당첨된 댓글 번호, 외래키
 	private int event_num; //당첨 진행한 이벤트 번호, 외래키
+	private int mem_num;
 	
+	public int getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
 	public int getWin_num() {
 		return win_num;
 	}

@@ -37,11 +37,11 @@
 					if(param.result == 'idNotFound'){
 						//id 미중복
 						idChecked = 1;
-						$('#message_id').css('color','blue').text('등록 가능 ID');
+						$('#message_id').css({'color':'#35c5f0', 'font-size':'14px'}).text('사용가능 ID');
 					}else if(param.result == 'idDuplicated'){
 						//id 중복
 						idChecked = 0;
-						$('#message_id').css('color','red').text('중복된 ID');
+						$('#message_id').css({'color':'red', 'font-size':'14px'}).text('중복된 ID');
 						$('#id').val('').focus();
 					}else{
 						idChecked = 0;
@@ -208,16 +208,16 @@
 				</li>
 				
 			</ul> 
-			
-		</form>
-		
-	
-	</div>
-	<p>
+			<p>
 	<p>
 	<div class="align-center">
 			<input type="submit" value="회원가입">
 	</div> 
+		</form>
+		
+	
+	</div>
+	
 </div>
 	<!-- 내용 끝 -->
 	<!-- 우편번호 검색 시작 -->

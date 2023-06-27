@@ -599,11 +599,12 @@ public class EventDAO {
 			
 			conn = DBUtil.getConnection();
 			//댓글을 달면 re_status를 1로 변경해줘서 댓글 중복 제거
-			sql = "INSERT INTO oevent_winner(win_num, re_num, event_num) "
-					+ "VALUES(oevent_winner_seq.nextval, ?, ?)";
+			sql = "INSERT INTO oevent_winner(win_num, re_num, event_num, mem_num) "
+					+ "VALUES(oevent_winner_seq.nextval, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, winner.getRe_num());
 			pstmt.setInt(2, winner.getEvent_num());
+			pstmt.setInt(3, winner.getMem_num());
 	
 			pstmt.executeUpdate();
 			
@@ -614,7 +615,7 @@ public class EventDAO {
 		}
 	}
 	
-	//당첨 결과를 저장하는 메서드 - oevent_winner table 생성
+	//당첨 결과를 가져오는 메서드
 	public List<EventWinnerVO> getListEventWin(int event_num) throws Exception{
 		
 		Connection conn = null; 
@@ -639,6 +640,7 @@ public class EventDAO {
 				winner.setWin_num(rs.getInt("win_num"));
 				winner.setRe_num(rs.getInt("re_num"));
 				winner.setEvent_num(rs.getInt("event_num"));
+				winner.setMem_num(rs.getInt("mem_num"));
 				
 				list.add(winner);
 			}
@@ -682,6 +684,46 @@ public class EventDAO {
 	    return isExist;
 	}
 	
+	//내가 댓글을 단 이벤트 목록 가져오기
+	public List<EventReplyVO> getmyEventReply(int start, int end, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<EventReplyVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM oevent b JOIN "
+					+ "omember m USING(mem_num) JOIN oevent_reply r USING(event_num) "
+					+ "WHERE r.mem_num=? ORDER BY event_num DESC)a) WHERE rnum>=? AND rnum<=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<EventReplyVO>();
+			
+			while(rs.next()) {
+				EventReplyVO reply = new EventReplyVO();
+				reply.setEvent_num(rs.getInt("event_num"));
+				reply.setRe_num(rs.getInt("re_num"));
+				reply.setRe_date(rs.getString("re_date")); //댓글 단 날짜
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setRe_content(rs.getString("re_content"));
+				
+				list.add(reply);
+			}
+			
+			
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 
 	
 	//===================================

@@ -14,34 +14,43 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <h1>이벤트 추첨 결과</h1>
-<c:if test="${!empty plz}">
-    <table>
-        <thead>
-            <tr>
-                <th>이벤트번호</th>
-                <th>댓글번호</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="plz" items="${plz}">
-                <tr>
-                    <td>${plz.event_num}</td>
-                    <td>${plz.re_num}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-</c:if>
+	<c:if test="${!empty win}">
+	    <table>
+	        <thead>
+	            <tr>
+	                <th>이벤트번호</th>
+	                <th>댓글번호</th>
+	                <th>회원번호</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <c:forEach var="win" items="${win}">
+	                <tr>
+	                    <td>${win.event_num}</td>
+	                    <td>${win.re_num}</td>
+	                    <td>${win.mem_num }</td>
+	                </tr>
+	            </c:forEach>
+	        </tbody>
+	    </table>
+	</c:if>
 
     
     
 
-    <c:if test="${empty plz}">
-        <p>추첨 결과가 없습니다.</p>
-    </c:if>
-</div>
+	    <c:if test="${empty win}">
+	        <p>추첨 결과가 없습니다.</p>
+	    </c:if>
+	</div>
+	
+	<div class="align-right">
+		<input type="button" value="목록" onclick="location.href='endEventList.do'" class="btn" >
+	</div>
+	
+	
 </body>
 </html>
 <style>
