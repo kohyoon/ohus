@@ -153,7 +153,7 @@ background-color : skyblue;
 				
 				<!-- 관리자가 아닌 경우 (당첨확인) (목록) -->
 				<c:if test="${user_auth !=9}"> <!-- 비회원인 경우 당첨확인 버튼 disabled처리 -->
-					<input type="button" value="당첨확인" onclick="location.href='eventresult.do'" 
+					<input type="button" value="당첨확인" onclick="location.href='userEventResultList.do'" 
 							  class="btn"  <c:if test="${empty user_num}">disabled="disabled"</c:if>>
 					<input type="button" value="목록" onclick="location.href='list.do'" class="btn"  > 
 				</c:if>

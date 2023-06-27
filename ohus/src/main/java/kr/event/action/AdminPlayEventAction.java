@@ -67,6 +67,7 @@ public class AdminPlayEventAction implements Action {
         List<EventReplyVO> replyList = new ArrayList<EventReplyVO>();
 
         for (int i = 0; i < winner.length; i++) {
+        	//댓글 당첨자의 정보를 읽어오고 event_winner==1로 업데이트 해줌
             EventReplyVO reply = dao.selectEventwinner(event_num, memberList[winner[i]]);
             
             // 중복 확인 로직 추가

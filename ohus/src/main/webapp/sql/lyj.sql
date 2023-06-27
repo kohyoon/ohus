@@ -21,11 +21,11 @@ create table omember_detail(
  photo varchar2(150), 
  reg_date date default sysdate not null,
  modify_date date,
+ my_category number(1) default 1 not null, --마이페이지 카테고리. 1의 경우 첫번째(프로필)페이지
  constraint omember_detail_pk primary key (mem_num),
  constraint omember_detail_fk foreign key (mem_num) references omember (mem_num)
 );
 
-alter table omember_detail RENAME COLUMN pw TO password;
 create sequence omember_seq;
 --디테일 시퀀스
 --이벤트
@@ -74,9 +74,11 @@ create table oevent_winner(
     win_num number, --당첨 식별번호
     re_num number not null, --당첨된 댓글 번호
     event_num number not null, --이벤트 번호
+    mem_num number not null, --회원번호
 	constraint oevent_winner_pk primary key(win_num),
 	constraint oevent_winner_fk1 foreign key(re_num) references oevent_reply(re_num), --댓글 번호 가져오기
-	constraint oevent_winner_fk2 foreign key(event_num) references oevent(event_num)
+	constraint oevent_winner_fk2 foreign key(event_num) references oevent(event_num),
+	constraint oevent_winner_fk3 foreign key(mem_num) references omember(mem_num)
 
 
 );

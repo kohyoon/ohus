@@ -48,9 +48,8 @@
 	
 	<div class="align-right">
 		<input type="button" value="목록" onclick="location.href='endEventList.do'" class="btn" >
-	</div>
-	
-	
+	</div>	
+</div>	
 </body>
 </html>
 <style>
