@@ -23,20 +23,21 @@
 	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
+		<input type="hidden" name="inq_num" id="inq_num" value="${inquiry.inq_num}">
 		<ul class="detail-info">
 			<li>
 				<h2><span>TITLE</span> ${inquiry.inq_title}</h2>
 			</li>
 			<li>
 				<span>WRITER : </span>${inquiry.id}
-				<span>| CATEGORY : </span>
+				<span>/ CATEGORY : </span>
 				<c:if test="${inquiry.inq_category == 1}">사이트 문의</c:if>
 				<c:if test="${inquiry.inq_category == 2}">기타 문의</c:if>
-				<span> | 작성일 : </span>${inquiry.inq_regdate}
+				<span> / 작성일 : </span>${inquiry.inq_regdate}
 				<c:if test="${!empty notice.notice_mdate}">
-				<span> | 최근 수정일 : </span>${inquiry.inq_modifydate}
+				<span> / 최근 수정일 : </span>${inquiry.inq_modifydate}
 				</c:if>
-				<span> | </span>
+				<span> / </span>
 				<c:if test="${inquiry.inq_status == 2}">
 				<input type="checkbox" checked disabled>처리완료
 				</c:if>
@@ -70,32 +71,30 @@
 		<hr size="1" noshade="noshade" width="100%">
 		<!-- 답변 시작 -->
 		<div id="reply_div">
-		<!-- 답변 목록 출력 시작 -->
-		<div id="output"></div>
-		<div class="paging-button" style="display:none;">
-			<input type="button" value="다음글 보기">
-		</div>
-		<div class="loading" style="display:none;">
-			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-		</div>
-		<!-- 답변 목록 출력 끝 -->
-		<%-- <c:if test="${user_auth == 9}"> --%>
-		<div id="reply_div">
-			<form id="ans_form">
-				<input type="hidden" name="inq_num" value="${inquiry.inq_num}" id="inq_num">
-				<textarea rows="3" cols="50" name="ans_content" id="ans_content" class="rep-content" placeholder="답변 입력"
-						<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
-				<c:if test="${!empty user_num}">
-				<div id="re_first">
-					<span class="letter-count">300/300</span>
+			<!-- 답변 목록 출력 시작 -->
+			<div id="output"></div>
+				<div class="paging-button" style="display:none;">
+					<input type="button" value="다음글 보기">
 				</div>
-				<div id="re_second" class="align-right" style="margin:0;">
-					<input type="submit" value="전송">
-				</div>
-				</c:if>
-			</form>
-		</div>
-		<%-- </c:if> --%>
+			<div class="loading" style="display:none;">
+				<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+			</div>
+			<!-- 답변 목록 출력 끝 -->
+			<div id="reply_div">
+				<form id="ans_form">
+					<input type="hidden" name="inq_num" value="${inquiry.inq_num}" id="inq_num">
+					<textarea rows="3" cols="50" name="ans_content" id="ans_content" class="rep-content" placeholder="답변 입력"
+							<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
+					<c:if test="${!empty user_num}">
+					<div id="re_first">
+						<span class="letter-count">300/300</span>
+					</div>
+					<div id="re_second" class="align-right" style="margin:0;">
+						<input type="submit" value="전송">
+					</div>
+					</c:if>
+				</form>
+			</div>
 		</div>
 		<!-- 답변 끝 -->
 		

@@ -158,7 +158,8 @@ $(function(){
 		//답변 번호
 		let ans_num = $(this).attr('data-ansnum');
 		//답변 내용
-		let ans_content = $(this).parent().find('p').html().replace(/<br>/gi, '\n');
+		let tmp = $(this).parent();
+		let ans_content = tmp.parent().find('p').html().replace(/<br>/gi, '\n');
 		
 		//답변 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
@@ -169,9 +170,8 @@ $(function(){
 		modifyUI += ' <input type="submit" value="수정">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
-		modifyUI += '<hr size="1" noshade width="96%">';
 		modifyUI += '</form>';
-		
+		modifyUI += '<hr size="1" noshade width="96%">';
 		//이전에 이미 수정하는 중인 댓글이 있을 경우, 수정버튼을 클릭하면 숨겨져있는 sub-item을 환원시키고 수정폼을 초기화함
 		initModifyForm();
 		

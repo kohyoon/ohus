@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -55,7 +54,6 @@
 			</c:forEach>
 		</table>
 		<div class="align-center page">${page}</div>
-		</c:if>
 		<div class="bottoms">
 			<!-- 검색창 시작 -->
 			<form id="search_form" action="listNotice.do" method="get">
@@ -75,11 +73,12 @@
 				</ul>
 			</form>
 			<!-- 검색창 끝 -->	
-			<div class="list-space align-right">
+			<div class="list-space align-right" style="margin:0;">
 				<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
 				<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
 			</div>		
 		</div>
+		</c:if>
 		
 	</div>
 	<!-- 내용 끝 -->

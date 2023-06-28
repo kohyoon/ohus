@@ -55,9 +55,6 @@ $(document).ready(function($){
 		</div>
 		<!-- FAQ 카테고리 끝 -->
 		<!-- FAQ 내용 시작 -->
-		<!-- <div class="info_box">
-		<p>제목을 클릭하시면 세부내용을 확인하실 수 있습니다.</p>
-		</div> -->
 		<div id="info_wrap" class="toggle">
 			<h4><a href="#">Q : 배송비는 얼마인가요?</a></h4>
 			<div class="on" style="display:none">
