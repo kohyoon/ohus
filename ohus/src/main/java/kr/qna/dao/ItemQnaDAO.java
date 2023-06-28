@@ -302,6 +302,7 @@ public class ItemQnaDAO {
 		}
 	}
 	
+	
 	//답변 등록
 	//답변 갯수
 	//답변 목록
