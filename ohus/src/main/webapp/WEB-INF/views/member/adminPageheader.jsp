@@ -13,10 +13,10 @@
                 <div class="inner">
                     <nav>
                         <a class="header-lower__item" href="adminPage.do">회원관리</a>
-                        <a class="header-lower__item" href="${pageContext.request.contextPath}/item/list.do">상품관리</a>
+                        <a class="header-lower__item" href="adminPageItem.do">상품관리</a>
                         <a class="header-lower__item" href="adminPageOrder.do">배송관리</a>
-                        <a class="header-lower__item" href="${pageContext.request.contextPath}/inquiry/customerCenter.do">문의 및 신고관리</a>
-                        <a class="header-lower__item" href="adminPageEvent.do">이벤트 관리</a>
+                        <a class="header-lower__item" href="adminPageMarket.do">상추마켓관리</a>
+                        <a class="header-lower__item" href="adminPageEvent.do">이벤트관리</a>
                     </nav>
                 </div>
             </div>

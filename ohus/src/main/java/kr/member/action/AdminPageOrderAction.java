@@ -7,58 +7,49 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.member.dao.MemberDAO;
-import kr.member.vo.MemberVO;
+import kr.order.dao.OrderDAO;
+import kr.order.vo.OrderVO;
 import kr.util.PageUtil;
-//회원 관리
-public class AdminPageAction implements Action{
+
+public class AdminPageOrderAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		
-		if(user_num == null) {
+		if(user_num==null) {
 			return "redirect:/member/loginForm.do";
 		}
 		
-		if(user_auth <9) {
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		if(user_auth < 9) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
+		// 관리자로 접속한 경우
 		String pageNum = request.getParameter("pageNum");
+		if(pageNum==null) pageNum = "1";
 		
-		//검색 처리
-		if(pageNum == null) { 
-			pageNum = "1"; 
-		}
-		
-		String keyfield =request.getParameter("keyfield");
+		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		//count 읽어오기
-		MemberDAO dao = MemberDAO.getInstance();
-		int count = dao.getMemberCountByAdmin(keyfield, keyword);
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "memberList.do");
+		OrderDAO dao = OrderDAO.getInstance();
+		int count = dao.getOrderCount(keyfield, keyword);
 		
-		List<MemberVO> list = null;
+		//페이지 처리
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum), count,20,10,"list.do");
 		
-		if(count>0) {
-			list = dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+		List<OrderVO> list = null;
+		if(count > 0) {
+			list = dao.getListOrder(page.getStartRow(),page.getEndRow(),keyfield,keyword);
 		}
-		
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		//JSP 경로반환
-		return "/WEB-INF/views/member/adminPage.jsp";
-		
-		
+		return "/WEB-INF/views/member/adminPageOrder.jsp";
 	}
 
 }

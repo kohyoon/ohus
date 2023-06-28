@@ -7,47 +7,46 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.member.dao.MemberDAO;
-import kr.member.vo.MemberVO;
+import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemVO;
+import kr.market.dao.MarketDAO;
+import kr.market.vo.MarketVO;
 import kr.util.PageUtil;
-//회원 관리
-public class AdminPageAction implements Action{
+
+public class AdminPageMarketAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
 		
-		if(user_auth <9) {
+		if(user_auth < 9) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
 		String pageNum = request.getParameter("pageNum");
-		
-		//검색 처리
-		if(pageNum == null) { 
-			pageNum = "1"; 
-		}
-		
-		String keyfield =request.getParameter("keyfield");
+		if(pageNum==null) pageNum = "1";
+				
+		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		//count 읽어오기
-		MemberDAO dao = MemberDAO.getInstance();
-		int count = dao.getMemberCountByAdmin(keyfield, keyword);
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "memberList.do");
+		MarketDAO dao = MarketDAO.getInstance();
 		
-		List<MemberVO> list = null;
+		int count = dao.getListMarketCount(keyfield, keyword);
+		
+		//페이지 처리
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "list.do");
+				
+		
+		List<MarketVO> list = null;
 		
 		if(count>0) {
-			list = dao.getListMemberByAdmin(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list = dao.getListMarket(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
 		
 		
@@ -55,10 +54,12 @@ public class AdminPageAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		//JSP 경로반환
-		return "/WEB-INF/views/member/adminPage.jsp";
+		//deletMarket(int market_num)이 삭제 메서드
 		
 		
+		
+		
+		return "/WEB-INF/views/member/adminPageMarket.jsp";
 	}
 
 }

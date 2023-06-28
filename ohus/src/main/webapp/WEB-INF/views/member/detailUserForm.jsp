@@ -42,7 +42,7 @@
 			<c:if test="${member.auth != 9 }">
 				<input type="submit" value="수정">
 			</c:if>
-				<input type="button" value="목록" onclick="location.href='memberList.do'">
+				<input type="button" value="목록" onclick="location.href='adminPage.do'">
 			</div>
 			
 			<ul>

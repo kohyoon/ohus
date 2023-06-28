@@ -158,6 +158,8 @@ public class EventDAO {
 				event.setEvent_start(rs.getString("event_start"));
 				event.setEvent_end(rs.getString("event_end"));
 				event.setEvent_status(rs.getInt("event_status"));
+				event.setEvent_check(rs.getInt("event_check"));
+				event.setWinner_count(rs.getInt("winner_count"));
 				
 				list.add(event);
 			}
