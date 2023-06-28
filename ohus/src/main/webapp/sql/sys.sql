@@ -8,8 +8,8 @@ CREATE TABLE orders(
 	order_modifydate date,-- 배송상태 수정일
 	order_name varchar2(30) not null,-- 수령자 이름
 	order_zipcode varchar2(5) not null, -- 배송지 우편번호
-	order_address1 varchar2(50) not null, -- 주소
-	order_address2 varchar2(50) not null, -- 상세주소
+	order_address1 varchar2(200) not null, -- 주소
+	order_address2 varchar2(200) not null, -- 상세주소
 	mem_phone varchar2(15) not null, -- 주문자(회원)전화번호
 	order_regdate date default sysdate not null, -- 주문날짜
 	order_notice varchar2(1300), -- 배송메시지
