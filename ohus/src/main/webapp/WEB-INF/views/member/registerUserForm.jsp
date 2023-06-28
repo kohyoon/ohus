@@ -87,7 +87,7 @@
 		$("#str_email02").change(function(){
 			email();	
 		});
-
+		//이메일 합쳐주기
 		function email() {
 			const str_email01 = $("#str_email01").val();
 			const middle = $("#middle").text();
