@@ -6,71 +6,48 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.order.vo.OrderDetailVO;
-import kr.qna.vo.QnaVO;
+import kr.qna.vo.ItemQnaVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
-public class QnaDAO {
+public class ItemQnaDAO {
 	//싱글턴패턴
-	private static QnaDAO instance = new QnaDAO();
-	public static QnaDAO getInstance() {
+	private static ItemQnaDAO instance = new ItemQnaDAO();
+	public static ItemQnaDAO getInstance() {
 		return instance;
 	}
-	private QnaDAO() {}
+	private ItemQnaDAO() {}
 	
 	//상품문의 등록
-	public void insertQna(QnaVO qna) throws Exception{
+	public void insertQna(ItemQnaVO qna) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
 		String sql = null;
-		int detail_num = 0;
-		int item_num = 0;
 		
 		try { 
 			conn = DBUtil.getConnection();
-			
-			conn.setAutoCommit(false);
-			
-			//주문상세번호 구하기
-			sql = "select detail_num, item_num "
-				+ "FROM orders_detail d LEFT JOIN orders o USING(mem_num) "
-				+ "WHERE mem_num=?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, qna.getMem_num());
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				detail_num = rs.getInt("detail_num");
-				item_num = rs.getInt("item_num");
-			}
-		
+					
 			//상품문의 등록
-			sql = "INSERT INTO qna (qna_num, qna_title, qna_content, qna_filename, "
-				+ "qna_ip, mem_num, detail_num) "
+			sql = "INSERT INTO item_qna (qna_num, qna_title, qna_content, qna_category, "
+				+ "qna_ip, mem_num, item_num) "
 				+ "VALUES(qna_seq.nextval, ?,?,?,?,?,?)";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setString(1, qna.getQna_title());
-			pstmt2.setString(2, qna.getQna_content());
-			pstmt2.setString(3, qna.getQna_filename());
-			pstmt2.setString(4, qna.getQna_ip());
-			pstmt2.setInt(5, qna.getMem_num());
-			pstmt2.setInt(6, detail_num);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qna.getQna_title());
+			pstmt.setString(2, qna.getQna_content());
+			pstmt.setInt(3, qna.getQna_category());
+			pstmt.setString(4, qna.getQna_ip());
+			pstmt.setInt(5, qna.getMem_num());
+			pstmt.setInt(6, qna.getItem_num());
 			
-			pstmt2.executeUpdate();
-			
-			conn.commit();
+			pstmt.executeUpdate();
 		}catch(Exception e) {
-			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
+	/*
 	//회원번호로 구매상세 갯수 구하기
 	public int getDetailCountByMem_num (int mem_num) throws Exception{
 		Connection conn = null;
@@ -132,6 +109,7 @@ public class QnaDAO {
 		} 
 		return list; 
 	}
+	*/
 
 	//총 레코드 수 | 검색 레코드 수
 	public int getQnaCount(String keyfield, String keyword) throws Exception{
@@ -151,7 +129,7 @@ public class QnaDAO {
 				else if(keyfield.equals("3")) sub_sql += "WHERE q.qna_content LIKE ?";
 			}
 			
-			sql = "SELECT count(*) FROM qna q JOIN omember m USING(mem_num) " + sub_sql;
+			sql = "SELECT count(*) FROM item_qna q JOIN omember m USING(mem_num) " + sub_sql;
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -173,11 +151,11 @@ public class QnaDAO {
 	}
 	
 	//글 목록 | 검색 글 목록
-	public List<QnaVO> getListQna (int start, int end, String keyfield, String keyword) throws Exception{
+	public List<ItemQnaVO> getListQna (int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<QnaVO> list = null;
+		List<ItemQnaVO> list = null;
 		String sql = null;
 		String sub_sql = "";
 		int cnt = 0;
@@ -192,7 +170,7 @@ public class QnaDAO {
 			}
 			
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum "
-				+ "FROM (SELECT * FROM qna q JOIN omember m USING(mem_num) " + sub_sql
+				+ "FROM (SELECT * FROM item_qna q JOIN omember m USING(mem_num) " + sub_sql
 				+ "ORDER BY q.qna_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -204,13 +182,16 @@ public class QnaDAO {
 			pstmt.setInt(++cnt, end);
 			
 			rs = pstmt.executeQuery();
-			list = new ArrayList<QnaVO>();
+			list = new ArrayList<ItemQnaVO>();
 			while(rs.next()) {
-				QnaVO qna = new QnaVO();
+				ItemQnaVO qna = new ItemQnaVO();
 				qna.setQna_num(rs.getInt("qna_num"));
 				qna.setQna_title(StringUtil.useNoHtml(rs.getString("qna_title")));
 				qna.setQna_regdate(rs.getDate("qna_regdate"));
+				qna.setQna_category(rs.getInt("qna_category"));
+				qna.setQna_status(rs.getInt("qna_status"));
 				qna.setId(rs.getString("id"));
+				qna.setItem_name(rs.getString("item_name"));
 				
 				list.add(qna);
 			}
@@ -223,33 +204,32 @@ public class QnaDAO {
 	}
 	
 	//상품문의 상세
-	public QnaVO getQna(int qna_num) throws Exception{
+	public ItemQnaVO getQna(int qna_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		QnaVO qna = null;
+		ItemQnaVO qna = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM qna q JOIN omember USING(mem_num) "
+			sql = "SELECT * FROM item_qna q JOIN omember USING(mem_num) "
 				+ "LEFT OUTER JOIN omember_detail d USING(mem_num) "
 				+ "WHERE q.qna_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qna_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				qna = new QnaVO();
+				qna = new ItemQnaVO();
 				qna.setQna_num(rs.getInt("qna_num"));
 				qna.setQna_title(rs.getString("qna_title"));
 				qna.setQna_content(rs.getString("qna_content"));
+				qna.setQna_category(rs.getInt("qna_category"));
 				qna.setQna_regdate(rs.getDate("qna_regdate"));
 				qna.setQna_mdate(rs.getDate("qna_mdate"));
 				qna.setQna_status(rs.getInt("qna_status"));
-				qna.setQna_filename(rs.getString("qna_filename"));
-				qna.setMem_num(rs.getInt("mem_num"));
-				qna.setDetail_num(rs.getInt("detail_num"));
 				qna.setId(rs.getString("id"));
+				qna.setItem_name(rs.getString("item_name"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -259,31 +239,10 @@ public class QnaDAO {
 		return qna;
 	}
 	
-	//파일 삭제
-	public void deleteFile(int qna_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			
-			sql = "DELETE FROM qna SET qna_filename='' WHERE qna_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, qna_num);
-			pstmt.executeUpdate();
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-	}
-	
 	//상품문의 수정
-	public void updateQna(QnaVO qna) throws Exception{
+	public void updateQna(ItemQnaVO qna) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
@@ -293,38 +252,40 @@ public class QnaDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			 
-			//주문상세번호 구하기
-			sql = "select detail_num, item_num "
-				+ "FROM orders_detail d LEFT JOIN orders o USING(mem_num) "
-				+ "WHERE mem_num=? AND d.order_num=?";
 			
+			sql = "UPDATE item_qna SET qna_title=?, qna_content=?, qna_category=?, " 
+				+ "qna_mdate=SYSDATE, qna_ip=? WHERE qna_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, qna.getMem_num());
-			pstmt.setInt(2, qna.getOrder_num());
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				detail_num = rs.getInt("detail_num");
-				item_num = rs.getInt("item_num");
-			}
-						
-			if(qna.getQna_filename() != null) { //파일을 업로드 한 경우
-				sub_sql += ",qna_filename=?";
-			}
+			pstmt.setString(1, qna.getQna_title());
+			pstmt.setString(2, qna.getQna_content());
+			pstmt.setInt(3, qna.getQna_category());
+			pstmt.setString(4, qna.getQna_ip());
+			pstmt.setInt(5, qna.getQna_num());
 			
-			sql = "UPDATE qna SET qna_title=?, qna_content=?, qna_mdate=SYSDATE " 
-				+ sub_sql + ",qna_ip=?, order_num=? WHERE qna_num=?";
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//상품문의 삭제
+	public void deleteQna(int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			conn.setAutoCommit(false);
+			
+			//답변 삭제
+			//부모글 삭제
+			sql = "DELETE FROM item_qna WHERE qna_num=?";
 			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setString(++cnt, qna.getQna_title());
-			pstmt2.setString(++cnt, qna.getQna_content());
-			if(qna.getQna_filename() != null) { 
-				pstmt2.setString(++cnt, qna.getQna_filename());
-			}
-			pstmt2.setString(++cnt, qna.getQna_ip());
-			pstmt2.setInt(++cnt, qna.getOrder_num());
-			pstmt2.setInt(++cnt, detail_num);
-			
+			pstmt2.setInt(1, qna_num);
 			pstmt2.executeUpdate();
 			
 			conn.commit();
@@ -332,13 +293,10 @@ public class QnaDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			DBUtil.executeClose(rs, pstmt2, null);
+			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
-	
-	//상품문의 삭제
 	
 	//답변 등록
 	//답변 갯수

@@ -46,22 +46,7 @@ create table notice (
 
 create sequence notice_seq;
 
--- 상품문의 답변
-create table qna_answer(
-	qans_num number,
-	qans_content clob not null,
-	qans_date date default sysdate not null,
-	qans_mdate date,
-	qna_num number not null,
-	mem_num number not null, -- 답변한 관리자
-	constraint qna_ans_pk primary key (qna_num),
-	constraint qna_ans_fk1 foreign key (qna_num) references qna (qna_num),
-	constraint qna_ans_fk2 foreign key (mem_num) references omember (mem_num)
-);
-
-create sequence qna_ans_seq;
-
--- new 상품문의
+-- 상품문의
 create table item_qna(
 	qna_num number,
 	qna_title varchar2(50) not null,
@@ -71,24 +56,24 @@ create table item_qna(
 	qna_mdate date,
 	qna_ip varchar2(40) not null,
 	qna_status number(1) default 1 not null,
-	mem_num number not null,
+	mem_num number not null, -- 작성자
 	item_num number not null,
-	constraint item_qna_pk primary key (qna_num),
-	constraint item_qna_fk foreign key (item_num) references item (item_num)
+	constraint qna_pk primary key (qna_num),
+	constraint qna_fk foreign key (item_num) references item (item_num)
 );
 
 create sequence item_qna_seq;
 
--- new 상품문의 답변
+-- 상품문의 답변
 create table item_answer(
-	ans_num number,
-	ans_content clob not null,
-	ans_date date default sysdate not null,
-	ans_mdate date,
+	a_num number,
+	a_content clob not null,
+	a_regdate date default sysdate not null,
+	a_mdate date,
 	qna_num number not null,
 	mem_num number not null, -- 답변한 관리자
-	constraint qna_ans_pk primary key (qna_num),
-	constraint qna_ans_fk1 foreign key (qna_num) references item_qna (qna_num),
+	constraint qna_ans_pk primary key (a_num),
+	constraint qna_ans_fk1 foreign key (qna_num) references qna (qna_num),
 	constraint qna_ans_fk2 foreign key (mem_num) references omember (mem_num)
 );
 
