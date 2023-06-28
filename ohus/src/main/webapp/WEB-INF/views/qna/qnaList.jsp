@@ -74,7 +74,7 @@
 				<td>${qna.qna_regdate}</td>
 				<td>
 					<c:if test="${qna.qna_status == 1}"><span style="color:blue;">처리전</span></c:if>
-					<c:if test="${qna.qna_status == 2}"><span style="color:red; text-weight:bold;">처리완료</span></c:if>
+					<c:if test="${qna.qna_status == 2}"><span style="color:red;"><b>처리완료</b></span></c:if>
 				</td>
 			</tr>
 			</c:forEach>
