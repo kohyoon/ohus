@@ -1,4 +1,4 @@
-/*package kr.qna.action;
+package kr.qna.action;
 
 import java.util.List;
 
@@ -7,12 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.order.dao.OrderDAO;
-import kr.order.vo.OrderDetailVO;
-import kr.order.vo.OrderVO;
-import kr.qna.dao.QnaDAO;
-import kr.qna.vo.QnaVO;
-import kr.util.PageUtil;
+import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemVO;
+import kr.qna.dao.ItemQnaDAO;
+import kr.qna.vo.ItemQnaVO;
 import kr.util.StringUtil;
 
 public class ModifyQnaFormAction implements Action {
@@ -27,8 +25,15 @@ public class ModifyQnaFormAction implements Action {
 		}
 		//로그인 된 경우
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
-		QnaDAO dao = QnaDAO.getInstance();
-		QnaVO qna = dao.getQna(qna_num);
+		ItemQnaDAO dao = ItemQnaDAO.getInstance();
+		ItemQnaVO qna = dao.getQna(qna_num);
+		
+		ItemDAO itemDao = ItemDAO.getInstance();
+		int count = itemDao.getItemCount(null, null, 0, null);
+		List<ItemVO> list = itemDao.getListItem(1, count, null, null, 0, null);
+		
+		request.setAttribute("list", list);
+		
 		
 		//로그인 한 회원번호와 작성자 회원번호 일치 여부 체크
 		if(user_num != qna.getMem_num()) {
@@ -39,15 +44,10 @@ public class ModifyQnaFormAction implements Action {
 		//큰 따옴표 처리(수정폼의 input태그에서 오동작)
 		qna.setQna_title(StringUtil.parseQuot(qna.getQna_title()));
 		
-		QnaDAO qdao = QnaDAO.getInstance();
-		List<OrderDetailVO> list = qdao.getDetailOrderListByMem_num(user_num);
-		
-		request.setAttribute("list", list);
-		
 		//로그인 되어 있고 로그인 한 회원번호와 작성자 회원번호가 일치
 		request.setAttribute("qna", qna);
 		
 		return "/WEB-INF/views/qna/modifyQnaForm.jsp";
 	}
 
-}*/
+}

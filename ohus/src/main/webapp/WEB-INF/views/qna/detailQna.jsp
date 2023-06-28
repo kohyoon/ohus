@@ -7,20 +7,40 @@
 <meta charset="UTF-8">
 <title>상품문의 글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/detail.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/qna.answer.js"></script>
 </head>
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2>${qna.qna_title}</h2>
-		<input type="hidden" name="item_num" value="${order.item_num}">
+		
 		<ul>
 			<li>
-				작성자 : ${qna.id}
+				<h2><span>TITLE </span> ${qna.qna_title}</h2>
+			</li>
+			<li>
+				<span>WRITER : </span>${qna.id}
+				<span> / ITEM : </span>${qna.item_name}
+				<span>/ CATEGORY : </span>
+				<c:if test="${qna.qna_category == 1}">상품</c:if>
+				<c:if test="${qna.qna_category == 2}">배송</c:if>
+				<c:if test="${qna.qna_category == 3}">반품</c:if>
+				<c:if test="${qna.qna_category == 4}">교환</c:if>
+				<c:if test="${qna.qna_category == 5}">환불</c:if>
+				<c:if test="${qna.qna_category == 6}">기타</c:if>
+				<span> / 작성일 : </span>${qna.qna_regdate}
+				<c:if test="${!empty qna.qna_mdate}">
+				<span> | 최근 수정일 : </span>${qna.qna_mdate}
+				</c:if>
+				<span> / </span>
+				<c:if test="${qna.qna_status == 2}">
+				<input type="checkbox" checked disabled>처리완료
+				</c:if>
+				<c:if test="${qna.qna_status == 1}">
+				<input type="checkbox" disabled>처리전
+				</c:if>
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
@@ -37,7 +57,7 @@
 				<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
 				<c:if test="${user_num == qna.mem_num}">
 				<input type="button" value="수정" onclick="location.href='modifyQnaForm.do?qna_num=${qna.qna_num}'">
-				<input type="button" value="삭제" id="delete-btn">
+				<input type="button" value="삭제" id="delete_btn">
 				<script type="text/javascript">
 					let delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick = function(){
@@ -51,14 +71,9 @@
 				</c:if>
 			</li>
 		</ul>
-		<!-- 댓글 시작 -->
-		
-		
-		
-		<!-- 댓글 끝 -->
 	</div>
 	<!-- 내용 끝 -->
-	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
 </body>
 </html>
