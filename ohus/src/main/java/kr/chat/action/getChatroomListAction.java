@@ -46,11 +46,16 @@ public class getChatroomListAction implements Action{
 		List<Integer> readCheckList = new ArrayList<Integer>();
 		// 채팅방에 채팅 메시지의 read Check가 1인게 존재한다면 -> 알림 표시 하기위한 readCheckList 구하기
 		for(ChatroomVO chatroom : list) {
+			boolean check = false;
 			List<ChatVO> chatList = dao.readMessageCheck(chatroom.getChatroom_num(), user_num);
 			for(ChatVO chat : chatList) {
-				if(chat.getRead_check()==1)readCheckList.add(1);
+				if(chat.getRead_check()==1) {
+					readCheckList.add(1);
+					check=true;
+					break;
+				}
 			}
-			readCheckList.add(0);
+			if(!check)readCheckList.add(0);
 		}
 		count = dao.getChatroomCount(user_num, market_num);
 		request.setAttribute("list", list);
