@@ -91,11 +91,10 @@
                            <a href="${pageContext.request.contextPath}/community/detail.do?cboard_num=${board.cboard_num}">
                             <img src="${pageContext.request.contextPath}/upload/${board.cboard_photo1}" class="photo1">
                            </a>
-                            <div class="community-center" style="font-weight: bold; font-size: 24px;">${board.cboard_title}</div>
+                            <div class="community-center" style="font-weight: bold; font-size: 16px;">${board.cboard_title}</div>
 
-							 <!-- 가운데 정렬 -->
-
-                            
+ 							<!-- 가운데 정렬 -->
+                         
                             <div class="community-center">
                             <c:choose>
                                 <c:when test="${not empty board.photo}">

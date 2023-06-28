@@ -1,7 +1,7 @@
 -- 커뮤니티
 CREATE TABLE cboard (
   cboard_num NUMBER NOT NULL, -- 게시물 번호
-  cboard_title VARCHAR2(12) NOT NULL, -- 게시물 제목
+  cboard_title VARCHAR2(100) NOT NULL, -- 게시물 제목
   cboard_hit NUMBER(5) DEFAULT 0 NOT NULL, -- 게시물 조회수
   cboard_category NUMBER(1) NOT NULL, -- 커뮤니티 카테고리 / 0:일상 / 1:취미 / 2:자랑 / 3:추천
   cboard_content CLOB NOT NULL, -- 게시물 내용
