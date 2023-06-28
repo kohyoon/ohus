@@ -1,4 +1,4 @@
-package kr.qna.action;
+/*package kr.qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,4 +56,4 @@ public class ModifyQnaAction implements Action {
 		return "redirect:/qna/detailQna.do?qna_num=" + qna_num;
 	}
 
-}
+}*/

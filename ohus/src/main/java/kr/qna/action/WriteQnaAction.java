@@ -1,4 +1,4 @@
-package kr.qna.action;
+/*package kr.qna.action;
 
 import java.util.List;
 
@@ -42,4 +42,4 @@ public class WriteQnaAction implements Action {
 		return "/WEB-INF/views/qna/writeQna.jsp";
 	}
 
-}
+}*/

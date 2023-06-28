@@ -1,4 +1,4 @@
-package kr.qna.action;
+/*package kr.qna.action;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,4 +51,4 @@ public class DeleteFileAction implements Action {
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
 
-}
+}*/
