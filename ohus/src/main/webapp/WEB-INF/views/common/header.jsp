@@ -181,9 +181,17 @@
 									<!-- 로그인 o, 사진 x -->
 									<c:if test="${!empty user_num && empty user_photo}">
 										<li class="menu-profile">
-											<a href="${pageContext.request.contextPath}/member/myPage.do">
-												<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
-											</a>
+											<c:if test="${user_auth == 2}">
+												<a href="${pageContext.request.contextPath}/member/myPage.do">
+													<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+												</a>
+											</c:if>
+											
+											<c:if test="${user_auth == 9}">
+												<a href="${pageContext.request.contextPath}/member/adminPage.do">
+													<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+												</a>
+											</c:if>
 										</li> 
 									</c:if>
 		

@@ -41,7 +41,7 @@
 		<c:if test="${count > 0}">
 		<table>
 			<tr style="pointer-events: none;">
-				<th>글번호</th>
+				<th>번호</th>
 				<th style="width:75%;">제목</th>
 				<th>작성일</th>
 			</tr>

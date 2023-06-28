@@ -42,7 +42,7 @@
 		<c:if test="${count > 0}">
 		<table>
 			<tr>
-				<th style="width:5%;">글번호</th>
+				<th style="width:5%;">번호</th>
 				<th style="width:60%;">제목</th>
 				<th>작성자ID</th>
 				<th>작성일</th>

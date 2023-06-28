@@ -235,14 +235,17 @@
 				</div>
 				<%-- 후기 목록 출력 끝 --%>
 			</div>
-			<hr size="1" noshade="noshade" width="100%">	
+			<hr size="1" noshade="noshade" width="100%">
+			
 			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
 				<h2>상품 문의</h2>
+				<%-- 
 				<!-- <div id="wrap">
 					<a href="javascript:openModal('modal1');" class="button modal-open">문의하기</a>
 				</div> -->
-				<input type="button" value="문의하기" onclick="openModal('modal1')">
+				<input type="button" value="문의하기" onclick="openModal('modal1')" 
+					<c:if test="${empty user_num}">disabled</c:if>>
 				
 				<!-- 문의하기 폼 시작 -->
 				<div id="modal"></div>
@@ -284,6 +287,7 @@
 				<c:if test="${qnaCount > 0}">
 				<c:forEach var="qna" items="${list}">
 					<h4>${qna.qna_title} (문의번호: ${qna.qna_num})</h4>
+					<input type="hidden" name="qna_num" value="${qna.qna_num}">
 					<ul class="basic-ul">
 						<li>
 							<small>
@@ -300,11 +304,11 @@
 							<span>${qna.qna_content}</span>
 							<br>${qna.qna_regdate}
 														
-							<input type="button" value="수정" onclick="openModal('modal2')">
+							<input type="button" value="수정" onclick="openModal('modal2')" data-qnanum="${qna.qna_num}">
 							<!-- 수정폼 -->
 								<div class="modal-con modal2">
 									<a href="javascript:;" class="close">X</a>
-									<p class="title">문의 수정 ${qna.qna_num}</p>
+									<p class="title">문의 수정</p>
 									<div class="con">
 										<form id="modify_form" action="modifyQna.do" method="post">
 											<input type="hidden" value="${item.item_num}" name="item_num">
@@ -386,13 +390,16 @@
 								</script>
 							<input type="button" value="삭제" onclick="location.href='deleteQna.do'">
 						</li>
-						<hr size="1" noshade="noshade" color="#ededed" width="100%">
 					</ul>
+					<hr size="1" noshade="noshade" color="#ededed" width="100%">
 				</c:forEach>
 				</c:if>
+				--%>
 			</div>
 			<!-- 상품문의 부분 끝 -->
+			
 			</c:if>
+			ㅌ
 		</div>
 		<%-- 내용 끝 --%>
 	</div>

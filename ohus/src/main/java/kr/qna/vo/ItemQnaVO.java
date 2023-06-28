@@ -1,4 +1,4 @@
-package kr.item.vo;
+package kr.qna.vo;
 
 import java.sql.Date;
 
@@ -6,15 +6,15 @@ public class ItemQnaVO {
 	private int qna_num;
 	private String qna_title;
 	private String qna_content;
-	private int qna_category; //1:상품|2:배송|3:반품|4:교환|5:환불|6:기타
+	private int qna_category; // 1:상품|2:배송|3:반품|4:교환|5:환불|6:기타
 	private Date qna_regdate;
 	private Date qna_mdate;
 	private String qna_ip;
 	private int qna_status;
-	private int mem_num; //작성한 회원번호
-	private String id; //테이블에 없지만 추가
+	private int mem_num; //작성자
+	private String id; //테이블에 없는 요소
 	private int item_num;
-	private String item_name; //테이블에 없지만 추가
+	private String item_name; //테이블에 없는 요소
 	
 	public int getQna_num() {
 		return qna_num;
