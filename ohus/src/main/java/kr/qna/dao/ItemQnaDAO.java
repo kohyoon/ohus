@@ -300,8 +300,7 @@ public class ItemQnaDAO {
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-	}
-	
+	}	
 	
 	//답변 등록
 	//답변 갯수
