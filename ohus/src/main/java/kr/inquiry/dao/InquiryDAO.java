@@ -141,6 +141,7 @@ public class InquiryDAO {
 		List<InquiryVO> list = null;
 		String sql = null;
 		
+		
 		try {
 			conn = DBUtil.getConnection();
 			
