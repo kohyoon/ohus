@@ -132,6 +132,50 @@ public class InquiryDAO {
 		return list;
 	}
 	
+	//================= 내가 작성한 문의 글 =============================//
+	
+	public List<InquiryVO> getListInquiryByMem_Num(int start, int end, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<InquiryVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+				+ "FROM (SELECT * FROM inquiry i JOIN omember m "
+				+ "USING (mem_num) WHERE i.mem_num=? ORDER BY i.inq_num DESC)a)"
+				+ "WHERE rnum >= ? AND rnum <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<InquiryVO>();
+			while(rs.next()) {
+				InquiryVO inquiry = new InquiryVO();
+				inquiry.setInq_num(rs.getInt("inq_num"));
+				inquiry.setInq_title(rs.getString("inq_title"));
+				inquiry.setInq_category(rs.getInt("inq_category"));
+				inquiry.setInq_regdate(rs.getDate("inq_regdate"));
+				inquiry.setInq_status(rs.getInt("inq_status"));
+				inquiry.setMem_num(rs.getInt("mem_num"));
+				inquiry.setId(rs.getString("id"));
+				
+				list.add(inquiry);				
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 	//문의 글 상세
 	public InquiryVO getInquiryDetail(int inq_num) throws Exception{
 		Connection conn = null;
