@@ -1,13 +1,11 @@
-/*package kr.qna.action;
+package kr.qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
-import kr.item.dao.ItemDAO;
-import kr.item.vo.ItemQnaVO;
-import kr.qna.dao.QnaDAO;
-import kr.qna.vo.QnaVO;
+import kr.qna.dao.ItemQnaDAO;
+import kr.qna.vo.ItemQnaVO;
 import kr.util.StringUtil;
 
 public class DetailQnaAction implements Action {
@@ -17,8 +15,8 @@ public class DetailQnaAction implements Action {
 		//상품문의번호
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		
-		ItemDAO dao = ItemDAO.getInstance();
-		ItemQnaVO qna = dao.getItemQna(qna_num);
+		ItemQnaDAO dao = ItemQnaDAO.getInstance();
+		ItemQnaVO qna = dao.getQna(qna_num);
 		
 		//HTML 태그를 허용하지 않음
 		qna.setQna_title(StringUtil.useNoHtml(qna.getQna_title()));
@@ -30,4 +28,4 @@ public class DetailQnaAction implements Action {
 		return "/WEB-INF/views/qna/detailQna.jsp";
 	}
 	
-}*/
+}

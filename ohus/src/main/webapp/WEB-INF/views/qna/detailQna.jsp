@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>상품문의 글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/qna.answer.js"></script>
 </head>
@@ -23,11 +24,6 @@
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
-		<c:if test="${!empty qna.qna_filename}">
-		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${qna.qna_filename}" class="detail-img">
-		</div>
-		</c:if>
 		<p>
 			${qna.qna_content}
 		</p>
