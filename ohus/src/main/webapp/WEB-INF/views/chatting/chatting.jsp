@@ -23,7 +23,12 @@
 		<div class="chatting-header">
 			<ul>
 				<li>
-					<img src="${pageContext.request.contextPath}/upload/${your.photo}" width="30px" height="30px">
+					<c:if test="${empty your.photo}">
+						<img src="${pageContext.request.contextPath}/images/face.png" width="30px" height="30px">
+					</c:if>
+					<c:if test="${!empty your.photo}">
+						<img src="${pageContext.request.contextPath}/upload/${your.photo}" width="30px" height="30px">
+					</c:if>
 					<small>${your.id}</small>
 				</li>
 				<li class="chatting-title">

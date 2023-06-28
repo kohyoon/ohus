@@ -280,5 +280,70 @@ public class MarketDAO {
 		}
 	}
 	
+	// 내가 작성한 거래글 개수 조회
+		public int getMyMarketCount(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT COUNT(*) FROM market WHERE mem_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+		// 내가 작성한 거래글 목록 조회 (페이지 처리)
+		public List<MarketVO> getListMyMarket(int start, int end, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			List<MarketVO> list = new ArrayList<MarketVO>();
+			MarketVO market = null;
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM "
+						+ "(SELECT a.*, rownum rnum FROM "
+						+ "(SELECT * FROM market WHERE mem_num=? ORDER BY market_regdate DESC)a) "
+						+ "WHERE rnum >= ? AND rnum <= ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					market = new MarketVO();
+					market.setMarket_num(rs.getInt("market_num"));
+					market.setMarket_content(rs.getString("market_content"));
+					market.setMarket_hit(rs.getInt("market_hit"));
+					market.setMarket_photo1(rs.getString("market_photo1"));
+					market.setMarket_regdate(rs.getDate("market_regdate"));
+					market.setMarket_status(rs.getInt("market_status"));
+					market.setMarket_title(rs.getString("market_title"));
+					market.setMem_num(rs.getInt("mem_num"));
+					list.add(market);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
+	
 	// 추가될 수 있는 작업 : 파일 삭제 기능 (사진 2개 이상을 등록하도록 할 경우 -> 2개까지는 필수, 3개 이상 등록 가능 시 한 개까지의 사진 삭제 기능이 추가됨)
 }
