@@ -7,22 +7,27 @@
 <meta charset="UTF-8">
 <title>상품문의 게시판 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/form.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#write_form').submit(function(){
-			if($('#title').val().trim() == ''){
+			if($('#qna_title').val().trim() == ''){
 				alert('제목을 입력하세요.');
-				$('#title').val('').focus();
+				$('#qna_title').val('').focus();
 				return false;
 			}
-			if($('#content').val().trim() == ''){
+			if($('#qna_content').val().trim() == ''){
 				alert('내용을 입력하세요.');
-				$('#content').val('').focus();
+				$('#qna_content').val('').focus();
 				return false;
 			}
-			if(isNaN($('#order_num').val())){
-				alert('구매내역을 선택해야 합니다. 구매내역이 없을 상품문의글을 남길 수 없습니다.');
+			if(isNaN($('select[name="qna_category"]').val())){
+				alert('카테고리를 선택해야 합니다.');
+				return false;
+			}
+			if(isNaN($('select[name="item_num"]').val())){
+				alert('상품을 선택해야 합니다.');
 				return false;
 			}
 		});
@@ -35,32 +40,35 @@
 	<!-- 내용 시작 -->
 	<div class="container">
 		<h2>상품문의 게시판 글쓰기</h2>
-		<form id="write_form" action="writeQna.do" method="post" enctype="multipart/form-data">
+		<form id="write_form" action="writeQna.do" method="post">
 			<ul>
 				<li>
 					<label for="qna_title">제목</label>
 					<input type="text" name="qna_title" id="qna_title" maxlength="50">
 				</li>
 				<li>
+					<label>카테고리</label>
+					<select name="qna_category">
+						<option selected>==카테고리 선택==</option>
+						<option value="1">상품</option>
+						<option value="2">배송</option>
+						<option value="3">반품</option>
+						<option value="4">교환</option>
+						<option value="5">환불</option>
+						<option value="6">기타</option>
+					</select>
+				</li>
+				<li>
 					<label for="qna_content">내용</label>
 					<textarea rows="5" cols="30" name="qna_content" id="qna_content"></textarea>
 				</li>
 				<li>
-					<label for="qna_filename">파일</label>
-					<input type="file" name="qna_filename" id="qna_filename" accept="image/gif,image/png,image/jpeg">
-				</li>
-				<li>
-					<label for="order_num">구매내역${count}</label>
-					<select name="order_num" id="order_num">
-					<c:if test="${count == 0}">
-						<option disabled>===선택===</option>
-					</c:if>
-					<c:if test="${count > 0}">
-						<option>===선택===</option>
-						<c:forEach var="order" items="${list}">
-						<option value="${order.order_num}">[${order.order_num}] ${order.item_name}</option>
+					<label>상품명</label>
+					<select name="item_num">
+						<option selected>==상품 선택==</option>
+						<c:forEach var="item" items="${list}">
+						<option value="${item.item_num}">${item.item_name}</option>
 						</c:forEach>
-					</c:if>
 					</select>
 					
 				</li>

@@ -1,4 +1,4 @@
-/*package kr.qna.action;
+package kr.qna.action;
 
 import java.util.List;
 
@@ -9,10 +9,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 
 import kr.controller.Action;
-import kr.order.dao.OrderDAO;
-import kr.order.vo.OrderDetailVO;
-import kr.qna.dao.QnaDAO;
-import kr.qna.vo.QnaVO;
+import kr.qna.dao.ItemQnaDAO;
+import kr.qna.vo.ItemQnaVO;
 import kr.util.FileUtil;
 
 public class WriteQnaAction implements Action {
@@ -26,20 +24,19 @@ public class WriteQnaAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
-		MultipartRequest multi = FileUtil.createFile(request);
 		//자바빈 생성
-		QnaVO qna = new QnaVO();
-		qna.setQna_title(multi.getParameter("qna_title"));
-		qna.setQna_content(multi.getParameter("qna_content"));
+		ItemQnaVO qna = new ItemQnaVO();
+		qna.setQna_title(request.getParameter("qna_title"));
+		qna.setQna_content(request.getParameter("qna_content"));
+		qna.setQna_category(Integer.parseInt(request.getParameter("qna_category")));
 		qna.setQna_ip(request.getRemoteAddr());
-		qna.setQna_filename(multi.getFilesystemName("filename"));
 		qna.setMem_num(user_num);
-		qna.setOrder_num(Integer.parseInt(multi.getParameter("order_num")));
+		qna.setItem_num(Integer.parseInt(request.getParameter("item_num")));
 		
-		QnaDAO dao = QnaDAO.getInstance();
+		ItemQnaDAO dao = ItemQnaDAO.getInstance();
 		dao.insertQna(qna);
 		
 		return "/WEB-INF/views/qna/writeQna.jsp";
 	}
 
-}*/
+}
