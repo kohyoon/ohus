@@ -98,6 +98,7 @@
     <!-- 내용 시작 -->
     <div class="content-main">
         <div class="content-center">
+        <br><br>
             <h1>${board.cboard_title}</h1><br><br><br>
             <div class="detail-info">
                 <div class="info-left">

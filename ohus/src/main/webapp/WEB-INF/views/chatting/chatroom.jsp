@@ -28,13 +28,18 @@
 				<th>채팅방 번호</th>
 				<th>게시글 제목</th>
 				<th>보내는 사람</th>
-				
 			</tr>
-			<c:forEach var="chatroom" items="${list}">
+			<c:forEach var="chatroom" items="${list}" varStatus="status">
 				<tr class="chatroom-item">
 					<td>
+						
 						<a href="chatting.do?chatroom_num=${chatroom.chatroom_num}&buyer_num=${chatroom.buyer_num}&seller_num=${chatroom.seller_num}">
-							<div>${chatroom.chatroom_num}</div>
+							<div>
+							<c:if test="${readCheckList.get(status.index)==1}">
+							 	<img src="${pageContext.request.contextPath}/images/readcheck.png" width="15px">
+							</c:if>
+								${chatroom.chatroom_num}
+							</div>
 						</a>
 					</td>
 					<td>

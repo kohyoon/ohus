@@ -30,6 +30,9 @@ public class getChatMessageListAction implements Action{
 		// 채팅 메시지 목록 가져오기
 		int chatroom_num = Integer.parseInt(request.getParameter("chatroom_num"));
 		ChatDAO dao = ChatDAO.getInstance();
+		
+		// 채팅 메시지 목록을 가져오는데, 상대방이 작성한 메시지의 경우 readcheck = 0 으로 수정.
+		dao.readChatMessage(chatroom_num, user_num);
 		List<ChatVO> list = dao.getChatMessageList(chatroom_num);
 		Map<String,Object> mapAjax = new HashMap<String,Object>();
 		mapAjax.put("list", list); // 채팅방에 대한 채팅 메시지 목록

@@ -234,4 +234,56 @@ public class ChatDAO {
 		
 		return chatroom;
 	}
+	// 채팅 메시지 읽기 업데이트
+	public void readChatMessage(int chatroom_num, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE chat SET read_check = 0 WHERE chatroom_num = ? AND NOT mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, chatroom_num);
+			pstmt.setInt(2, mem_num);
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	// 채팅 메시지 체크 
+	public List<ChatVO> readMessageCheck(int chatroom_num, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ChatVO> list = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM chat WHERE chatroom_num = ? AND NOT mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, chatroom_num);
+			pstmt.setInt(2, mem_num);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ChatVO>();
+			while(rs.next()) {
+				ChatVO chat = new ChatVO();
+				chat.setRead_check(rs.getInt("read_check"));
+				list.add(chat);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		return list;
+	}
 }
