@@ -30,7 +30,7 @@ public class ItemQnaDAO {
 			//상품문의 등록
 			sql = "INSERT INTO item_qna (qna_num, qna_title, qna_content, qna_category, "
 				+ "qna_ip, mem_num, item_num) "
-				+ "VALUES(qna_seq.nextval, ?,?,?,?,?,?)";
+				+ "VALUES(item_qna_seq.nextval, ?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, qna.getQna_title());
 			pstmt.setString(2, qna.getQna_content());
@@ -170,7 +170,7 @@ public class ItemQnaDAO {
 			}
 			
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum "
-				+ "FROM (SELECT * FROM item_qna q JOIN omember m USING(mem_num) " + sub_sql
+				+ "FROM (SELECT * FROM item_qna q JOIN omember m USING(mem_num) JOIN item i USING(item_num) " + sub_sql
 				+ "ORDER BY q.qna_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -191,7 +191,9 @@ public class ItemQnaDAO {
 				qna.setQna_category(rs.getInt("qna_category"));
 				qna.setQna_status(rs.getInt("qna_status"));
 				qna.setId(rs.getString("id"));
+				qna.setItem_num(rs.getInt("item_num"));
 				qna.setItem_name(rs.getString("item_name"));
+				
 				
 				list.add(qna);
 			}
@@ -215,7 +217,7 @@ public class ItemQnaDAO {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM item_qna q JOIN omember USING(mem_num) "
 				+ "LEFT OUTER JOIN omember_detail d USING(mem_num) "
-				+ "WHERE q.qna_num=?";
+				+ "JOIN item i USING(item_num) WHERE q.qna_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qna_num);
 			rs = pstmt.executeQuery();
@@ -228,7 +230,9 @@ public class ItemQnaDAO {
 				qna.setQna_regdate(rs.getDate("qna_regdate"));
 				qna.setQna_mdate(rs.getDate("qna_mdate"));
 				qna.setQna_status(rs.getInt("qna_status"));
+				qna.setMem_num(rs.getInt("mem_num"));
 				qna.setId(rs.getString("id"));
+				qna.setItem_num(rs.getInt("item_num"));
 				qna.setItem_name(rs.getString("item_name"));
 			}
 		}catch(Exception e) {
