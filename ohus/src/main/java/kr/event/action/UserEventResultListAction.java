@@ -23,7 +23,6 @@ public class UserEventResultListAction implements Action{
             return "redirect:/member/loginForm.do";
         } 
         
-
         request.setCharacterEncoding("utf-8");
         EventDAO dao = EventDAO.getInstance();
         //내가 댓글 단 정보 리스트를 가져옴

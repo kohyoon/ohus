@@ -12,13 +12,12 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2>회원가입 완료</h2>
 		<div class="result-display">
 			<div class="align-center">
-				회원가입이 완료되었습니다.
+				회원가입 완료!
 				<p>
-				<input type="button" value="홈으로"
-				 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="button" value="로그인" onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
 			</div>
 		</div>
 	</div>

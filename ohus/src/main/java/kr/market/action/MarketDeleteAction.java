@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.market.dao.MarketDAO;
 import kr.market.vo.MarketVO;
+import kr.util.FileUtil;
 
 public class MarketDeleteAction implements Action{
 
@@ -29,6 +30,10 @@ public class MarketDeleteAction implements Action{
 		}
 		// 채팅방과 참조하고 있어서 채팅방이 생성되어 있는 경우 cascade로 해야할지 정해야함.
 		dao.deleteMarket(market_num);
+		
+		// 등록된 파일 삭제
+		FileUtil.removeFile(request, db_market.getMarket_photo1());
+		FileUtil.removeFile(request, db_market.getMarket_photo2());
 		return "/WEB-INF/views/market/delete.jsp";
 	}
 

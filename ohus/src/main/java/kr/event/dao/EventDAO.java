@@ -686,8 +686,6 @@ public class EventDAO {
 	}
 	
 	//회원번호를 인자로 받아 내가 댓글을 단 이벤트 목록을 모두 가져오기
-
-
 	    public List<EventReplyVO> getEventRepliesByMember(int mem_num) throws Exception {
 	        Connection conn = null;
 	        PreparedStatement pstmt = null;
