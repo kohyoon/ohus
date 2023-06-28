@@ -16,6 +16,7 @@ public class MarketDeleteAction implements Action{
 		// 로그인한 회원만 접근 가능
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
@@ -25,7 +26,7 @@ public class MarketDeleteAction implements Action{
 		MarketVO db_market = dao.getDetailMarket(market_num);
 		
 		// 작성자와 로그인한 회원이 일치할 경우에만 삭제 가능
-		if(db_market.getMem_num() != user_num) {
+		if(db_market.getMem_num() != user_num && user_auth < 9) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		// 채팅방과 참조하고 있어서 채팅방이 생성되어 있는 경우 cascade로 해야할지 정해야함.
