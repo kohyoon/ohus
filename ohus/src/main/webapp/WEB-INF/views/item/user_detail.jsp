@@ -224,7 +224,9 @@
 				</div>
 			<hr size="1" noshade="noshade" width="100%"><br>
 			<div id="item_review">
-				<h3>상품 후기 <font color="#35c5f0">${reviewCount}개</font></h3>
+				<div class="item-review-header">
+					<h3>상품 후기 <font color="#35c5f0">${reviewCount}개</font></h3>
+				</div>
 				<%-- 후기 목록 출력 시작 --%>
 				<c:if test="${reviewCount == 0}">
 					아직 후기가 없어요...<small>따끈따끈</small>
