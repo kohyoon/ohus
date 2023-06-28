@@ -247,24 +247,20 @@ public class ItemQnaDAO {
 	public void updateQna(ItemQnaVO qna) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String sql = null;
-		String sub_sql = "";
-		int detail_num = 0;
-		int item_num = 0;
-		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
 			sql = "UPDATE item_qna SET qna_title=?, qna_content=?, qna_category=?, " 
-				+ "qna_mdate=SYSDATE, qna_ip=? WHERE qna_num=?";
+				+ "qna_mdate=SYSDATE, qna_ip=?, item_num=? WHERE qna_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, qna.getQna_title());
 			pstmt.setString(2, qna.getQna_content());
 			pstmt.setInt(3, qna.getQna_category());
 			pstmt.setString(4, qna.getQna_ip());
-			pstmt.setInt(5, qna.getQna_num());
+			pstmt.setInt(5, qna.getItem_num());
+			pstmt.setInt(6, qna.getQna_num());
 			
 		}catch(Exception e) {
 			throw new Exception(e);
