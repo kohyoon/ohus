@@ -110,9 +110,6 @@ public class MarketDAO {
 		
 		return list;
 	}
-	
-	// 내가 작성한 거래글 목록 조회
-	
 	// 거래글 상세
 	public MarketVO getDetailMarket(int market_num) throws Exception{
 		
