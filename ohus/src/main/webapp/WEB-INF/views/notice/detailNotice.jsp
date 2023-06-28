@@ -24,7 +24,7 @@
 	<div class="container">
 		<ul class="detail-info">
 			<li>
-				<h2><span>TITLE</span> ${notice.notice_title}</h2>
+				<h2><span>TITLE | </span> ${notice.notice_title}</h2>
 			</li>
 			<li>
 				<span>WRITER : </span>${notice.id}
