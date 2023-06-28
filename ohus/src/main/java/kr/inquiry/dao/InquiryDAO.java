@@ -147,8 +147,8 @@ public class InquiryDAO {
 			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
 				+ "FROM (SELECT * FROM inquiry i JOIN omember m "
-				+ "USING (mem_num) WHERE i.mem_num=? ORDER BY i.inq_num DESC)a)"
-				+ "WHERE rnum >= ? AND rnum <= ?";
+				+ "USING (mem_num) ORDER BY i.inq_num DESC)a)"
+				+ "WHERE rnum >= ? AND rnum <= ? AND mem_num=7";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
