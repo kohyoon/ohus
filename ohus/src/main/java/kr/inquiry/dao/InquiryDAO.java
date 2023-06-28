@@ -118,9 +118,9 @@ public class InquiryDAO {
 				inquiry.setInq_title(rs.getString("inq_title"));
 				inquiry.setInq_category(rs.getInt("inq_category"));
 				inquiry.setInq_regdate(rs.getDate("inq_regdate"));
-				inquiry.setInq_ip(rs.getString("inq_ip"));
 				inquiry.setInq_status(rs.getInt("inq_status"));
 				inquiry.setMem_num(rs.getInt("mem_num"));
+				inquiry.setId(rs.getString("id"));
 				
 				list.add(inquiry);				
 			}
