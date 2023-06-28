@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>상품문의 게시판 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -46,18 +47,35 @@
 		</c:if>
 		<c:if test="${count > 0}">
 		<table>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
+			<tr style="pointer-events: none;">
+				<th width="7%">번호</th>
+				<th width="50%">제목</th>
 				<th>작성자</th>
-				<th>작성일</th>
+				<th width="13%">작성일</th>
+				<th>상태</th>
 			</tr>
 			<c:forEach var="qna" items="${list}">
 			<tr>
 				<td>${qna.qna_num}</td>
-				<td><a href="detailQna.do?qna_num=${qna.qna_num}">${qna.qna_title}</a></td>
+				<td style="text-align:left;">
+					<a href="detailQna.do?qna_num=${qna.qna_num}">
+						<b>
+						<c:if test="${qna.qna_category == 1}">[상품]</c:if>
+						<c:if test="${qna.qna_category == 2}">[배송]</c:if>
+						<c:if test="${qna.qna_category == 3}">[반품]</c:if>
+						<c:if test="${qna.qna_category == 4}">[교환]</c:if>
+						<c:if test="${qna.qna_category == 5}">[환불]</c:if>
+						<c:if test="${qna.qna_category == 6}">[기타]</c:if>
+						</b>
+						${qna.item_name} | ${qna.qna_title}
+					</a>
+				</td>
 				<td>${qna.id}</td>
 				<td>${qna.qna_regdate}</td>
+				<td>
+					<c:if test="${qna.qna_status == 1}"><span style="color:blue;">처리전</span></c:if>
+					<c:if test="${qna.qna_status == 2}"><span style="color:red; text-weight:bold;">처리완료</span></c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>

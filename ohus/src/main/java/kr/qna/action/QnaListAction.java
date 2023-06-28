@@ -1,4 +1,4 @@
-/*package kr.qna.action;
+package kr.qna.action;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
-import kr.qna.dao.QnaDAO;
-import kr.qna.vo.QnaVO;
+import kr.qna.dao.ItemQnaDAO;
+import kr.qna.vo.ItemQnaVO;
 import kr.util.PageUtil;
 
 public class QnaListAction implements Action {
@@ -20,11 +20,11 @@ public class QnaListAction implements Action {
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		QnaDAO dao = QnaDAO.getInstance();
+		ItemQnaDAO dao = ItemQnaDAO.getInstance();
 		int count = dao.getQnaCount(keyfield, keyword);
 		
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "qnaList.do");
-		List<QnaVO> list = null;
+		List<ItemQnaVO> list = null;
 		if(count > 0) {
 			list = dao.getListQna(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
@@ -35,4 +35,4 @@ public class QnaListAction implements Action {
 		return "/WEB-INF/views/qna/qnaList.jsp";
 	}
 
-}*/
+}
