@@ -55,6 +55,9 @@
 			</form>
 		</div>
 		<!-- 채팅 내용 끝 -->
+		<div class="chatting-exit">
+			<button class="btn-exit" onclick="location.href='${pageContext.request.contextPath}/market/list.do'">목록</button>
+		</div>
 	</div>
 </div>
 </body>

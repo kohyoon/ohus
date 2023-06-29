@@ -36,6 +36,22 @@ div.chatting-header li{
 	margin: 0 0 0 20px;
 	font-size: 20px;
 }
+.chatting-exit{
+	width:500px;
+	margin: 20px auto;
+	position: relative;
+}
+.btn-exit{
+	padding:7px;
+	border-radius:15px;
+	border: 0;
+	color:white;
+	background-color:#35c5f0;
+}
+.btn-exit:hover{
+	cursor:pointer;
+	background-color:#09addb;
+}
 /* 채팅 메세지 출력 부분 스타일 */
 div.content-main{
     width:500px;
