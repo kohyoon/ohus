@@ -54,11 +54,6 @@ public class AdminPageMarketAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		//deletMarket(int market_num)이 삭제 메서드
-		
-		
-		
-		
 		return "/WEB-INF/views/member/adminPageMarket.jsp";
 	}
 

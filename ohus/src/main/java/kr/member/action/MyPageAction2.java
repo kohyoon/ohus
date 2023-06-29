@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.event.dao.EventDAO;
 import kr.event.vo.EventReplyVO;
+import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemReviewVO;
+import kr.item.vo.ItemVO;
 //[나의 참여]
 //내가 작성한 리뷰 - order
 //응모내역 - event
@@ -33,18 +36,20 @@ public class MyPageAction2 implements Action{
 		
 		//---------------------------------------------------------	
 		//내가 작성한 상품 리뷰
-		
+		ItemDAO itemDao = ItemDAO.getInstance();
+		List<ItemReviewVO> itemList = itemDao.getListItemReview(1, 5, user_num);
 		
 		
 		//---------------------------------------------------------	
 		//내가 참여한 이벤트 응모 내역(댓글)
 		EventDAO eventDao = EventDAO.getInstance();
         List<EventReplyVO> mylist = new ArrayList<EventReplyVO>();
-        mylist = eventDao.getEventRepliesByMember(user_num);
+        mylist = eventDao.getMyEventReply(1,5,user_num);
 
 		//---------------------------------------------------------		
 		// 페이지 정보 request 객체에 추가
         request.setAttribute("mylist", mylist);
+        request.setAttribute("itemList", itemList);
 		
 		return "/WEB-INF/views/member/myPage2.jsp";
 	}

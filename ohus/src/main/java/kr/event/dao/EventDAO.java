@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import kr.event.vo.EventReplyVO;
 import kr.event.vo.EventVO;
 import kr.event.vo.EventWinnerVO;
+import kr.market.vo.MarketVO;
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
@@ -687,86 +688,45 @@ public class EventDAO {
 	    return isExist;
 	}
 	
-	//회원번호를 인자로 받아 내가 댓글을 단 이벤트 목록을 모두 가져오기
-	    public List<EventReplyVO> getEventRepliesByMember(int mem_num) throws Exception {
-	        Connection conn = null;
-	        PreparedStatement pstmt = null;
-	        ResultSet rs = null;
-	        List<EventReplyVO> list = new ArrayList<>();
-	        String sql = null;
-
-	        try {
-	            conn = DBUtil.getConnection();
-	            //댓글 테이블과 당첨 테이블을 join
-	           sql = "SELECT * FROM oevent_reply JOIN oevent_winner "
-	           		+ "ON oevent_reply.re_num = oevent_winner.re_num "
-	           		+ "WHERE oevent_reply.mem_num = ?";
-
-	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setInt(1, mem_num);
-	            rs = pstmt.executeQuery();
-
-	            while (rs.next()) {
-	                EventReplyVO reply = new EventReplyVO();
-	                reply.setRe_num(rs.getInt("re_num"));
-	                reply.setEvent_num(rs.getInt("event_num"));
-	                reply.setMem_num(rs.getInt("mem_num"));
-	                reply.setEvent_winner(rs.getInt("event_winner"));
-	                reply.setRe_content(rs.getString("re_content"));
-	                reply.setRe_date(rs.getString("re_date"));
-	                
-	                list.add(reply);
-	            }
-	        } catch (Exception e) {
-	            throw new Exception(e);
-	        } finally {
-	            DBUtil.executeClose(rs, pstmt, conn);
-	        }
-
-	        return list;
-	    }
-	    
-	    //제발.............
-	    public List<Map<String, Object>> getEventRepliesByMember2(int mem_num) throws Exception {
-	        Connection conn = null;
-	        PreparedStatement pstmt = null;
-	        ResultSet rs = null;
-	        List<Map<String, Object>> list = new ArrayList<>();
-
-	        try {
-	            conn = DBUtil.getConnection();
-	            String sql = "SELECT er.event_num, er.event_winner, er.re_num, er.re_date, e.event_status " +
-	                         "FROM oevent_reply er " +
-	                         "JOIN oevent_winner ew ON er.re_num = ew.re_num " +
-	                         "JOIN oevent e ON er.event_num = e.event_num " +
-	                         "WHERE er.mem_num = ? " +
-	                         "ORDER BY er.re_date DESC";
-	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setInt(1, mem_num);
-	            rs = pstmt.executeQuery();
-
-	            while (rs.next()) {
-	                Map<String, Object> reply = new HashMap<>();
-	                reply.put("event_num", rs.getInt("event_num"));
-	                reply.put("event_winner", rs.getInt("event_winner"));
-	                reply.put("re_num", rs.getInt("re_num"));
-	                reply.put("re_date", rs.getDate("re_date"));
-	                reply.put("event_status", rs.getInt("event_status"));
-
-	                list.add(reply);
-	            }
-	        } catch (Exception e) {
-	            throw new Exception(e);
-	        } finally {
-	            DBUtil.executeClose(rs, pstmt, conn);
-	        }
-
-	        return list;
-	    }
-
-
-
-	
+	// 내가 댓글 단 이벤트 목록 --마이페이지
+	public List<EventReplyVO> getMyEventReply(int start, int end,int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<EventReplyVO> list = new ArrayList<EventReplyVO>();
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql =  "SELECT * FROM "
+					+ "(SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM oevent_reply WHERE mem_num=? ORDER BY re_date DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				EventReplyVO reply = new EventReplyVO();
+				reply.setEvent_num(rs.getInt("event_num"));
+				reply.setRe_date(rs.getString("re_date"));
+				reply.setRe_content(rs.getString("re_content"));
+				reply.setEvent_winner(rs.getInt("event_winner"));
+				reply.setRe_num(rs.getInt("re_num"));
+				list.add(reply);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	//===================================
 	//댓글처리 시작 -ajax통신
 	

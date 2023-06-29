@@ -9,6 +9,8 @@
 <title>회원 탈퇴</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/modifyUserForm.css">
+
 <script type="text/javascript">
 	$(function(){		
 		//회원탈퇴 유효성 체크
@@ -40,9 +42,10 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/member/myPageheader.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<h2>회원 탈퇴</h2>
+		<h2 >회원 탈퇴</h2>
 		<form id="delete_form" 
 		  action="deleteUser.do" method="post">
 			<ul>
@@ -67,9 +70,12 @@
 			</ul> 
 			<div class="align-center">
 				<input type="submit" value="회원탈퇴">
-				<input type="button" value="MY페이지" onclick="location.href='myPage.do'">
+				
 			</div> 
 		</form>
+		<div class="button-container">
+				<input type="submit" value="MY페이지" onclick="location.href='myPage.do'" class="button">
+			</div>
 	</div>
 	<!-- 내용 끝 -->
 </div>

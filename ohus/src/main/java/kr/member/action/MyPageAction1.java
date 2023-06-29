@@ -39,20 +39,14 @@ public class MyPageAction1 implements Action{
 			
 			//---------------------------------------------------------
 			//내가 찜한 상품
-			
 			ItemDAO itemDao = ItemDAO.getInstance();
 			List<ItemVO> itemList = itemDao.getListItemFav(1, 5, user_num);
 			
-			
-			//---------------------------------------------------------
-			//공지사항 및 고객센터
-			
-			
-			
 			//---------------------------------------------------------		
 			// 페이지 정보 request 객체에 추가
-			request.setAttribute("itemList", itemList);
+			
 			request.setAttribute("orderList", orderList);
+			request.setAttribute("itemList", itemList);
 			
 	
 		return "/WEB-INF/views/member/myPage1.jsp";

@@ -35,8 +35,7 @@
 	<!-- 내용 시작 -->
 	<div class="content-main">
 		<h2>회원정보 수정</h2>
-		<form id="modify_form" 
-		  action="modifyUser.do" method="post">
+		<form id="modify_form" action="modifyUser.do" method="post">
 			<ul>
 				<li>
 					<label for="name">이름</label>

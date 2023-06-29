@@ -7,7 +7,9 @@
 <title>비밀번호 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/modifyUserForm.css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
 	$(function(){		
 		//비밀번호 수정 유효성 체크
@@ -40,7 +42,9 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/member/myPageheader.jsp"/>
 	<!-- 내용 시작 -->
+	
 	<div class="content-main">
 		<h2>비밀번호 수정</h2>
 		<form id="password_form" 
@@ -69,11 +73,16 @@
 				</li>
 			</ul> 
 			<div class="align-center">
-				<input type="submit" value="비밀번호 수정">
-				<input type="button" value="MY페이지"
-				 onclick="location.href='myPage.do'">
+				<input type="submit" value="비밀번호수정">
 			</div> 
+			
+			
+			
 		</form>
+		<div class="button-container">
+				<input type="submit" value="MY페이지" onclick="location.href='myPage.do'" class="button">
+			</div>
+		
 	</div>
 	<!-- 내용 끝 -->
 </div>

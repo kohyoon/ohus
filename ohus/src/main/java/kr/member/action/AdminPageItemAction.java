@@ -46,7 +46,7 @@ public class AdminPageItemAction implements Action{
 			list = dao.getListItem(page.getStartRow(), page.getEndRow(), keyfield, keyword, 0, item_category);//0 : status
 		}
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);//
+		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		//목록 페이지 구현
 				

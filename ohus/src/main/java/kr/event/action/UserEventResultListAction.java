@@ -27,7 +27,7 @@ public class UserEventResultListAction implements Action{
         EventDAO dao = EventDAO.getInstance();
         //내가 댓글 단 정보 리스트를 가져옴
         List<EventReplyVO> mylist = new ArrayList<EventReplyVO>();
-        mylist = dao.getEventRepliesByMember(user_num);
+        mylist = dao.getMyEventReply(1,5,user_num);
 
         
         for (EventReplyVO eventReplyVO : mylist) {

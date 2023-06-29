@@ -40,3 +40,13 @@ td {
   border-bottom: 1px solid #a39485; /* 각 행에 가로 선 추가 */
   background: #fff;
 }
+
+    .table-container h3{
+    	margin-left :256px;
+    }
+    .table-container th,
+    .table-container td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+

@@ -1,5 +1,4 @@
 
-
 package kr.member.action;
 
 import java.util.List;
@@ -11,6 +10,10 @@ import javax.servlet.http.HttpSession;
 import kr.community.dao.CommunityDAO;
 import kr.community.vo.CommunityVO;
 import kr.controller.Action;
+import kr.inquiry.dao.InquiryDAO;
+import kr.inquiry.vo.InquiryVO;
+import kr.market.dao.MarketDAO;
+import kr.market.vo.MarketVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 //[프로필]
@@ -35,13 +38,11 @@ public class MyPageAction implements Action {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//분리한 마이페이지 처리
-		String page = request.getParameter("page");
 		
 		//---------------------------------------------------------
 		//회원 프로필 사진 수정 
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.getMember(user_num);
+		MemberVO member = dao.getMember(user_num); //회원 상세정보
 		
 		
 		//---------------------------------------------------------
@@ -50,31 +51,30 @@ public class MyPageAction implements Action {
 		 CommunityDAO commDao = CommunityDAO.getInstance();
 		 
 		 //좋아요 누른 글
-		 List<CommunityVO> commList = commDao.getListBoardFav(1,5, user_num);
+		 List<CommunityVO> commList = commDao.getListBoardFav(1,5,user_num);
 		
 		//---------------------------------------------------------
 		//내가 작성한 상추글
+		MarketDAO marketDao = MarketDAO.getInstance();
 		
+		List<MarketVO> marketList = marketDao.getListMyMarket(1,5,user_num);
+		 
+		 
 		//---------------------------------------------------------
 		//내가 작성한 문의내용
-		
-		
-		
-		
-		  
-		
-		
-		
-						
-		
+		InquiryDAO inquiryDao = InquiryDAO.getInstance();
+		List<InquiryVO> inquiryList = inquiryDao.getListInquiryByMem_Num(1, 5, user_num);
 		
 
 				
 		//---------------------------------------------------------		
 		// 페이지 정보 request 객체에 추가
-		request.setAttribute("page", page);
+		//request.setAttribute("page", page);
 		 request.setAttribute("member", member); 
 		 request.setAttribute("commList", commList);
+		 request.setAttribute("marketList", marketList);
+		 request.setAttribute("inquiryList", inquiryList);
+		 
 		
 		
 		

@@ -173,7 +173,7 @@
 									<c:if test="${!empty user_num && !empty user_photo}">
 										<li class="menu-profile">
 											<a href="${pageContext.request.contextPath}/member/myPage.do">
-													<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo"> <!-- 이미지 누르면 마이페이지로 이동하게 처리 -->
+													<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="46" height="39" class="my-photo"> <!-- 이미지 누르면 마이페이지로 이동하게 처리 -->
 											</a>
 										</li>
 									</c:if>
@@ -183,13 +183,13 @@
 										<li class="menu-profile">
 											<c:if test="${user_auth == 2}">
 												<a href="${pageContext.request.contextPath}/member/myPage.do">
-													<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+													<img src="${pageContext.request.contextPath}/images/face.png" width="46" height="39" class="my-photo">
 												</a>
 											</c:if>
 											
 											<c:if test="${user_auth == 9}">
 												<a href="${pageContext.request.contextPath}/member/adminPage.do">
-													<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+													<img src="${pageContext.request.contextPath}/images/face.png" width="46" height="39" class="my-photo">
 												</a>
 											</c:if>
 										</li> 

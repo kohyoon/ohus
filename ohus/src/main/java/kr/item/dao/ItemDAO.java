@@ -410,6 +410,7 @@ public class ItemDAO {
 				item.setItem_num(rs.getInt("item_num"));
 				item.setItem_name(StringUtil.useNoHtml(rs.getString("item_name")));
 				item.setItem_photo1(rs.getString("item_photo1"));
+				item.setItem_price(rs.getInt("item_price"));
 				
 				list.add(item);
 			}
@@ -420,6 +421,45 @@ public class ItemDAO {
 		}
 		return list;
 	}
+	
+	//+ 내가 작성한 리뷰 목록
+	//내가 선택한 스크랩 목록
+		public List<ItemReviewVO> getListItemReview(int start, int end, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<ItemReviewVO> list = null;
+			String sql = null;
+			try {
+				//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM item_review JOIN omember using(mem_num) JOIN item using(item_num) WHERE mem_num = ? "
+					+ "ORDER BY item_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<ItemReviewVO>();
+				while(rs.next()) {
+					ItemReviewVO item = new ItemReviewVO();
+					item.setItem_num(rs.getInt("item_num"));
+					item.setReview_content(rs.getString("review_content"));
+					item.setReview_regdate(rs.getDate("review_regdate"));
+					list.add(item);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
 	//리뷰 등록
 	public void insertReview(ItemReviewVO itemReview) throws Exception{
 		Connection conn = null;

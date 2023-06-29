@@ -302,13 +302,13 @@ public class MarketDAO {
 			return count;
 		}
 		// 내가 작성한 거래글 목록 조회 (페이지 처리)
-		public List<MarketVO> getListMyMarket(int mem_num,int start, int end) throws Exception{
+		public List<MarketVO> getListMyMarket(int start, int end,int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			String sql = null;
 			List<MarketVO> list = new ArrayList<MarketVO>();
-			MarketVO market = null;
+			
 			try {
 				conn = DBUtil.getConnection();
 				sql = "SELECT * FROM "
@@ -316,14 +316,16 @@ public class MarketDAO {
 						+ "(SELECT * FROM market WHERE mem_num=? ORDER BY market_regdate DESC)a) "
 						+ "WHERE rnum >= ? AND rnum <= ?";
 				pstmt = conn.prepareStatement(sql);
+				
 				pstmt.setInt(1, mem_num);
 				pstmt.setInt(2, start);
 				pstmt.setInt(3, end);
 				
+				
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) {
-					market = new MarketVO();
+					MarketVO market = new MarketVO();
 					market.setMarket_num(rs.getInt("market_num"));
 					market.setMarket_content(rs.getString("market_content"));
 					market.setMarket_hit(rs.getInt("market_hit"));

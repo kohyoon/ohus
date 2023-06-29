@@ -59,12 +59,16 @@ ul.menu-list li.active::after {
 }
 
 ul.menu-list li:not(:last-child) .toggle {
-  margin-right: 200px; /* 간격 조정 */
+  margin-right: 200px; 
   font-weight: bold;
   
 }
 
-
+.no-list{
+	text-align: center;
+	margin-left: 260px;
+	color : gray;
+}
 
 
 ul {

@@ -406,8 +406,7 @@ public class CommunityDAO {
 	}
 	
 	//좋아요 개수
-	public int selectFavCount(int cboard_num)
-	                        throws Exception{
+	public int selectFavCount(int cboard_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -437,6 +436,9 @@ public class CommunityDAO {
 		
 		return count;
 	}
+	
+	//내가 받은 좋아요 개수
+	
 	
 	//회원번호와 게시물 번호를 이용한 좋아요 정보
 	//(회원이 게시물을 호출할 때 좋아요 선택 여부 표시)
@@ -502,10 +504,7 @@ public class CommunityDAO {
 	}
 	
 	//내가 선택한 좋아요 목록
-	public List<CommunityVO> getListBoardFav(
-			               int start,int end,
-			                    int mem_num)
-	                        throws Exception{
+	public List<CommunityVO> getListBoardFav(int start, int end, int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -517,14 +516,16 @@ public class CommunityDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
-				+ "FROM (SELECT * FROM cboard b JOIN "
-				+ "omember m USING(mem_num) JOIN "
-				+ "cboard_fav f USING(cboard_num) WHERE "
-				+ "f.mem_num=? ORDER BY cboard_num DESC)a) "
-				+ "WHERE rnum >= ? AND rnum <= ?";
+					+ "FROM (SELECT * FROM cboard b JOIN "
+					+ "omember m USING(mem_num) JOIN "
+					+ "cboard_fav f USING(cboard_num) WHERE "
+					+ "f.mem_num=? ORDER BY cboard_num DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
+			
+			
 			pstmt.setInt(1, mem_num);
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);
