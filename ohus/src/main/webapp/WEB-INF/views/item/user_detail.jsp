@@ -181,7 +181,7 @@
 								<li id="price"><b><fmt:formatNumber value="${item.item_price}"/>원</b></li>
 								<li>남은 수량 : <span><fmt:formatNumber value="${item.item_stock}"/></span></li>
 								<li>조회수 : <fmt:formatNumber value="${item.item_hit}"/>회</li>
-								<li><font color="#35c5f0"><big>★</big></font> <small>${avgscore}</small> | <span id="reviewCount"> ${reviewCount}개 리뷰</span></li>
+								<li><font color="#35c5f0"><big>★</big></font> <small><fmt:formatNumber value="${avgscore}" pattern=".00"/></small> | <span id="reviewCount"> ${reviewCount}개 리뷰</span></li>
 								<c:if test="${item.item_stock > 0}">
 									<li>
 										<label for="order_quantity">구매 수량 :</label>

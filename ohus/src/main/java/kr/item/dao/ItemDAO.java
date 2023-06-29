@@ -543,6 +543,10 @@ public class ItemDAO {
 				review = new ItemReviewVO();
 				review.setReview_num(rs.getInt("review_num"));
 				review.setMem_num(rs.getInt("mem_num"));
+				review.setItem_num(rs.getInt("item_num"));
+				review.setItem_score(rs.getInt("item_score"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_photo(rs.getString("review_photo"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -556,19 +560,26 @@ public class ItemDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
 		try {
 			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE item_review SET item_score = ?, review_photo = ?, review_content = ? "
+			if(review.getReview_photo() != null) {
+				sub_sql = "review_photo = ?,";
+			}
+			sql = "UPDATE item_review SET item_score = ?, " + sub_sql + " review_content = ? "
 				+ "review_mdate = SYSDATE WHERE review_num = ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, review.getItem_score());
-			pstmt.setString(2, review.getReview_photo());
-			pstmt.setString(3, review.getReview_content());
-			pstmt.setInt(4, review.getReview_num());
+			pstmt.setInt(++cnt, review.getItem_score());
+			if(review.getReview_photo() != null) {
+				pstmt.setString(++cnt, review.getReview_photo());
+			}
+			pstmt.setString(++cnt, review.getReview_content());
+			pstmt.setInt(++cnt, review.getReview_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {

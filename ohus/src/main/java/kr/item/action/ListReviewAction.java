@@ -14,6 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemReviewVO;
+import kr.item.vo.ItemVO;
 import kr.util.PageUtil;
 
 public class ListReviewAction implements Action{
@@ -30,6 +31,8 @@ public class ListReviewAction implements Action{
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		ItemDAO dao = ItemDAO.getInstance();
 		int count = dao.getReviewCount(item_num);
+		ItemVO item = dao.getItem(item_num);
+		
 		
 		//ajax방식으로 목록을 표시하기 때문에 pageUtil은 페이지수를 표시할 목적이 아니라 목록데이터의 페이지 처리를 위해 
 		//rownum 번호를 구하는 목적으로 사용
@@ -51,6 +54,7 @@ public class ListReviewAction implements Action{
 		mapAjax.put("count", count);
 		mapAjax.put("rowCount", rowCount);
 		mapAjax.put("list", list);
+		mapAjax.put("item", item);
 		//로그인한 사람이 작성자인지 확인하기 위해서 전송
 		mapAjax.put("user_num", user_num);
 		

@@ -29,7 +29,11 @@ $(function(){
             $(param.list).each(function(index, item){
                let output = '<div class="review-content">';
                output += '<div class="left">';
-               output += '<img src="../upload/' + item.review_photo + '" width="280" height="280" class="review-content-img">';
+               if(item.review_photo == null){
+				   output += '<img src="../upload/' + param.item.item_photo1 + '" width="280" height="280" class="review-content-img">';
+			   }else{
+				   output += '<img src="../upload/' + item.review_photo + '" width="280" height="280" class="review-content-img">';
+			   }
                output += '</div>';
                output += '<div class="right">';
                output += '<h4 class="review-id">' + item.id + '</h4>';
@@ -46,7 +50,7 @@ $(function(){
                //로그인한 회원번호와 작성자의 회원번호 일치여부 확인
                if(param.user_num == item.mem_num){
                   //로그인한 회원번호와 작성자회원번호가 일치하는 경우
-                  output += ' <input type="button" data-renum="' + item.review_num + '" value="수정" class="modify-btn">';
+                  output += ' <input type="button" value="수정" value="수정" onclick="location.href=\'updateForm.do?review_num='+ item.review_num + '\'" class="modify-btn">';
                }
                output += '</div>';
                output += '<hr size="0.8" noshade="noshade" width="100%">';

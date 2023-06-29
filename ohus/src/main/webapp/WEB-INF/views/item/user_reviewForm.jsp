@@ -23,7 +23,7 @@
 					<img src="${pageContext.request.contextPath}/upload/${item_photo1}" width="300" height="300">
 				</div>
 				<div class="item-name">
-					<span>${item_name}</span>|후기 작성
+					<span>${item_name}</span> | 후기 작성
 				</div>
 				<ul>
 					<li>
