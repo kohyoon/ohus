@@ -262,6 +262,8 @@ public class ItemQnaDAO {
 			pstmt.setInt(5, qna.getItem_num());
 			pstmt.setInt(6, qna.getQna_num());
 			
+			pstmt.executeUpdate();
+			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
