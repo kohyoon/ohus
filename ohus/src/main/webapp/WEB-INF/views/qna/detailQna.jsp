@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/ohus/css/koy/detail.css">
 <link rel="stylesheet" href="/ohus/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/item.answer.js"></script>
 </head>
 <body>
 <div class="home-page">
@@ -69,6 +70,36 @@
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
+		
+		<!-- 답변 시작 -->
+		<div id="reply_div">
+			<!-- 답변 목록 출력 시작 -->
+			<div id="output"></div>
+				<div class="paging-button" style="display:none;">
+					<input type="button" value="다음글 보기">
+				</div>
+			<div class="loading" style="display:none;">
+				<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+			</div>
+			<!-- 답변 목록 출력 끝 -->
+			<div id="reply_div">
+				<form id="a_form">
+					<input type="hidden" name="qna_num" value="${qna.qna_num}" id="qna_num">
+					<textarea rows="3" cols="50" name="a_content" id="a_content" class="rep-content" placeholder="답변 입력"
+							<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
+					<c:if test="${!empty user_num}">
+					<div id="re_first">
+						<span class="letter-count">300/300</span>
+					</div>
+					<div id="re_second" class="align-right" style="margin:0;">
+						<input type="submit" value="전송">
+					</div>
+					</c:if>
+				</form>
+			</div>
+		</div>		
+		
+		<!-- 상품 문의 답변 끝 -->
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

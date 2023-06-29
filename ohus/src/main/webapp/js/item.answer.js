@@ -12,7 +12,7 @@ $(function(){
 		$.ajax({
 			url:'listAnswer.do',
 			type:'post',
-			data:{pageNum:pageNum, inq_num:$('#inq_num').val()},
+			data:{pageNum:pageNum, qna_num:$('#qna_num').val()},
 			dataType:'json',
 			success:function(param){
 				//로딩 이미지 감추기
@@ -27,25 +27,25 @@ $(function(){
 				
 				$(param.list).each(function(index, item){
 					let output = '<div class="item">';
-					output += '<span><b>' + item.id + '</b></span>';
+					output += '<span><b>[관리자] ' + item.id + '</b></span>';
 					
 					//날짜
-					if(item.inq_mdate){
-						output += '<span class="modify-date"><small> ' + item.ans_mdate +' 작성</small></span>';
+					if(item.a_mdate){
+						output += '<span class="modify-date"><small> ' + item.a_mdate +' 작성</small></span>';
 					} else{
-						output += '<span class="modify-date"><small> ' + item.ans_date +' 작성</small></span>';
+						output += '<span class="modify-date"><small> ' + item.a_regdate +' 작성</small></span>';
 					}
 					
 					output += '<div class="sub-item">';
-					output += '<p>' + item.ans_content + "</p>";
+					output += '<p>' + item.a_content + "</p>";
 					output += '<div class="align-right re_buttons">';
 					
 					//수정, 삭제 버튼
 					//로그인 한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if(param.user_num == item.mem_num){
 						//일치
-						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="수정" class="modify-btn">';
-						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="삭제" class="delete-btn">';
+						output += ' <input type="button" data-anum="' + item.a_num + '" value="수정" class="modify-btn">';
+						output += ' <input type="button" data-anum="' + item.a_num + '" value="삭제" class="delete-btn">';
 					}
 					output += '</div>';
 					output += '<hr size="1" noshade width="100%">';
@@ -71,7 +71,6 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-		
 	}
 	
 	//페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
@@ -80,13 +79,13 @@ $(function(){
 	});
 	
 	//답변 등록
-	$('#ans_form').submit(function(event){
+	$('#a_form').submit(function(event){
 		//기본 이벤트 제어
 		//event.preventDefault();
 		
-		if($('#ans_content').val().trim() == ''){ //답변 내용이 비어 있는 경우
+		if($('#a_content').val().trim() == ''){ //답변 내용이 비어 있는 경우
 			alert('답변 내용을 입력하세요.');
-			$('#ans_content').val('').focus();
+			$('#a_content').val('').focus();
 			return false;
 		}
 		
@@ -117,7 +116,6 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-		
 	});
 	
 	//답변 작성 폼 초기화
@@ -136,7 +134,7 @@ $(function(){
 		}else{ //300자 이하인 경우
 			let remain = 300 - inputLength;
 			remain += '/300';
-			if($(this).attr('id') == 'ans_content'){
+			if($(this).attr('id') == 'a_content'){
 				//등록폼 글자수
 				$('#re_first .letter-count').text(remain);
 			} else{
@@ -149,15 +147,15 @@ $(function(){
 	//답변 수정 버튼 클릭 시 수정 폼 노출
 	$(document).on('click','.modify-btn', function(){
 		//답변 번호
-		let ans_num = $(this).attr('data-ansnum');
+		let a_num = $(this).attr('data-anum');
 		//답변 내용
 		let tmp = $(this).parent();
-		let ans_content = tmp.parent().find('p').html().replace(/<br>/gi, '\n');
+		let a_content = tmp.parent().find('p').html().replace(/<br>/gi, '\n');
 		
 		//답변 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
-		modifyUI += '<input type="hidden" name="ans_num" id="mre_num" value="' + ans_num + '">';
-		modifyUI += '<textarea rows="3" cols="50" name="ans_content" id="mre_content" class="rep-content">' + ans_content + '</textarea>';
+		modifyUI += '<input type="hidden" name="a_num" id="mre_num" value="' + a_num + '">';
+		modifyUI += '<textarea rows="3" cols="50" name="a_content" id="mre_content" class="rep-content">' + a_content + '</textarea>';
 		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI += '<div id="mre_second" class="align-right">';
 		modifyUI += ' <input type="submit" value="수정">';
@@ -188,6 +186,7 @@ $(function(){
 	//수정 폼에서 취소 버튼 클릭시 수정 폼 초기화
 	$(document).on('click','.re-reset',function(){
 		initModifyForm();
+		
 	});
 	
 	//답변 수정 폼 초기화
@@ -201,7 +200,7 @@ $(function(){
 	//답변 수정
 	$(document).on('submit', '#mre_form', function(event){
 		//기본이벤트 제거
-		event.preventDefault();
+		//event.preventDefault();
 		
 		if($('#mre_content').val().trim() == ''){
 			alert('내용을 입력하세요.');
@@ -242,12 +241,12 @@ $(function(){
 	//답변 삭제
 	$(document).on('click','.delete-btn', function(){
 		//답변 번호
-		let ans_num = $(this).attr('data-ansnum');
+		let a_num = $(this).attr('data-anum');
 		
 		$.ajax({
 			url:'deleteAnswer.do',
 			type:'post',
-			data:{ans_num:ans_num},
+			data:{a_num:a_num},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){

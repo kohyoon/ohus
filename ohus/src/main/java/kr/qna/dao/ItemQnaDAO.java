@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.qna.vo.ItemAnswerVO;
 import kr.qna.vo.ItemQnaVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -301,10 +302,207 @@ public class ItemQnaDAO {
 	}	
 	
 	//답변 등록
-	//답변 갯수
-	//답변 목록
-	//답변 상세 - 수정, 삭세 시 작성자 회원번호 체크 용도로 사용
-	//답변 수정
-	//답변 삭제
+	public void insertQnaAnswer(ItemAnswerVO answer) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "INSERT INTO item_answer (a_num, a_content, qna_num, mem_num) "
+				+ "VALUES(item_ans_seq.nextval, ?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answer.getA_content());
+			pstmt.setInt(2, answer.getQna_num());
+			pstmt.setInt(3, answer.getMem_num());
+			
+			pstmt.executeUpdate();			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
+	//답변 갯수
+	public int getAnswerCount(int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT count(*) FROM item_answer a JOIN omember m "
+				+ "ON a.mem_num=m.mem_num WHERE a.qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	
+	//답변 목록
+	public List<ItemAnswerVO> getListAnswer(int start, int end, int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ItemAnswerVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+				+ "FROM (SELECT * FROM item_answer a JOIN omember m USING(mem_num) "
+				+ "WHERE a.qna_num=? ORDER BY a.a_num DESC)a) "
+				+ "WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemAnswerVO>();
+			while(rs.next()) {
+				ItemAnswerVO answer = new ItemAnswerVO();
+				answer.setA_num(rs.getInt("a_num"));
+				answer.setA_regdate(rs.getString("a_regdate"));
+				if(rs.getString("a_mdate") != null) {
+					answer.setA_mdate(rs.getString("a_mdate"));
+				}
+				answer.setA_content(StringUtil.useBrNoHtml(rs.getString("a_content")));
+				answer.setQna_num(rs.getInt("qna_num"));
+				answer.setMem_num(rs.getInt("mem_num"));
+				answer.setId(rs.getString("id"));
+				
+				list.add(answer);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	//답변 상세 - 수정, 삭세 시 작성자 회원번호 체크 용도로 사용
+	public ItemAnswerVO getAnswer(int a_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ItemAnswerVO answer = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM item_answer WHERE a_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, a_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				answer = new ItemAnswerVO();
+				answer.setA_num(rs.getInt("a_num"));
+				answer.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return answer;
+	}
+	
+	//답변 수정
+	public void updateAnswer(ItemAnswerVO answer) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "UPDATE item_answer SET a_content=?, a_mdate=SYSDATE WHERE a_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answer.getA_content());
+			pstmt.setInt(2, answer.getA_num());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//답변 삭제
+	public void deleteAnswer(int a_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "DELETE FROM item_answer WHERE a_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, a_num);
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//문의처리완료
+	public void setStatusDone(int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE item_qna SET qna_status=2 WHERE qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//문의 답변 삭제 -> 문의 처리 전으로 돌아가기
+	public void setStatusNone(int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE item_qna SET qna_status=1 WHERE qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
