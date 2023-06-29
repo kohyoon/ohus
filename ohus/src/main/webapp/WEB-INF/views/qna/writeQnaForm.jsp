@@ -40,7 +40,7 @@
 	<!-- 내용 시작 -->
 	<div class="container">
 		<h2>상품문의 게시판 글쓰기</h2>
-		<form id="write_form" action="writeQna.do" method="post">
+		<form id="write_form" action="writeQna.do" method="get">
 			<ul>
 				<li>
 					<label for="qna_title">제목</label>
@@ -65,9 +65,9 @@
 				<li>
 					<label>상품명</label>
 					<select name="item_num">
-						<option selected>==상품 선택==</option>
+						<option <c:if test="${item_num=0}">selected</c:if>>==상품 선택==</option>
 						<c:forEach var="item" items="${list}">
-						<option value="${item.item_num}">${item.item_name}</option>
+						<option value="${item.item_num}" <c:if test="${itemnum == item.item_num}">selected</c:if>>${item.item_name}</option>
 						</c:forEach>
 					</select>
 					

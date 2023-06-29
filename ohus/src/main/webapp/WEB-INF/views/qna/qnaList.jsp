@@ -37,7 +37,9 @@
 		</form>
 		<!-- 검색창 끝 -->
 		<div class="list-space align-right">
-			<input type="button" value="문의하기" onclick="location.href='writeQnaForm.do'"
+			<%-- <input type="button" value="문의하기" onclick="location.href='writeQnaForm.do?itemnum=0'"
+				<c:if test="${empty user_num}">disabled="disabled"</c:if>> --%>
+			<input type="button" value="문의하기" onclick="location.href='writeQnaForm.jsp?item_num=0'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>>
 			<input type="button" value="전체목록" onclick="location.href='qnaList.do'">
 		</div>

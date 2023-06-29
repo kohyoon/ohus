@@ -25,7 +25,10 @@ public class WriteQnaFormAction implements Action {
 		int count = itemDao.getItemCount(null, null, 0, null);
 		List<ItemVO> list = itemDao.getListItem(1, count, null, null, 0, null);
 		
+		int item_num = Integer.parseInt(request.getParameter("item_num"));
+		
 		request.setAttribute("list", list);
+		request.setAttribute("itemnum", item_num);
 				
 		return "/WEB-INF/views/qna/writeQnaForm.jsp";
 	}

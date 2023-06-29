@@ -320,7 +320,11 @@
 				<h2>상품 문의</h2>
 				<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.jsp?item_num=${item_num}'"
 					<c:if test="${empty user_num}">disabled="disabled"</c:if> data-item="${item_num}">
-					
+					<script type="text/javascript">
+						$(document).on('click','#inq', function(){
+							let item_num = $(this).attr('data-item');
+						});
+					</script>
 				<c:if test="${qnaCount == 0}">
 				<div class="result-display">
 					등록된 문의가 없습니다.
