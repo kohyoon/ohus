@@ -14,7 +14,7 @@
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<!-- 내용 시작 -->
+	<!-- 내용 시작 --> 
 	<div class="container">
 		<h2>상품문의 게시판 목록</h2>
 		<!-- 검색창 시작 -->
@@ -38,7 +38,7 @@
 		<!-- 검색창 끝 -->
 		<div class="list-space align-right">
 			<input type="button" value="문의하기" onclick="location.href='writeQnaForm.do'"
-				<c:if test="${empty user_num}">disabled="disabled"</c:if>>
+				<c:if test="${empty user_num}">disabled="disabled"</c:if> data-itemnum="${item_num}">
 			<input type="button" value="전체목록" onclick="location.href='qnaList.do'">
 		</div>
 		<c:if test="${count == 0}">
