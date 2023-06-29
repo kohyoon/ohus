@@ -5,91 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <title>글상세</title>
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/cboard.fav.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/cboard.reply.js"></script>
-    <style>
-        .page-main {
-            margin-left: 5cm;
-            margin-right: 5cm;
-        }
-        .content-center,
-        .paging-button {
-            text-align: center;
-        }
-        .detail-info {
-            display: flex;
-            justify-content: space-between;
-        }
-        .info-left {
-            display: flex;
-            align-items: center;
-        }
-        .info-right {
-            display: flex;
-            align-items: center;
-        }
-        .my-photo {
-            border-radius: 50%;
-        }
-        .photo-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .move-left {
-            margin-right: 0.15cm;
-        }
-        .move-right {
-            position: relative;
-            left: 0.15cm;
-        }
-        .board-date {
-            color: #828C94;
-        }
-        .board-id {
-            font-weight: bold;
-        }
-        .re-title {
-            font-weight: bold;
-        }
-        .hr-container {
-  			background: #EAEDEF;
-		}
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lss/detail.css">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var commentTextarea = document.getElementById('re_content');
+        var commentMessage = document.getElementById('comment-message');
 
-		.custom-hr {
-  			height: 1px;
-  			border: none;
-  			background: #EAEDEF;
-		}
-		.sub-item {
-  			display: flex;
-  			justify-content: space-between;
-		}
+        commentTextarea.addEventListener('focus', function() {
+            commentMessage.style.display = 'none';
+        });
 
-		.sub-item-content {
-  			flex: 1;
-		}
-
-		.sub-item-buttons {
-  			display: flex;
-  			gap: 10px;
-		}
-		.modify-date.modify {
-  			font-size: 12px;
-  			color: #828C94;
-		}
-		.item-id {
-  			margin-bottom: 0.2cm;
-		}
-
-		.re-content {
-  			margin-top: 0.2cm;
-		}
-		
-		
-    </style>
+        commentTextarea.addEventListener('blur', function() {
+            if (commentTextarea.value === '') {
+                commentMessage.style.display = 'block';
+            }
+        });
+    });
+</script>
 </head>
 
 <body>
@@ -155,15 +92,12 @@
     		좋아요  <span id="output_fcount"></span> &nbsp;
     		조회 ${board.cboard_hit}
 		</div>
-
-
         <div class="info-right">
             <div class="detail-sub">
                 <div>
                     <c:if test="${user_num == board.mem_num}">
                         <input type="button" value="수정" onclick="location.href='updateForm.do?cboard_num=${board.cboard_num}'" style="background: transparent; color: #828C94; border: none;">
 						<input type="button" value="삭제" id="delete_btn" style="background: transparent; color: #828C94; border: none;">
-
                         <script type="text/javascript">
                             let delete_btn = document.getElementById('delete_btn');
                             // 이벤트 연결
@@ -206,7 +140,6 @@
             </div>
         </div>
         <div class="info-right">
-
         </div>
     </div>
     <br><br>
@@ -216,7 +149,7 @@
     <br><br>
     <!-- 댓글 시작 -->
     <div id="reply_div">
-    <span class="re-title">댓글</span><br><br><br>
+    <span class="re-title">댓글 <span style="color: #35C5F0;">${replyCount}</span></span><br><br><br>
     <form id="re_form" style="display: flex; align-items: center;">
         <c:if test="${!empty board.photo}">
             <img src="${pageContext.request.contextPath}/upload/${board.photo}" width="50" height="50" class="my-photo">
@@ -231,14 +164,13 @@
                     <c:if test="${empty user_num}">disabled="disabled"</c:if>
                 style="width: 100%; border-color: #C2C8CC;"
                	><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
-				<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #C2C8CC;">
-                    칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)
-                </div>
-                <c:if test="${!empty user_num}">
+				<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #C2C8CC;" id="comment-message">
+    				칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다:)
+				</div>
+               	<c:if test="${!empty user_num}">
                    <div id="re_second" class="align-right" style="margin-left: 10px; display: flex; flex-direction: column; align-items: center;">
     				<input type="submit" value="전송" style="background: transparent; color: #C2C8CC; border: none; margin-top: auto; margin-bottom: auto;">
 					</div>
-
                 </c:if>
             </div>
         </div>

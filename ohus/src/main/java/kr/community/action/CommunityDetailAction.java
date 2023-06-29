@@ -17,6 +17,7 @@ public class CommunityDetailAction implements Action{
 						   request.getParameter(
 								     "cboard_num"));
 		CommunityDAO dao = CommunityDAO.getInstance();
+		int count = dao.getReplyBoardCount(cboard_num);
 		//조회수 증가
 		dao.updateReadcount(cboard_num);
 		
@@ -31,6 +32,7 @@ public class CommunityDetailAction implements Action{
 				StringUtil.useBrNoHtml(
 						  board.getCboard_content()));
 		
+		request.setAttribute("replyCount", count);
 		request.setAttribute("board", board);
 		
 		return "/WEB-INF/views/community/detail.jsp";

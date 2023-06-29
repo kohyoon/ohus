@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-		.result-display,
+        .result-display,
         .content-main {
             margin-top: 1cm;
             margin-bottom: 1cm;
@@ -32,4 +32,4 @@
 		}
         .community-center {
             text-align: center; /* 가운데 정렬 */
-        }
+        }				

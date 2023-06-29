@@ -53,6 +53,7 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}	
+	
 	//총 레코드 수(검색 레코드 수)
 	public int getBoardCount(String keyfield,
 			                 String keyword, String cboard_category)
@@ -176,9 +177,6 @@ public class CommunityDAO {
 	    return list;
 	}
 
-
-
-	
 	//글 상세
 	public CommunityVO getBoard(int cboard_num) throws Exception {
 	    Connection conn = null;
@@ -226,6 +224,7 @@ public class CommunityDAO {
 	    }
 	    return board;
 	}
+	
 	//조회수 증가
 	public void updateReadcount(int cboard_num)
 	                        throws Exception{
@@ -251,6 +250,7 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}	
+	
 	//파일 삭제
 	public void deleteFile(int cboard_num) throws Exception {
 	    Connection conn = null;
@@ -276,8 +276,6 @@ public class CommunityDAO {
 	        DBUtil.executeClose(null, pstmt, conn);
 	    }
 	}
-
-
 	
 	// 글 수정
 	public void updateBoard(CommunityVO board) throws Exception {
@@ -326,9 +324,6 @@ public class CommunityDAO {
 	    }
 	}
 
-	
-	
-	
 	// 글 삭제
 	public void deleteBoard(int cboard_num) throws Exception {
 	    Connection conn = null;
@@ -381,10 +376,6 @@ public class CommunityDAO {
 	    }
 	}
 
-	
-	
-	
-	
 	//좋아요 등록
 	public void insertFav(CommunityFavVO favVO)
 	                      throws Exception{
@@ -413,6 +404,7 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//좋아요 개수
 	public int selectFavCount(int cboard_num)
 	                        throws Exception{
@@ -484,7 +476,6 @@ public class CommunityDAO {
 		return fav;
 	}
 	
-	
 	//좋아요 삭제
 	public void deleteFav(int fav_num)
 	                        throws Exception{
@@ -509,6 +500,7 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//내가 선택한 좋아요 목록
 	public List<CommunityVO> getListBoardFav(
 			               int start,int end,
@@ -591,6 +583,7 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//댓글 개수
 	public int getReplyBoardCount(
 			    int cboard_num)throws Exception{
@@ -623,6 +616,7 @@ public class CommunityDAO {
 		}		
 		return count;
 	}
+	
 	//댓글 목록
 	public List<CommunityReplyVO> 
 	               getListReplyBoard(
@@ -683,6 +677,7 @@ public class CommunityDAO {
 		}		
 		return list;
 	}
+	
 	//댓글 상세(댓글 수정,삭제시 작성자 회원번호 체크 용도로 사용)
 	public CommunityReplyVO getReplyBoard(
 			                    int re_num)
@@ -717,6 +712,7 @@ public class CommunityDAO {
 		}		
 		return reply;
 	}
+	
 	//댓글 수정
 	public void updateReplyBoard(
 			CommunityReplyVO reply)
@@ -747,6 +743,7 @@ public class CommunityDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//댓글 삭제
 	public void deleteReplyBoard(int re_num)
 	                       throws Exception{

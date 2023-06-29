@@ -59,9 +59,7 @@ public class CommunityListReplyAction implements Action{
 		
 		HttpSession session = 
 				     request.getSession();
-		Integer user_num = 
-				(Integer)session.getAttribute(
-				                    "user_num");
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
 		Map<String,Object> mapAjax = 
 				new HashMap<String,Object>();

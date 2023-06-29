@@ -7,6 +7,7 @@
     <title>글 수정</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lss/updateForm.css">
     <script type="text/javascript">
         $(function () {
             $('#update_form').submit(function () {
@@ -23,53 +24,6 @@
             });
         });
     </script>
-    <style>
-	label {
-		width: 100px; /* 레이블의 너비 조정 */
-	}
-	input[type="text"],
-	textarea {
-		width: 300px; /* 입력 칸의 너비 조정 */
-	}
-	.content-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	}
-	.horizontal-line {
-	display: flex;
-	align-items: center;
-	}
-	.horizontal-line hr {
-	flex-grow: 1;
-	border: none;
-	border-top: 1px solid #000;
-	margin: 0 10px;
-	}
-	.custom-hr {
-  			height: 1px;
-  			border: none;
-  			background: #EAEDEF;
-	}
-	.button-container {
-  			text-align: center;
-	}
-
-	input[type=file]::file-selector-button {
-  			width: 150px;
-  			height: 30px;
-  			background: #fff;
-  			border: 1px solid rgb(77, 77, 77);
-  			border-radius: 10px;
-  			cursor: pointer;
-	}
-
-	input[type=file]::file-selector-button:hover {
-  			background: rgb(77, 77, 77);
-  			color: #fff;
-	}	
-</style>
 </head>
 <body>
 <div class="page-main">

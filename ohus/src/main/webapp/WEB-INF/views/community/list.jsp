@@ -7,6 +7,7 @@
     <title>커뮤니티-일상</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lss/list.css">
     <script type="text/javascript">
 		$(function(){
 			$('input[type="search"]').attr('placeholder','커뮤니티 검색');
@@ -29,41 +30,6 @@
 			});
 		});			
 	</script>		
-    <style>
-        .result-display,
-        .content-main {
-            margin-top: 1cm;
-            margin-bottom: 1cm;
-        }
-		.community-container {
-    		display: flex;
-   			flex-wrap: wrap;
-    		align-items: flex-start;
-    		height: 100%;
-    		margin: 0;
-    		display: flex;
-    		justify-content: center;
-    		align-items: center;
-		}
-		.community {
-   			width: calc(25% - 20px); /* 4개씩 정렬 */
-    		margin: 10px;
-    		border-radius: 10px; /* 모서리를 둥글게 */
-		}
-		.community .photo1 {
-   			width: 100%;
-   			height: 200px; /* 세로 크기 조정 */
-   			object-fit: cover;
-   			border-radius: 10px; /* 모서리를 둥글게 */
-		}
-		.align-center {
-    		display: flex;
-    		justify-content: center;
-		}
-        .community-center {
-            text-align: center; /* 가운데 정렬 */
-        }				
-    </style>
 </head>
 <body>
 <div class="page-main">
