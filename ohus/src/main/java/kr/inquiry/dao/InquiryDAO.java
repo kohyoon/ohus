@@ -148,12 +148,13 @@ public class InquiryDAO {
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
 				+ "FROM (SELECT * FROM inquiry i JOIN omember m "
 				+ "USING (mem_num) ORDER BY i.inq_num DESC)a)"
-				+ "WHERE rnum >= ? AND rnum <= ? AND mem_num=7";
+				+ "WHERE rnum >= ? AND rnum <= ? AND mem_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			pstmt.setInt(2, start);
-			pstmt.setInt(3, end);
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.setInt(3, mem_num);
 			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<InquiryVO>();
