@@ -28,8 +28,6 @@ $(function(){
 				$(param.list).each(function(index, item){
 					let output = '<div class="item">';
 					output += '<span><b>' + item.id + '</b></span>';
-					/*output += '<div class="sub-item">';
-					output += '<p>' + item.ans_content + "</p>";*/
 					
 					//날짜
 					if(item.inq_mdate){
@@ -38,17 +36,12 @@ $(function(){
 						output += '<span class="modify-date"><small> ' + item.ans_date +' 작성</small></span>';
 					}
 					
-					//수정, 삭제 버튼
-					//로그인 한 회원번호와 작성자의 회원번호 일치 여부 체크
-					/*if(param.user_num == item.mem_num){
-						//일치
-						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="수정" class="modify-btn">';
-						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="삭제" class="delete-btn">';
-					}*/
-					
 					output += '<div class="sub-item">';
 					output += '<p>' + item.ans_content + "</p>";
 					output += '<div class="align-right re_buttons">';
+					
+					//수정, 삭제 버튼
+					//로그인 한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if(param.user_num == item.mem_num){
 						//일치
 						output += ' <input type="button" data-ansnum="' + item.ans_num + '" value="수정" class="modify-btn">';
@@ -269,8 +262,6 @@ $(function(){
 			}
 		});
 	});
-	
-	
 	
 	//초기 데이터(목록) 호출
 	selectList(1);
