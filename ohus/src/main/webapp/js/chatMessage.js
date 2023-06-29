@@ -73,20 +73,28 @@ $(function(){
 		$('.chat-message').val('');
 	}
 	
-	let intervalId = setInterval(function(){
-		messageList(chatroom_num)
-	},1000);
+	let intervalId = null;
 	
+	$('.content-main').on('scroll',function(){
+		if(intervalId!=null){
+			clearInterval(intervalId);
+			intervalId = null;	
+		}
+		
+	});
 
-	$('#btnStop').click(function(){
-		clearInterval(intervalId);
+	$('.content-main').on('mouseout',function(){
+		if(intervalId == null){
+			intervalId = setInterval(function(){
+				messageList(chatroom_num)
+			},1000);
+		}
+		
 	});
 	
-	$('#btnPlay').click(function(){
-		intervalId = setInterval(function(){
+	intervalId = setInterval(function(){
 			messageList(chatroom_num)
 		},1000);
-	});
 	
 	function formatDate(dateString){
 		let date = new Date(dateString);

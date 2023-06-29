@@ -54,12 +54,6 @@
 				</div>
 			</form>
 		</div>
-		<div class="stop">
-			<input type="button" value="Stop" id="btnStop">
-		</div>
-		<div class="play">
-			<input type="button" value="Start" id="btnPlay">
-		</div>
 		<!-- 채팅 내용 끝 -->
 	</div>
 </div>
