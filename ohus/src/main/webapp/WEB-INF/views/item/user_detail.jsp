@@ -50,6 +50,70 @@
 		  color:#000; font-size:20px; font-weight: bold;
 		  right:10px; top:10px;
 		}
+		
+		/*상품문의 css*/
+		
+		.item_inquiry input[type="button"] {
+			width: 50px;
+			padding: 8px;
+			background-color: #35c5f0 ;
+			border: none;
+			border-radius:4px;
+			color: white;
+			font-weight: bold;
+			font-size :10px;
+			cursor: pointer;
+			margin-right:1px;
+			margin-top: 10px;
+		}
+		
+		.item_inquiry input[type="button"]:hover{
+			background-color: #09addb;
+			color : white;
+		}
+		
+		
+		.item-inq{
+		    width: 100%;
+		    max-width: 100%;
+		    table-layout: fixed;
+		}
+		
+		.item-inq tr{
+		    width: 100%;
+		    height: 36px;
+		    border-style:none;
+		}
+		
+		.item-inq tr:first-child{
+			background-color:#e5e5e5;
+			border-top:2px solid #111;
+		}
+		
+		.item-inq tr:hover{
+			background-color: #f7f7f7;
+		}
+		
+		.item-inq td{
+		    padding: 16px;
+		    border-bottom: 1px solid #ccc;
+		    border-left:none;
+		    text-align:center;
+		}
+		
+		.item-inq td:first-child, .item-inq td:last-child{
+			text-align:center;
+		}
+		
+		.item-inq tr:first-child, .item-inq td:first-child{
+			border-left:0;
+		}
+		
+		.item-inq tr:last-child, .item-inq td:last-child{
+			border-right:0;
+		}
+		
+		
 	</style>
 	
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -254,15 +318,16 @@
 			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
 				<h2>상품 문의</h2>
-				<input type="button" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.do'"
+				<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.jsp?item_num=${item_num}'"
 					<c:if test="${empty user_num}">disabled="disabled"</c:if> data-item="${item_num}">
+					
 				<c:if test="${qnaCount == 0}">
 				<div class="result-display">
 					등록된 문의가 없습니다.
 				</div>
 				</c:if>
 				<c:if test="${qnaCount > 0}">
-				<table>
+				<table class="item-inq">
 					<tr style="pointer-events: none;">
 						<th width="7%">번호</th>
 						<th>문의카테</th>
