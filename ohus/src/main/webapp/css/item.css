@@ -153,19 +153,14 @@
          width: 1160px;
          
       }
+      .review-content-img{
+      	border-radius: 5%;
+      }
       .review-content{
          clear:both;
          width: 1160px;
          margin: 0 auto;
       }
-/*       .review-content-img{
-         float:left;
-         clear:both;
-      } */
-/*       .review-eximg{
-         float: right;
-         clear:both;
-      } */
       .review-des{
          width: 100%;
       
