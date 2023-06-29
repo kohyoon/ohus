@@ -162,7 +162,9 @@ $(function(){
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
 		modifyUI += '</form>';
+		modifyUI += '<div id="hori_bar">'
 		modifyUI += '<hr size="1" noshade width="96%">';
+		modifyUI += '</div>'
 		//이전에 이미 수정하는 중인 댓글이 있을 경우, 수정버튼을 클릭하면 숨겨져있는 sub-item을 환원시키고 수정폼을 초기화함
 		initModifyForm();
 		
@@ -190,8 +192,9 @@ $(function(){
 	//답변 수정 폼 초기화
 	function initModifyForm(){
 		$('.sub-item').show();
+		$('.re_buttons').show();
 		$('#mre_form').remove();
-		
+		$('#hori_bar').remove();
 	}
 	
 	//답변 수정

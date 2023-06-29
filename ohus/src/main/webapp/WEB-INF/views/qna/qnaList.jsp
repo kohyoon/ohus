@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,9 @@
 		<table>
 			<tr style="pointer-events: none;">
 				<th width="7%">번호</th>
-				<th width="50%">제목</th>
+				<th>문의카테</th>
+				<th width="10%">상품명</th>
+				<th width="40%">제목</th>
 				<th>작성자</th>
 				<th width="13%">작성일</th>
 				<th>상태</th>
@@ -57,17 +60,18 @@
 			<c:forEach var="qna" items="${list}">
 			<tr>
 				<td>${qna.qna_num}</td>
+				<td>
+					<c:if test="${qna.qna_category == 1}">[상품]</c:if>
+					<c:if test="${qna.qna_category == 2}">[배송]</c:if>
+					<c:if test="${qna.qna_category == 3}">[반품]</c:if>
+					<c:if test="${qna.qna_category == 4}">[교환]</c:if>
+					<c:if test="${qna.qna_category == 5}">[환불]</c:if>
+					<c:if test="${qna.qna_category == 6}">[기타]</c:if>
+				</td>
+				<td>${fn:substring(qna.item_name,0,12)}</td>
 				<td style="text-align:left;">
 					<a href="detailQna.do?qna_num=${qna.qna_num}">
-						<b>
-						<c:if test="${qna.qna_category == 1}">[상품]</c:if>
-						<c:if test="${qna.qna_category == 2}">[배송]</c:if>
-						<c:if test="${qna.qna_category == 3}">[반품]</c:if>
-						<c:if test="${qna.qna_category == 4}">[교환]</c:if>
-						<c:if test="${qna.qna_category == 5}">[환불]</c:if>
-						<c:if test="${qna.qna_category == 6}">[기타]</c:if>
-						</b>
-						${qna.item_name} | ${qna.qna_title}
+						${qna.qna_title}
 					</a>
 				</td>
 				<td>${qna.id}</td>
