@@ -302,7 +302,7 @@ public class MarketDAO {
 			return count;
 		}
 		// 내가 작성한 거래글 목록 조회 (페이지 처리)
-		public List<MarketVO> getListMyMarket(int start, int end, int mem_num) throws Exception{
+		public List<MarketVO> getListMyMarket(int mem_num,int start, int end) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
