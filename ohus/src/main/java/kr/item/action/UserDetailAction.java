@@ -9,6 +9,8 @@ import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemReviewVO;
 import kr.item.vo.ItemVO;
+import kr.qna.dao.ItemQnaDAO;
+import kr.qna.vo.ItemQnaVO;
 import kr.util.PageUtil;
 import kr.util.StringUtil;
 
@@ -32,13 +34,19 @@ public class UserDetailAction implements Action{
       //리뷰 개수
       int reviewCount = dao.getReviewCount(item_num);
       
-     
-      
       double avgscore = dao.avgReview(item_num);
+      
+      //문의 개수
+      ItemQnaDAO qnaDao = ItemQnaDAO.getInstance();
+      int qnaCount = qnaDao.getQnaCountByItem_num(item_num);
+      List<ItemQnaVO> qnaList = qnaDao.getListQna(1, 5, null, null);
       
       request.setAttribute("avgscore", avgscore);
       request.setAttribute("reviewCount", reviewCount);
       request.setAttribute("item", item);
+      
+      request.setAttribute("qnaCount", qnaCount);
+      request.setAttribute("qnaList", qnaList);
       
       return "/WEB-INF/views/item/user_detail.jsp";
    }
