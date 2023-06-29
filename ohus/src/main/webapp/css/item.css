@@ -153,14 +153,19 @@
          width: 1160px;
          
       }
-      .review-content-img{
-      	border-radius: 5%;
-      }
       .review-content{
          clear:both;
          width: 1160px;
          margin: 0 auto;
       }
+/*       .review-content-img{
+         float:left;
+         clear:both;
+      } */
+/*       .review-eximg{
+         float: right;
+         clear:both;
+      } */
       .review-des{
          width: 100%;
       
@@ -179,6 +184,7 @@
         transition: background-color 0.3s ease-in-out;
         width: 200px;
         height: 60px;
+        display:inline-block;
       }
       .btn:hover {
           filter: brightness(90%);
@@ -193,6 +199,10 @@
         background-color: #35c5f0;
         border:none;
         color: #fff;
+        position:absolute;
+      }
+      .list-cart-btn{
+      	float:left;
       }
       
    /* 네비게이션 하단 영역 ---------------------------------------------------*/

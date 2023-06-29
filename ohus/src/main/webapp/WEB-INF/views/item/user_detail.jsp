@@ -129,6 +129,18 @@
 				
 			});	
 			
+			$('#directBuy').submit(function(){
+				if($('#order_quantity').val() == ''){
+					alert('수량을 입력하세요.');
+					$('#order_quantity').focus();
+					return false;
+				}
+			});
+			
+			$('#order_quantity').change(function(){
+				$('#direct_quantity').val($(this).val());
+			});
+			
 			$('#header1').on("click", function(){header1.classList.add('active');});
 			$('#header2').on("click", function(){header2.classList.add('active');});
 			$('#header3').on("click", function(){header3.classList.add('active');});
@@ -182,13 +194,8 @@
 										<span id="output_fcount"></span>회
 									</li>
 									<li id="item_total_txt">총 주문 금액 : 0원</li>
-									<li>
-										<button class="btn btn-cart" type="submit">
-										    장바구니
-										</button>
-										<button class="btn btn-buy" type="submit">
-											바로 구매
-										</button>
+									<li class="list-cart-btn">
+										<button class="btn btn-cart" type="submit">장바구니</button>
 									</li>
 								</c:if>
 								<c:if test="${item.item_stock <= 0}">
@@ -197,6 +204,11 @@
 									</li>
 								</c:if>
 							</ul>
+						</form>
+						<form id="directBuy" action="${pageContext.request.contextPath}/order/directOrderForm.do" method="POST">
+							<input type="hidden" name="order_quantity" id="direct_quantity">
+							<input type="hidden" name="item_num" value="${item.item_num}">
+							<button class="btn btn-buy" type="submit">바로 구매</button>
 						</form>
 					</div>
 				</div>

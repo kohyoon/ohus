@@ -100,7 +100,7 @@ public class OrderDAO {
 					OrderDetailVO orderDetail = orderDetailList.get(i);
 					pstmt4.setInt(1, orderDetail.getOrder_quantity());
 					pstmt4.setInt(2, orderDetail.getItem_num());
-					pstmt.addBatch();
+					pstmt4.addBatch();
 					
 					if(i % 1000 == 0) {
 						pstmt4.executeBatch();
