@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.market.dao.MarketDAO;
 import kr.market.vo.MarketVO;
+import kr.util.StringUtil;
 
 public class MarketDetailAction implements Action{
 
@@ -23,6 +24,8 @@ public class MarketDetailAction implements Action{
 		MarketDAO dao = MarketDAO.getInstance();
 		MarketVO market = dao.getDetailMarket(Integer.parseInt(request.getParameter("market_num")));
 		dao.updateMarketHit(market.getMarket_num());
+		market.setMarket_title(StringUtil.useNoHtml(market.getMarket_title()));
+		market.setMarket_content(StringUtil.useBrNoHtml(market.getMarket_content()));
 		request.setAttribute("user_num",user_num);
 		request.setAttribute("user_auth", user_auth);
 		request.setAttribute("market", market);

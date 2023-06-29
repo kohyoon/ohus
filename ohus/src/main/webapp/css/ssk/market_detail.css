@@ -2,8 +2,8 @@
 
 /* 페이지 메인 스타일
 -------------------------------------*/
-div.page-main {
-	width: 680px;
+.contents{
+	width: 580px;
 	margin: 0 auto;
 }
 /* 페이지 헤더 스타일
@@ -38,6 +38,7 @@ div.page-main {
 /* 페이지 내용 스타일
 -------------------------------------*/
 .content-main {
+
 	padding-bottom: 30px;
 }
 

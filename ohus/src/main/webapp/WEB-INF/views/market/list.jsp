@@ -32,10 +32,6 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="content-main">
-		<div class="page-title">
-			<img src="${pageContext.request.contextPath}/upload/lettuce.png" width="100px" height="100px">
-			<h2> 상추 마켓</h2>
-		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			등록된 게시물이 없습니다.
