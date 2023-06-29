@@ -298,7 +298,6 @@
 					</tr>
 					</c:if>
 					</c:forEach>
-					
 				</table>
 				</c:if>
 			</div>

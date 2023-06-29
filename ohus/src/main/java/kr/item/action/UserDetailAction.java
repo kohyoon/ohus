@@ -43,7 +43,7 @@ public class UserDetailAction implements Action{
       
       request.setAttribute("avgscore", avgscore);
       request.setAttribute("reviewCount", reviewCount);
-      request.setAttribute("item", item);
+      request.setAttribute("item", item); 
       
       request.setAttribute("qnaCount", qnaCount);
       request.setAttribute("qnaList", qnaList);
