@@ -48,70 +48,6 @@ public class ItemQnaDAO {
 		}
 	}
 	
-	/*
-	//회원번호로 구매상세 갯수 구하기
-	public int getDetailCountByMem_num (int mem_num) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		int count = 0;
-		
-		try {
-			conn = DBUtil.getConnection();
-			
-			sql = "SELECT count(*) FROM orders_detail WHERE mem_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				count = rs.getInt(1);
-			}
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
-		return count;
-	}
-	//회원번호로 구매상세리스트 구하기 
-	public List<OrderDetailVO> getDetailOrderListByMem_num (int mem_num) throws Exception{ 
-		Connection conn = null; 
-		PreparedStatement pstmt = null; 
-		ResultSet rs = null; 
-		List<OrderDetailVO> list = null; 
-		String sql = null;
-		
-		try { 
-			conn = DBUtil.getConnection();
-		
-			sql = "SELECT * FROM orders_detail WHERE mem_num=?";
-		 
-			pstmt = conn.prepareStatement(sql); pstmt.setInt(1, mem_num);
-			rs = pstmt.executeQuery(); list = new ArrayList<OrderDetailVO>();
-	 		while(rs.next()) { 
-				OrderDetailVO detail = new OrderDetailVO();
-	 			detail.setDetail_num(rs.getInt("detail_num"));
-	 			detail.setMem_num(rs.getInt("mem_num"));
-	 			detail.setItem_num(rs.getInt("item_num"));
-				detail.setItem_name(rs.getString("item_name"));
-				detail.setItem_price(rs.getInt("item_price"));
-				detail.setOrder_quantity(rs.getInt("order_quantity"));
-				detail.setItem_total(rs.getInt("item_total"));
-				detail.setOrder_num(rs.getInt("order_num"));
-	
-				list.add(detail); 
-			} 
-		}catch(Exception e) {
-			throw new Exception(e); 
-		}finally {
-	 		DBUtil.executeClose(rs, pstmt, conn); 
-		} 
-		return list; 
-	}
-	*/
-
 	//총 레코드 수 | 검색 레코드 수
 	public int getQnaCount(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
@@ -143,6 +79,32 @@ public class ItemQnaDAO {
 				count = rs.getInt(1);
 			}
 			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	
+	//상품번호별 상품문의 개수
+	public int getQnaCountByItem_num(int item_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT count(*) FROM item_qna WHERE item_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, item_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
