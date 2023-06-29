@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>상품문의 글 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/detail.css">
+<link rel="stylesheet" href="/ohus/css/koy/faq.css">
+<link rel="stylesheet" href="/ohus/css/koy/detail.css">
+<link rel="stylesheet" href="/ohus/css/koy/notice.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -15,7 +17,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-		
+		<div class="detail-info">
 		<ul>
 			<li>
 				<h2><span>TITLE </span> ${qna.qna_title}</h2>
@@ -30,9 +32,9 @@
 				<c:if test="${qna.qna_category == 4}">교환</c:if>
 				<c:if test="${qna.qna_category == 5}">환불</c:if>
 				<c:if test="${qna.qna_category == 6}">기타</c:if>
-				<span> / 작성일 : </span>${qna.qna_regdate}
+				<span><br>작성일 : </span>${qna.qna_regdate}
 				<c:if test="${!empty qna.qna_mdate}">
-				<span> | 최근 수정일 : </span>${qna.qna_mdate}
+				<span> / 최근 수정일 : </span>${qna.qna_mdate}
 				</c:if>
 				<span> / </span>
 				<c:if test="${qna.qna_status == 2}">
@@ -43,19 +45,15 @@
 				</c:if>
 			</li>
 		</ul>
+		</div>
 		<hr size="1" noshade="noshade" width="100%">
-		<p>
+		<p class="content">
 			${qna.qna_content}
 		</p>
-		<hr size="1" noshade="noshade" width="100%">
 		<ul class="detail-sub">
-			<li>
-				<c:if test="${!empty qna.qna_mdate}">
-				최근 수정일 : ${qna.qna_mdate}
-				</c:if>
-				작성일 : ${qna.qna_regdate}
+			<li style="width:200px;">
 				<%-- 로그인 한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>
-				<c:if test="${user_num == qna.mem_num}">
+				<c:if test="${user_num == qna.mem_num && qna.qna_status < 2}">
 				<input type="button" value="수정" onclick="location.href='modifyQnaForm.do?qna_num=${qna.qna_num}'">
 				<input type="button" value="삭제" id="delete_btn">
 				<script type="text/javascript">
@@ -66,11 +64,11 @@
 							location.replace('deleteQna.do?qna_num=${qna.qna_num}');
 						}
 					};
-					
 				</script>
 				</c:if>
 			</li>
 		</ul>
+		<hr size="1" noshade="noshade" width="100%">
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
