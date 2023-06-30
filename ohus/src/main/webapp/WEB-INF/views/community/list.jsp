@@ -36,6 +36,14 @@
 	});
 </script>
 </head>
+<style>
+body {
+  position: relative;
+  padding-bottom: 120px; /* footer의 높이보다 큰 값을 지정 */
+}
+
+</style>
+
 <body>
 	
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -99,6 +107,8 @@
 
 		<!-- 내용 끝 -->
 	</div>
+	
+	
 <c:if test="${showWinnerAlert}">
       <script>
           alert('당첨을 축하합니다!');
@@ -106,4 +116,5 @@
  </c:if>	
 	
 </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>
