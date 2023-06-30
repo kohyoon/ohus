@@ -773,6 +773,7 @@ public class CommunityDAO {
 		}
 	}
 	
+	
 	// 신고하기
 	public void reportReply(CommunityReportVO report) throws Exception {
         Connection conn = null;

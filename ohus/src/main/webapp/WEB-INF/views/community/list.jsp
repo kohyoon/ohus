@@ -93,6 +93,7 @@ body {
 										${board.favCount} 조회 ${board.cboard_hit}</div>
 
 
+
 								</div>
 							</div>
 						</c:forEach>

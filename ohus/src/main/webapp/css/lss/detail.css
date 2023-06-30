@@ -23,6 +23,7 @@
             display: flex;
             align-items: center;
         }
+        
         .my-photo {
             border-radius: 50%;
         }

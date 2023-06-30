@@ -29,6 +29,7 @@ public class CommunityListReplyAction implements Action{
 			pageNum = "1";
 		}
 		 
+		
 		int cboard_num = 
 				Integer.parseInt(
 						request.getParameter(

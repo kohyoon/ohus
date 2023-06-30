@@ -24,6 +24,7 @@ public class CommunityListAction implements Action {
         String keyfield = "1";
         String keyword = request.getParameter("keyword");
 
+        
         CommunityDAO dao = CommunityDAO.getInstance();
         int count = dao.getBoardCount(keyfield, keyword, cboard_category);
 
