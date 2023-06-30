@@ -30,39 +30,34 @@
 	})
 </script>
 <style>
-   .tables-container {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .table-container {
-        width: 55%;
-        box-sizing: border-box;
-        margin-right: 40px;
-    }
-
-    .table-container:first-child {
-        margin-right: 5%;
-    }
-
-    .table-container:last-child {
-        margin-left: 5%;
-    }
-
-.table-container h3{
-text-align: left;
-margin-left: 40px;
+.tables-container {
+  display: flex;
 }
 
-    .table-container table {
-        width: 100%;
-    }
+.table-container {
+  width: 100%;
+  box-sizing: border-box;
+  margin-right: 170px;
+  margin-left: 20px;
+  flex-grow: 10;
+}
 
-    .table-container th,
-    .table-container td {
-        padding: 5px;
-        border: 1px solid #ddd;
-    }
+.table-container h3 {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.table-container table {
+  width: 130%;
+}
+
+.table-container th,
+.table-container td {
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+
 </style>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>

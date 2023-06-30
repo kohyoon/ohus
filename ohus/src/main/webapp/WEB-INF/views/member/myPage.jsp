@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css"> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lss/list.css">
 </head>
 <style>
 /*첫 번째 페이지
@@ -44,7 +45,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%; /* 원하는 너비 값으로 수정해주세요 */
+    width: 100%;
     margin-right: 1300px;
     align-items: center;
     }
@@ -236,13 +237,10 @@
     </div>
     <div class="row">
       <div class="info">
-        <h3>♡</h3><!-- 클릭하면 아래 명시한 테이블에 해당하는 거로 이동해주는..그효과-->
+        <h3><a href='#'><img src="${pageContext.request.contextPath}/images/love.png" width="25"></a></h3>
       </div>
       <div class="info">
-        <h3>Posts</h3>
-      </div>
-      <div class="info">
-        <h3>Inquiry</h3>
+        <h3><a href='#'><img src="${pageContext.request.contextPath}/images/dialog.png" width="40"></a></h3>
       </div>
     </div>
     <div class="buttons">

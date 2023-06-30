@@ -9,6 +9,7 @@
 <title>쇼핑</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lss/list.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -41,9 +42,10 @@
 	</script>
 </head>
 <body>
-	<div class = "page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<jsp:include page="/WEB-INF/views/item/item_header.jsp"/>
+	<div class = "page-main">
+		
 		<%-- 내용시작 --%>
 		<div class = "item-main">
 			<%-- 상품 목록 --%>

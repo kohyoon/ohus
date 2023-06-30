@@ -20,11 +20,11 @@
         <div class="header-lower">
             <div class="inner">
                 <nav>
-                    <a href="list.do?" style="margin-left: 1cm; font-size: 1.0rem; font-weight: 700; color: #424242; cursor: pointer; padding: 11px 10px; flex-shrink: 0;">전체</a>
-                    <a class="header-lower__item" href="list.do?cboard_category=0" style="margin-left: 1cm;">일상</a>
-                    <a class="header-lower__item" href="list.do?cboard_category=1" style="margin-left: 1cm;">취미</a>
-                    <a class="header-lower__item" href="list.do?cboard_category=2" style="margin-left: 1cm;">자랑</a>
-                    <a class="header-lower__item" href="list.do?cboard_category=3" style="margin-left: 1cm;">추천</a>
+                    <a href="${pageContext.request.contextPath}/community/list.do?" style="margin-left: 1cm; font-size: 1.0rem; font-weight: 700; color: #424242; cursor: pointer; padding: 11px 10px; flex-shrink: 0;">전체</a>
+                    <a class="header-lower__item" href="${pageContext.request.contextPath}/community/list.do?cboard_category=0" style="margin-left: 1cm;">일상</a>
+                    <a class="header-lower__item" href="${pageContext.request.contextPath}/community/list.do?cboard_category=1" style="margin-left: 1cm;">취미</a>
+                    <a class="header-lower__item" href="${pageContext.request.contextPath}/community/list.do?cboard_category=2" style="margin-left: 1cm;">자랑</a>
+                    <a class="header-lower__item" href="${pageContext.request.contextPath}/community/list.do?cboard_category=3" style="margin-left: 1cm;">추천</a>
                 </nav>
             </div>
         </div>
