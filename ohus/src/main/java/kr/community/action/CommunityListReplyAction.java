@@ -28,7 +28,7 @@ public class CommunityListReplyAction implements Action{
 		if(pageNum==null) {
 			pageNum = "1";
 		}
-		
+		 
 		int cboard_num = 
 				Integer.parseInt(
 						request.getParameter(

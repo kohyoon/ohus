@@ -23,6 +23,7 @@ public class CommunityDetailAction implements Action{
 		
 		CommunityVO board = dao.getBoard(cboard_num);
 		
+		
 		//HTML 태그를 허용하지 않음
 		board.setCboard_title(
 				StringUtil.useNoHtml(

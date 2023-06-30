@@ -42,7 +42,7 @@ public class CommunityReportReplyAction implements Action {
    
 			CommunityDAO dao = CommunityDAO.getInstance();
 			dao.reportReply(report);
-			
+			 
 			mapAjax.put("result","success");
 		}
 		//JSON 데이터 생성

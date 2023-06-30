@@ -28,6 +28,7 @@ function selectList(pageNum) {
         $('#output').empty();
       }
 
+
       $(param.list).each(function (index, item) {
         let output = '<div class="item">';
         output += '<h4 class="item-id">' + item.id + '</h4>';

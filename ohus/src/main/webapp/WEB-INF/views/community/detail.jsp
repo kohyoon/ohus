@@ -29,6 +29,7 @@
 </script>
 </head>
 
+
 <body>
 	<div class="header-detail">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>

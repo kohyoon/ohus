@@ -36,7 +36,7 @@ public class CommunityListAction implements Action {
         if (count > 0) {
             list = dao.getListBoard(page.getStartRow(), page.getEndRow(), keyfield, keyword, cboard_category);
         }
-        
+         
         // 당첨자 알림창을 띄우기 위해 속성 설정
         Boolean isWinner = (Boolean) request.getSession().getAttribute("isWinner");
 

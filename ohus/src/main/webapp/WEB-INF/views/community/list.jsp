@@ -92,6 +92,7 @@ body {
 										style="color: #757575; font-size: 13px;">좋아요
 										${board.favCount} 조회 ${board.cboard_hit}</div>
 
+
 								</div>
 							</div>
 						</c:forEach>

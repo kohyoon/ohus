@@ -783,7 +783,7 @@ public class CommunityDAO {
 
             String sql = "INSERT INTO cboard_report (dec_num, dec_category, dec_regdate, mem_num, re_num) " +
                     "VALUES (cboard_report_seq.nextval, ?, SYSDATE, ?, ?)";
-
+ 
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, report.getDec_category());
             pstmt.setInt(2, report.getMem_num());
