@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
 <style type="text/css">
 .title{
     margin:30px 0;
@@ -35,8 +36,8 @@
     margin-top: 36px;
     border-top: 1px solid #e9e9e9;
     padding-top: 10px;
-    float: left; /* Added to align sections to the left */
-  	clear: both; /* Added to clear float */
+    float: left;
+  	clear: both;
 }
 
 #faq_div{
@@ -66,12 +67,14 @@
 }
 
 div.cs-buttons{
-	 display: inline-block;
-  vertical-align: middle; 
+	display: inline-block;
+	vertical-align: middle; 
+	width:100%;
+	text-align:center;
 }
 
 #inquiry_btn, #qna_btn {
-	width: 50%;
+	width: 45%;
 	padding: 13px;
 	background-color: #35c5f0 ;
 	border: none;
@@ -79,10 +82,22 @@ div.cs-buttons{
 	font-weight: bold;
 	font-size : 15px;
 	cursor: pointer;
-	margin-right: 200px;
+	margin-right:5px;
 	margin-top: 10px;
 	text-align:center;
-	clear:both;
+}
+
+#qna_btn {
+	width: 45%;
+	padding: 13px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 15px;
+	cursor: pointer;
+	margin-top: 10px;
+	text-align:center;
 }
 
 #inquiry_btn:hover, #qna_btn:hover{
@@ -141,7 +156,7 @@ div.cs-buttons{
 			<h2>
 				<a href="${pageContext.request.contextPath}/notice/listNotice.do">공지사항</a>
 			</h2>
-			<table>
+			<table style="width:1200px;">
 				<tr style="pointer-events: none;">
 					<th width="70%">제목</th>
 					<th>작성일</th>
