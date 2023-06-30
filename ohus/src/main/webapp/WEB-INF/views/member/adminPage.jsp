@@ -85,6 +85,7 @@
 						<th>전화번호</th>
 						<th>가입일</th>
 						<th>등급</th>
+						<th>신고누적횟수</th>
 					</tr>
 					<!-- 레코드는 반복문으로 작업해줌, 확장 for문같은 역할 -->
 					<c:forEach var="member" items="${list}"> 
@@ -108,6 +109,7 @@
 								<c:if test="${member.auth==2}">일반회원</c:if>
 								<c:if test="${member.auth==9}">관리자</c:if>
 							</td>
+							<td>${member.reports }</td>
 						</tr>
 					</c:forEach>
 				</table>
