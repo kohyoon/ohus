@@ -168,6 +168,52 @@ public class ItemQnaDAO {
 		return list;
 	}
 	
+	//==============내가 남긴 상품문의 목록==========================//
+	public List<ItemQnaVO> getListQnaByMem_num (int start, int end, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ItemQnaVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum "
+				+ "FROM (SELECT * FROM item_qna q JOIN omember m USING(mem_num) JOIN item i "
+				+ "USING(item_num) ORDER BY q.qna_num DESC)a) "
+				+ "WHERE rnum >= ? AND rnum <= ? AND mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.setInt(3, mem_num);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemQnaVO>();
+			while(rs.next()) {
+				ItemQnaVO qna = new ItemQnaVO();
+				qna.setQna_num(rs.getInt("qna_num"));
+				qna.setQna_title(StringUtil.useNoHtml(rs.getString("qna_title")));
+				qna.setQna_regdate(rs.getDate("qna_regdate"));
+				qna.setQna_category(rs.getInt("qna_category"));
+				qna.setQna_status(rs.getInt("qna_status"));
+				qna.setId(rs.getString("id"));
+				qna.setItem_num(rs.getInt("item_num"));
+				qna.setItem_name(rs.getString("item_name"));
+				
+				list.add(qna);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+
+	
 	//상품문의 상세
 	public ItemQnaVO getQna(int qna_num) throws Exception{
 		Connection conn = null;
