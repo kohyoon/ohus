@@ -45,7 +45,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<jsp:include page="/WEB-INF/views/item/item_header.jsp"/>
 	<div class = "page-main">
-		
+		<div class="content-main>
 		<%-- 내용시작 --%>
 		<div class = "item-main">
 			<%-- 상품 목록 --%>
@@ -76,6 +76,7 @@
 			<%-- 상품 목록 --%>
 		</div>
 		<%-- 내용끝 --%>
+		</div>
 	</div>
 </body>
 </html>

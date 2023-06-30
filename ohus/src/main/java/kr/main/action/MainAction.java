@@ -30,8 +30,6 @@ public class MainAction implements Action {
         CommunityDAO dao = CommunityDAO.getInstance();
         int count = dao.getBoardCount(keyfield, keyword, cboard_category);
 
-        // keyfield, keyword, currentPage, count,
-        // rowCount, pageCount, 요청URL
         PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "list.do",
                 "&cboard_category=" + cboard_category);
 
@@ -39,34 +37,23 @@ public class MainAction implements Action {
         if (count > 0) {
             list = dao.getListBoard(page.getStartRow(), page.getEndRow(), keyfield, keyword, cboard_category);
         }
+        
 
-        request.setAttribute("count", count);
-        request.setAttribute("list", list);
-        request.setAttribute("page", page.getPage());
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
         // 당첨자 알림창을 띄우기 위해 속성 설정
         Boolean isWinner = (Boolean) request.getSession().getAttribute("isWinner");
 
-        // 이벤트 당첨자인 경우 알림창을 띄웁니다.
+        // 이벤트 당첨자인 경우 알림창을 띄움
         if (isWinner != null && isWinner) {
             request.setAttribute("showWinnerAlert", true);
-            // 당첨자 알림창을 한 번만 띄우고 세션에서 삭제합니다.
+            // 당첨자 알림창을 한 번만 띄우고 세션에서 삭제
             request.getSession().removeAttribute("isWinner");
         }
+        
+    	
+        request.setAttribute("count", count);
+        request.setAttribute("list", list);
+        request.setAttribute("page", page.getPage());
+        request.setAttribute("isWinner", isWinner);
 
         // JSP 경로 반환
         return "/WEB-INF/views/main/main.jsp";

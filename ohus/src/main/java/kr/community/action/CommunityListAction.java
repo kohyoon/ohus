@@ -36,11 +36,21 @@ public class CommunityListAction implements Action {
         if (count > 0) {
             list = dao.getListBoard(page.getStartRow(), page.getEndRow(), keyfield, keyword, cboard_category);
         }
+        
+        // 당첨자 알림창을 띄우기 위해 속성 설정
+        Boolean isWinner = (Boolean) request.getSession().getAttribute("isWinner");
+
+        // 이벤트 당첨자인 경우 알림창을 띄움
+        if (isWinner != null && isWinner) {
+            request.setAttribute("showWinnerAlert", true);
+            // 당첨자 알림창을 한 번만 띄우고 세션에서 삭제
+            request.getSession().removeAttribute("isWinner");
+        }
 
         request.setAttribute("count", count);
         request.setAttribute("list", list);
         request.setAttribute("page", page.getPage());
-
+        request.setAttribute("isWinner", isWinner);
         // JSP 경로 반환
         return "/WEB-INF/views/community/list.jsp";
     }

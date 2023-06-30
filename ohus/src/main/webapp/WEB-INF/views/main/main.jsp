@@ -30,6 +30,12 @@
 			});
 		});			
 	</script>		
+<style type="text/css">
+body {
+  position: relative;
+  padding-bottom: 120px; /* footer의 높이보다 큰 값을 지정 */
+}
+</style>
 </head>
 <body>
 <div class="page-main">
@@ -59,8 +65,6 @@
                  </a>
                   <div class="community-center" style="font-weight: bold; font-size: 16px;">${board.cboard_title}</div>
 
-<!-- 가운데 정렬 -->
-               
                   <div class="community-center">
                   <c:choose>
                       <c:when test="${not empty board.photo}">
@@ -87,6 +91,15 @@
 
 
     <!-- 내용 끝 -->
+    
     </div>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<c:if test="${showWinnerAlert}">
+      <script>
+          alert('당첨을 축하합니다!');
+      </script>
+ </c:if>
 </body>
 </html>

@@ -130,7 +130,7 @@
 					<div class="header-upper__inner">
 						<!-- 로고 -->
 						<div class="header-upper__logo">
-							<a href="${pageContext.request.contextPath}/main/main.do">내일의집</a>
+							<a href="${pageContext.request.contextPath}/community/list.do">내일의집</a>
 						</div>
 						<!-- 상단 메뉴 시작-->
 						<div class="header-upper__nav">
