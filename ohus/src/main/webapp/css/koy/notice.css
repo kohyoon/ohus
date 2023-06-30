@@ -54,6 +54,7 @@ table tr:last-child, table td:last-child{
 div.bottoms{
 	display:inline;
 	float:right;
+	position:fixed;
 }
 
 form#search_form {
