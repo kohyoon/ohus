@@ -98,7 +98,7 @@
 					
 					<li>
 						<label for="event_content">내용</label>
-						<textarea rows="5" cols="30" name="event_content" id="event_content" maxlength="50"></textarea>
+						<textarea rows="5" cols="30" name="event_content" id="event_content" maxlength="900"></textarea>
 					</li>
 					
 					<li>

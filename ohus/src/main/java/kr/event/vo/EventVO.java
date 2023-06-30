@@ -27,14 +27,14 @@ public class EventVO {
 		int month = cal.get(Calendar.MONTH)+1;
 		int date = cal.get(Calendar.DATE);
 		LocalDate now_day = LocalDate.of(year,month,date);
-		//음수면 지난 날짜, 0 같은 날짜, 양수면 남은 남자
+		//음수면 지난 날짜, 0 같은 날짜, 양수면 남은 날짜
 		int result = end_day.compareTo(now_day);
 		if(result<0) {
 			event_status = 1;
 		}else {
 			event_status = 2;
 		}
-		return event_status;
+		return event_status;  
 	}
 	
 	

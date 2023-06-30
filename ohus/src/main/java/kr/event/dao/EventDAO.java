@@ -729,6 +729,44 @@ public class EventDAO {
 		}
 		return list;
 	}
+	
+	
+	// 내가 댓글 단 이벤트 --마이페이지
+		public List<EventReplyVO> getMyEventReplyEnd(int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			List<EventReplyVO> list = new ArrayList<EventReplyVO>();
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql =  "select * from oevent_reply r join oevent o on r.event_num=o.event_num where event_status=1 and r.mem_num=?"; //종료된 목록만 가져옴
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, mem_num);
+				
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					EventReplyVO reply = new EventReplyVO();
+					reply.setEvent_num(rs.getInt("event_num"));
+					reply.setRe_date(rs.getString("re_date"));
+					reply.setRe_content(rs.getString("re_content"));
+					reply.setEvent_winner(rs.getInt("event_winner"));
+					reply.setRe_num(rs.getInt("re_num"));
+					reply.setRe_status(rs.getInt("re_status"));
+					
+					list.add(reply);
+				}
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
 	//===================================
 	//댓글처리 시작 -ajax통신
 	

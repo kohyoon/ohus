@@ -102,7 +102,12 @@
   cursor: pointer;
 }
 
-
+.main-footer{
+	font-weight: bold;
+	color: #888;
+	font-size: 15px;
+	color : #35c5f0;
+}
 
 
 
@@ -142,8 +147,10 @@
 				  document.write("작성일 : " + formattedRegDate);
 				</script>
 				
-				<%-- 아래 화면은 관리자로 로그인을 해야 보이므로 스크립트 처리--%>
-				<c:if test="${!empty user_num && user_auth == 9}">
+				
+			</li>
+		</ul>
+		<c:if test="${!empty user_num && user_auth == 9}">
 				 <div class="align-right">
 						<input type="button" value="수정" class="btn"
 						onclick="location.href='updateForm.do?event_num=${event.event_num}'"> 
@@ -162,25 +169,31 @@
 						</script>
 					</div>
 				</c:if>
-			</li>
-		</ul>
+		
 	</div>
-
+	
 	<!-- 상단 끝 -->
 			
 	<hr size="1" noshade="noshade" width="100%">
-
+	<br>
+	<br>
 	<!-- 내용 시작 --> 
 	<div class="align-center">
-		이벤트 기간 : ${event.event_start} ~ ${event.event_end}
-		<br>
-		당첨자 수 : ${event.winner_count} 
+		
+		 
 		<p>
 		<img src="${pageContext.request.contextPath}/upload/${event.event_photo}" class="detail.img">
 		<p>
 			${event.event_content}
 		</p>
+		<br>
+		<br>
+		<span class="main-footer">당첨자 수 : ${event.winner_count}명</span>
+		<br>
+		<span class="main-footer">이벤트 기간 : ${event.event_start} ~ ${event.event_end}<span>
 	</div>
+	<br>
+	<br>
 
 	<hr size="1" noshade="noshade" width="100%">
 

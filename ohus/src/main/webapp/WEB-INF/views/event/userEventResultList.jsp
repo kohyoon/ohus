@@ -56,14 +56,13 @@ td {
 </style>
  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
  <h1>당첨확인</h1>
- <h4>종료된 이벤트만 조회됩니다</h4>
+ <h3>종료된 이벤트만 불러옵니다. 전체 내역은 마이페이지에서 확인 가능합니다</h3>
  <div class="page-main">
 	 <c:if test="${!empty mylist}">
 			<table>
 			<thead>
 				<tr>
 					<th>이벤트 번호</th>
-					<th>댓글 번호</th>
 					<th>댓글 등록일</th>
 					<th>댓글내용</th>
 					<th>당첨여부</th>
@@ -73,12 +72,18 @@ td {
 
 					<tr> 
 						<td><a href="${pageContext.request.contextPath}/event/detail.do?event_num=${reply.event_num}" target="_blank">${reply.event_num}</a></td>
-						<td>${reply.re_num}</td>
 						<td>${reply.re_date}</td>
+						<%-- 작성일 표시 --%>
+						<%-- 자바스크립트로 날짜 포맷팅 --%>
+						<script type="text/javascript">
+						  let regDate = new Date("${reply.re_date}");
+						  let formattedRegDate = regDate.toLocaleDateString('ko-KR');
+						  document.write("작성일 : " + formattedRegDate);
+				</script>
 						<td>${reply.re_content}</td>
 						<td>
-							<c:if test="${reply.event_winner==1 }">당첨!</c:if>
-							<c:if test="${reply.event_winner==0 }">꽝!</c:if>
+								<c:if test="${reply.event_winner==1 }">당첨!</c:if>
+								<c:if test="${reply.event_winner==0 }">꽝!</c:if>
 						</td>
 					</tr>
 				</c:forEach>

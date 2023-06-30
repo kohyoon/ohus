@@ -8,7 +8,7 @@ public class MemberVO {
 	private int auth; // 회원 등급 0:탈퇴, 1:정지, 2:일반, 9:관리자
    
 	private String name;
-	private int reports;
+	
 	private String password; // 영문 숫자 포함 8자 이상
 	private String phone;
 	private String email;
@@ -21,6 +21,12 @@ public class MemberVO {
 	private Date modify_date; // 회원 정보 수정일
 	
 	private int my_category; //마이페이지 카테고리
+	
+	
+	
+	
+	
+	private int reports; //컬럼 ㄴㄴ
 
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPassword) {
