@@ -28,7 +28,7 @@ public class WriteQnaFormAction implements Action {
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		
 		request.setAttribute("list", list);
-		request.setAttribute("itemnum", item_num);
+		request.setAttribute("item_num", item_num);
 				
 		return "/WEB-INF/views/qna/writeQnaForm.jsp";
 	}

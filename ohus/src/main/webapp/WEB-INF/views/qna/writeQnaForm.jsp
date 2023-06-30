@@ -65,9 +65,9 @@
 				<li>
 					<label>상품명</label>
 					<select name="item_num">
-						<option <c:if test="${item_num=0}">selected</c:if>>==상품 선택==</option>
+						<option>==상품 선택==</option>
 						<c:forEach var="item" items="${list}">
-						<option value="${item.item_num}" <c:if test="${itemnum == item.item_num}">selected</c:if>>${item.item_name}</option>
+						<option value="${item.item_num}" <c:if test="${item_num == item.item_num}">selected</c:if>>${item.item_name}</option>
 						</c:forEach>
 					</select>
 					
@@ -76,6 +76,7 @@
 			<div class="align-center">
 				<input type="submit" value="등록">
 				<input type="button" value="목록" onclick="location.href='qnaList.do'">
+				<input type="button" value="이전" onclick="history.go(-1)">
 			</div>
 		</form>
 	</div>

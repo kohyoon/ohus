@@ -9,6 +9,7 @@
 <title>상품문의 게시판 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -39,7 +40,7 @@
 		<div class="list-space align-right">
 			<%-- <input type="button" value="문의하기" onclick="location.href='writeQnaForm.do?itemnum=0'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>> --%>
-			<input type="button" value="문의하기" onclick="location.href='writeQnaForm.jsp?item_num=0'"
+			<input type="button" value="문의하기" onclick="location.href='writeQnaForm.do'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>>
 			<input type="button" value="전체목록" onclick="location.href='qnaList.do'">
 		</div>
@@ -52,12 +53,12 @@
 		<table>
 			<tr style="pointer-events: none;">
 				<th width="7%">번호</th>
-				<th>문의카테</th>
+				<th width="8%">문의카테</th>
 				<th width="10%">상품명</th>
-				<th width="40%">제목</th>
-				<th>작성자</th>
+				<th>제목</th>
+				<th width="11%">작성자</th>
 				<th width="13%">작성일</th>
-				<th>상태</th>
+				<th width="12%">상태</th>
 			</tr>
 			<c:forEach var="qna" items="${list}">
 			<tr>

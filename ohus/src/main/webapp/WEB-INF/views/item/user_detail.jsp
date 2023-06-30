@@ -318,7 +318,7 @@
 			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
 				<h2>상품 문의</h2>
-				<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.jsp?item_num=${item_num}'"
+				<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.do?item_num=${item.item_num}'"
 					<c:if test="${empty user_num}">disabled="disabled"</c:if> data-item="${item_num}">
 					<script type="text/javascript">
 						$(document).on('click','#inq', function(){
