@@ -86,7 +86,10 @@
 			background-color: #09addb;
 			color : white;
 		}
-		
+		#item_inquiry{
+			margin: 0 auto;
+			width: 73%;
+		}
 		table.item-inq{
 			width:100%;
 		}
@@ -256,12 +259,12 @@
 				</div>
 				<p>
 				<br>
-				<div class="item-header__nav">
-					<div class="item-header">
+				<div class="item-lower__nav">
+					<div class="item-lower">
 						<div class="inner">
 							<nav>
 								<a id="header7" class="item-header__item" href="#item_detail">상품정보</a> 
-								<a id="header8" class="item-header__item" href="#item_review">리뷰 <small>${reviewCount}개</small></a>  
+								<a id="header8" class="item-header__item" href="#item_review">후기 <small>${reviewCount}개</small></a>  
 								<a id="header9" class="item-header__item" href="#item_inquiry">문의</a> 
 							</nav>
 						</div>
@@ -276,9 +279,9 @@
 						${item.item_content}
 					</p>	
 				</div>
-			<hr size="1" noshade="noshade" width="100%"><br>
 			<div id="item_review">
 				<div class="item-review-header">
+					<hr size="1" noshade="noshade" width="90%"><br>
 					<h3>상품 후기 <font color="#35c5f0">${reviewCount}개</font></h3>
 				</div>
 				<%-- 후기 목록 출력 시작 --%>
@@ -291,11 +294,11 @@
 				</div>
 				<%-- 후기 목록 출력 끝 --%>
 			</div>
-			<hr size="1" noshade="noshade" width="100%">	
 			
 			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
 				<div id="inq_top">
+				<br>
 					<h2>상품 문의</h2>
 					<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.do?item_num=${item.item_num}'"
 						<c:if test="${empty user_num}">disabled="disabled"</c:if> style="text-align:center;">
@@ -352,6 +355,7 @@
 			</div>
 			<!-- 상품문의 부분 끝 -->
 			</c:if>
+			
 		</div>
 		<%-- 내용 끝 --%>
 	</div>
