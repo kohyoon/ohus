@@ -15,6 +15,12 @@
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div id="cs_center">
+		<button onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/qna/qnaList.do'">상품문의게시판</button>
+	</div>
 	<!-- 내용 시작 --> 
 	<div class="container">
 		<h2>상품문의 게시판 목록</h2>

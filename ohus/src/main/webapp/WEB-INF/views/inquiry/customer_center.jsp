@@ -56,6 +56,7 @@
 	float: right;
   	margin-top: 10px;
   	padding: 10px;
+  	display:inline-block;
 }
 
 #inquiry_div span{
@@ -64,8 +65,13 @@
 	font-weight:bold;
 }
 
-#inquiry_btn {
-	width: 100%;
+div.cs-buttons{
+	 display: inline-block;
+  vertical-align: middle; 
+}
+
+#inquiry_btn, #qna_btn {
+	width: 50%;
 	padding: 13px;
 	background-color: #35c5f0 ;
 	border: none;
@@ -79,7 +85,7 @@
 	clear:both;
 }
 
-#inquiry_btn:hover{
+#inquiry_btn:hover, #qna_btn:hover{
 	background-color: #09addb;
 	color : white;
 }
@@ -126,7 +132,10 @@
 			<img src="${pageContext.request.contextPath}/images/telephone.png" width="23" height="26">
 			<span>1670-0876</span>
 			<br>
-			<button id="inquiry_btn" onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+			<div class="cs-buttons">
+				<button id="inquiry_btn" onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+				<button id="qna_btn" onclick="location.href='${pageContext.request.contextPath}/qna/qnaList.do'">상품문의게시판</button>
+			</div>
 		</div>
 		<div id="notice_div">
 			<h2>
@@ -145,6 +154,7 @@
 				</c:forEach>
 			</table>
 		</div>
+		
 	</div>
 	
 	
