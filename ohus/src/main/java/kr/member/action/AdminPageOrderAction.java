@@ -44,10 +44,10 @@ public class AdminPageOrderAction implements Action{
 		if(count > 0) {
 			list = dao.getListOrder(page.getStartRow(),page.getEndRow(),keyfield,keyword);
 		}
-		
+		request.setAttribute("page", page.getPage());
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
-		request.setAttribute("page", page.getPage());
+		
 		
 		return "/WEB-INF/views/member/adminPageOrder.jsp";
 	}

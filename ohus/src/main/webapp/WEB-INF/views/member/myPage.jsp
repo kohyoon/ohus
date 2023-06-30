@@ -237,7 +237,7 @@
     </div>
     <div class="row">
       <div class="info">
-        <h3><a href='${pageContext.request.contextPath}/qna/myQnaList.do'><img src="${pageContext.request.contextPath}/images/love.png" width="25"></a></h3>
+        <h3><a href='${pageContext.request.contextPath}/qna/myQnaList.do'><img src="${pageContext.request.contextPath}/images/inq.png" width="25"></a></h3>
       </div>
       <div class="info">
         <h3><a href='myPage4.do'><img src="${pageContext.request.contextPath}/images/dialog.png" width="40"></a></h3>

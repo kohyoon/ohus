@@ -57,6 +57,11 @@
   border: 1px solid #ddd;
 }
 
+.no-list{
+	color : gray;
+	text-align: center;
+}
+
 
 </style>
 <body>

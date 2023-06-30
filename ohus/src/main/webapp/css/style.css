@@ -13,6 +13,7 @@ body {
   padding-bottom: 3000px; /* footer의 높이보다 큰 값을 지정 */
 }
 
+
 /* 헤더 상단 영역 -----------------------------------------------------*/
 .header-upper {
   border-bottom: 1px solid #ededed;

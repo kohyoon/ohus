@@ -97,7 +97,6 @@
 					</c:forEach>
 				</table>
 				<p>
-				<div class = "align-center">${page}</div>
 			</c:if>
 			<%-- 상품 목록 --%>
 		</div>

@@ -115,7 +115,6 @@
 				</table>
 				
 				<!-- 페이지 보여주기 -->
-				<div class="align-center">${page}</div>
 			</c:if>			
 		</div>
 		<!-- 내용 끝 -->

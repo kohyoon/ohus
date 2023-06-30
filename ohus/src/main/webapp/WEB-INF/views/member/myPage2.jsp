@@ -89,7 +89,6 @@
 						<th>댓글 번호</th>
 						<th>댓글 등록일</th>
 						<th>댓글내용</th>
-						<th>당첨여부</th>
 					</tr>
 				</thead>
 					<c:forEach var="reply" items="${mylist}">
@@ -98,10 +97,6 @@
 							<td>${reply.re_num}</td>
 							<td>${reply.re_date}</td>
 							<td>${reply.re_content}</td>
-							<td>
-								<c:if test="${reply.event_winner==1 }">당첨!</c:if>
-								<c:if test="${reply.event_winner==0 }">꽝!</c:if>
-							</td>
 						</tr>
 					</c:forEach>
 				</table>

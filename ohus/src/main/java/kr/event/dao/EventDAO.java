@@ -701,7 +701,7 @@ public class EventDAO {
 			sql =  "SELECT * FROM "
 					+ "(SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM oevent_reply WHERE mem_num=? ORDER BY re_date DESC)a) "
-					+ "WHERE rnum >= ? AND rnum <= ?";
+					+ "WHERE rnum >= ? AND rnum <= ? ";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, mem_num);
@@ -718,6 +718,8 @@ public class EventDAO {
 				reply.setRe_content(rs.getString("re_content"));
 				reply.setEvent_winner(rs.getInt("event_winner"));
 				reply.setRe_num(rs.getInt("re_num"));
+				reply.setRe_status(rs.getInt("re_status"));
+				
 				list.add(reply);
 			}
 		}catch(Exception e) {

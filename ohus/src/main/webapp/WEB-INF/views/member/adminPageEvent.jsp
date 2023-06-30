@@ -179,8 +179,6 @@ background-color : skyblue;
 						</tr>
 					</c:forEach>	
 				</table>	
-				<%--페이지 --%>
-				<div class="align-center">${page}</div>
 			</c:if>
 		</div>
 	</div>
