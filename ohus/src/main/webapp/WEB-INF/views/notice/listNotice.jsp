@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
+<style type="text/css">
+table{
+	width:1000px;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -29,6 +35,7 @@
 		<button onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
 		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
 		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/qna/qnaList.do'">상품문의게시판</button>
 	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
@@ -53,7 +60,6 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<div class="align-center page">${page}</div>
 		<div class="bottoms">
 			<!-- 검색창 시작 -->
 			<form id="search_form" action="listNotice.do" method="get">
@@ -73,13 +79,15 @@
 				</ul>
 			</form>
 			<!-- 검색창 끝 -->	
-			<div class="list-space align-right" style="margin:0;">
+			<div class="list-space">
 				<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
-				<input type="button" value="전체목록" onclick="location.href='listNotice.do'">
+				<input type="button" value="전체목록" onclick="location.href='listNotice.do'" style="text-align:center;">
 			</div>		
 		</div>
 		</c:if>
-		
+		<br>
+		<br>
+		<div class="align-center" style="width:100%;">${page}</div>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

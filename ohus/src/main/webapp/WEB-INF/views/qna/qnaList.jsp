@@ -8,9 +8,15 @@
 <meta charset="UTF-8">
 <title>상품문의 게시판 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
+<style type="text/css">
+table{
+	width:1200px;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -24,33 +30,8 @@
 	</div>
 	<!-- 내용 시작 --> 
 	<div class="container">
-		<h2>상품문의 게시판 목록</h2>
-		<!-- 검색창 시작 -->
-		<form id="search_form" action="qnaList.do" method="get">
-			<ul class="search">
-				<li>
-					<select name="keyfield">
-						<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
-						<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
-						<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
-					</select>
-				</li>
-				<li>
-					<input type="search" size="16" name="keyword" id="keyword">
-				</li>
-				<li>
-					<input type="submit" value="검색">
-				</li>
-			</ul>
-		</form>
-		<!-- 검색창 끝 -->
-		<div class="list-space align-right">
-			<%-- <input type="button" value="문의하기" onclick="location.href='writeQnaForm.do?itemnum=0'"
-				<c:if test="${empty user_num}">disabled="disabled"</c:if>> --%>
-			<input type="button" value="문의하기" onclick="location.href='writeQnaForm.do'"
-				<c:if test="${empty user_num}">disabled="disabled"</c:if>>
-			<input type="button" value="전체목록" onclick="location.href='qnaList.do'">
-		</div>
+		<h2 style="text-align:center;">상품문의 게시판 목록</h2>
+		
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			표시할 상품문의가 없습니다.
@@ -62,9 +43,9 @@
 				<th width="7%">번호</th>
 				<th width="8%">문의카테</th>
 				<th width="10%">상품명</th>
-				<th>제목</th>
+				<th width="40%">제목</th>
 				<th width="11%">작성자</th>
-				<th width="13%">작성일</th>
+				<th width="11%">작성일</th>
 				<th width="12%">상태</th>
 			</tr>
 			<c:forEach var="qna" items="${list}">
@@ -93,8 +74,36 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<div class="align-center">${page}</div>
+		<div class="bottoms">
+			<!-- 검색창 시작 -->
+			<form id="search_form" action="qnaList.do" method="get">
+				<ul class="search">
+					<li>
+						<select name="keyfield">
+							<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목</option>
+							<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>작성자</option>
+							<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
+						</select>
+					</li>
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword">
+					</li>
+					<li>
+						<input type="submit" value="검색">
+					</li>
+				</ul>
+			</form>
+			<!-- 검색창 끝 -->
+			<div class="list-space">
+				<input type="button" value="문의하기" onclick="location.href='writeQnaForm.do?item_num=0'"
+					<c:if test="${empty user_num}">disabled="disabled"</c:if>>
+				<input type="button" value="전체목록" onclick="location.href='qnaList.do'">
+			</div>
+		</div>
 		</c:if>
+		<br>
+		<br>
+		<div class="align-center" style="width:100%;">${page}</div>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

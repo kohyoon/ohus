@@ -65,7 +65,7 @@
 				<li>
 					<label>상품명</label>
 					<select name="item_num">
-						<option>==상품 선택==</option>
+						<option <c:if test="${item_num == 0}">selected</c:if>>==상품 선택==</option>
 						<c:forEach var="item" items="${list}">
 						<option value="${item.item_num}" <c:if test="${item_num == item.item_num}">selected</c:if>>${item.item_name}</option>
 						</c:forEach>

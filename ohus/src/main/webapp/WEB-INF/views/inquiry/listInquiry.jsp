@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/faq.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
+<style type="text/css">
+table{
+	width:1000px;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -33,7 +39,7 @@
 	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2 style="text-align:center;">문의게시판</h2>
+		<h2 style="text-align:center;">문의게시판 목록</h2>
 				
 		<c:if test="${count == 0}">
 		<div class="result-display">
@@ -44,14 +50,19 @@
 		<table>
 			<tr>
 				<th style="width:5%;">번호</th>
-				<th style="width:60%;">제목</th>
+				<th style="width:13%;">카테고리</th>
+				<th style="width:40%;">제목</th>
 				<th>작성자ID</th>
-				<th>작성일</th>
+				<th style="width:12%;">작성일</th>
 				<th>처리여부</th>
 			</tr>
 			<c:forEach var="inquiry" items="${list}">
 			<tr>
 				<td>${inquiry.inq_num}</td>
+				<td>
+	            	<c:if test="${inquiry.inq_category == 1}">사이트 문의</c:if>
+	            	<c:if test="${inquiry.inq_category == 2}">기타 문의</c:if>
+	       		</td>
 				<td style="text-align:left;"><a href="detailInquiry.do?inq_num=${inquiry.inq_num}">${inquiry.inq_title}</a></td>
 				<td>${inquiry.id}</td>
 				<td>${inquiry.inq_regdate}</td>
@@ -66,7 +77,6 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<div class="align-center">${page}</div>
 		<div class="bottoms">
 			<!-- 검색창 시작 -->
 			<form id="search_form" action="list.do" method="get">
@@ -87,11 +97,14 @@
 			</form>
 			<!-- 검색창 끝 -->
 			
-			<div class="list-space align-right" style="margin:0;">
+			<div class="list-space">
 				<input type="button" value="글쓰기" onclick="location.href='writeInquiryForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
 				<input type="button" value="전체목록" onclick="location.href='listInquiry.do'">
 			</div>
 		</div>
+		<br>
+		<br>
+		<div class="align-center" style="width:100%;">${page}</div>
 		</c:if>
 	</div>
 	<!-- 내용 끝 -->
