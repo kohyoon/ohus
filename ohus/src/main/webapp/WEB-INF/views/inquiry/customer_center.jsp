@@ -111,8 +111,6 @@ div.cs-buttons{
   	margin-top: 10px;
   	padding: 10px;
 }
-
-
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
