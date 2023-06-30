@@ -230,7 +230,7 @@
 		<c:if test="${!empty member.photo}">
 		<img src="${pageContext.request.contextPath}/upload/${member.photo}"
 		   width="200" height="200" class="profile-pic">
-		</c:if>
+		</c:if>  
     </div>
     <div class="data"> <!-- 자기소개 -->
       <h2>${member.name}</h2>
@@ -238,7 +238,7 @@
     <div class="row">
       <div class="info">
         <h3><a href='${pageContext.request.contextPath}/qna/myQnaList.do'><img src="${pageContext.request.contextPath}/images/inq.png" width="25"></a></h3>
-      </div>
+      </div>                    
       <div class="info">
         <h3><a href='myPage4.do'><img src="${pageContext.request.contextPath}/images/dialog.png" width="40"></a></h3>
       </div>
