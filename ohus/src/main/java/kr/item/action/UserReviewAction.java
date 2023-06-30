@@ -25,13 +25,23 @@ public class UserReviewAction implements Action{
 		
 		int item_num = Integer.parseInt(multi.getParameter("item_num"));
 		
+		
 		ItemDAO dao = ItemDAO.getInstance();
-		ItemReviewVO review = new ItemReviewVO();
-		review.setMem_num(user_num);
-		review.setItem_num(Integer.parseInt(multi.getParameter("item_num")));
-		review.setItem_score(Integer.parseInt(multi.getParameter("item_score")));
-		review.setReview_content(multi.getParameter("review_content"));
-		review.setReview_photo(multi.getFilesystemName("review_photo"));
+		ItemReviewVO review = null;
+		review = dao.getMyReview(item_num, user_num);
+		
+		if(review == null) {
+			request.setAttribute("notice_msg", "이미 작성한 상품 후기입니다.");
+			request.setAttribute("notice_url", request.getContextPath() + "/item/detail.do?item_num=" + item_num);
+		}else {
+			review = new ItemReviewVO();
+			review.setMem_num(user_num);
+			review.setItem_num(Integer.parseInt(multi.getParameter("item_num")));
+			review.setItem_score(Integer.parseInt(multi.getParameter("item_score")));
+			review.setReview_content(multi.getParameter("review_content"));
+			review.setReview_photo(multi.getFilesystemName("review_photo"));
+		}
+		
 		
 		dao.insertReview(review);
 		

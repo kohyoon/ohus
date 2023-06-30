@@ -1,16 +1,13 @@
 package kr.item.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
+import kr.item.vo.ItemReviewVO;
 import kr.item.vo.ItemVO;
-import kr.order.dao.OrderDAO;
 
 public class UserReviewFormAction implements Action{
 
@@ -33,8 +30,16 @@ public class UserReviewFormAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath() + "/main/main.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
-		
 		ItemDAO dao = ItemDAO.getInstance();
+		ItemReviewVO review = null;
+		review = dao.getMyReview(item_num, user_num);
+		
+		if(review != null) {
+			request.setAttribute("notice_msg", "이미 작성한 상품 후기입니다.");
+			request.setAttribute("notice_url", request.getContextPath() + "/item/detail.do?item_num=" + item_num);
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		
 		ItemVO item = dao.getItem(item_num);
 		String item_name = item.getItem_name();
 		String item_photo1 = item.getItem_photo1();

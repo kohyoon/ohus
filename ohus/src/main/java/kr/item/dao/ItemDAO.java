@@ -609,7 +609,7 @@ public class ItemDAO {
 			if(review.getReview_photo() != null) {
 				sub_sql = "review_photo = ?,";
 			}
-			sql = "UPDATE item_review SET item_score = ?, " + sub_sql + " review_content = ? "
+			sql = "UPDATE item_review SET item_score = ?, " + sub_sql + " review_content = ?, "
 				+ "review_mdate = SYSDATE WHERE review_num = ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -658,5 +658,58 @@ public class ItemDAO {
 		
 		return avgscore;
 	}
-
+	//후기 사진 삭제
+	public void deleteFile(int review_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE item_review SET review_photo='' WHERE review_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, review_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//내가 작성한 리뷰 목록(후기 작성 확인용)
+	public ItemReviewVO getMyReview(int item_num, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		ItemReviewVO relist = null;
+		try {
+			//커넥션 풀로부터 커넥션을 할당(JDBC 1,2단계)
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM item_review WHERE mem_num = ? AND item_num = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, item_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				relist = new ItemReviewVO();
+				relist.setItem_num(item_num);
+				
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return relist;
+	}
 }

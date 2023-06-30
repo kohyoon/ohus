@@ -1,4 +1,12 @@
 @charset "UTF-8";
+.review-right{
+	margin-top: 90px;
+    margin-bottom: 20px;
+    margin-right: 230px;
+    float:right;
+   	width:55%;
+   	padding: 10px;
+}
 
 /*item_header*/
 .item-header {

@@ -6,7 +6,24 @@
 <meta charset="UTF-8">
 <title>${item_name} | 후기 작성</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#review_form').submit(function(){
+			if($('#review_content').val().trim() == ''){
+				alert('상품에 대한 평가를 작성해주세요!');
+				$('#name').val('').focus();
+				return false;
+			}
+			var fileCheck = document.getElementById("review_photo").value;
+			if(!fileCheck){
+			    alert("후기 사진을 첨부해 주세요");
+			    return false;
+			}
+		});
+	});
+	</script>
 </head>
 <body>
 	<div class="page-main">
@@ -14,17 +31,17 @@
 		<%-- 내용시작 --%>
 		<p>
 		<div class="item-review">
-			<form action="userReview.do" method="post" enctype="multipart/form-data" id="review_form" class="review-form">
-				<input type="hidden" value="${item_num}" name="item_num">
-				<div>
-					<a href="javascript:window.history.back();">X</a>
+			<div class="left">
+				<div class="item-name">
+					<h2>${item_name} | 후기 작성</h2> 
 				</div>
 				<div class="item-info">
 					<img src="${pageContext.request.contextPath}/upload/${item_photo1}" width="300" height="300">
 				</div>
-				<div class="item-name">
-					<span>${item_name}</span> | 후기 작성
-				</div>
+			</div>
+			<div class="review-right">
+				<form action="userReview.do" method="post" enctype="multipart/form-data" id="review_form" class="review-form">
+				<input type="hidden" value="${item_num}" name="item_num">
 				<ul>
 					<li>
 						<label>별점을 매겨주세요.</label>
@@ -44,11 +61,13 @@
 						<label>상품에 대한 평가를 적어주세요.</label><br>
 						<textarea rows="5" cols="60" name="review_content" id="review_content" placeholder="너무 좋아요!"></textarea>
 					</li>
-				</ul>
-				<div class="align-center">
-					<button class="rev-btn" type="submit">등록</button>
-				</div>
-			</form>
+					</ul>
+					<div class="align-center">
+						<button class="ad-btn ad-regi" type="submit">등록</button>
+						<button class="ad-btn ad-list" type="button"  onclick="location.href='javascript:window.history.back();'">취소</button>
+					</div>
+				</form>
+			</div>
 		</div>
 		<%-- 내용 끝 --%>
 	</div>

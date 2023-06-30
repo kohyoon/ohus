@@ -8,6 +8,57 @@
 	<link rel = "stylesheet" href = "${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#write_form').submit(function(){
+				if($('#item_name').val().trim() == ''){
+					alert('상품명 미입력');
+					$('#name').val('').focus();
+					return false;
+				}
+				
+				if($('#item_price').val() == ''){
+					alert('가격 미입력');
+					$('#price').focus();
+					return false;
+				}
+				
+				if($('#item_stock').val() == ''){
+					alert('재고 수량 미입력');
+					$('#quantity').focus();
+					return false;
+				}
+				
+				if($('#item_origin').val() == ''){
+					alert('상품 원산지 미입력');
+					$('#quantity').focus();
+					return false;
+				}
+				
+				if($('#item_content').val().trim() == ''){
+					alert('상품 설명 미입력');
+					$('#detail').val().focus();
+					return false;
+				}
+				
+				var fileCheck1 = document.getElementById("item_photo1").value;
+				var fileCheck2 = document.getElementById("item_photo2").value;
+				var fileCheck3 = document.getElementById("item_photo3").value;
+				if(!fileCheck1){
+				    alert("상품대표사진을 첨부해 주세요");
+				    return false;
+				}
+				if(!fileCheck2){
+				    alert("상품사진1을 첨부해 주세요");
+				    return false;
+				}
+				if(!fileCheck2){
+				    alert("상품사진2를 첨부해 주세요");
+				    return false;
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 	<div class="page-main">

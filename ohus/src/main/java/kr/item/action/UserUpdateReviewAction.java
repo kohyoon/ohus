@@ -24,18 +24,22 @@ public class UserUpdateReviewAction implements Action{
 		MultipartRequest multi = FileUtil.createFile(request);
 		int item_num = Integer.parseInt(multi.getParameter("item_num"));
 		
+		int review_num = Integer.parseInt(multi.getParameter("review_num"));
+		
+		
 		ItemDAO dao = ItemDAO.getInstance();
 		ItemReviewVO review = new ItemReviewVO();
+		review.setReview_num(review_num);
 		review.setMem_num(user_num);
-		review.setItem_num(Integer.parseInt(multi.getParameter("item_num")));
+		review.setItem_num(item_num);
 		review.setItem_score(Integer.parseInt(multi.getParameter("item_score")));
 		review.setReview_content(multi.getParameter("review_content"));
 		review.setReview_photo(multi.getFilesystemName("review_photo"));
 		
-		dao.insertReview(review);
+		dao.updateReview(review);
 		
 		request.setAttribute("notice_msg", "후기 수정을 성공했습니다.");
-		request.setAttribute("notice_url", request.getContextPath() + "/item/userList.do?item_num=" + item_num);
+		request.setAttribute("notice_url", request.getContextPath() + "/item/detail.do?item_num=" + item_num);
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
