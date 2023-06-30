@@ -64,13 +64,13 @@ a:visited {
 	color: #000000;
 }
 
-.my-photo {
+.market-photo {
 	transition: transform 0.3s ease-in-out;
 	max-width: 100%;
 	max-height: 100%;
 }
 
-.my-photo:hover {
+.market-photo:hover {
 	transform: scale(1.1);
 }
 

@@ -43,7 +43,7 @@
 			<div class="box-item">
 				<a href="detail.do?market_num=${market.market_num}">
 					<div class="img-box">
-						<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="250" height="250" class="my-photo"><br>
+						<img src="${pageContext.request.contextPath}/upload/${market.market_photo1}" width="250" height="250" class="market-photo"><br>
 					</div>
 					<h3 class="box-title">${market.market_title}</h3>
 					<div class="box-writer">
