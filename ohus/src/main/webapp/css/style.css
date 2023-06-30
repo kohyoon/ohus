@@ -10,7 +10,7 @@
 /*footer 가리지 않게 body 너비 조정*/
 body {
   position: relative;
-  padding-bottom: 500px; /* footer의 높이보다 큰 값을 지정 */
+  padding-bottom: 1000px; /* footer의 높이보다 큰 값을 지정 */
 }
 
 /* 헤더 상단 영역 -----------------------------------------------------*/
