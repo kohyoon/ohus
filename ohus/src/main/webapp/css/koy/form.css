@@ -27,8 +27,6 @@ input {
 }
 
 /*=================*/
-
-
 .container ul {
 	list-style: none;
 	padding: 0;
@@ -70,6 +68,10 @@ select{
 	border: 1px solid #ccc;
 	border-radius:4px;
 	outline:0 none;
+}
+
+#write_form select{
+	width:420px;
 }
 
 select option{

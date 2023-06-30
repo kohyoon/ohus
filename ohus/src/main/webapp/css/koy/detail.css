@@ -55,6 +55,7 @@ textarea{
     border-radius: 3px;
     box-sizing: border-box;
     vertical-align: middle;
+    
    	resize: none;
 }
 
@@ -110,7 +111,6 @@ textarea.ans-content{
 	height:50px;
 	margin:10px 10px;
 }
-
 div#re_first,div#mre_first{
 	float:left;
 	width:8%;
@@ -146,6 +146,7 @@ form#mre_form{
 }
 textarea.rep-content{
   flex-grow: 1; 
+  width:80%;
 }
 
 div#re_second {

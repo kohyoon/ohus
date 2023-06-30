@@ -15,11 +15,6 @@
 <body>
 <div class="home-page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div id="cs_center">
-		<button onclick="location.href='${pageContext.request.contextPath}/faq/faqPay.do'">FAQ</button>
-		<button id="this_cs" onclick="location.href='${pageContext.request.contextPath}/notice/listNotice.do'">공지사항</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'">문의게시판</button>
-	</div>
 	<!-- 내용 시작 -->
 	<div class="container">
 		<ul class="detail-info">
@@ -50,7 +45,6 @@
 		<div class="detail-sub">
 			<input type="button" value="수정" id="modify_btn" onclick="location.href='modifyNoticeForm.do?notice_num=${notice.notice_num}'">
 			<input type="button" value="삭제" id="delete_btn">
-			<input type="button" value="목록" onclick="location.href='listNotice.do'">
 		</div>
 		<script type="text/javascript">
 			let delete_btn = document.getElementById('delete_btn');
@@ -63,6 +57,9 @@
 			};
 		</script>
 		</c:if>
+		<div class="detail-sub">
+			<input type="button" value="목록" onclick="location.href='listNotice.do'">
+		</div>
 	</div>
 	<!-- 내용 끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

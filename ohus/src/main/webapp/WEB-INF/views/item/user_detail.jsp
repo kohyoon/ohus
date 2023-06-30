@@ -9,6 +9,7 @@
 <title>${item.item_name} | 내일의 집</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/js/item.review.js"></script>
 	<style type="text/css">
@@ -53,7 +54,20 @@
 		
 		/*상품문의 css*/
 		
-		.item_inquiry input[type="button"] {
+		div#inq_top{
+			display:inline;
+			margin-top:5px;
+		}
+		
+		div#inq_top h2{
+			width:150px;
+		}
+		
+		div#inq_top input[type="button"]{
+			float:right;
+		}
+		
+		#inq {
 			width: 50px;
 			padding: 8px;
 			background-color: #35c5f0 ;
@@ -63,56 +77,20 @@
 			font-weight: bold;
 			font-size :10px;
 			cursor: pointer;
-			margin-right:1px;
-			margin-top: 10px;
+			margin:2px 1px 5px 0;
+			text-align:center;
+			float:right;
 		}
 		
-		.item_inquiry input[type="button"]:hover{
+		#inq:hover{
 			background-color: #09addb;
 			color : white;
 		}
 		
-		
-		.item-inq{
-		    width: 100%;
-		    max-width: 100%;
-		    table-layout: fixed;
+		table.item-inq{
+			width:100%;
 		}
-		
-		.item-inq tr{
-		    width: 100%;
-		    height: 36px;
-		    border-style:none;
-		}
-		
-		.item-inq tr:first-child{
-			background-color:#e5e5e5;
-			border-top:2px solid #111;
-		}
-		
-		.item-inq tr:hover{
-			background-color: #f7f7f7;
-		}
-		
-		.item-inq td{
-		    padding: 16px;
-		    border-bottom: 1px solid #ccc;
-		    border-left:none;
-		    text-align:center;
-		}
-		
-		.item-inq td:first-child, .item-inq td:last-child{
-			text-align:center;
-		}
-		
-		.item-inq tr:first-child, .item-inq td:first-child{
-			border-left:0;
-		}
-		
-		.item-inq tr:last-child, .item-inq td:last-child{
-			border-right:0;
-		}
-		
+				
 		
 	</style>
 	
@@ -317,14 +295,16 @@
 			
 			<!-- 상품문의 부분 시작 -->
 			<div id="item_inquiry">
-				<h2>상품 문의</h2>
-				<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.do?item_num=${item.item_num}'"
-					<c:if test="${empty user_num}">disabled="disabled"</c:if> data-item="${item_num}">
-					<script type="text/javascript">
-						$(document).on('click','#inq', function(){
-							let item_num = $(this).attr('data-item');
-						});
-					</script>
+				<div id="inq_top">
+					<h2>상품 문의</h2>
+					<input type="button" id="inq" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/qna/writeQnaForm.do?item_num=${item.item_num}'"
+						<c:if test="${empty user_num}">disabled="disabled"</c:if> style="text-align:center;">
+						<script type="text/javascript">
+							$(document).on('click','#inq', function(){
+								let item_num = $(this).attr('data-item');
+							});
+						</script>
+				</div>
 				<c:if test="${qnaCount == 0}">
 				<div class="result-display">
 					등록된 문의가 없습니다.
@@ -332,12 +312,12 @@
 				</c:if>
 				<c:if test="${qnaCount > 0}">
 				<table class="item-inq">
-					<tr style="pointer-events: none;">
+					<tr>
 						<th width="7%">번호</th>
 						<th>문의카테</th>
 						<th width="40%">제목</th>
 						<th>작성자</th>
-						<th width="13%">작성일</th>
+						<th width="15%">작성일</th>
 						<th>상태</th>
 					</tr>
 					
@@ -358,7 +338,7 @@
 								${qna.qna_title}
 							</a>
 						</td>
-						<td>${qna.id}</td>
+						<td style="text-align:center;">${qna.id}</td>
 						<td>${qna.qna_regdate}</td>
 						<td>
 							<c:if test="${qna.qna_status == 1}"><span style="color:blue;">처리전</span></c:if>

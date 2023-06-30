@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/ohus/css/koy/faq.css">
 <link rel="stylesheet" href="/ohus/css/koy/detail.css">
 <link rel="stylesheet" href="/ohus/css/koy/notice.css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/item.answer.js"></script>
 </head>
@@ -67,6 +68,7 @@
 					};
 				</script>
 				</c:if>
+				<input type="button" value="목록" onclick="location.href='qnaList.do'">
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
@@ -88,12 +90,13 @@
 					<textarea rows="3" cols="50" name="a_content" id="a_content" class="rep-content" placeholder="답변 입력"
 							<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
 					<c:if test="${!empty user_num}">
+					<div id="re_second" align="right" style="margin:0;">
+						<input type="submit" value="전송">
+					</div>
 					<div id="re_first">
 						<span class="letter-count">300/300</span>
 					</div>
-					<div id="re_second" class="align-right" style="margin:0;">
-						<input type="submit" value="전송">
-					</div>
+					
 					</c:if>
 				</form>
 			</div>
