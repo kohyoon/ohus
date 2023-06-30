@@ -28,7 +28,12 @@
 	<!-- 내용 시작 -->
 	<div class="contents">
 		<h2 class="header-title">${market.market_title}</h2>
-		<img src="${pageContext.request.contextPath}/images/face.png" width="100" height="100" class="my-photo">
+		<c:if test="${empty market.photo}">
+			<img src="${pageContext.request.contextPath}/images/face.png" width="100" height="100" class="my-photo">	
+		</c:if>
+		<c:if test="${!empty market.photo}">
+			<img src="${pageContext.request.contextPath}/upload/${market.photo}"width="100" height="100" class="my-photo">
+		</c:if>
 		<h4 class="header-user-id">${market.id}</h4>
 		<c:if test="${!empty market.market_modifydate}">
 			<h6 class="header-date">작성일 : ${market.market_regdate} 수정일 : ${market.market_modifydate} 조회수 : ${market.market_hit}</h6>

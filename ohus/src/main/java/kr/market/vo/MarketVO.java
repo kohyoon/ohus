@@ -15,7 +15,7 @@ public class MarketVO {
 	private int mem_num;            // 작성자 번호
 	
 	private String id; 			    // 작성자 아이디
-	
+	private String photo;           // 작성자 프로필 사진
 	public String getId() {
 		return id;
 	}
@@ -81,6 +81,12 @@ public class MarketVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 	

@@ -121,7 +121,7 @@ public class MarketDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM market m LEFT JOIN omember o ON m.mem_num = o.mem_num WHERE market_num = ?";
+			sql = "SELECT * FROM market m LEFT JOIN omember o ON m.mem_num = o.mem_num LEFT JOIN omember_detail d ON m.mem_num = d.mem_num WHERE market_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, market_num);
 			rs = pstmt.executeQuery();
@@ -140,6 +140,7 @@ public class MarketDAO {
 				market.setMarket_photo2(rs.getString("market_photo2"));
 				market.setMem_num(rs.getInt("mem_num"));
 				market.setId(rs.getString("id"));
+				market.setPhoto(rs.getString("photo"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
