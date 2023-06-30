@@ -73,7 +73,7 @@ table{
 				</td>
 			</tr>
 			</c:forEach>
-		</table>
+		</table> 
 		<div class="bottoms">
 			<!-- 검색창 시작 -->
 			<form id="search_form" action="qnaList.do" method="get">

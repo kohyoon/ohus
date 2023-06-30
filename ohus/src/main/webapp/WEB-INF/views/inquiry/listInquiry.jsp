@@ -74,7 +74,7 @@ table{
 					<span style="color:red;"><b>처리완료</b></span>
 					</c:if>
 				</td>
-			</tr>
+			</tr> 
 			</c:forEach>
 		</table>
 		<div class="bottoms">

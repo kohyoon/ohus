@@ -59,7 +59,7 @@ table{
 				<td>${notice.notice_regdate}</td>
 			</tr>
 			</c:forEach>
-		</table>
+		</table> 
 		<div class="bottoms">
 			<!-- 검색창 시작 -->
 			<form id="search_form" action="listNotice.do" method="get">
