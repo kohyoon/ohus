@@ -11,7 +11,7 @@ create table omember_detail(
  mem_num number,
  name varchar2(30) not null,
  auth number(1) default 2 not null,
- reports number(3),
+ reports number(3) default 0 not null,
  password varchar2(15) not null,
  phone varchar2(15) not null,
  email varchar2(200) not null,
