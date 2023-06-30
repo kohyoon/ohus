@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+		.header-detail{
+			margin-left:5cm;
+			margin-right:5cm;
+		}	
         .page-main {
             margin-left: 5cm;
             margin-right: 5cm;

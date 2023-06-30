@@ -51,11 +51,14 @@ function selectList(pageNum) {
           output += '<div class="sub-item-buttons">';
           output += ' <input type="button" data-renum="' + item.re_num + '" value="수정" class="modify-btn" style="background: transparent; color: #828C94; border: none;">';
 	      output += ' <input type="button" data-renum="' + item.re_num + '" value="삭제" class="delete-btn" style="background: transparent; color: #828C94; border: none;">';
-          output += ' <input type="button" data-renum="' + item.re_num + '" value="신고" class="report-btn" style="background: transparent; color: #828C94; border: none;">';
-
-          output += '</div>';
-        }
-
+        
+        }else{
+		  output += ' <input type="button" data-renum="' + item.re_num + '" value="신고" class="report-btn" style="background: transparent; color: #828C94; border: none;">';
+		}
+		
+		
+		output += '</div>';
+		
         output += '</div>';
         output += '</div>';
 

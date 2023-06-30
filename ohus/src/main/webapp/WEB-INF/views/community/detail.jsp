@@ -30,8 +30,10 @@
 </head>
 
 <body>
-<div class="page-main">
+	<div class="header-detail">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	</div>
+<div class="page-main">
     <!-- 내용 시작 -->
     <div class="content-main">
         <div class="content-center">

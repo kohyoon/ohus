@@ -133,7 +133,7 @@ public class CommunityDAO {
 	            else if (keyfield.equals("3")) sub_sql += "AND b.cboard_content LIKE ?";
 	        }
 	            	
-	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id FROM cboard b JOIN omember m ON b.mem_num = m.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
+	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT b.*, m.id, md.photo FROM cboard b JOIN omember m ON b.mem_num = m.mem_num JOIN omember_detail md ON m.mem_num = md.mem_num WHERE 1=1 " + sub_sql + " ORDER BY b.cboard_regdate DESC)a) WHERE rnum>=? AND rnum<=?";
 
 	        // PreparedStatement 객체 생성
 	        pstmt = conn.prepareStatement(sql);
@@ -159,6 +159,7 @@ public class CommunityDAO {
 	            board.setId(rs.getString("id"));
 	            board.setCboard_photo1(rs.getString("cboard_photo1"));
 	            board.setCboard_fav(rs.getInt("cboard_fav"));
+	            board.setPhoto(rs.getString("photo"));
 	            
 	            // 좋아요 개수 조회
 	            int cboard_num = rs.getInt("cboard_num");
@@ -176,6 +177,7 @@ public class CommunityDAO {
 	    }
 	    return list;
 	}
+
 
 	//글 상세
 	public CommunityVO getBoard(int cboard_num) throws Exception {

@@ -78,15 +78,14 @@ body {
 								<!-- 가운데 정렬 -->
 
 								<div class="community-center">
-									<c:choose>
-										<c:when test="${not empty board.photo}">
-											<img src="${board.photo}" alt="photo" width="15" height="15">
-										</c:when>
-										<c:otherwise>
-											<img src="${pageContext.request.contextPath}/images/face.png"
-												width="15" height="15">
-										</c:otherwise>
-									</c:choose>
+								
+										<c:if test="${!empty board.photo}">
+                            				<img src="${pageContext.request.contextPath}/upload/${board.photo}" width="15" height="15" class="my-photo">
+                        				</c:if>
+                        				<c:if test="${empty board.photo}">
+                            				<img src="${pageContext.request.contextPath}/images/face.png" width="15" height="15" class="my-photo">
+                        				</c:if>
+									
 									<span style="color: #424242; font-size: 14px;">${board.id}</span>
 									<br>
 									<div class="community-center"
