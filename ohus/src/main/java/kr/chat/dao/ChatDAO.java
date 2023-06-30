@@ -286,4 +286,78 @@ public class ChatDAO {
 		
 		return list;
 	}
+	
+	// 내가 보낸 채팅방 목록 조회
+	public List<ChatroomVO> getBuyerChatroomList(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ChatroomVO> list = null;
+		ChatroomVO chatroom = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT c.*,o.id AS buyer_id, s.id AS seller_id, m.market_title FROM chatroom c "
+					+ "LEFT JOIN omember o ON c.buyer_num = o.mem_num "
+					+ "LEFT JOIN omember s ON c.seller_num = s.mem_num "
+					+ "LEFT JOIN market m ON c.market_num = m.market_num WHERE c.buyer_num=? ORDER BY c.chatroom_num DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,mem_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ChatroomVO>();
+			
+			while(rs.next()) {
+				chatroom = new ChatroomVO();
+				chatroom.setBuyer_num(rs.getInt("buyer_num"));
+				chatroom.setSeller_num(rs.getInt("seller_num"));
+				chatroom.setChatroom_num(rs.getInt("chatroom_num"));
+				chatroom.setId(rs.getString("seller_id"));
+				chatroom.setMarket_num(rs.getInt("market_num"));
+				chatroom.setMarket_title(rs.getString("market_title"));
+				
+				list.add(chatroom);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	// 내가 받은 채팅이 있는 채팅방 목록 조회
+	public List<ChatroomVO> getSellerChatroomList(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ChatroomVO> list = null;
+		ChatroomVO chatroom = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT c.*,o.id AS buyer_id, s.id AS seller_id, m.market_title FROM chatroom c LEFT JOIN omember o ON c.buyer_num = o.mem_num "
+					+ "LEFT JOIN omember s ON c.seller_num = s.mem_num "
+					+ "LEFT JOIN market m ON c.market_num = m.market_num WHERE c.seller_num=? ORDER BY c.chatroom_num DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,mem_num);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ChatroomVO>();
+			
+			while(rs.next()) {
+				chatroom = new ChatroomVO();
+				chatroom.setBuyer_num(rs.getInt("buyer_num"));
+				chatroom.setSeller_num(rs.getInt("seller_num"));
+				chatroom.setChatroom_num(rs.getInt("chatroom_num"));
+				chatroom.setId(rs.getString("buyer_id"));
+				chatroom.setMarket_num(rs.getInt("market_num"));
+				chatroom.setMarket_title(rs.getString("market_title"));
+				
+				list.add(chatroom);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 }
