@@ -19,25 +19,6 @@ public class MemberDAO {
 	
 	
 	
-	//===============
-	//이벤트에 당첨된 회원의 컬럼을 1로 변경해주는 메서드?
-	public void updateWinner(int event_num) throws Exception{
-		
-	}
-	
-	
-	
-	//=======================================
-	//[마이페이지]
-	
-	// 마이페이지 목록
-	// 마이페이지 DAO
-	
-	//카테고리 구하기
-	
-
-
-	
 	//==========================================================
 	//[회원]
 	//회원가입 
@@ -229,6 +210,28 @@ public class MemberDAO {
 		}
 		
 	}
+	
+	//신고 횟수 누적시키기
+	public void updateReportsMember(int mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    String sql = null;
+
+	    try {
+	        conn = DBUtil.getConnection();
+	        sql = "UPDATE omember_detail SET reports = reports + 1 WHERE mem_num=? IN(SELECT mem_num FROM cboard_report)";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, mem_num);
+	        pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(null, pstmt, conn);
+	    }
+
+	}
+	
+	
 	//==========================================================
 	//프로필 사진 수정
 	public void updateMyPhoto(String photo, int mem_num) throws Exception{
@@ -422,6 +425,7 @@ public class MemberDAO {
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date"));
 				member.setModify_date(rs.getDate("modify_date"));
+				member.setReports(rs.getInt("reports"));
 			
 				list.add(member);
 			}
