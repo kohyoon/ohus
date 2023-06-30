@@ -16,9 +16,10 @@
 
 .header-lower .inner {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-self: center;
   height: 40px;
+  margin: 15px;
 }
 
 .header-lower .inner nav {
@@ -30,7 +31,7 @@
 }
 
 .header-lower__item {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #424242;
   cursor: pointer;
@@ -38,7 +39,7 @@
   flex-shrink: 0;
 }
 .header-all{
- font-size: 0.8rem;
+ font-size: 1rem;
   font-weight: 700;
   color: #424242;
   cursor: pointer;
@@ -67,7 +68,7 @@
             <div class="header-lower">
                 <div class="inner">
                     <nav>
-                        <a id="header1" class="header-all" href="userList.do">전체</a> 
+                    <a id="header1" class="header-all" href="userList.do">전체</a> 
 					<a id="header2" class="header-lower__item" href="userList.do?item_category=1">침대</a> 
 					<a id="header3" class="header-lower__item" href="userList.do?item_category=2">소파</a> 
 					<a id="header4" class="header-lower__item" href="userList.do?item_category=3">수납</a>
