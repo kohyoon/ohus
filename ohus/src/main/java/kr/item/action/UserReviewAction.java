@@ -30,7 +30,7 @@ public class UserReviewAction implements Action{
 		ItemReviewVO review = null;
 		review = dao.getMyReview(item_num, user_num);
 		
-		if(review == null) {
+		if(review != null) {
 			request.setAttribute("notice_msg", "이미 작성한 상품 후기입니다.");
 			request.setAttribute("notice_url", request.getContextPath() + "/item/detail.do?item_num=" + item_num);
 		}else {

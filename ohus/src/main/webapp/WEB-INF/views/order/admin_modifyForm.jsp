@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>[관리자]구매정보수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<c:if test = "${order.status < 2}">
+<c:if test = "${order.order_status < 2}">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -84,19 +84,19 @@
 					<li>
 						<label>배송상태</label>
 						<c:if test = "${order.order_status != 5}">
-							<input type = "radio" name = "status" id = "status1" value = "1" 
+							<input type = "radio" name = "order_status" id = "status1" value = "1" 
 								<c:if test = "${order.order_status == 1}">checked</c:if>>배송대기
-							<input type = "radio" name = "status" id = "status2" value = "2" 
+							<input type = "radio" name = "order_status" id = "status2" value = "2" 
 								<c:if test = "${order.order_status == 2}">checked</c:if>>배송준비중
-							<input type = "radio" name = "status" id = "status3" value = "3" 
+							<input type = "radio" name = "order_status" id = "status3" value = "3" 
 								<c:if test = "${order.order_status == 3}">checked</c:if>>배송중
-							<input type = "radio" name = "status" id = "status4" value = "4" 
+							<input type = "radio" name = "order_status" id = "status4" value = "4" 
 								<c:if test = "${order.order_status == 4}">checked</c:if>>배송완료
-							<input type = "radio" name = "status" id = "status5" value = "5" 
+							<input type = "radio" name = "order_status" id = "status5" value = "5" 
 								<c:if test = "${order.order_status == 5}">checked</c:if>>주문취소
 						</c:if>
 					</li>
-					<c:if test = "${order.status < 2}">
+					<c:if test = "${order.order_status < 2}">
 					<li>
 						<span id = "delivery_text">*배송대기일 경우만 배송관련 정보를 수정할 수 있습니다.</span>
 					</li>

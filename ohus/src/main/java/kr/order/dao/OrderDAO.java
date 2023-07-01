@@ -148,7 +148,7 @@ public class OrderDAO {
 					else if(keyfield.equals("3")) sub_sql += "WHERE item_name LIKE ?";
 				}
 				
-				sql = "SELECT COUNT(*) FROM orders o JOIN omember m ON o.mem_num = m.mem_num" + sub_sql;
+				sql = "SELECT COUNT(*) FROM orders o JOIN omember m ON o.mem_num = m.mem_num " + sub_sql;
 				pstmt = conn.prepareStatement(sql);
 				if(keyword != null && !"".equals(keyword)) {
 					if(keyfield.equals("1")) {
@@ -194,7 +194,7 @@ public class OrderDAO {
 				sql = "SELECT * FROM "
 						+ "(SELECT a.*, rownum rnum FROM "
 						+ "(SELECT * FROM orders o JOIN omember m "
-						+ "ON o.mem_num = m.mem_num" + sub_sql + 
+						+ "ON o.mem_num = m.mem_num " + sub_sql + 
 						" ORDER BY order_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 				pstmt = conn.prepareStatement(sql);
 				
@@ -470,7 +470,7 @@ public class OrderDAO {
 					sub_sql += "order_name=?, order_zipcode=?, order_address1=?, order_address2=?, mem_phone=?, order_notice=?,";
 				}
 				
-				sql = "UPDATE orders SET order_status=?," + sub_sql + "order_modifydate = SYSDATE WHERE order_num=?";
+				sql = "UPDATE orders SET order_status=?, " + sub_sql + "order_modifydate = SYSDATE WHERE order_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				

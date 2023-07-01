@@ -1,4 +1,3 @@
-
 <%--잘못된 호출일 때 알려주는 화면 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오류 안내</title>
+<title>안내</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
@@ -18,7 +17,7 @@
 		<div class="content-main">
 			<h2>안내</h2>
 			<div class="result-display">
-				<div class="align-center">
+				<div class="align-center" style = "font-size: 50px;">
 					<c:if test="${!empty accessMsg}">
 						${accessMsg}
 					</c:if>

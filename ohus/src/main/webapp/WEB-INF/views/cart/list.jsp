@@ -60,7 +60,7 @@
 					} else if(param.result == 'noSale') {
 						alert('판매가 중지되었습니다.');
 						location.href='list.do';
-					} else if(param.result = 'noQuantity') {
+					} else if(param.result == 'noQuantity') {
 						alert('상품의 수량이 부족합니다.');
 						location.href='list.do';
 					} else if(param.result == 'success') {

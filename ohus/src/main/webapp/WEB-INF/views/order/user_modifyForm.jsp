@@ -82,7 +82,9 @@
 					<form action="${pageContext.request.contextPath}/item/userReviewForm.do" method="post">
 						<input type="hidden" value="${detail.mem_num}" name="mem_num">
 						<input type="hidden" value="${detail.item_num}" name="item_num">
-						<button type="submit">후기작성</button>
+						<c:if test = "${order.order_status == 4}">
+							<button type="submit">후기작성</button>
+						</c:if>
 					</form>
 				</td>
 			</tr>	
@@ -99,7 +101,7 @@
 		<form id="order_modify" 
 		  action="orderModify.do" method="post">
 		  <input type = "hidden" name = "order_num" value = "${order.order_num}">
-		  <input type = "hidden" name = "status" value = "${order.order_status}">
+		  <input type = "hidden" name = "order_status" value = "${order.order_status}">
 			<ul>
 				<c:if test = "${order.order_status < 2}">
 				<li>
@@ -190,9 +192,6 @@
 							}
 						}
 					</script>
-				</c:if>
-				<c:if test = "${order.order_status == 4}">
-					<input type="button" value="상품후기작성" onclick = "">
 				</c:if>
 				<input type = "button" value = "MY페이지"
 				 onclick = "location.href='${pageContext.request.contextPath}/member/myPage.do'">
