@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>상품구매상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/user_modifyForm.css">
 <c:if test = "${order.order_status < 2}">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

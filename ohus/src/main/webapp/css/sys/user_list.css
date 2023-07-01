@@ -1,9 +1,5 @@
-.content-main {
-  margin-top: 20px;
-}
-
-h3 {
-  margin-top: 0;
+h2 {
+  margin: 10 0 20px;
 }
 
 ul.search {
@@ -25,10 +21,13 @@ input[type="search"] {
 
 input[type="submit"] {
   padding: 5px 10px;
-  background-color: #007bff;
+  background-color: #35c5f0;
   color: #fff;
   border: none;
   cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #31b4dc;
 }
 
 .align-right {
@@ -47,8 +46,7 @@ table {
   border-collapse: collapse;
 }
 
-table th,
-table td {
+table th, table td {
   padding: 10px;
   border: 1px solid #ccc;
 }

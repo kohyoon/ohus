@@ -470,7 +470,7 @@ public class OrderDAO {
 					sub_sql += "order_name=?, order_zipcode=?, order_address1=?, order_address2=?, mem_phone=?, order_notice=?,";
 				}
 				
-				sql = "UPDATE orders SET order_status=?," + sub_sql + "modify_date = SYSDATE WHERE order_num=?";
+				sql = "UPDATE orders SET order_status=?," + sub_sql + "order_modifydate = SYSDATE WHERE order_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
