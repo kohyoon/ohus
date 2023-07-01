@@ -17,38 +17,39 @@ public class MemberDAO {
 	}
 	private MemberDAO() {}
 	
-	//신고횟수 가져오기 
-	public int selectReportsMember(int mem_num) throws Exception{
+	//신고 당한 회수(누적횟수)
+	public MemberVO countReportsMember(int mem_num) throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		String sql = null;
-		
-		int count=0;
-		
+		int count = 0;
+		MemberVO member = null;
 		try {
-			conn = DBUtil.getConnection();
-			sql = "SELECT COUNT(*) as reports FROM omember_detail o JOIN cboard_report r "
-					+ "ON o.mem_num = r.mem_num"
-					+ "WHERE mem_num=? GROUP BY o.mem_num";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				count = rs.getInt(1); 
-			}
-			
-			//rs사용?count를 가져와서 vo에 있는 reports에 넣어줘야함
-			
-		} catch(Exception e) {
-			throw new Exception(e);
+		    conn = DBUtil.getConnection();
+		    sql = "SELECT COUNT(*) AS reports " +
+		            "FROM omember_detail o " +
+		            "JOIN cboard_report r ON o.mem_num = r.mem_num " +
+		            "WHERE o.mem_num = ?";
+		    pstmt = conn.prepareStatement(sql);
+		    pstmt.setInt(1, mem_num);
+
+		    rs = pstmt.executeQuery();
+		    member = new MemberVO();
+
+		    if (rs.next()) {
+		        member.setReports(rs.getInt("reports"));
+		        member.setMem_num(mem_num);
+		    }
+		} catch (Exception e) {
+		    throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(rs, pstmt, conn);
+		    DBUtil.executeClose(rs, pstmt, conn);
 		}
+
 		
-		return count;
+		return member;
 	}
 	
 	
@@ -183,6 +184,7 @@ public class MemberDAO {
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date"));
 				member.setModify_date(rs.getDate("modify_date"));
+				member.setReports(rs.getInt("reports"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

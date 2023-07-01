@@ -20,12 +20,6 @@ public class MemberVO {
 	private Date reg_date; // 회원 가입일 default SYSDATE
 	private Date modify_date; // 회원 정보 수정일
 	
-	private int my_category; //마이페이지 카테고리
-	
-	
-	
-	
-	
 	private int reports; //컬럼 ㄴㄴ
 
 	//비밀번호 일치 여부 체크
@@ -37,15 +31,6 @@ public class MemberVO {
 		return false;
 	}
 	
-	
-	public int getMy_category() {
-		return my_category;
-	}
-
-
-	public void setMy_category(int my_category) {
-		this.my_category = my_category;
-	}
 
 
 	public int getMem_num() {

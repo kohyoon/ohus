@@ -109,7 +109,8 @@
 								<c:if test="${member.auth==2}">일반회원</c:if>
 								<c:if test="${member.auth==9}">관리자</c:if>
 							</td>
-							<td>${member.reports }</td>
+							<td>${member.reports }
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -17,10 +17,10 @@ create table omember_detail(
  zipcode varchar2(5) not null,
  address1 varchar2(90) not null,
  address2 varchar2(90) not null,
+ ip varchar2(15) not null,
  photo varchar2(150), 
  reg_date date default sysdate not null,
  modify_date date,
- my_category number(1) default 1 not null, --마이페이지 카테고리. 1의 경우 첫번째(프로필)페이지
  constraint omember_detail_pk primary key (mem_num),
  constraint omember_detail_fk foreign key (mem_num) references omember (mem_num)
 );

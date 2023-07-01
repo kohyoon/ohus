@@ -45,6 +45,7 @@ public class MyPageAction implements Action {
 		MemberVO member = dao.getMember(user_num); //회원 상세정보
 		
 		
+		
 		//---------------------------------------------------------
 		//내가 커뮤니티에 올린 사진 + 좋아요 누른 글
 		
