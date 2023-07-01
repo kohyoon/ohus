@@ -103,9 +103,13 @@
 								<th>보낸사람</th>
 							</tr>
 
-							<c:forEach var="list" items="${receiveList}">
+							<c:forEach var="list" items="${receiveList}" varStatus="status">
 								<tr>
-									<td><a
+									<td>
+									<c:if test="${readCheckList.get(status.index)==1}">
+									 	<img src="${pageContext.request.contextPath}/images/readcheck.png" width="15px">
+									</c:if>
+									<a
 										href="${pageContext.request.contextPath}/chatting/chatting.do?chatroom_num=${list.chatroom_num}&buyer_num=${list.buyer_num}&seller_num=${list.seller_num}">
 											${list.chatroom_num} </a></td>
 									<td><a
