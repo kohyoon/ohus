@@ -184,7 +184,6 @@ public class MemberDAO {
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date"));
 				member.setModify_date(rs.getDate("modify_date"));
-				member.setReports(rs.getInt("reports"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

@@ -7,7 +7,16 @@
 <meta charset="UTF-8">
 <title>회원 정보(관리자 전용)</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lyj/table.css">
 </head>
+
+<style>
+.button{
+text-align: center;
+margin-top : 
+}
+
+</style>
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -37,45 +46,40 @@
 			
 			</ul>
 			
-			<div class="align-center">
-			<!-- 관리자인 경우 수정 버튼 안 보이게 하기 -->
-			<c:if test="${member.auth != 9 }">
-				<input type="submit" value="수정">
-			</c:if>
-				<input type="button" value="목록" onclick="location.href='adminPage.do'">
-			</div>
 			
-			<ul>
-				<li>
-					<label>이름</label>${member.name} <!-- 일정 간격 띄우는 css 넣어놔서 label 쓰는 것 -->
-				</li>
+			<table>
+				<!-- 항목 -->
+				<tr>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>이메일</th>
+					<th>우편번호</th>
+					<th>주소</th>
+				</tr>	
 				
-				<li>
-					<label>전화번호</label>${member.phone} 
-				</li>
-				
-				<li>
-					<label>이메일</label>${member.email} 
-				</li>
-				
-				<li>
-					<label>우편번호</label>${member.zipcode} 
-				</li>
-				
-				<li>
-					<label>주소</label>${member.address1} ${member.address2} 
-				</li>
-				
-			</ul>
-		
-		</form>
+				<tr>
+					<td>${member.name}</td>
+					<td>${member.phone} </td>
+					<td>${member.email}</td>
+					<td>${member.name}</td>
+					<td>${member.address1} ${member.address2}</td>
+				</tr>
+			
 		
 		
 		
 	</div>
 	<!-- 내용 끝 -->
-
 </div>
+
+<!-- 관리자인 경우 수정 버튼 안 보이게 하기 -->
+			<div class="button">
+			<c:if test="${member.auth != 9 }">
+				<input type="submit" value="수정">
+			</c:if>
+				<input type="button" value="목록" onclick="location.href='adminPage.do'">
+			</div>
+		</form>
 
 </body>
 </html>
