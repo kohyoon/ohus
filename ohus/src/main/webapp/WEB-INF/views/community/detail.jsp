@@ -177,12 +177,16 @@
     <div id="reply_div">
     <span class="re-title">댓글 <span style="color: #35C5F0;">${replyCount}</span></span><br><br><br>
     <form id="re_form" style="display: flex; align-items: center;">
-        <c:if test="${!empty board.photo}">
-            <img src="${pageContext.request.contextPath}/upload/${board.photo}" width="50" height="50" class="my-photo">
-        </c:if>
-        <c:if test="${empty board.photo}">
-            <img src="${pageContext.request.contextPath}/images/face.png" width="50" height="50" class="my-photo">
-        </c:if>
+
+        <c:if test="${empty member.photo}">
+		<img src="${pageContext.request.contextPath}/images/face.png"
+		   width="50" height="50" class="my-photo">
+		</c:if>
+		<c:if test="${!empty member.photo}">
+		<img src="${pageContext.request.contextPath}/upload/${member.photo}"
+		   width="50" height="50" class="my-photo">
+		</c:if>  
+               
         <div style="flex-grow: 1; margin-left: 10px; position: relative;">
             <input type="hidden" name="cboard_num" value="${board.cboard_num}" id="cboard_num">
             <div style="display: flex;">
