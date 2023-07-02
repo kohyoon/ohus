@@ -25,7 +25,7 @@ public class MainAction implements Action {
             pageNum = "1";
 
         String keyfield = "1";
-        String keyword = request.getParameter("keyword");
+        String keyword = request.getParameter("keyword");  
 
         CommunityDAO dao = CommunityDAO.getInstance();
         int count = dao.getBoardCount(keyfield, keyword, cboard_category);
