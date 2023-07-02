@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.inquiry.dao.InquiryDAO;
 import kr.inquiry.vo.InquiryVO;
+import kr.member.dao.MemberDAO;
+import kr.member.vo.MemberVO;
 import kr.qna.dao.ItemQnaDAO;
 import kr.qna.vo.ItemQnaVO;
 
@@ -28,6 +30,9 @@ public class MyQnaListAction implements Action {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
+		//회원 프로필 사진 
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO member = dao.getMember(user_num); //회원 상세정보
 		//---------------------------------------------------------
 		//내가 작성한 일반문의
 		InquiryDAO inquiryDao = InquiryDAO.getInstance();
@@ -42,6 +47,7 @@ public class MyQnaListAction implements Action {
 		// 페이지 정보 request 객체에 추가
 		 request.setAttribute("inquiryList", inquiryList);
 		 request.setAttribute("qnaList", qnaList);
+		 request.setAttribute("member", member);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myQnaList.jsp";
