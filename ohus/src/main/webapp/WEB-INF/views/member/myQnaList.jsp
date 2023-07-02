@@ -234,7 +234,7 @@
     </div>
     <div class="data"> <!-- 자기소개 -->
       <h2>${member.name}</h2>
-    </div>
+    </div> 
     <div class="row">
       <div class="info">
         <h3><a href='myQnaList.do'><img src="${pageContext.request.contextPath}/images/inq.png" width="25"></a></h3>

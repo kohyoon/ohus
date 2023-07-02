@@ -28,7 +28,6 @@ public class MyQnaListAction implements Action {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		
 		//---------------------------------------------------------
 		//내가 작성한 일반문의
 		InquiryDAO inquiryDao = InquiryDAO.getInstance();
