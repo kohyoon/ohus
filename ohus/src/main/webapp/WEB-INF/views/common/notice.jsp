@@ -17,7 +17,7 @@
 		<div class="content-main">
 			<h2>안내</h2>
 			<div class="result-display">
-				<div class="align-center" style = "font-size: 50px;">
+				<div class="align-center" style = "font-size: 30px;">
 					<c:if test="${!empty accessMsg}">
 						${accessMsg}
 					</c:if>

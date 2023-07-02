@@ -1,7 +1,9 @@
-.container {
-	max-width: 800px;
-	margin: 0 auto;
+/* 장바구니 비었음 */
+.content-main {
+	background-color: #ffffff; /* 배경색 */
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
 	padding: 20px;
+	padding-top: 10px;
 }
 h2 {
 	margin-top: 0;
@@ -19,6 +21,18 @@ th, td {
 .align-center {
 	text-align: center;
 }
+input[type="submit"], input[type="button"] {
+    padding: 8px 16px;
+    background-color: #35c5f0;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #31b4dc;
+}
 .result-display {
 	margin-bottom: 20px;
 	text-align: center;
@@ -27,12 +41,12 @@ th, td {
 .cart-modify, .cart-del {
 	padding: 5px 10px;
 	border: none;
-	background-color: #4CAF50;
+	background-color: #35c5f0;
 	color: white;
 	cursor: pointer;
 }
 .cart-modify:hover, .cart-del:hover {
-	background-color: #45a049;
+	background-color: #35c5f0;
 }
 .cart-submit {
 	margin-top: 20px;

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>구매 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/admin_list.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -63,7 +64,7 @@
 		<table>
 			<tr>
 				<th>주문번호</th>
-				<th>주문자ID</th>
+				<th>주문자이름</th>
 				<th>상품명</th>
 				<th>총구매금액</th>
 				<th>주문날짜</th>
@@ -72,9 +73,9 @@
 			<c:forEach var="order" items="${list}">
 			<tr>
 				<td>
-					<a href="modifyForm.do?order_num=${order.order_num}">${order.order_num}</a>
+					<a href="${pageContext.request.contextPath}/ordermodifyForm.do?order_num=${order.order_num}">${order.order_num}</a>
 				</td>
-				<td>${order.id}</td>
+				<td>${order.order_name}</td>
 				<td>${order.item_name}</td>
 				<td><fmt:formatNumber value="${order.order_total}"/>원</td>
 				<td>${order.order_regdate}</td>

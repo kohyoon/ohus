@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>[관리자]구매정보수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/admin_modifyForm.css">
 <c:if test = "${order.order_status < 2}">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -54,6 +55,12 @@
 				<th>합계</th>
 			</tr>
 			<c:forEach var = "detail" items = "${detailList}">
+			<td>
+				<a href = "${pageContext.request.contextPath}/item/detail.do?item_num=${cart.item_num}">
+					<img src = "${pageContext.request.contextPath}/upload/${cart.itemVO.item_photo1}" width = "80"> <!-- 사진 크기 -->
+					${cart.itemVO.item_name}
+				</a>
+			</td>
 			<tr>
 				<td>
 					${detail.item_name}
@@ -172,7 +179,7 @@
 					<c:if test = "${order.order_status == 4 or order.order_status == 5}">
 						<input type = "button" value = "삭제" onclick = "location.href='deleteOrder.do?order_num=${order.order_num}'">
 					</c:if>
-					<input type = "button" value = "주문목록" onclick = "location.href='list.do'">
+					<input type="button" value="목록" onclick="location.href='adminPageOrder.do'">
 				</div>
 		</form>
 	</div>
