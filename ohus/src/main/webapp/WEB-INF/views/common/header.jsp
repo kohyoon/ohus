@@ -155,7 +155,7 @@
 					<div class="header-right">
 							<!-- 검색창 -->
 							<div class="header-upper__searchBar">
-								<input type="search" placeholder="내일의집 통합검색" />
+								<input type="search" />
 							</div>
 							
 							<div class="header-upper__service">

@@ -25,6 +25,25 @@
 		});
 		
 	}); 
+	
+	$(function(){
+		$('input[type="search"]').attr('placeholder','오이벤트에서 검색');
+		
+		function searchData(){
+			let data = $('input[type="search"]').val();
+			location.href="list.do?keyfield=1&keyword="+data;
+		};
+		
+		$('input[type="search"]').keypress(function(){
+			if(event.keyCode==13){
+				searchData();	
+			}
+			
+		});
+	});
+	
+	
+	
 
 </script>
 <style type="text/css">
@@ -116,26 +135,7 @@ background-color : skyblue;
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<%-- 내용시작 --%>
 		<div class = "event-main">
-			<%-- 검색창 시작 --%>
-			<form id="search_form" action="list.do" method="get">
-				<ul ul class="align-center">
-					<li>
-					<select name="keyfield"> <%-- option 태그 안에 if를 넣어 조건체크를 해주고 selected는 선택된 것 표시 --%>
-						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
-						<option>
-						<%--만약에 제목 검색에 a라고 적고 작성자로 옵션을 바꿔도 내용이 남아있도록 처리한 것! --%>
-					</select>
-				</li>
-					<li>
-						<input type="search" size="30" name="keyword" id="keyword" value="${param.keyword}">
-					</li>
-					<li>
-						<input type="submit" value="검색" style="display: none;">
-					</li>
-				</ul>
-			</form>
-			<%-- 검색창 끝 --%>
+			
 			
 			<!-- =========오른쪽 버튼처리 시작 ==========-->
 			
