@@ -79,7 +79,7 @@ table{
 		</table>
 		<div class="bottoms">
 			<!-- 검색창 시작 -->
-			<form id="search_form" action="list.do" method="get">
+			<form id="search_form" action="listInquiry.do" method="get">
 				<ul class="search">
 					<li>
 						<select name="keyfield">
