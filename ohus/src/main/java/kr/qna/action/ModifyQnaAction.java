@@ -18,7 +18,7 @@ public class ModifyQnaAction implements Action {
 		if(user_num == null) { //로그인 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
-		
+		request.setCharacterEncoding("utf-8");
 		//로그인 된 경우
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		ItemQnaDAO dao = ItemQnaDAO.getInstance();

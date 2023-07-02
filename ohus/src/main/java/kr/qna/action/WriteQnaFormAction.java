@@ -20,7 +20,7 @@ public class WriteQnaFormAction implements Action {
 		if(user_num == null) { //로그인 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
-		
+		request.setCharacterEncoding("utf-8");
 		ItemDAO itemDao = ItemDAO.getInstance();
 		int count = itemDao.getItemCount(null, null, 0, null);
 		List<ItemVO> list = itemDao.getListItem(1, count, null, null, 0, null);

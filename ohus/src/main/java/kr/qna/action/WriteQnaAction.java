@@ -24,6 +24,7 @@ public class WriteQnaAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
+		request.setCharacterEncoding("utf-8");
 		//자바빈 생성
 		ItemQnaVO qna = new ItemQnaVO();
 		qna.setQna_title(request.getParameter("qna_title"));
