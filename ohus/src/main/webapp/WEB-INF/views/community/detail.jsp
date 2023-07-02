@@ -32,9 +32,7 @@
 
 
 <body>
-
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
 <div class="page-main">
 
     <!-- 내용 시작 -->
