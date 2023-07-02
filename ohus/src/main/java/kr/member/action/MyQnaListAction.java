@@ -1,4 +1,4 @@
-package kr.qna.action;
+package kr.member.action;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class MyQnaListAction implements Action {
 		 request.setAttribute("qnaList", qnaList);
 		
 		//JSP 경로 반환
-		return "/WEB-INF/views/qna/myQnaList.jsp";
+		return "/WEB-INF/views/member/myQnaList.jsp";
 	}
 
 }
