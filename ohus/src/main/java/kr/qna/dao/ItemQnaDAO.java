@@ -293,6 +293,11 @@ public class ItemQnaDAO {
 			conn.setAutoCommit(false);
 			
 			//답변 삭제
+			sql = "DELETE FROM item_answer WHERE qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+			
 			//부모글 삭제
 			sql = "DELETE FROM item_qna WHERE qna_num=?";
 			pstmt2 = conn.prepareStatement(sql);
@@ -422,7 +427,7 @@ public class ItemQnaDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				answer = new ItemAnswerVO();
-				answer.setA_num(rs.getInt("a_num"));
+				answer.setA_num(rs.getInt("qna_num"));
 				answer.setMem_num(rs.getInt("mem_num"));
 			}
 		}catch(Exception e) {

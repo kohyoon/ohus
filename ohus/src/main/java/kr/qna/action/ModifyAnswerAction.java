@@ -20,7 +20,7 @@ public class ModifyAnswerAction implements Action {
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
-		int a_num = Integer.parseInt(request.getParameter("a_num")); //답변 번호
+		int a_num = Integer.parseInt(request.getParameter("a_num"));
 		
 		ItemQnaDAO dao = ItemQnaDAO.getInstance();
 		ItemAnswerVO db_answer = dao.getAnswer(a_num);

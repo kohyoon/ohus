@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="/ohus/css/koy/faq.css">
 <link rel="stylesheet" href="/ohus/css/koy/detail.css">
 <link rel="stylesheet" href="/ohus/css/koy/notice.css">
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/item.answer.js"></script>
 </head>
@@ -19,12 +18,14 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
+		<input type="hidden" name="qna_num" id="qna_num" value="${qna.qna_num}">
 		<div class="detail-info">
 		<ul>
 			<li>
 				<h2><span>TITLE </span> ${qna.qna_title}</h2>
 			</li>
 			<li>
+				<span>${qna.qna_num}</span>
 				<span>WRITER : </span>${qna.id}
 				<span> / ITEM : </span>${qna.item_name}
 				<span>/ CATEGORY : </span>
@@ -90,7 +91,7 @@
 					<textarea rows="3" cols="50" name="a_content" id="a_content" class="rep-content" placeholder="답변 입력"
 							<c:if test="${user_auth < 9}">disabled="disabled"</c:if>><c:if test="${user_auth < 9}">관리자만 작성할 수 있습니다.</c:if></textarea>
 					<c:if test="${!empty user_num}">
-					<div id="re_second" align="right" style="margin:0;">
+					<div id="re_second" align="center" style="margin:0;">
 						<input type="submit" value="전송">
 					</div>
 					<div id="re_first">

@@ -106,7 +106,7 @@ span.letter-count{
 	text-align:right;
 	width:5%;
 }
-textarea.ans-content{
+textarea#ans_content, textarea#a_content{
 	width:80%;
 	height:50px;
 	margin:10px 10px;
@@ -121,6 +121,7 @@ div#re_second,div#mre_second{
 	float:left;
 	width:12%;
 	margin-bottom:10px;
+	margin-left:10px;
 }
 div#loading{
 	text-align:center;
@@ -139,7 +140,7 @@ form#mre_form{
 }
 
 
-#ans_form, #mre_form {
+#ans_form, #mre_form, #a_form {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -173,3 +174,22 @@ div#re_second {
 	background-color: #09addb;
 	color : white;
 }
+
+input.re-reset{
+	width: 50px;
+	padding: 8px;
+	background-color: #35c5f0 ;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size : 7px;
+	cursor: pointer;
+	margin-right: 2px;
+	margin-top: 10px;
+}
+
+input.re-reset:hover{
+	background-color: #09addb;
+	color : white;
+}
+
