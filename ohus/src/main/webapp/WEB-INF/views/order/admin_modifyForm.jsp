@@ -179,7 +179,7 @@
 					<c:if test = "${order.order_status == 4 or order.order_status == 5}">
 						<input type = "button" value = "삭제" onclick = "location.href='deleteOrder.do?order_num=${order.order_num}'">
 					</c:if>
-					<input type="button" value="목록" onclick="location.href='adminPageOrder.do'">
+					<input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/member/adminPageOrder.do'">
 				</div>
 		</form>
 	</div>
