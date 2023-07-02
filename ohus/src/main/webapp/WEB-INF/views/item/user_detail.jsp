@@ -331,32 +331,31 @@
 						<th width="15%">작성일</th>
 						<th>상태</th>
 					</tr>
-					
 					<c:forEach var="qna" items="${qnaList}">
-					<c:if test="${item.item_num == qna.item_num}">
-					<tr>
-						<td>${qna.qna_num}</td>
-						<td>
-							<c:if test="${qna.qna_category == 1}">[상품]</c:if>
-							<c:if test="${qna.qna_category == 2}">[배송]</c:if>
-							<c:if test="${qna.qna_category == 3}">[반품]</c:if>
-							<c:if test="${qna.qna_category == 4}">[교환]</c:if>
-							<c:if test="${qna.qna_category == 5}">[환불]</c:if>
-							<c:if test="${qna.qna_category == 6}">[기타]</c:if>
-						</td>
-						<td style="text-align:left;">
-							<a href="${pageContext.request.contextPath}/qna/detailQna.do?qna_num=${qna.qna_num}">
-								${qna.qna_title}
-							</a>
-						</td>
-						<td style="text-align:center;">${qna.id}</td>
-						<td>${qna.qna_regdate}</td>
-						<td>
-							<c:if test="${qna.qna_status == 1}"><span style="color:blue;">처리전</span></c:if>
-							<c:if test="${qna.qna_status == 2}"><span style="color:red;"><b>처리완료</b></span></c:if>
-						</td>
-					</tr>
-					</c:if>
+						<c:if test="${item.item_num == qna.item_num}">
+						<tr>
+							<td>${qna.qna_num}</td>
+							<td>
+								<c:if test="${qna.qna_category == 1}">[상품]</c:if>
+								<c:if test="${qna.qna_category == 2}">[배송]</c:if>
+								<c:if test="${qna.qna_category == 3}">[반품]</c:if>
+								<c:if test="${qna.qna_category == 4}">[교환]</c:if>
+								<c:if test="${qna.qna_category == 5}">[환불]</c:if>
+								<c:if test="${qna.qna_category == 6}">[기타]</c:if>
+							</td>
+							<td style="text-align:left;">
+								<a href="${pageContext.request.contextPath}/qna/detailQna.do?qna_num=${qna.qna_num}">
+									${qna.qna_title}
+								</a>
+							</td>
+							<td style="text-align:center;">${qna.id}</td>
+							<td>${qna.qna_regdate}</td>
+							<td>
+								<c:if test="${qna.qna_status == 1}"><span style="color:blue;">처리전</span></c:if>
+								<c:if test="${qna.qna_status == 2}"><span style="color:red;"><b>처리완료</b></span></c:if>
+							</td>
+						</tr>
+						</c:if>
 					</c:forEach>
 				</table>
 				</c:if>

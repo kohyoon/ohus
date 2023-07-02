@@ -39,7 +39,7 @@ public class UserDetailAction implements Action{
       //문의 개수
       ItemQnaDAO qnaDao = ItemQnaDAO.getInstance();
       int qnaCount = qnaDao.getQnaCountByItem_num(item_num);
-      List<ItemQnaVO> qnaList = qnaDao.getListQna(1, 5, null, null);
+      List<ItemQnaVO> qnaList = qnaDao.getListQnaByItem_num(item_num);
       
       request.setAttribute("avgscore", avgscore);
       request.setAttribute("reviewCount", reviewCount);
