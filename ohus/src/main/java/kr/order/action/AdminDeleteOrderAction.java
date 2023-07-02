@@ -29,7 +29,7 @@ public class AdminDeleteOrderAction implements Action{
 		dao.deleteOrder(order_num);
 		
 		request.setAttribute("notice_msg", "정상적으로 주문 정보를 삭제했습니다.");
-		request.setAttribute("notice_url", request.getContextPath() + "/order/list.do");
+		request.setAttribute("notice_url", request.getContextPath() + "/member/adminPageOrder.do");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
