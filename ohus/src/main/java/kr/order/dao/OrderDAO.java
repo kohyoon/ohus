@@ -400,7 +400,7 @@ public class OrderDAO {
 				sql = "DELETE FROM orders WHERE order_num=?"; 
 				pstmt2 = conn.prepareStatement(sql);
 				pstmt2.setInt(1, order_num);
-				pstmt.executeUpdate();
+				pstmt2.executeUpdate();
 				
 				conn.commit();
 			} catch(Exception e) {
