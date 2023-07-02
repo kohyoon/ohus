@@ -11,6 +11,20 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$('input[type="search"]').attr('placeholder','상추 마켓에서 검색');
+		
+		function searchData(){
+			let data = $('input[type="search"]').val();
+			location.href="list.do?keyfield=1&keyword="+data;
+		};
+		
+		$('input[type="search"]').keypress(function(){
+			if(event.keyCode==13){
+				searchData();	
+			}
+			
+		});
+		
 		let delete_btn = document.getElementById('delete_btn');
 		// 이벤트 연결
 		delete_btn.onclick=function(){
