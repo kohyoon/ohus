@@ -136,7 +136,7 @@ public class EventDAO {
 			sql = "SELECT * FROM (SELECT a.*,"
 				+ "rownum rnum FROM (SELECT * "
 				+ "FROM oevent " + sub_sql + " ORDER BY "
-				+ "event_status DESC, event_end ASC)a) "
+				+ "event_status DESC, event_end DESC)a) "
 				+ "WHERE rnum>=? AND rnum<=?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -281,12 +281,11 @@ public class EventDAO {
 			conn = DBUtil.getConnection();
 			
 			if(event.getEvent_photo() !=null) {
-				sub_sql = ", event_photo=?";
+				sub_sql += ", event_photo=?";
 			}
 			
 
-			sql = "UPDATE oevent SET event_title=?, event_content=?, event_photo=?, "
-					+ "event_start=?, event_end=?, winner_count=?, event_status=?, event_modifydate=SYSDATE " 
+			sql = "UPDATE oevent SET event_title=?, event_content=? " + sub_sql + ", event_start=?, event_end=?, winner_count=?, event_status=?, event_modifydate=SYSDATE " 
 					+ "WHERE event_num=?";
 		
 			pstmt = conn.prepareStatement(sql);
@@ -731,7 +730,7 @@ public class EventDAO {
 	}
 	
 	
-	// 내가 댓글 단 이벤트 --마이페이지
+	// 내가 댓글 단 이벤트 --이벤트 항목에서 당첨확인
 		public List<EventReplyVO> getMyEventReplyEnd(int mem_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -741,7 +740,8 @@ public class EventDAO {
 			
 			try {
 				conn = DBUtil.getConnection();
-				sql =  "select * from oevent_reply r join oevent o on r.event_num=o.event_num where event_status=1 and r.mem_num=?"; //종료된 목록만 가져옴
+				sql =  "select * from oevent_reply r join oevent o on r.event_num=o.event_num "
+						+ "where event_status=1 and event_check=1 and r.mem_num=?"; //종료 + 추첨된 이벤트만
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setInt(1, mem_num);

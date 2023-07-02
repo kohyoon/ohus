@@ -130,7 +130,7 @@
 					<div class="header-upper__inner">
 						<!-- 로고 -->
 						<div class="header-upper__logo">
-							<a href="${pageContext.request.contextPath}/community/list.do">내일의집</a>
+							<a href="${pageContext.request.contextPath}/main/main.do">내일의집</a>
 						</div>
 						<!-- 상단 메뉴 시작-->
 						<div class="header-upper__nav">
@@ -223,9 +223,9 @@
 												<button onclick="myFunction()" class="dropbtn">글쓰기</button>
 												<div id="myDropdown" class="dropdown-content">
 													<a href="${pageContext.request.contextPath}/community/writeForm.do">커뮤니티글쓰기</a> 
-													<a href="#">리뷰등록</a> 
+													<a href="${pageContext.request.contextPath}/member/myPage1.do">리뷰등록</a> 
 													<a href="${pageContext.request.contextPath}/market/writeForm.do">상추글쓰기</a>
-													<a href="#">문의등록</a>
+													<a href="${pageContext.request.contextPath}/inquiry/writeInquiryForm.do">문의등록</a>
 												</div>
 											</div>
 										</li>

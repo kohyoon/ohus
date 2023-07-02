@@ -52,7 +52,7 @@
 			<div class="button-container">
 				<input type="submit" value="회원가입" onclick="location.href='registerUserForm.do'" class="button">
 				<span class="divider">|</span>
-				<input type="submit" value="문의사항" onclick="location.href='${pageContext.request.contextPath}/inquiry/inquiry.do'" class="button">
+				<input type="submit" value="문의사항" onclick="location.href='${pageContext.request.contextPath}/inquiry/listInquiry.do'" class="button">
 			</div>
 			                     
 		

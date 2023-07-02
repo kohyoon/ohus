@@ -42,12 +42,6 @@
 				$('#content').focus();
 				return false;
 			}
-
-			if($('#event_photo').val()==''){ 
-				alert('사진을 선택하세요');
-				$('#photo').focus();
-				return false;
-			}
 			
 			if($('#event_start').val().trim()==''){
 				alert('이벤트 시작일을 입력하세요');
@@ -98,7 +92,7 @@
 			<label for="event_photo">사진</label>
 			<input type="file" name="event_photo" id="event_photo" accept="image/gif, image/png, image/jpeg">
 				<%--파일이 있으면 보여지도록 --%> 
-				<c:if test="${!empty event.event_photo}">
+				<c:if test="${not empty event.event_photo}">
 					<div id="file_detail">
 						(${event.event_photo}) 파일이 등록되어있습니다.	
 						<input type="button" value="파일삭제" id="file_del">

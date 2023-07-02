@@ -39,12 +39,8 @@ public class AdminUpdateAction implements Action{
 	
 		MultipartRequest multi = FileUtil.createFile(request); //파일 업로드 해주는 역할
 		
-		//파일이 있는 경우) 글 수정 후 파일을 삭제 해줘야한다! 안 그러면 쓰레기값이 남음 
-		//- 번호와 파일명을 변수에 저장
 		int event_num = Integer.parseInt(multi.getParameter("event_num"));
 		String event_photo = multi.getFilesystemName("event_photo");
-		
-		//이벤트 상태 - 1이면 종료, 2이면 진행중
 		int event_status = Integer.parseInt(multi.getParameter("event_status"));
 		
 		EventDAO dao = EventDAO.getInstance();
@@ -65,7 +61,7 @@ public class AdminUpdateAction implements Action{
 		dao.updateEvent(event);
 		
 		//새 파일로 교체할 때 원래 파일 제거해주기(수정 전 내용 지워주기)
-		if(event_photo != null) {
+		if(event_photo != null && !event_photo.equals(db_event.getEvent_photo())) {
 			//파일을 새로 수정한 경우
 			FileUtil.removeFile(request, db_event.getEvent_photo());
 		}

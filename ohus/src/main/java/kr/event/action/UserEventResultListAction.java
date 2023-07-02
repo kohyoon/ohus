@@ -29,9 +29,7 @@ public class UserEventResultListAction implements Action{
         List<EventReplyVO> mylist = new ArrayList<EventReplyVO>();
         mylist = dao.getMyEventReplyEnd(user_num);
         
-        for (EventReplyVO eventReplyVO : mylist) {
-			System.out.println(eventReplyVO);
-		}
+      
         request.setAttribute("mylist", mylist);
        
 
