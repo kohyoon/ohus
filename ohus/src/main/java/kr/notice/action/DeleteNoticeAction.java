@@ -1,8 +1,5 @@
 package kr.notice.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,12 +20,6 @@ public class DeleteNoticeAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 		
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		if(user_auth < 9) { //관리자가 아닌 경우
-			return "/WEB-INF/views/common/notice.jsp";
-		}
-		
-		//관리자로 로그인 된 경우
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		NoticeDAO dao = NoticeDAO.getInstance();
 		NoticeVO db_notice = dao.getNotice(notice_num);
