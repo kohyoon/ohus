@@ -98,7 +98,7 @@ body {
 
 <c:if test="${showWinnerAlert}">
       <script>
-          alert('당첨을 축하합니다!');
+          alert('🎉당첨을 축하합니다! 마이페이지를 확인해보세요!🎉');
       </script>
  </c:if>
 </body>
