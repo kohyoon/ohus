@@ -449,5 +449,42 @@ public class InquiryDAO {
 		}
 	}
 	
+	//문의처리완료
+	public void setStatusDone(int inq_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE inquiry SET inq_status=2 WHERE inq_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inq_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//문의 답변 삭제 -> 문의 처리 전으로 돌아가기
+	public void setStatusNone(int qna_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE inquiry SET inq_status=1 WHERE inq_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 }

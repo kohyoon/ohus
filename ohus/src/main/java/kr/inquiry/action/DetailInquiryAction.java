@@ -34,6 +34,13 @@ public class DetailInquiryAction implements Action {
 		//HTML 태그를 허용하지 않으면서 줄바꿈 처리
 		inquiry.setInq_content(StringUtil.useBrNoHtml(inquiry.getInq_content()));
 		
+		if(dao.getAnswerCount(Integer.parseInt(request.getParameter("inq_num"))) > 0){
+			dao.setStatusDone(Integer.parseInt(request.getParameter("inq_num")));
+		} else {
+			dao.setStatusNone(Integer.parseInt(request.getParameter("inq_num")));
+		}
+		
+		
 		request.setAttribute("inquiry", inquiry);
 		
 		return "/WEB-INF/views/inquiry/detailInquiry.jsp";
