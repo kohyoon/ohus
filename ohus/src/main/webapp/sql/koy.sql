@@ -25,7 +25,7 @@ create table inquiry_answer(
 	mem_num number not null,
 	constraint inquiry_ans_pk primary key (ans_num),
 	constraint inquiry_ans_fk1 foreign key (inq_num) references inquiry (inq_num),
-	constraint inquiry_ans_fk foreign key (mem_num) references omember (mem_num)
+	constraint inquiry_ans_fk2 foreign key (mem_num) references omember (mem_num)
 );
 
 create sequence inquiry_ans_seq;
