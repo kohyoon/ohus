@@ -200,7 +200,7 @@ $(function(){
 	//답변 수정
 	$(document).on('submit', '#mre_form', function(event){
 		//기본이벤트 제거
-		//event.preventDefault();
+		event.preventDefault();
 		
 		if($('#mre_content').val().trim() == ''){
 			alert('내용을 입력하세요.');

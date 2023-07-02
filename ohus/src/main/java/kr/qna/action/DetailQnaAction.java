@@ -34,13 +34,13 @@ public class DetailQnaAction implements Action {
 		//HTML 태그를 허용하지 않으면서 줄바꿈 처리
 		qna.setQna_content(StringUtil.useBrNoHtml(qna.getQna_content()));
 		
-		/*
+		
 		if(dao.getAnswerCount(Integer.parseInt(request.getParameter("qna_num"))) > 0){
 			dao.setStatusDone(Integer.parseInt(request.getParameter("qna_num")));
 		} else {
 			dao.setStatusNone(Integer.parseInt(request.getParameter("qna_num")));
 		}
-		*/
+		
 		
 		request.setAttribute("qna", qna);
 		
