@@ -8,6 +8,19 @@
 <title>상품문의 게시판 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/koy/form.css">
+<style type="text/css">
+
+  #three_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #three_buttons input[type="submit"],
+  #three_buttons input[type="button"] {
+    margin: 0 10px;
+  }
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -39,7 +52,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2>상품문의 게시판 글쓰기</h2>
+		<h2 style="text-align:center;">상품문의 게시판 글쓰기</h2>
 		<form id="write_form" action="writeQna.do" method="get">
 			<ul>
 				<li>
@@ -73,7 +86,7 @@
 					
 				</li>
 			</ul>
-			<div class="align-center">
+			<div class="align-center" id="three_buttons">
 				<input type="submit" value="등록">
 				<input type="button" value="목록" onclick="location.href='qnaList.do'">
 				<input type="button" value="이전" onclick="history.go(-1)">

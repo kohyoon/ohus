@@ -61,7 +61,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- 내용 시작 -->
 	<div class="container">
-		<h2 class="align-center">문의게시판 글쓰기</h2>
+		<h2 style="text-align:center;">문의게시판 글쓰기</h2>
 		<form id="write_form" action="writeInquiry.do" method="post">
 			<ul>
 				<li>

@@ -27,7 +27,7 @@ $(function(){
 				
 				$(param.list).each(function(index, item){
 					let output = '<div class="item">';
-					output += '<span><b>' + item.id + '</b></span>';
+					output += '<span><b>[관리자] ' + item.id + '</b></span>';
 					
 					//날짜
 					if(item.inq_mdate){

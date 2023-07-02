@@ -14,6 +14,9 @@
 table{
 	width:1200px;
 }
+div.bottoms{
+	position:fixed;
+}
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -80,7 +83,9 @@ table{
 			</form>
 			<!-- 검색창 끝 -->	
 			<div class="list-space">
-				<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'" <c:if test="${empty user_num}">disable="disabled"</c:if>>
+				<c:if test="${user_auth < 9}">
+				<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'">
+				</c:if>
 				<input type="button" value="전체목록" onclick="location.href='listNotice.do'" style="text-align:center;">
 			</div>		
 		</div>

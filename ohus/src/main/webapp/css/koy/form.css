@@ -80,7 +80,7 @@ select option{
 	padding:3px 0;
 }
 
-.align-center input[type="submit"]{
+.align-center input[type="submit"], .align-center input[type="button"]{
 	width: 30%;
 	padding: 13px;
 	background-color: #35c5f0 ;
@@ -92,7 +92,7 @@ select option{
 	margin-right: 200px;
 	margin-top: 10px;
 }
-.align-center input[type="submit"]:hover{
+.align-center input[type="submit"]:hover, .align-center input[type="button"]:hover{
 	background-color: #09addb;
 	color : white;
 }
