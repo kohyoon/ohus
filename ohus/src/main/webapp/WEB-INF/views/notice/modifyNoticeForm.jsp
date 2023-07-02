@@ -114,7 +114,7 @@
 				</li>
 			</ul>
 			<div class="align-center" id="two_buttons">
-				<input type="submit" value="등록">
+				<input type="submit" value="수정">
 				<input type="button" value="목록" id="list" onclick="location.href='detailNotice.do?notice_num=${notice.notice_num}'">
 			</div>
 		</form>
