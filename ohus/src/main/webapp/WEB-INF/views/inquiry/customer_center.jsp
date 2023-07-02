@@ -123,6 +123,7 @@ div.cs-buttons{
 			<img src="${pageContext.request.contextPath}/images/customer-service.png" width="30" height="33">
 			<span>고객센터</span>
 		</div>
+		<hr size="1" noshade="noshade" width="100%">
 	<div>
 		<div id="faq_div">
 			<h2>
