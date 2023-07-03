@@ -42,7 +42,7 @@ public class AdminPageAction implements Action{
 		 // count 읽어오기
         MemberDAO dao = MemberDAO.getInstance();
         int count = dao.getMemberCountByAdmin(keyfield, keyword);
-        PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "memberList.do");
+        PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "adminPage.do");
 
         List<MemberVO> list = null;
 
