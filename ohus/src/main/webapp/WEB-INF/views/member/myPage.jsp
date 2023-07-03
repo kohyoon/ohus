@@ -232,7 +232,7 @@
 		   width="200" height="200" class="profile-pic">
 		</c:if>  
     </div>
-    <div class="data"> <!-- 자기소개 -->
+    <div class="data"> 
       <h2>${member.name}</h2>
     </div>
     <div class="row">
