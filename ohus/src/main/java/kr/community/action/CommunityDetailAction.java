@@ -17,7 +17,9 @@ public class CommunityDetailAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
+		if(user_num == null) { // 로그인 하지 않았을 때
+			return "redirect:/member/loginForm.do"; // (로그인 폼 경로 확인 필요)
+		}
 		//글번호
 		int cboard_num = Integer.parseInt(
 						   request.getParameter(
