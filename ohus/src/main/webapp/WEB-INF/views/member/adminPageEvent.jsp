@@ -123,7 +123,7 @@ background-color : skyblue;
 	<h2>이벤트 목록</h2>
 		<%-- 검색창 시작 --%>
 		<form id="search_form" action="list.do" method="get">
-			<ul ul class="align-center">
+			<ul ul class="search">
 				<li>
 				<select name="keyfield"> <
 					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
@@ -179,10 +179,12 @@ background-color : skyblue;
 							</td>
 						</tr>
 					</c:forEach>	
-				</table>	
+				</table>
+				
 			</c:if>
 		</div>
 	</div>
+	<div class="align-center">${page}</div>	
 	<%-- 내용끝 --%>
 </div>	
 </body>

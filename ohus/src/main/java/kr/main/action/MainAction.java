@@ -30,7 +30,7 @@ public class MainAction implements Action {
         CommunityDAO dao = CommunityDAO.getInstance();
         int count = dao.getBoardCount(keyfield, keyword, cboard_category);
 
-        PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "list.do",
+        PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 10, "main.do",
                 "&cboard_category=" + cboard_category);
 
         List<CommunityVO> list = null;

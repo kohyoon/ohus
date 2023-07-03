@@ -114,7 +114,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-				
+				<div class="align-center">${page}</div>
 				<!-- 페이지 보여주기 -->
 			</c:if>			
 		</div>

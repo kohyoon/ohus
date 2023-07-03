@@ -90,6 +90,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
 </div>
