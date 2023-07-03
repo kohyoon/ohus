@@ -31,7 +31,7 @@
 		<div class="admin-item-submit">
 			<%-- 검색창 시작 --%>
 			<form id="search_form" action="adminPageItem.do" method="get">
-				<h1>상품 목록</h1>
+				<h2>상품 목록</h2>
 				<ul class="search">
 					<li>
 						<select name="keyfield">

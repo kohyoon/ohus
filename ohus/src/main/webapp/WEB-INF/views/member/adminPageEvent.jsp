@@ -120,6 +120,7 @@ background-color : skyblue;
 <jsp:include page="/WEB-INF/views/member/adminPageheader.jsp"/>
 	<%-- 내용시작 --%>
 	<div class = "event-main">
+	<h2>이벤트 목록</h2>
 		<%-- 검색창 시작 --%>
 		<form id="search_form" action="list.do" method="get">
 			<ul ul class="align-center">

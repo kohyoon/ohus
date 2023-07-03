@@ -34,7 +34,7 @@
 		<div class="admin-market-submit">
 			<%-- 검색창 시작 --%>
 			<form id="search_form" action="adminPageMarket.do" method="get">
-				<h1>상추마켓 글목록</h1>
+				<h2>상추마켓 글목록</h2>
 				<ul class="search">
 					<li>
 						<select name="keyfield">
