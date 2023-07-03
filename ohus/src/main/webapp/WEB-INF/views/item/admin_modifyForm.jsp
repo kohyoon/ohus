@@ -108,9 +108,6 @@
 					<button class="ad-btn ad-list" type="button"  onclick="location.href='list.do'">
 						상품 목록
 					</button>
-					<button class="ad-btn ad-del" type="button"  onclick="location.href='delete.do?item_num=${item.item_num}'">
-						상품 삭제
-					</button>
 				</div>
 			</form>
 		</div>
