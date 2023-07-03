@@ -55,11 +55,11 @@
 				<th>상품가격</th>
 				<th>합계</th>
 			</tr>
-			<c:forEach var="detail" items="${detailList}">
+			<c:forEach var="detail" items="${detailList}" varStatus="status">
 			<td>
-				<a href = "${pageContext.request.contextPath}/item/detail.do?item_num=${cart.item_num}">
-					<img src = "${pageContext.request.contextPath}/upload/${cart.itemVO.item_photo1}" width = "80"> <!-- 사진 크기 -->
-					${cart.itemVO.item_name}
+				<a href = "${pageContext.request.contextPath}/item/detail.do?item_num=${itemList.get(status.index).item_num}">
+					<img src = "${pageContext.request.contextPath}/upload/${itemList.get(status.index).item_photo1}" width = "80"> <!-- 사진 크기 -->
+					${itemList.get(status.index).item_name}
 				</a>
 			</td>
 			<tr>
