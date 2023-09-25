@@ -83,7 +83,7 @@ div.bottoms{
 			</form>
 			<!-- 검색창 끝 -->	
 			<div class="list-space">
-				<c:if test="${user_auth < 9}">
+				<c:if test="${user_auth == 9}">
 				<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'">
 				</c:if>
 				<input type="button" value="전체목록" onclick="location.href='listNotice.do'" style="text-align:center;">
